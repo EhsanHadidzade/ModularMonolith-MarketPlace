@@ -1,0 +1,12 @@
+C:\Work\Projects\MyNiaSmart\MyNiaSmart\0_Framework\bin\Debug\net5.0\0_Framework.deps.json
+C:\Work\Projects\MyNiaSmart\MyNiaSmart\0_Framework\bin\Debug\net5.0\0_Framework.dll
+C:\Work\Projects\MyNiaSmart\MyNiaSmart\0_Framework\bin\Debug\net5.0\0_Framework.pdb
+C:\Work\Projects\MyNiaSmart\MyNiaSmart\0_Framework\obj\Debug\net5.0\0_Framework.csproj.AssemblyReference.cache
+C:\Work\Projects\MyNiaSmart\MyNiaSmart\0_Framework\obj\Debug\net5.0\0_Framework.GeneratedMSBuildEditorConfig.editorconfig
+C:\Work\Projects\MyNiaSmart\MyNiaSmart\0_Framework\obj\Debug\net5.0\0_Framework.AssemblyInfoInputs.cache
+C:\Work\Projects\MyNiaSmart\MyNiaSmart\0_Framework\obj\Debug\net5.0\0_Framework.AssemblyInfo.cs
+C:\Work\Projects\MyNiaSmart\MyNiaSmart\0_Framework\obj\Debug\net5.0\0_Framework.csproj.CoreCompileInputs.cache
+C:\Work\Projects\MyNiaSmart\MyNiaSmart\0_Framework\obj\Debug\net5.0\0_Framework.dll
+C:\Work\Projects\MyNiaSmart\MyNiaSmart\0_Framework\obj\Debug\net5.0\refint\0_Framework.dll
+C:\Work\Projects\MyNiaSmart\MyNiaSmart\0_Framework\obj\Debug\net5.0\0_Framework.pdb
+C:\Work\Projects\MyNiaSmart\MyNiaSmart\0_Framework\obj\Debug\net5.0\ref\0_Framework.dll
