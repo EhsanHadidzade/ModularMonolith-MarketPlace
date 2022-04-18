@@ -27,7 +27,7 @@ namespace AccountManagement.Application
             var birthday = command.Birthday.ToGeorgianDateTime();
 
             var picturePath = _fileUploader.Upload(command.ProfilePhoto, "UserPhoto");
-            var user = new User(command.Firstname, command.Lastname, command.MobileNumber
+            var user = new User(command.FullName, command.MobileNumber
                 , command.Capital, command.City, command.Address, command.NationalCode
                 , birthday, picturePath, command.IntroductorFullname, command.IntroductorMobileNumber);
             _userRepository.Savechange();
@@ -49,12 +49,17 @@ namespace AccountManagement.Application
             var birthday = command.Birthday.ToGeorgianDateTime();
             var picturePath = _fileUploader.Upload(command.ProfilePhoto, "UserPhoto");
 
-            user.Edit(command.Firstname, command.Lastname, command.MobileNumber
+            user.Edit(command.FullName, command.MobileNumber
                 , command.Capital, command.City, command.Address, command.NationalCode
                 , birthday, picturePath, command.IntroductorFullname, command.IntroductorMobileNumber);
             _userRepository.Savechange();
 
             return operation.Succedded();
+        }
+
+        public EditUser GetDetails(long id)
+        {
+            return _userRepository.GetDetails(id);
         }
 
         public List<UserViewModel> GetList()

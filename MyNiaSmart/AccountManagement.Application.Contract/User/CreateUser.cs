@@ -1,4 +1,5 @@
 ﻿using _0_Framework.Utilities;
+using AccountManagement.Application.Contract.Role;
 using Microsoft.AspNetCore.Http;
 using System;
 using System.Collections.Generic;
@@ -12,10 +13,7 @@ namespace AccountManagement.Application.Contract.User
     public class CreateUser
     {
         [Required(ErrorMessage =ValidationMessage.IsRequired)]
-        public string Firstname { get;  set; }
-
-        [Required(ErrorMessage = ValidationMessage.IsRequired)]
-        public string Lastname { get;  set; }
+        public string FullName { get;  set; }
 
         [Required(ErrorMessage = ValidationMessage.IsRequired)]
         public string MobileNumber { get;  set; }
@@ -29,5 +27,8 @@ namespace AccountManagement.Application.Contract.User
         public IFormFile ProfilePhoto { get;  set; }
         public string IntroductorFullname { get;  set; }
         public string IntroductorMobileNumber { get;  set; }
+
+        public long RoleId { get; set; }
+        public List<RoleViewModel> Roles { get; set; }
     }
 }

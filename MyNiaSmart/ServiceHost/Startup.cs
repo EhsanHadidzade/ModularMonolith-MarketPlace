@@ -21,13 +21,13 @@ namespace ServiceHost
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddControllersWithViews();
+            services.AddControllersWithViews().AddRazorRuntimeCompilation();
 
             var connectionstring = Configuration.GetConnectionString("MyNiaSmart");
             AccountManagement.Configuration.AccountManagementBootstrapper.Configure(services, connectionstring);
 
             //FileUploader System Configuration
-            services.AddTransient<IFileUploader, FileUploader>();
+            services.AddTransient<IFileUploader,FileUploader>();
 
 
         }
@@ -52,12 +52,20 @@ namespace ServiceHost
 
             app.UseAuthorization();
 
+
+
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllerRoute(
                     name: "default",
                     pattern: "{controller=Home}/{action=Index}/{id?}");
+
+                endpoints.MapAreaControllerRoute(
+                    name: "Administrator",
+                    areaName: "Administrator",
+                    pattern: "{area:exists}/{controller=Home}/{action=index}/{id?}");
             });
+
         }
     }
 }

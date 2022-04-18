@@ -1,0 +1,64 @@
+﻿@model AccountManagement.Application.Contract.Role.CreateRole
+
+
+<form method="post" action="/Administrator/Role/Create">
+    <div class="modal-content">
+        <div class="modal-header">
+            <h5 class="modal-title">افزودن نقش جدید به سازمان</h5>
+            <button type="button" class="close" data-dismiss="modal">
+                <span>×</span>
+            </button>
+        </div>
+        <div class="modal-body">
+            <div class="col-xl-12 col-lg-12">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="basic-form">
+                            <div class="form-row">
+                                <div class="form-group col-md-12">
+                                    <label>نام گروه بندی نقش مورد نظر </label>
+                                    <select class="form-control" asp-for=RoleTypeId asp-items="@ViewData["RoleTypes"] as SelectList">
+                                        <option value="0">انتخاب کنید</option>
+                                    </select>
+                                    <span asp-validation-for="Name">
+                                    </span>
+                                </div>
+                                <div class="form-group col-md-12">
+                                    <label>عنوان نقش مورد نظر </label>
+                                    <input type="text" asp-for="Name" id="roleTypeName" class="form-control" placeholder="  عنوان نقش">
+                                    <span asp-validation-for="Name">
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="modal-footer">
+            <button type="button" class="btn btn-danger light" data-dismiss="modal">بستن</button>
+            <button type="submit" class="btn btn-primary">ذخیره تغییرات</button>
+        </div>
+    </div>
+</form>
+<script>
+    //$("#btnsub").click(function(){
+
+    //    var val = $('#roleTypeName').val();
+    //    $.ajax({
+    //        type:'POST',
+    //        url:'/administrator/roletype/create',
+    //        data:{command:@Model},
+    //        debugger;
+
+    //        success: function(res)
+    //        {
+    //            if(res == true)
+    //            {
+
+    //            }
+    //        }
+    //    });
+    //});
+
+</script>

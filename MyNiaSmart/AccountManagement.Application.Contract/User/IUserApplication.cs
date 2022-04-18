@@ -8,5 +8,6 @@ namespace AccountManagement.Application.Contract.User
         OperationResult Create(CreateUser command);
         OperationResult Edit(EditUser command);
         List<UserViewModel> GetList();
+        EditUser GetDetails(long id);
     }
 }

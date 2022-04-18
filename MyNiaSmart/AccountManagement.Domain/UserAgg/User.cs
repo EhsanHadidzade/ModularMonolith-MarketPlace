@@ -1,13 +1,16 @@
 ﻿using _0_Framework.Domain;
+using AccountManagement.Domain.RoleAgg;
+using AccountManagement.Domain.UserRoleAgg;
 using System;
+using System.Collections.Generic;
 
 namespace AccountManagement.Domain.UserAgg
 {
     public class User : BaseEntity
     {
         #region Properties
-        public string Firstname { get; private set; }
-        public string Lastname { get; private set; }
+        //Compulsory
+        public string FullName { get; private set; }
         public string MobileNumber { get; private set; }
 
         //optional 
@@ -15,24 +18,47 @@ namespace AccountManagement.Domain.UserAgg
         public string City { get; private set; }
         public string Address { get; private set; }
         public string NationalCode { get; private set; }
-        public DateTime Birthday { get; private set; }
+        public DateTime? Birthday { get; private set; }
         public string ProfilePhoto { get; private set; }
         public string IntroductorFullname { get; private set; }
         public string IntroductorMobileNumber { get; private set; }
+
+        public int Grade { get;private set; }
         #endregion
 
         #region Relations
-
+        public List<UserRole> UserRoles { get; private set; }
         #endregion
 
-
-        public User(string firstname, string lastname, string mobileNumber
-            , string capital, string city, string address, string nationalCode
-            , DateTime birthday, string profilePhoto, string introductorFullname
+        public User(string fullName, string mobileNumber, string capital
+            , string city, string address, string nationalCode
+            , DateTime? birthday, string profilePhoto, string introductorFullname
             , string introductorMobileNumber)
         {
-            Firstname = firstname;
-            Lastname = lastname;
+            FullName = fullName;
+            MobileNumber = mobileNumber;
+            Capital = capital;
+            City = city;
+            Address = address;
+            NationalCode = nationalCode;
+            Birthday = birthday;
+            Grade = 1;
+
+            if (!string.IsNullOrWhiteSpace(ProfilePhoto))
+                ProfilePhoto = profilePhoto;
+
+            IntroductorFullname = introductorFullname;
+            IntroductorMobileNumber = introductorMobileNumber;
+
+            UserRoles = new List<UserRole>();
+        }
+
+        public void Edit(string fullName, string mobileNumber, string capital
+            , string city, string address, string nationalCode
+            , DateTime? birthday, string profilePhoto, string introductorFullname
+            , string introductorMobileNumber)
+        {
+            FullName = fullName;
             MobileNumber = mobileNumber;
             Capital = capital;
             City = city;
@@ -40,32 +66,14 @@ namespace AccountManagement.Domain.UserAgg
             NationalCode = nationalCode;
             Birthday = birthday;
 
-            if (!string.IsNullOrWhiteSpace(profilePhoto))
+            if (!string.IsNullOrWhiteSpace(ProfilePhoto))
                 ProfilePhoto = profilePhoto;
 
             IntroductorFullname = introductorFullname;
             IntroductorMobileNumber = introductorMobileNumber;
+          
         }
 
-        public void Edit(string firstname, string lastname, string mobileNumber
-            , string capital, string city, string address, string nationalCode
-            , DateTime birthday, string profilePhoto, string introductorFullname
-            , string introductorMobileNumber)
-        {
-            Firstname = firstname;
-            Lastname = lastname;
-            MobileNumber = mobileNumber;
-            Capital = capital;
-            City = city;
-            Address = address;
-            NationalCode = nationalCode;
-            Birthday = birthday;
-
-            if (!string.IsNullOrWhiteSpace(profilePhoto))
-                ProfilePhoto = profilePhoto;
-
-            IntroductorFullname = introductorFullname;
-            IntroductorMobileNumber = introductorMobileNumber;
-        }
+        //Here we should make a new method to Change Grade of user
     }
 }
