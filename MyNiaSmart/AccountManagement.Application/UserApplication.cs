@@ -24,12 +24,17 @@ namespace AccountManagement.Application
             if (_userRepository.IsExist(x => x.MobileNumber == command.MobileNumber))
                 return operation.Failed(ApplicationMessage.DuplicatedRecord);
 
-            var birthday = command.Birthday.ToGeorgianDateTime();
+            var birthday = DateTime.MinValue;
+            if (command.Birthday != null)
+                birthday = command.Birthday.ToGeorgianDateTime();
+
+
 
             var picturePath = _fileUploader.Upload(command.ProfilePhoto, "UserPhoto");
             var user = new User(command.FullName, command.MobileNumber
                 , command.Capital, command.City, command.Address, command.NationalCode
                 , birthday, picturePath, command.IntroductorFullname, command.IntroductorMobileNumber);
+            _userRepository.Create(user);
             _userRepository.Savechange();
 
             return operation.Succedded();
@@ -46,14 +51,16 @@ namespace AccountManagement.Application
             if (_userRepository.IsExist(x => x.MobileNumber == command.MobileNumber && x.Id != command.Id))
                 return operation.Failed(ApplicationMessage.DuplicatedRecord);
 
-            var birthday = command.Birthday.ToGeorgianDateTime();
+            var birthday = DateTime.MinValue;
+            if (command.Birthday != null)
+                birthday = command.Birthday.ToGeorgianDateTime();
+
             var picturePath = _fileUploader.Upload(command.ProfilePhoto, "UserPhoto");
 
             user.Edit(command.FullName, command.MobileNumber
                 , command.Capital, command.City, command.Address, command.NationalCode
-                , birthday, picturePath, command.IntroductorFullname, command.IntroductorMobileNumber);
+                , birthday,picturePath,command.IntroductorFullname,command.IntroductorMobileNumber);
             _userRepository.Savechange();
-
             return operation.Succedded();
         }
 

@@ -6,7 +6,7 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width,initial-scale=1">
-    <title>موتا ادمین - قالب مدیریت و داشبورد HTML </title>
+    <title> @ViewData["Title"] - قالب مدیریت و داشبورد  </title>
     <!-- Favicon icon -->
     <link rel="icon" type="image/png" sizes="16x16" href="~/AdminTheme/images/favicon.png">
     <link href="~/AdminTheme/vendor/jqvmap/css/jqvmap.min.css" rel="stylesheet">
@@ -957,6 +957,18 @@
     <!-- Svganimation scripts -->
     <script src="~/AdminTheme/vendor/svganimation/vivus.min.js"></script>
     <script src="~/AdminTheme/vendor/svganimation/svg.animation.js"></script>
+
+    <!--Persian Date Picker-->
+    <script src="~/AdminTheme/js/persian-date.min.js"></script>
+    <script src="~/AdminTheme/js/persian-datepicker.min.js"></script>
+      <script>
+        $('.persianDateInput').persianDatepicker({
+            format: 'YYYY/MM/DD',
+            autoClose: true,
+            initialValueType: "persian"
+        });
+    </script>
+
 
     @RenderSection("Scripts",false)
 

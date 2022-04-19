@@ -66,7 +66,7 @@ namespace AccountManagement.Domain.UserAgg
             NationalCode = nationalCode;
             Birthday = birthday;
 
-            if (!string.IsNullOrWhiteSpace(ProfilePhoto))
+            if (!string.IsNullOrWhiteSpace(profilePhoto))
                 ProfilePhoto = profilePhoto;
 
             IntroductorFullname = introductorFullname;

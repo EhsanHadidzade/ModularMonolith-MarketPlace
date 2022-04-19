@@ -1,5 +1,7 @@
 ﻿@model List<AccountManagement.Application.Contract.Role.RoleViewModel>
-
+@{
+        ViewData["Title"] = "مدیریت نقش ها";
+}
 <!-- Custom Stylesheet -->
 <link href="/AdminTheme/vendor/datatables/css/jquery.dataTables.min.css" rel="stylesheet">
 <link href="/AdminTheme/vendor/bootstrap-select/dist/css/bootstrap-select.min.css" rel="stylesheet">
@@ -11,13 +13,12 @@
     <div class="col-sm-6 p-md-0">
         <div class="welcome-text">
             <h4>سلام، خوش آمدید</h4>
-            <span>جدول داده </span>
         </div>
     </div>
     <div class="col-sm-6 p-md-0 justify-content-sm-end mt-2 mt-sm-0 d-flex">
         <ol class="breadcrumb">
-            <li class="breadcrumb-item"><a href="javascript:void(0)">جدول </a></li>
-            <li class="breadcrumb-item active"><a href="javascript:void(0)">جدول داده </a></li>
+            <li class="breadcrumb-item"><a href="/administrator">پنل مدیریت </a></li>
+            <li class="breadcrumb-item active"><a href=""> مدیریت نقش های سازمان </a></li>
         </ol>
     </div>
 </div>

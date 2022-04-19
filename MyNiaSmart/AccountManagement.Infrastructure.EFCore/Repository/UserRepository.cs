@@ -42,6 +42,7 @@ namespace AccountManagement.Infrastructure.EFCore.Repository
                 Id = x.Id,
                 FullName = x.FullName,
                 Grade=x.Grade,
+                ProfilePhoto=x.ProfilePhoto,
                 CreationDate=x.CreationDate.ToFarsi()
             }).ToList();
         }

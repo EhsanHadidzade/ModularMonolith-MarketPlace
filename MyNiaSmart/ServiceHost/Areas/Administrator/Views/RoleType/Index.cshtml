@@ -1,23 +1,26 @@
 ﻿@model List<AccountManagement.Application.Contract.RoleType.RoleTypeViewModel>
-
+@{
+    ViewData["Title"] = "مدیریت گروه بندی نقش ها";
+}
 <!-- Custom Stylesheet -->
 <link href="/AdminTheme/vendor/datatables/css/jquery.dataTables.min.css" rel="stylesheet">
 <link href="/AdminTheme/vendor/bootstrap-select/dist/css/bootstrap-select.min.css" rel="stylesheet">
 <link href="/AdminTheme/css/style.css" rel="stylesheet">
-<!---->
 
+  <!-- Toastr -->
+    <link rel="stylesheet" href="~/AdminTheme/vendor/toastr/css/toastr.min.css">
+<!---->
 
 <div class="row page-titles mx-0">
     <div class="col-sm-6 p-md-0">
         <div class="welcome-text">
             <h4>سلام، خوش آمدید</h4>
-            <span>جدول داده </span>
         </div>
     </div>
     <div class="col-sm-6 p-md-0 justify-content-sm-end mt-2 mt-sm-0 d-flex">
         <ol class="breadcrumb">
-            <li class="breadcrumb-item"><a href="javascript:void(0)">جدول </a></li>
-            <li class="breadcrumb-item active"><a href="javascript:void(0)">جدول داده </a></li>
+            <li class="breadcrumb-item"><a href="/administrator">پنل مدیریت </a></li>
+            <li class="breadcrumb-item active"><a href=""> مدیریت گروه بندی نقش های سازمان </a></li>
         </ol>
     </div>
 </div>
@@ -66,7 +69,6 @@
         </div>
     </div>
 </div>
-
 
 <!--Scripts-->
 <script src="~/AdminTheme/vendor/global/global.min.js"></script>

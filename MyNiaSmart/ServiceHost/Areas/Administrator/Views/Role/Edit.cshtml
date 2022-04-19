@@ -27,7 +27,7 @@
                                 <div class="form-group col-md-12">
                                     <label>عنوان نقش مورد نظر </label>
                                     <input type="text" asp-for="Name" id="roleTypeName" class="form-control" placeholder="  عنوان نقش">
-                                    <span asp-validation-for="Name">
+                                    <span class="text-danger" asp-validation-for="Name">
                                     </span>
                                 </div>
                             </div>
@@ -43,24 +43,3 @@
     </div>
     <input type="hidden" asp-for="Id" value="@Model.Id" />
 </form>
-<script>
-    //$("#btnsub").click(function(){
-
-    //    var val = $('#roleTypeName').val();
-    //    $.ajax({
-    //        type:'POST',
-    //        url:'/administrator/roletype/create',
-    //        data:{command:@Model},
-    //        debugger;
-
-    //        success: function(res)
-    //        {
-    //            if(res == true)
-    //            {
-
-    //            }
-    //        }
-    //    });
-    //});
-
-</script>

@@ -39,7 +39,7 @@ namespace AccountManagement.Infrastructure.EFCore.Repository
                 Name = x.Name,
                 RoleTypeName=x.RoleType.RoleTypeName,
                 CreationDate=x.CreationDate.ToFarsi()
-            }).ToList();
+            }).OrderByDescending(x=>x.Id).ToList();
         }
     }
 }

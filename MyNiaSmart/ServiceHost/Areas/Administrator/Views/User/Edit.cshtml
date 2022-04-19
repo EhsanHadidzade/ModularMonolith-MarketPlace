@@ -1,0 +1,112 @@
+﻿@model AccountManagement.Application.Contract.User.EditUser
+
+
+<form method="post" action="/Administrator/user/Edit" enctype="multipart/form-data">
+    <div class="modal-content">
+        <div class="modal-header">
+            <h5 class="modal-title">افزودن کاربر جدید</h5>
+            <button type="button" class="close" data-dismiss="modal">
+                <span>×</span>
+            </button>
+        </div>
+        <div class="modal-body">
+            <div class="col-xl-12 col-lg-12">
+                <div class="card">
+                    <div class="card-body">
+                        <!-- Default accordion -->
+                        <div id="accordion-one" class="accordion accordion-primary">
+                            <div class="accordion__item">
+                                <div class="accordion__header rounded-lg" data-toggle="collapse" data-target="#default_collapseOne">
+                                    <span class="accordion__header--text">پر کردن این بخش اجباری است</span>
+                                    <span class="accordion__header--indicator"></span>
+                                </div>
+                                <div id="default_collapseOne" class="collapse accordion__body show" data-parent="#accordion-one">
+                                    <div class="accordion__body--text">
+                                        <div class="card-body">
+                                            <div class="basic-form">
+                                                <div class="form-row">
+                                                    <div class="form-group col-md-12">
+                                                        <label>  نام و نام خانوادگی</label>
+                                                        <input type="text" asp-for="FullName" class="form-control" placeholder="">
+                                                        <span class="text-danger" asp-validation-for="FullName"></span>
+                                                    </div>
+                                                    <div class="form-group col-md-12">
+                                                        <label> شماره موبایل</label>
+                                                        <input type="number" asp-for="MobileNumber" class="form-control" placeholder="">
+                                                        <span class="text-danger" asp-validation-for="MobileNumber"></span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="accordion__item">
+                                <div class="accordion__header collapsed rounded-lg" data-toggle="collapse" data-target="#default_collapseTwo">
+                                    <span class="accordion__header--text">  پر کردن این بخش اختیاری است</span>
+                                    <span class="accordion__header--indicator"></span>
+                                </div>
+                                <div id="default_collapseTwo" class="collapse accordion__body" data-parent="#accordion-one">
+                                    <div class="accordion__body--text">
+                                        <div class="card-body">
+                                            <div class="basic-form">
+                                                <div class="form-row">
+                                                    <div class="form-group col-md-12">
+                                                        <label> کد ملی</label>
+                                                        <input type="number" asp-for="NationalCode" class="form-control" placeholder="">
+                                                        <span asp-validation-for="NationalCode"></span>
+                                                    </div>
+                                                    <div class="form-group col-md-12">
+                                                        <label> تاریخ تولد</label>
+                                                        <input class="form-control persianDateInput" asp-for="Birthday">
+                                                        <span asp-validation-for="Birthday"></span>
+                                                    </div>
+                                                    <div class="form-group col-md-12">
+                                                        <label> آدرس</label>
+                                                        <input type="text" asp-for="Address" class="form-control" placeholder=" ">
+                                                        <span asp-validation-for="Address"></span>
+                                                    </div>
+                                                    <div class="form-group col-md-6">
+                                                        <label> استان</label>
+                                                        <input type="text" asp-for="Capital" class="form-control" placeholder="">
+                                                        <span asp-validation-for="Capital"></span>
+                                                    </div>
+                                                    <div class="form-group col-md-6">
+                                                        <label> شهر</label>
+                                                        <input type="text" asp-for="City" class="form-control" placeholder="">
+                                                        <span asp-validation-for="City"></span>
+                                                    </div>
+                                                    <div class="form-group col-md-12">
+                                                        <label> تصویر</label>
+                                                        <input type="file" asp-for="ProfilePhoto" class="form-control" placeholder="">
+                                                        <span asp-validation-for="ProfilePhoto"></span>
+                                                    </div>
+                                                    <div class="form-group col-md-12">
+                                                        <label> نام و نام خانوادگی معرف</label>
+                                                        <input type="text" asp-for="IntroductorFullname" class="form-control" placeholder="">
+                                                        <span asp-validation-for="IntroductorFullname"></span>
+                                                    </div>
+                                                    <div class="form-group col-md-12">
+                                                        <label> شماره همراه معرف</label>
+                                                        <input type="number" asp-for="IntroductorMobileNumber" class="form-control" placeholder="">
+                                                        <span asp-validation-for="IntroductorMobileNumber"></span>
+                                                    </div>
+                                                    <input type="hidden" asp-for="Id" value="@Model.Id" />
+
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="modal-footer">
+            <button type="button" class="btn btn-danger light" data-dismiss="modal">بستن</button>
+            <button type="submit" class="btn btn-primary">ذخیره تغییرات</button>
+        </div>
+    </div>
+</form>

@@ -36,7 +36,7 @@ namespace AccountManagement.Infrastructure.EFCore.Repository
                 RoleTypeName = x.RoleTypeName,
                 CreationDate = x.CreationDate.ToFarsi(),
                 IsRemoved = x.IsRemoved
-            }).ToList();
+            }).OrderByDescending(x=>x.Id).ToList();
         }
     }
 }
