@@ -11,5 +11,6 @@ namespace AccountManagement.Application.Contract.Role
         public string Name { get; set; }
         public string RoleTypeName { get; set; }
         public string CreationDate { get; set; }
+        public long? RoleTypeId { get; set; }
     }
 }

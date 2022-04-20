@@ -14,7 +14,8 @@
     <link href="~/AdminTheme/vendor/bootstrap-select/dist/css/bootstrap-select.min.css" rel="stylesheet">
     <link href="~/AdminTheme/css/style.css" rel="stylesheet">
     <link href="../../cdn.lineicons.com/2.0/LineIcons.css" rel="stylesheet">
-
+    <link href="~/AdminTheme/css/persian-datepicker.min.css" rel="stylesheet" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 </head>
 <body>
 
@@ -922,7 +923,7 @@
         Main wrapper end
     ***********************************-->
     <div id="MainModal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
-        <div class="modal-dialog">
+        <div class="modal-dialog" style="max-width:1000px">
             <div class="modal-content" id="ModalContent">
             </div>
         </div>
@@ -958,15 +959,17 @@
     <script src="~/AdminTheme/vendor/svganimation/vivus.min.js"></script>
     <script src="~/AdminTheme/vendor/svganimation/svg.animation.js"></script>
 
+
     <!--Persian Date Picker-->
     <script src="~/AdminTheme/js/persian-date.min.js"></script>
     <script src="~/AdminTheme/js/persian-datepicker.min.js"></script>
-      <script>
-        $('.persianDateInput').persianDatepicker({
+    <script>
+        $('#persianDateInput').persianDatepicker({
             format: 'YYYY/MM/DD',
             autoClose: true,
             initialValueType: "persian"
         });
+        debugger;
     </script>
 
 

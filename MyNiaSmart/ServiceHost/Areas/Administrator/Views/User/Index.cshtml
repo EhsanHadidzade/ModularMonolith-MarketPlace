@@ -32,7 +32,7 @@
             </div>
 
             <div class="card-body">
-                 <button type="button" class="btn btn-rounded btn-info" onclick="window.location.href ='#showmodal=/administrator/user/create'">
+                <button type="button" class="btn btn-rounded btn-info" onclick="window.location.href ='#showmodal=/administrator/user/create'">
                     <span class="btn-icon-left text-info">
                         <i class="fa fa-plus color-info"></i>
                     </span>افزودن
@@ -59,6 +59,7 @@
                                     <td>
                                         <div class="d-flex">
                                             <a href="#showmodal=/administrator/user/Edit/@item.Id" class="btn btn-primary shadow btn-xs sharp mr-1"><i class="fa fa-pencil"></i></a>
+                                            <a id="role" href="#showmodal=/administrator/user/EditUserRole/@item.Id" class="btn btn-warning shadow btn-xs sharp mr-1"><i class="fa fa-rocket"></i></a>
                                             <a href="#" class="btn btn-danger shadow btn-xs sharp"><i class="fa fa-trash"></i></a>
                                         </div>
                                     </td>
@@ -72,6 +73,14 @@
     </div>
 </div>
 
+
+<script>
+    $("#role").click(
+        function(){
+           $(".modal-dialog").css("MaxWidth","1500px");
+        }
+    )
+</script>
 
 <!--Scripts-->
 <script src="~/AdminTheme/vendor/global/global.min.js"></script>

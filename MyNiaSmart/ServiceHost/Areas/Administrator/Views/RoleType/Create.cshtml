@@ -1,38 +1,40 @@
 ﻿@model AccountManagement.Application.Contract.RoleType.CreateRoleType
 
 
-<form method="post" action="/administrator/RoleType/create">
-    <div class="modal-content">
-        <div class="modal-header">
-            <h5 class="modal-title">افزودن گروه بندی  جدید برای نقش ها</h5>
-            <button type="button" class="close" data-dismiss="modal">
-                <span>×</span>
-            </button>
-        </div>
-        <div class="modal-body">
-            <div class="col-xl-12 col-lg-12">
-                <div class="card">
-                    <div class="card-body">
-                        <div class="basic-form">
-                            <div class="form-row">
-                                <div class="form-group col-md-12">
-                                    <label>عنوان گروه بندی مورد نظر </label>
-                                    <input type="text" asp-for="RoleTypeName" id="roleTypeName" class="form-control" placeholder=" گروه بندی">
-                                    <span class="text-danger" asp-validation-for="RoleTypeName">
-                                    </span>
+        <form method="post" action="/administrator/RoleType/create">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">افزودن گروه بندی  جدید برای نقش ها</h5>
+                    <button type="button" class="close" data-dismiss="modal">
+                        <span>×</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="col-xl-12 col-lg-12">
+                        <div class="card">
+                            <div class="card-body">
+                                <div class="basic-form">
+                                    <div class="form-row">
+                                        <div class="form-group col-md-12">
+                                            <label>عنوان گروه بندی مورد نظر </label>
+                                            <input type="text" asp-for="RoleTypeName" id="roleTypeName" class="form-control" placeholder=" گروه بندی">
+                                            <span class="text-danger" asp-validation-for="RoleTypeName">
+                                            </span>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-danger light" data-dismiss="modal">بستن</button>
+                    <button type="submit" class="btn btn-primary">ذخیره تغییرات</button>
+                </div>
             </div>
-        </div>
-        <div class="modal-footer">
-            <button type="button" class="btn btn-danger light" data-dismiss="modal">بستن</button>
-            <button type="submit" class="btn btn-primary">ذخیره تغییرات</button>
-        </div>
-    </div>
-</form>
+        </form>
+
+
 
 <!-- Toastr -->
 <script src="~/AdminTheme/vendor/toastr/js/toastr.min.js"></script>

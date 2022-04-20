@@ -44,7 +44,7 @@ namespace AccountManagement.Domain.UserAgg
             Birthday = birthday;
             Grade = 1;
 
-            if (!string.IsNullOrWhiteSpace(ProfilePhoto))
+            if (!string.IsNullOrWhiteSpace(profilePhoto))
                 ProfilePhoto = profilePhoto;
 
             IntroductorFullname = introductorFullname;

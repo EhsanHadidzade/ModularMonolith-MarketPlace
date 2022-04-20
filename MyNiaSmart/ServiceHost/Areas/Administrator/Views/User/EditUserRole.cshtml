@@ -1,0 +1,61 @@
+﻿@*@model List<AccountManagement.Application.Contract.RoleType.RoleTypeViewModel>
+*@
+@model dynamic
+
+
+
+<form method="post" action="/Administrator/user/create">
+    <div class="modal-content">
+        <div class="modal-header">
+            <h5 class="modal-title">مدیریت نقش کاربر</h5>
+            <button type="button" class="close" data-dismiss="modal">
+                <span>×</span>
+            </button>
+        </div>
+        <div class="modal-body">
+            <div class="row">
+                <div class="col-xl-12">
+                    <div class="card">
+                        <div class="card-header">
+                            <h4 class="card-title">مدیریت نقش کاربر</h4>
+                        </div>
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col-xl-3">
+                                    <div class="nav flex-column nav-pills mb-3">
+                                        @foreach (var roleType in Model.RoleTypes)
+                                        {
+                                            <a href="#v-pills-@roleType.Id" data-toggle="pill" class="nav-link @((Model.IndexOf(roleType)==0)? "active":"")"> @roleType.RoleTypeName</a>
+                                        }
+                                    </div>
+                                </div>
+                                <div class="col-xl-9" style=" border-right: 1px solid rgba(192,192,192, .5) ;">
+                                    <div class="tab-content">
+                                        @foreach (var roleType in Model.RoleTypes)
+                                        {
+                                            <div id="v-pills-@roleType.Id" class="tab-pane fade @((Model.RoleTypes.IndexOf(roleType)==0)? "active show":"")">
+                                                @foreach (var role in roleType.Roles)
+                                                {
+                                                    <div class="form-check mb-2">
+                                                        <input type="checkbox" class="form-check-input" id="check1" value="@role.Id">
+                                                        <label class="form-check-label" for="check1"> @role.Name</label>
+                                                    </div>
+                                                }
+                                            </div>
+                                        }
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+            </div>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-danger light" data-dismiss="modal">بستن</button>
+        <button type="submit" class="btn btn-primary">ذخیره تغییرات</button>
+    </div>
+</form>

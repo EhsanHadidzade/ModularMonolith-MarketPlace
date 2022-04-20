@@ -10,7 +10,7 @@ namespace AccountManagement.Application.Contract.Role
         [Required(ErrorMessage =ValidationMessage.IsRequired)]
         public string Name { get; set; }
 
-        [Required(ErrorMessage = ValidationMessage.IsRequired)]
+        [Range(1,long.MaxValue,ErrorMessage =ValidationMessage.IsRequired)]
         public long? RoleTypeId { get; set; }
 
         //To Fill List Of RoleTypes In Create Role Form

@@ -1,9 +1,13 @@
 ﻿using AccountManagement.Application.Contract.Role;
+using AccountManagement.Application.Contract.RoleType;
 using AccountManagement.Application.Contract.User;
 using AccountManagement.Domain.RoleAgg;
 using AccountManagement.Domain.UserAgg;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
+using System;
+using System.Dynamic;
+
 
 namespace ServiceHost.Areas.Administrator.Controllers
 {
@@ -12,12 +16,12 @@ namespace ServiceHost.Areas.Administrator.Controllers
     {
 
         private readonly IUserApplication _userApplication;
-        private readonly IRoleApplication _roleApplication;
-
-        public UserController(IUserApplication userApplication, IRoleApplication roleApplication)
+        private readonly IRoleTypeApplication _roleTypeApplication;
+        
+        public UserController(IUserApplication userApplication, IRoleTypeApplication roleTypeApplication)
         {
             _userApplication = userApplication;
-            _roleApplication = roleApplication;
+            _roleTypeApplication = roleTypeApplication;
         }
 
         public IActionResult Index()
@@ -48,6 +52,24 @@ namespace ServiceHost.Areas.Administrator.Controllers
             var result = _userApplication.Edit(command);
             return Redirect("./index");
         }
+
+        public IActionResult EditUserRole(long id)
+        {
+            var RoleTypes = _roleTypeApplication.GetList();
+            var tupleModel=new Tuple<ro>()
+
+            return PartialView(Model);
+        }
+
+        [HttpPost]
+        public IActionResult EditUserRole()
+        {
+
+            return Redirect("./index");
+        }
+        
+
+        
 
     }
 }

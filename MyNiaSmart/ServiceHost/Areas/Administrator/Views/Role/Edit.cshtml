@@ -19,9 +19,9 @@
                                 <div class="form-group col-md-12">
                                     <label>نام گروه بندی نقش مورد نظر </label>
                                     <select class="form-control" asp-for=RoleTypeId asp-items="@ViewData["RoleTypes"] as SelectList">
-                                        <option value="0">انتخاب کنید</option>
+                                        <option class="error" value="0">انتخاب کنید</option>
                                     </select>
-                                    <span asp-validation-for="RoleTypeId">
+                                    <span  asp-validation-for="RoleTypeId">
                                     </span>
                                 </div>
                                 <div class="form-group col-md-12">
