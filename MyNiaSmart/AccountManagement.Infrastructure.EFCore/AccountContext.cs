@@ -1,6 +1,8 @@
-﻿using AccountManagement.Domain.RoleAgg;
+﻿using AccountManagement.Domain.PersonalityAgg;
+using AccountManagement.Domain.RoleAgg;
 using AccountManagement.Domain.RoleTypeAgg;
 using AccountManagement.Domain.UserAgg;
+using AccountManagement.Domain.UserPersonalityAgg;
 using AccountManagement.Domain.UserRoleAgg;
 using AccountManagement.Infrastructure.EFCore.Mapping;
 using Microsoft.EntityFrameworkCore;
@@ -18,6 +20,8 @@ namespace AccountManagement.Infrastructure.EFCore
         public DbSet<Role> Roles { get; set; }
         public DbSet<UserRole> UserRoles{ get; set; }
         public DbSet<User> Users{ get; set; }
+        public DbSet<Personality> Personalities{ get; set; }
+        public DbSet<UserPersonality> UserPersonalities{ get; set; }
         public AccountContext(DbContextOptions<AccountContext> options) : base(options)
         {
         }

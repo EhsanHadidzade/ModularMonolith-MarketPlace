@@ -42,7 +42,6 @@ namespace ServiceHost.Areas.Administrator.Controllers
         {
             var result = _roleTypeApplication.Edit(editRoleType);
             return Redirect("./index");
-
         }
 
 

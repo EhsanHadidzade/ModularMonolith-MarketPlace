@@ -43,10 +43,9 @@ namespace AccountManagement.Application
                 _userRoleRepository.Create(userRole);
                 _userRoleRepository.Savechange();
             }
-
         }
 
-        public List<long> GetAllRoleIdsOfOneUserByUSerId(long userId)
+        public List<long> GetAllRoleIdsOfOneUserByUserId(long userId)
         {
             var userRoles = _userRoleRepository.GetUserRolesOfOneUserByUserId(userId);
             var RoleIds = new List<long>();
@@ -55,6 +54,11 @@ namespace AccountManagement.Application
                 RoleIds.Add(userRole.RoleId);
             }
             return RoleIds;
+        }
+
+        public void RemoveUserRolesofOneUserByUserId(long userId)
+        {
+            _userRoleRepository.RemoveUserRolesofOneUserByUserId(userId);
         }
     }
 }

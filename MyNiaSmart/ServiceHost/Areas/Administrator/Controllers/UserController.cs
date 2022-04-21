@@ -1,11 +1,13 @@
 ﻿using AccountManagement.Application.Contract.Role;
 using AccountManagement.Application.Contract.RoleType;
 using AccountManagement.Application.Contract.User;
+using AccountManagement.Application.Contract.UserRole;
 using AccountManagement.Domain.RoleAgg;
 using AccountManagement.Domain.UserAgg;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using System;
+using System.Collections.Generic;
 using System.Dynamic;
 
 
@@ -17,11 +19,13 @@ namespace ServiceHost.Areas.Administrator.Controllers
 
         private readonly IUserApplication _userApplication;
         private readonly IRoleTypeApplication _roleTypeApplication;
-        
-        public UserController(IUserApplication userApplication, IRoleTypeApplication roleTypeApplication)
+        private readonly IUserRoleApplication _UserRoleApplication;
+
+        public UserController(IUserApplication userApplication, IRoleTypeApplication roleTypeApplication, IUserRoleApplication UserRoleApplication)
         {
             _userApplication = userApplication;
             _roleTypeApplication = roleTypeApplication;
+            _UserRoleApplication = UserRoleApplication;
         }
 
         public IActionResult Index()
@@ -55,16 +59,17 @@ namespace ServiceHost.Areas.Administrator.Controllers
 
         public IActionResult EditUserRole(long id)
         {
-            var RoleTypes = _roleTypeApplication.GetList();
-            var tupleModel=new Tuple<ro>()
-
+            var Model = _roleTypeApplication.GetAllRolesWithSelectedRolesOfOneUserByUserId(id);
+            ViewData["userFullName"] = _userApplication.GetDetails(id).FullName;
             return PartialView(Model);
         }
 
         [HttpPost]
-        public IActionResult EditUserRole()
+        public IActionResult EditUserRole(List<long> roleList,long userId)
         {
-
+            var command = new EditUserRole() { UserId = userId, SelectedRoleIds = roleList };
+            _UserRoleApplication.EditUserRole(command);
+            
             return Redirect("./index");
         }
         

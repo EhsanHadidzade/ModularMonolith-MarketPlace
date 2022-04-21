@@ -32,7 +32,6 @@ namespace AccountManagement.Configuration
             services.AddTransient<IRoleTypeRepository, RoleTypeRepository>();
 
 
-
             services.AddDbContext<AccountContext>(item => item.UseSqlServer(connectionstring));
         }
     }

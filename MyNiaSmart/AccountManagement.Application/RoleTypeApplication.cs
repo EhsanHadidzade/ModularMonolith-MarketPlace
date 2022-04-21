@@ -1,5 +1,6 @@
 ﻿using _0_Framework.Utilities;
 using AccountManagement.Application.Contract.RoleType;
+using AccountManagement.Application.Contract.UserRole;
 using AccountManagement.Domain.RoleTypeAgg;
 using System;
 using System.Collections.Generic;
@@ -12,10 +13,12 @@ namespace AccountManagement.Application
     public class RoleTypeApplication : IRoleTypeApplication
     {
         private readonly IRoleTypeRepository _roleTypeRepository;
+        private readonly IUserRoleApplication _userRoleApplication;
 
-        public RoleTypeApplication(IRoleTypeRepository roleTypeRepository)
+        public RoleTypeApplication(IRoleTypeRepository roleTypeRepository, IUserRoleApplication userRoleApplication)
         {
             _roleTypeRepository = roleTypeRepository;
+            _userRoleApplication = userRoleApplication;
         }
 
         public OperationResult Create(CreateRoleType command)
@@ -42,6 +45,13 @@ namespace AccountManagement.Application
             roleType.Edit(command.RoleTypeName);
             _roleTypeRepository.Savechange();
             return operation.Succedded();
+        }
+
+        public Tuple<List<RoleTypeViewModel>, List<long>,long> GetAllRolesWithSelectedRolesOfOneUserByUserId(long userId)
+        {
+            var AllRoleTypes = GetList();
+            var selectedRoles=_userRoleApplication.GetAllRoleIdsOfOneUserByUserId(userId);
+            return Tuple.Create<List<RoleTypeViewModel>,List<long>,long>(AllRoleTypes, selectedRoles,userId);
         }
 
         public EditRoleType getDetails(long id)

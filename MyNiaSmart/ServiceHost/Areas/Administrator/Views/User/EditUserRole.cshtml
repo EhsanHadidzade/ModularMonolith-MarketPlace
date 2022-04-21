@@ -1,10 +1,8 @@
-﻿@*@model List<AccountManagement.Application.Contract.RoleType.RoleTypeViewModel>
-*@
-@model dynamic
+﻿@using AccountManagement.Application.Contract.RoleType
+@model Tuple<List<RoleTypeViewModel>,List<long>,long>
 
 
-
-<form method="post" action="/Administrator/user/create">
+<form method="post" action="/Administrator/user/EditUserRole">
     <div class="modal-content">
         <div class="modal-header">
             <h5 class="modal-title">مدیریت نقش کاربر</h5>
@@ -17,27 +15,27 @@
                 <div class="col-xl-12">
                     <div class="card">
                         <div class="card-header">
-                            <h4 class="card-title">مدیریت نقش کاربر</h4>
+                            <h4 class="card-title">مدیریت نقش  کاربر :@ViewData["userFullName"]</h4>
                         </div>
                         <div class="card-body">
                             <div class="row">
                                 <div class="col-xl-3">
                                     <div class="nav flex-column nav-pills mb-3">
-                                        @foreach (var roleType in Model.RoleTypes)
+                                        @foreach (var roleType in Model.Item1)
                                         {
-                                            <a href="#v-pills-@roleType.Id" data-toggle="pill" class="nav-link @((Model.IndexOf(roleType)==0)? "active":"")"> @roleType.RoleTypeName</a>
+                                            <a href="#v-pills-@roleType.Id" data-toggle="pill" class="nav-link @((Model.Item1.IndexOf(roleType)==0)? "active":"")"> @roleType.RoleTypeName</a>
                                         }
                                     </div>
                                 </div>
                                 <div class="col-xl-9" style=" border-right: 1px solid rgba(192,192,192, .5) ;">
                                     <div class="tab-content">
-                                        @foreach (var roleType in Model.RoleTypes)
+                                        @foreach (var roleType in Model.Item1)
                                         {
-                                            <div id="v-pills-@roleType.Id" class="tab-pane fade @((Model.RoleTypes.IndexOf(roleType)==0)? "active show":"")">
+                                            <div id="v-pills-@roleType.Id" class="tab-pane fade @((Model.Item1.IndexOf(roleType)==0)? "active show":"")">
                                                 @foreach (var role in roleType.Roles)
                                                 {
-                                                    <div class="form-check mb-2">
-                                                        <input type="checkbox" class="form-check-input" id="check1" value="@role.Id">
+                                                    <div class="form-check mb-2">9
+                                                        <input type="checkbox" class="form-check-input" id="check1" name="RoleList"  value="@role.Id" @((Model.Item2.Any(x=>x==role.Id))? "Checked":"")>
                                                         <label class="form-check-label" for="check1"> @role.Name</label>
                                                     </div>
                                                 }
@@ -46,11 +44,10 @@
                                     </div>
                                 </div>
                             </div>
+                            <input type="hidden"  name="userId" value="@Model.Item3" />
                         </div>
                     </div>
                 </div>
-
-
             </div>
         </div>
     </div>
