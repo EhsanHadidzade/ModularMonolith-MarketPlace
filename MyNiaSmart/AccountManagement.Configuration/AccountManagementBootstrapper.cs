@@ -1,11 +1,15 @@
 ﻿using AccountManagement.Application;
+using AccountManagement.Application.Contract.Personality;
 using AccountManagement.Application.Contract.Role;
 using AccountManagement.Application.Contract.RoleType;
 using AccountManagement.Application.Contract.User;
+using AccountManagement.Application.Contract.UserPersonality;
 using AccountManagement.Application.Contract.UserRole;
+using AccountManagement.Domain.PersonalityAgg;
 using AccountManagement.Domain.RoleAgg;
 using AccountManagement.Domain.RoleTypeAgg;
 using AccountManagement.Domain.UserAgg;
+using AccountManagement.Domain.UserPersonalityAgg;
 using AccountManagement.Domain.UserRoleAgg;
 using AccountManagement.Infrastructure.EFCore;
 using AccountManagement.Infrastructure.EFCore.Repository;
@@ -19,6 +23,10 @@ namespace AccountManagement.Configuration
     {
         public static void Configure(IServiceCollection services,string connectionstring)
         {
+            services.AddTransient<IRoleTypeApplication, RoleTypeApplication>();
+            services.AddTransient<IRoleTypeRepository, RoleTypeRepository>();
+
+
             services.AddTransient<IUserApplication, UserApplication>();
             services.AddTransient<IUserRepository, UserRepository>();
 
@@ -28,8 +36,13 @@ namespace AccountManagement.Configuration
             services.AddTransient<IRoleApplication, RoleApplication>();
             services.AddTransient<IRoleRepository, RoleRepository>();
 
-            services.AddTransient<IRoleTypeApplication, RoleTypeApplication>();
-            services.AddTransient<IRoleTypeRepository, RoleTypeRepository>();
+          
+            
+            services.AddTransient<IPersonalityApplication,PersonalityApplication>();
+            services.AddTransient<IPersonalityRepository,PersonalityRepository>();
+
+            services.AddTransient<IUserPersonalityApplication,UserPersonalityApplication>();
+            services.AddTransient<IUserPersonalityRepository,UserPersonalityRepository>();
 
 
             services.AddDbContext<AccountContext>(item => item.UseSqlServer(connectionstring));

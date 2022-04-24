@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace AccountManagement.Application.Contract.UserRole
 {
-    
+
     public interface IUserRoleApplication
     {
         void CreateUserRoles(CreateUserRole command);

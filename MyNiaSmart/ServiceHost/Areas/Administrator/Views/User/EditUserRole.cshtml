@@ -2,7 +2,7 @@
 @model Tuple<List<RoleTypeViewModel>,List<long>,long>
 
 
-<form method="post" action="/Administrator/user/EditUserRole">
+<form class="form" method="post" action="/Administrator/user/EditUserRole">
     <div class="modal-content">
         <div class="modal-header">
             <h5 class="modal-title">مدیریت نقش کاربر</h5>
@@ -56,3 +56,20 @@
         <button type="submit" class="btn btn-primary">ذخیره تغییرات</button>
     </div>
 </form>
+
+<!--To Disable Submit Button before change in form-->
+<script>
+        $('form')
+        .each(function(){
+            $(this).data('serialized', $(this).serialize())
+        })
+        .on('change input', function(){
+            $(this)
+                .find('input:submit, button:submit')
+                    .prop('disabled', $(this).serialize() == $(this).data('serialized'))
+            ;
+         })
+        .find('input:submit, button:submit')
+            .prop('disabled', true)
+    ;
+</script>

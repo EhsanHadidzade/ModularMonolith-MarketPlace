@@ -1,6 +1,8 @@
-﻿using AccountManagement.Application.Contract.Role;
+﻿using AccountManagement.Application.Contract.Personality;
+using AccountManagement.Application.Contract.Role;
 using AccountManagement.Application.Contract.RoleType;
 using AccountManagement.Application.Contract.User;
+using AccountManagement.Application.Contract.UserPersonality;
 using AccountManagement.Application.Contract.UserRole;
 using AccountManagement.Domain.RoleAgg;
 using AccountManagement.Domain.UserAgg;
@@ -19,13 +21,19 @@ namespace ServiceHost.Areas.Administrator.Controllers
 
         private readonly IUserApplication _userApplication;
         private readonly IRoleTypeApplication _roleTypeApplication;
+        private readonly IPersonalityApplication _personalityApplication;
         private readonly IUserRoleApplication _UserRoleApplication;
+        private readonly IUserPersonalityApplication _userPersonalityApplication;
 
-        public UserController(IUserApplication userApplication, IRoleTypeApplication roleTypeApplication, IUserRoleApplication UserRoleApplication)
+        public UserController(IUserApplication userApplication, IRoleTypeApplication roleTypeApplication,
+            IUserRoleApplication UserRoleApplication, IPersonalityApplication personalityApplication,
+            IUserPersonalityApplication userPersonalityApplication)
         {
             _userApplication = userApplication;
             _roleTypeApplication = roleTypeApplication;
             _UserRoleApplication = UserRoleApplication;
+            _personalityApplication = personalityApplication;
+            _userPersonalityApplication = userPersonalityApplication;
         }
 
         public IActionResult Index()
@@ -69,12 +77,23 @@ namespace ServiceHost.Areas.Administrator.Controllers
         {
             var command = new EditUserRole() { UserId = userId, SelectedRoleIds = roleList };
             _UserRoleApplication.EditUserRole(command);
-            
             return Redirect("./index");
         }
-        
+        public IActionResult EditUserPersonality(long id)
+        {
+            var model=_personalityApplication.GetAllPersonalitiesWithSelectedPersonalitiesOfUserByUserId(id);
+            ViewData["userFullName"] = _userApplication.GetDetails(id).FullName;
+            return PartialView(model);
+        }
 
-        
+        [HttpPost]
+        public IActionResult EditUserPersonality(List<long> PersonalityList, long userId)
+        {
+            var command=new EditUserPersonality() { UserId=userId, SelectedPersonalityIds = PersonalityList };
+            _userPersonalityApplication.EditUserPersonality(command);
+            return Redirect("./index");
+        }
+
 
     }
 }

@@ -28,6 +28,9 @@ namespace AccountManagement.Application.Contract.User
         public string IntroductorFullname { get;  set; }
         public string IntroductorMobileNumber { get;  set; }
 
+        public long Experience { get; set; }
+        public int Grade { get; set; }
+
         public List<RoleViewModel> Roles { get; set; }
     }
 }

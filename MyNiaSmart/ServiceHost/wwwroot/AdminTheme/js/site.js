@@ -15,7 +15,6 @@ SinglePage.LoadModal = function () {
             const forms = container.getElementsByTagName("form");
             const newForm = forms[forms.length - 1];
             $.validator.unobtrusive.parse(newForm);
-            debugger;
             showModal();
         }).fail(function (error) {
             alert("خطایی رخ داده، لطفا با مدیر سیستم تماس بگیرید.");
@@ -40,7 +39,8 @@ $(document).ready(function () {
             window.location.hash = "##";
             $('.PersianDateInput').persianDatepicker({
                 format: 'YYYY/MM/DD',
-                autoClose: true
+                autoClose: true,
+                initialValue: false
             });
             debugger;
         });

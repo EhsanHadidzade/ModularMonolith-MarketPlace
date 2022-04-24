@@ -4,7 +4,7 @@
 <form method="post" action="/Administrator/user/Edit" enctype="multipart/form-data">
     <div class="modal-content">
         <div class="modal-header">
-            <h5 class="modal-title">افزودن کاربر جدید</h5>
+            <h5 class="modal-title">ویرایش کاربر </h5>
             <button type="button" class="close" data-dismiss="modal">
                 <span>×</span>
             </button>
@@ -91,6 +91,17 @@
                                                         <input type="number" asp-for="IntroductorMobileNumber" class="form-control" placeholder="">
                                                         <span asp-validation-for="IntroductorMobileNumber"></span>
                                                     </div>
+                                                    <div class="form-group col-md-12">
+                                                        <label> نمره</label>
+                                                        <input type="number" asp-for="Grade" class="form-control" placeholder="">
+                                                        <span class="text-danger" asp-validation-for="Grade"></span>
+                                                    </div>
+                                                    <div class="form-group col-md-12">
+                                                        <label>  امتیاز(experience)</label>
+                                                        <input type="number" asp-for="Experience" class="form-control" placeholder="">
+                                                        <span class="text-danger" asp-validation-for="Experience"></span>
+                                                    </div>
+
                                                     <input type="hidden" asp-for="Id" value="@Model.Id" />
 
                                                 </div>
@@ -110,3 +121,29 @@
         </div>
     </div>
 </form>
+<script>
+    debugger;
+    $('.persianDateInput').persianDatepicker({
+        format: 'YYYY/MM/DD',
+        autoClose: true,
+        initialValue: false
+    });
+    debugger;
+</script>
+
+<!--To Disable Submit Button before change in form-->
+<script>
+        $('form')
+        .each(function(){
+            $(this).data('serialized', $(this).serialize())
+        })
+        .on('change input', function(){
+            $(this)
+                .find('input:submit, button:submit')
+                    .prop('disabled', $(this).serialize() == $(this).data('serialized'))
+            ;
+         })
+        .find('input:submit, button:submit')
+            .prop('disabled', true)
+    ;
+</script>

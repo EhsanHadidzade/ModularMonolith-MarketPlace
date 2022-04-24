@@ -30,6 +30,9 @@ namespace AccountManagement.Domain.UserAgg
         //Service girande
         public bool IsClient { get; private set; }
 
+        //User experience
+        public long Experience { get; private set; }
+
         public int Grade { get;private set; }
         #endregion
 
@@ -41,7 +44,7 @@ namespace AccountManagement.Domain.UserAgg
         public User(string fullName, string mobileNumber, string capital
             , string city, string address, string nationalCode
             , DateTime? birthday, string profilePhoto, string introductorFullname
-            , string introductorMobileNumber)
+            , string introductorMobileNumber, long experience)
         {
             FullName = fullName;
             MobileNumber = mobileNumber;
@@ -59,6 +62,8 @@ namespace AccountManagement.Domain.UserAgg
             IntroductorFullname = introductorFullname;
             IntroductorMobileNumber = introductorMobileNumber;
 
+            Experience = experience;
+
             UserRoles = new List<UserRole>();
             UserPersonalities = new List<UserPersonality>();
         }
@@ -66,7 +71,7 @@ namespace AccountManagement.Domain.UserAgg
         public void Edit(string fullName, string mobileNumber, string capital
             , string city, string address, string nationalCode
             , DateTime? birthday, string profilePhoto, string introductorFullname
-            , string introductorMobileNumber)
+            , string introductorMobileNumber,int grade,long experience)
         {
             FullName = fullName;
             MobileNumber = mobileNumber;
@@ -81,6 +86,9 @@ namespace AccountManagement.Domain.UserAgg
 
             IntroductorFullname = introductorFullname;
             IntroductorMobileNumber = introductorMobileNumber;
+
+            Grade=grade;
+            Experience=experience;
           
         }
 

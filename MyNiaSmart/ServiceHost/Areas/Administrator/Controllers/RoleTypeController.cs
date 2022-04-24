@@ -38,9 +38,9 @@ namespace ServiceHost.Areas.Administrator.Controllers
         }
 
         [HttpPost]
-        public IActionResult Edit(EditRoleType editRoleType)
+        public IActionResult Edit(EditRoleType command)
         {
-            var result = _roleTypeApplication.Edit(editRoleType);
+            var result = _roleTypeApplication.Edit(command);
             return Redirect("./index");
         }
 

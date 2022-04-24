@@ -1,7 +1,9 @@
-﻿using _0_Framework.Utilities;
+﻿using _0_Framework;
+using _0_Framework.Utilities;
 using _01_Framework.Application;
 using AccountManagement.Application.Contract.User;
 using AccountManagement.Domain.UserAgg;
+using AccountManagement.Domain.UserPersonalityAgg;
 using System;
 using System.Collections.Generic;
 
@@ -11,11 +13,14 @@ namespace AccountManagement.Application
     {
         private readonly IUserRepository _userRepository;
         private readonly IFileUploader _fileUploader;
+        private readonly IUserPersonalityRepository _userPersonalityRepository;
 
-        public UserApplication(IUserRepository userRepository, IFileUploader fileUploader)
+        public UserApplication(IUserRepository userRepository, IFileUploader fileUploader,
+            IUserPersonalityRepository userPersonalityRepository)
         {
             _userRepository = userRepository;
             _fileUploader = fileUploader;
+            _userPersonalityRepository = userPersonalityRepository;
         }
 
         public OperationResult Create(CreateUser command)
@@ -33,9 +38,14 @@ namespace AccountManagement.Application
             var picturePath = _fileUploader.Upload(command.ProfilePhoto, "UserPhoto");
             var user = new User(command.FullName, command.MobileNumber
                 , command.Capital, command.City, command.Address, command.NationalCode
-                , birthday, picturePath, command.IntroductorFullname, command.IntroductorMobileNumber);
+                , birthday, picturePath, command.IntroductorFullname, command.IntroductorMobileNumber,command.Experience);
             _userRepository.Create(user);
             _userRepository.Savechange();
+
+            //TO set new user as a client, we add a record in userPersonalityTable for this user
+            var userPersonality = new UserPersonality(user.Id, PersonalityTitle.Client);
+            _userPersonalityRepository.Create(userPersonality);
+            _userPersonalityRepository.Savechange();
 
             return operation.Succedded();
 
@@ -59,7 +69,7 @@ namespace AccountManagement.Application
 
             user.Edit(command.FullName, command.MobileNumber
                 , command.Capital, command.City, command.Address, command.NationalCode
-                , birthday,picturePath,command.IntroductorFullname,command.IntroductorMobileNumber);
+                , birthday,picturePath,command.IntroductorFullname,command.IntroductorMobileNumber,command.Grade,command.Experience);
             _userRepository.Savechange();
             return operation.Succedded();
         }

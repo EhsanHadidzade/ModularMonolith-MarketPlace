@@ -1,4 +1,5 @@
 ﻿using _0_Framework.Utilities;
+using AccountManagement.Application.Contract.UserPersonality;
 using AccountManagement.Application.Contract.UserRole;
 using AccountManagement.Domain.UserRoleAgg;
 using System;
@@ -58,6 +59,7 @@ namespace AccountManagement.Application
 
         public void RemoveUserRolesofOneUserByUserId(long userId)
         {
+
             _userRoleRepository.RemoveUserRolesofOneUserByUserId(userId);
         }
     }

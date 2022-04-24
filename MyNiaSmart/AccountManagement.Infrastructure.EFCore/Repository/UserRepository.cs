@@ -31,6 +31,8 @@ namespace AccountManagement.Infrastructure.EFCore.Repository
                 City = x.City,
                 IntroductorFullname = x.IntroductorFullname,
                 IntroductorMobileNumber = x.IntroductorMobileNumber,
+                Grade = x.Grade,
+                Experience=x.Experience
                
             }).FirstOrDefault(x=>x.Id == id);
         }

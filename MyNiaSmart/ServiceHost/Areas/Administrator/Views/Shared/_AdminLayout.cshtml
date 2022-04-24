@@ -15,7 +15,6 @@
     <link href="~/AdminTheme/css/style.css" rel="stylesheet">
     <link href="../../cdn.lineicons.com/2.0/LineIcons.css" rel="stylesheet">
     <link href="~/AdminTheme/css/persian-datepicker.min.css" rel="stylesheet" />
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 </head>
 <body>
 
@@ -591,6 +590,11 @@
                     <div class="tab-pane fade" id="apps">
                         <ul class="metismenu tab-nav-menu">
                             <li class="nav-label">مدیریت کاربران</li>
+                              <li>
+                                <a href="/administrator/personality/index" aria-expanded="false">
+                                    <span class="nav-text"> مدیریت شخصیت های سازمان </span>
+                                </a>
+                            </li>
                             <li>
                                 <a href="/administrator/roletype/index" aria-expanded="false">
                                     <span class="nav-text">مدیریت گروه بندی نقش ها</span>
@@ -932,6 +936,8 @@
     <!--**********************************
         Scripts
     ***********************************-->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+
     <!-- Required vendors -->
     <script src="~/AdminTheme/vendor/global/global.min.js"></script>
     <script src="~/AdminTheme/vendor/bootstrap-select/dist/js/bootstrap-select.min.js"></script>
@@ -963,15 +969,10 @@
     <!--Persian Date Picker-->
     <script src="~/AdminTheme/js/persian-date.min.js"></script>
     <script src="~/AdminTheme/js/persian-datepicker.min.js"></script>
-    <script>
-        $('#persianDateInput').persianDatepicker({
-            format: 'YYYY/MM/DD',
-            autoClose: true,
-            initialValueType: "persian"
-        });
-        debugger;
-    </script>
 
+    
+
+  
 
     @RenderSection("Scripts",false)
 

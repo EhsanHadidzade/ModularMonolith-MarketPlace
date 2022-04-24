@@ -1,9 +1,7 @@
 ﻿@model AccountManagement.Application.Contract.User.CreateUser
 
 
-
-
-<form method="post" action="/Administrator/user/create">
+<form class="form" method="post" action="/Administrator/user/create">
     <div class="modal-content">
         <div class="modal-header">
             <h5 class="modal-title">افزودن کاربر جدید</h5>
@@ -60,7 +58,7 @@
                                                     </div>
                                                     <div class="form-group col-md-12">
                                                         <label> تاریخ تولد</label>
-                                                        <input class="form-control" id="persianDateInput" asp-for="Birthday">
+                                                        <input class="form-control persianDateInput" asp-for="Birthday">
                                                         <span asp-validation-for="Birthday"></span>
                                                     </div>
                                                     <div class="form-group col-md-12">
@@ -110,3 +108,29 @@
         </div>
     </div>
 </form>
+<script>
+    debugger;
+    $('.persianDateInput').persianDatepicker({
+        format: 'YYYY/MM/DD',
+        autoClose: true,
+        initialValueType: "persian"
+    });
+    debugger;
+</script>
+
+<!--To Disable Submit Button before change in form-->
+<script>
+        $('form')
+        .each(function(){
+            $(this).data('serialized', $(this).serialize())
+        })
+        .on('change input', function(){
+            $(this)
+                .find('input:submit, button:submit')
+                    .prop('disabled', $(this).serialize() == $(this).data('serialized'))
+            ;
+         })
+        .find('input:submit, button:submit')
+            .prop('disabled', true)
+    ;
+</script>

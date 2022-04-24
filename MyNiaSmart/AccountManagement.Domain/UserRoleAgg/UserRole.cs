@@ -1,11 +1,6 @@
 ﻿using _0_Framework.Domain;
 using AccountManagement.Domain.RoleAgg;
 using AccountManagement.Domain.UserAgg;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace AccountManagement.Domain.UserRoleAgg
 {

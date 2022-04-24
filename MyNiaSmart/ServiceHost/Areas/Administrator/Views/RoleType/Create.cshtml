@@ -40,20 +40,22 @@
 <script src="~/AdminTheme/vendor/toastr/js/toastr.min.js"></script>
 <script src="~/AdminTheme/js/plugins-init/toastr-init.js"></script>
 
-@*<script>
-    function MyFunc(){
-    $.ajax({
-    url:"/administrator/roletype/create",
-    type:"Post",
-    data:{RoleTypeName:$("#roleTypeName").val()},
-    success:function(result){
+<!--To Disable Submit Button before change in form-->
+    <script>
+            $('form')
+            .each(function(){
+                $(this).data('serialized', $(this).serialize())
+            })
+            .on('change input', function(){
+                $(this)
+                    .find('input:submit, button:submit')
+                        .prop('disabled', $(this).serialize() == $(this).data('serialized'))
+                ;
+             })
+            .find('input:submit, button:submit')
+                .prop('disabled', true)
+        ;
+    </script>
 
-    if(result==true)
-    {
-    debugger;
-
-    }
-    }
-    })
-    }</script>
-*@
+    
+    
