@@ -7,7 +7,9 @@ namespace AccountManagement.Application.Contract.User
     {
         OperationResult Create(CreateUser command);
         OperationResult Edit(EditUser command);
+        OperationResult RegisterOrLogin(RegisterOrLoginUser command);
         List<UserViewModel> GetList();
         EditUser GetDetails(long id);
+
     }
 }

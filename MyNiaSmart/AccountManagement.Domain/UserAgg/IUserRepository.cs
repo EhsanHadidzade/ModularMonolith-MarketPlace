@@ -10,6 +10,7 @@ namespace AccountManagement.Domain.UserAgg
 {
     public interface IUserRepository:IRepository<long,User>
     {
+        User GetUserByMobileNumber(string mobileNumber);
         EditUser GetDetails(long id);
         List<UserViewModel> GetList();
     }

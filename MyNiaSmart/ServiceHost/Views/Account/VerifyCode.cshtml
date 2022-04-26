@@ -1,0 +1,96 @@
+﻿@{
+    Layout = null;
+}
+@model AccountManagement.Application.Contract.User.VerificationCode
+<!DOCTYPE html>
+<html lang="en" class="h-100">
+
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>ثبت نام </title>
+    <!-- Favicon icon -->
+    <link rel="icon" type="image/png" sizes="16x16" href="~/MainTheme/images/favicon.png">
+    <link href="~/maintheme/css/style.css" rel="stylesheet">
+
+</head>
+
+<body class="h-100">
+    <div class="authincation h-100">
+        <div class="container h-100">
+            <div class="row justify-content-center h-100 align-items-center">
+                <div class="col-md-6">
+                    <div class="authincation-content">
+                        <div class="row no-gutters">
+                            <div class="col-xl-12">
+                                <div class="auth-form">
+                                    <h4 class="text-center mb-4">وارد شوید</h4>
+                                    <form action="/Account/VerifyCode" method="post">
+                                        <!-- Default accordion -->
+                                        <div id="accordion-one" class="accordion accordion-primary">
+                                            <div class="accordion__item">
+                                                <div class="accordion__header rounded-lg" data-toggle="collapse" data-target="#default_collapseOne">
+                                                    <span class="accordion__header--text">  ورود به حساب کاربری</span>
+                                                    <span class="accordion__header--indicator"></span>
+                                                </div>
+                                                <div id="default_collapseOne" class="collapse accordion__body show" data-parent="#accordion-one">
+                                                    <div class="accordion__body--text">
+                                                        <div class="card-body">
+                                                            <div class="basic-form">
+                                                                <div class="form-row">
+                                                                    <div class="form-group col-md-12">
+                                                                        <label> شماره موبایل</label>
+                                                                        <input type="number" asp-for="Code" class="form-control" placeholder="">
+                                                                        <span class="text-danger" asp-validation-for="Code"></span>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="text-center mt-4">
+                                            <button type="submit" class="btn btn-primary btn-block">وارد شوید</button>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!--**********************************
+        Scripts
+    ***********************************-->
+    <!-- Required vendors -->
+    <script src="/maintheme/vendor/global/global.min.js"></script>
+    <script src="/maintheme/vendor/bootstrap-select/dist/js/bootstrap-select.min.js"></script>
+    <script src="/maintheme/js/custom.min.js"></script>
+    <script src="/maintheme/js/deznav-init.js"></script>
+
+    <!--To Disable Submit Button before change in form-->
+    <script>
+            $('form')
+            .each(function(){
+                $(this).data('serialized', $(this).serialize())
+            })
+            .on('change input', function(){
+                $(this)
+                    .find('input:submit, button:submit')
+                        .prop('disabled', $(this).serialize() == $(this).data('serialized'))
+                ;
+             })
+            .find('input:submit, button:submit')
+                .prop('disabled', true)
+        ;
+    </script>
+
+</body>
+
+</html>

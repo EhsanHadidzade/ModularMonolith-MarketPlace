@@ -1,6 +1,9 @@
+using _0_Framework.Utilities;
 using _01_Framework.Application;
+using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
@@ -22,12 +25,22 @@ namespace ServiceHost
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllersWithViews().AddRazorRuntimeCompilation();
+            services.AddHttpContextAccessor();
 
             var connectionstring = Configuration.GetConnectionString("MyNiaSmart");
             AccountManagement.Configuration.AccountManagementBootstrapper.Configure(services, connectionstring);
 
-            //FileUploader System Configuration
+            //Framework Configuration
             services.AddTransient<IFileUploader,FileUploader>();
+            services.AddTransient<IAuthHelper,AuthHelper>();
+
+            services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
+               .AddCookie(CookieAuthenticationDefaults.AuthenticationScheme, o =>
+               {
+                   o.LoginPath = new PathString("/Account/Login");
+                   o.LogoutPath = new PathString("/Account/LogOut");
+                   o.AccessDeniedPath = new PathString("/AccessDenied");
+               });
 
 
         }

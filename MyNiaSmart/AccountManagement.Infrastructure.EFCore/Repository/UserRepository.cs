@@ -37,6 +37,11 @@ namespace AccountManagement.Infrastructure.EFCore.Repository
             }).FirstOrDefault(x=>x.Id == id);
         }
 
+        public User GetUserByMobileNumber(string mobileNumber)
+        {
+            return _context.Users.FirstOrDefault(x=>x.MobileNumber == mobileNumber);
+        }
+
         List<UserViewModel> IUserRepository.GetList()
         {
             return _context.Users.Select(x => new UserViewModel

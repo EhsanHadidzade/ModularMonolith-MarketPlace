@@ -94,6 +94,9 @@ namespace AccountManagement.Infrastructure.EFCore.Migrations
                         .HasColumnType("bigint")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
+                    b.Property<string>("ActiveCode")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<string>("Address")
                         .HasMaxLength(256)
                         .HasColumnType("nvarchar(256)");
@@ -129,6 +132,9 @@ namespace AccountManagement.Infrastructure.EFCore.Migrations
                     b.Property<string>("IntroductorMobileNumber")
                         .HasMaxLength(100)
                         .HasColumnType("nvarchar(100)");
+
+                    b.Property<bool>("IsActive")
+                        .HasColumnType("bit");
 
                     b.Property<bool>("IsAdmin")
                         .HasColumnType("bit");
