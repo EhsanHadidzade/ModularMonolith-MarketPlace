@@ -17,3 +17,5 @@ C:\Work\Projects\MyNiaSmart\MyNiaSmart\ShopManagement.Configuration\bin\Debug\ne
 C:\Work\Projects\MyNiaSmart\MyNiaSmart\ShopManagement.Configuration\bin\Debug\net5.0\0_Framework.pdb
 C:\Work\Projects\MyNiaSmart\MyNiaSmart\ShopManagement.Configuration\bin\Debug\net5.0\ShopManagement.Domain.pdb
 C:\Work\Projects\MyNiaSmart\MyNiaSmart\ShopManagement.Configuration\obj\Debug\net5.0\ShopManagement.Configuration.csproj.CopyComplete
+C:\Work\Projects\MyNiaSmart\MyNiaSmart\ShopManagement.Configuration\bin\Debug\net5.0\ShopManagement.Application.Contract.dll
+C:\Work\Projects\MyNiaSmart\MyNiaSmart\ShopManagement.Configuration\bin\Debug\net5.0\ShopManagement.Application.Contract.pdb

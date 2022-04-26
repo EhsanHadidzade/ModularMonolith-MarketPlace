@@ -10,3 +10,6 @@ C:\Work\Projects\MyNiaSmart\MyNiaSmart\ShopManagement.Application.Contract\obj\D
 C:\Work\Projects\MyNiaSmart\MyNiaSmart\ShopManagement.Application.Contract\obj\Debug\net5.0\refint\ShopManagement.Application.Contract.dll
 C:\Work\Projects\MyNiaSmart\MyNiaSmart\ShopManagement.Application.Contract\obj\Debug\net5.0\ShopManagement.Application.Contract.pdb
 C:\Work\Projects\MyNiaSmart\MyNiaSmart\ShopManagement.Application.Contract\obj\Debug\net5.0\ref\ShopManagement.Application.Contract.dll
+C:\Work\Projects\MyNiaSmart\MyNiaSmart\ShopManagement.Application.Contract\bin\Debug\net5.0\0_Framework.dll
+C:\Work\Projects\MyNiaSmart\MyNiaSmart\ShopManagement.Application.Contract\bin\Debug\net5.0\0_Framework.pdb
+C:\Work\Projects\MyNiaSmart\MyNiaSmart\ShopManagement.Application.Contract\obj\Debug\net5.0\ShopManagement.Application.Contract.csproj.CopyComplete

@@ -2101,6 +2101,17 @@
           "AccountManagement.Infrastructure.EFCore.dll": {}
         }
       },
+      "ShopManagement.Application.Contract/1.0.0": {
+        "dependencies": {
+          "0_Framework": "1.0.0"
+        },
+        "runtime": {
+          "ShopManagement.Application.Contract.dll": {}
+        },
+        "compile": {
+          "ShopManagement.Application.Contract.dll": {}
+        }
+      },
       "ShopManagement.Configuration/1.0.0": {
         "dependencies": {
           "Microsoft.EntityFrameworkCore": "5.0.16",
@@ -2116,7 +2127,8 @@
       },
       "ShopManagement.Domain/1.0.0": {
         "dependencies": {
-          "0_Framework": "1.0.0"
+          "0_Framework": "1.0.0",
+          "ShopManagement.Application.Contract": "1.0.0"
         },
         "runtime": {
           "ShopManagement.Domain.dll": {}
@@ -4905,6 +4917,11 @@
       "sha512": ""
     },
     "AccountManagement.Infrastructure.EFCore/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "ShopManagement.Application.Contract/1.0.0": {
       "type": "project",
       "serviceable": false,
       "sha512": ""

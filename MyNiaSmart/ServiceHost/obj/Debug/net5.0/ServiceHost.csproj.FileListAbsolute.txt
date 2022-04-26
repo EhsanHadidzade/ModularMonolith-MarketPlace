@@ -468,3 +468,5 @@ C:\Work\Projects\MyNiaSmart\MyNiaSmart\ServiceHost\bin\Debug\net5.0\ShopManageme
 C:\Work\Projects\MyNiaSmart\MyNiaSmart\ServiceHost\bin\Debug\net5.0\ShopManagement.Configuration.pdb
 C:\Work\Projects\MyNiaSmart\MyNiaSmart\ServiceHost\bin\Debug\net5.0\ShopManagement.Domain.pdb
 C:\Work\Projects\MyNiaSmart\MyNiaSmart\ServiceHost\bin\Debug\net5.0\ShopManagement.Infrastructure.EFCore.pdb
+C:\Work\Projects\MyNiaSmart\MyNiaSmart\ServiceHost\bin\Debug\net5.0\ShopManagement.Application.Contract.dll
+C:\Work\Projects\MyNiaSmart\MyNiaSmart\ServiceHost\bin\Debug\net5.0\ShopManagement.Application.Contract.pdb
