@@ -9,6 +9,6 @@ namespace AccountManagement.Application.Contract.UserPersonality
     public class CreateUserPersonality
     {
         public long UserId { get; set; }
-        public List<long> SelectedPersonalityIds { get; set; }
+        public List<int> SelectedPersonalityIds { get; set; }
     }
 }

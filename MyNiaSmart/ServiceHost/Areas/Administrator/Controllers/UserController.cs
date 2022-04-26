@@ -73,7 +73,7 @@ namespace ServiceHost.Areas.Administrator.Controllers
         }
 
         [HttpPost]
-        public IActionResult EditUserRole(List<long> roleList,long userId)
+        public IActionResult EditUserRole(List<int> roleList,long userId)
         {
             var command = new EditUserRole() { UserId = userId, SelectedRoleIds = roleList };
             _UserRoleApplication.EditUserRole(command);
@@ -87,7 +87,7 @@ namespace ServiceHost.Areas.Administrator.Controllers
         }
 
         [HttpPost]
-        public IActionResult EditUserPersonality(List<long> PersonalityList, long userId)
+        public IActionResult EditUserPersonality(List<int> PersonalityList, long userId)
         {
             var command=new EditUserPersonality() { UserId=userId, SelectedPersonalityIds = PersonalityList };
             _userPersonalityApplication.EditUserPersonality(command);

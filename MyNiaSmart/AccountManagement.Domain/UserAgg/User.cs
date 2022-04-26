@@ -7,7 +7,7 @@ using System.Collections.Generic;
 
 namespace AccountManagement.Domain.UserAgg
 {
-    public class User : BaseEntity
+    public class User : BaseEntity<long>
     {
         #region Properties
         //Compulsory

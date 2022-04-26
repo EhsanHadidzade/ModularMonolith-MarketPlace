@@ -31,6 +31,8 @@ namespace AccountManagement.Infrastructure.EFCore
             var assembly = typeof(UserMapping).Assembly;
             modelBuilder.ApplyConfigurationsFromAssembly(assembly);
             base.OnModelCreating(modelBuilder);
+
+            
         }
     }
 }

@@ -2462,6 +2462,49 @@
         "runtime": {
           "bin/placeholder/AccountManagement.Infrastructure.EFCore.dll": {}
         }
+      },
+      "ShopManagement.Configuration/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v5.0",
+        "dependencies": {
+          "Microsoft.EntityFrameworkCore": "5.0.16",
+          "Microsoft.Extensions.DependencyInjection.Abstractions": "6.0.0",
+          "ShopManagement.Infrastructure.EFCore": "1.0.0"
+        },
+        "compile": {
+          "bin/placeholder/ShopManagement.Configuration.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/ShopManagement.Configuration.dll": {}
+        }
+      },
+      "ShopManagement.Domain/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v5.0",
+        "dependencies": {
+          "0_Framework": "1.0.0"
+        },
+        "compile": {
+          "bin/placeholder/ShopManagement.Domain.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/ShopManagement.Domain.dll": {}
+        }
+      },
+      "ShopManagement.Infrastructure.EFCore/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v5.0",
+        "dependencies": {
+          "Microsoft.EntityFrameworkCore": "5.0.16",
+          "Microsoft.EntityFrameworkCore.SqlServer": "5.0.16",
+          "ShopManagement.Domain": "1.0.0"
+        },
+        "compile": {
+          "bin/placeholder/ShopManagement.Infrastructure.EFCore.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/ShopManagement.Infrastructure.EFCore.dll": {}
+        }
       }
     }
   },
@@ -11907,6 +11950,21 @@
       "type": "project",
       "path": "../AccountManagement.Infrastructure.EFCore/AccountManagement.Infrastructure.EFCore.csproj",
       "msbuildProject": "../AccountManagement.Infrastructure.EFCore/AccountManagement.Infrastructure.EFCore.csproj"
+    },
+    "ShopManagement.Configuration/1.0.0": {
+      "type": "project",
+      "path": "../ShopManagement.Configuration/ShopManagement.Configuration.csproj",
+      "msbuildProject": "../ShopManagement.Configuration/ShopManagement.Configuration.csproj"
+    },
+    "ShopManagement.Domain/1.0.0": {
+      "type": "project",
+      "path": "../ShopManagement.Domain/ShopManagement.Domain.csproj",
+      "msbuildProject": "../ShopManagement.Domain/ShopManagement.Domain.csproj"
+    },
+    "ShopManagement.Infrastructure.EFCore/1.0.0": {
+      "type": "project",
+      "path": "../ShopManagement.Infrastructure.EFCore/ShopManagement.Infrastructure.EFCore.csproj",
+      "msbuildProject": "../ShopManagement.Infrastructure.EFCore/ShopManagement.Infrastructure.EFCore.csproj"
     }
   },
   "projectFileDependencyGroups": {
@@ -11918,6 +11976,7 @@
       "Microsoft.VisualStudio.Web.CodeGeneration.Design >= 5.0.2",
       "Node.js >= 5.3.0",
       "Npm >= 3.5.2",
+      "ShopManagement.Configuration >= 1.0.0",
       "System.ValueTuple >= 4.5.0"
     ]
   },
@@ -11958,6 +12017,9 @@
             },
             "C:\\Work\\Projects\\MyNiaSmart\\MyNiaSmart\\AccountManagement.Configuration\\AccountManagement.Configuration.csproj": {
               "projectPath": "C:\\Work\\Projects\\MyNiaSmart\\MyNiaSmart\\AccountManagement.Configuration\\AccountManagement.Configuration.csproj"
+            },
+            "C:\\Work\\Projects\\MyNiaSmart\\MyNiaSmart\\ShopManagement.Configuration\\ShopManagement.Configuration.csproj": {
+              "projectPath": "C:\\Work\\Projects\\MyNiaSmart\\MyNiaSmart\\ShopManagement.Configuration\\ShopManagement.Configuration.csproj"
             }
           }
         }

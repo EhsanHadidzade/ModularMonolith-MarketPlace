@@ -4,7 +4,7 @@ using System.Collections.Generic;
 
 namespace AccountManagement.Domain.PersonalityAgg
 {
-    public class Personality:BaseEntity
+    public class Personality:BaseEntity<int>
     {
         #region Properties
         public string Title { get; private set; }

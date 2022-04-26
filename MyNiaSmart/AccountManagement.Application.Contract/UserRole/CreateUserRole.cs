@@ -9,6 +9,6 @@ namespace AccountManagement.Application.Contract.UserRole
     public class CreateUserRole
     {
         public long UserId { get; set; }
-        public List<long> SelectedRoleIds { get; set; }
+        public List<int> SelectedRoleIds { get; set; }
     }
 }

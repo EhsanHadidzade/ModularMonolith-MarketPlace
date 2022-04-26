@@ -29,6 +29,7 @@ namespace ServiceHost
 
             var connectionstring = Configuration.GetConnectionString("MyNiaSmart");
             AccountManagement.Configuration.AccountManagementBootstrapper.Configure(services, connectionstring);
+            ShopManagement.Configuration.ShopManagementBootstrapper.Configure(services, connectionstring);
 
             //Framework Configuration
             services.AddTransient<IFileUploader,FileUploader>();

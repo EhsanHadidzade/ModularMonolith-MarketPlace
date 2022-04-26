@@ -1,0 +1,12 @@
+C:\Work\Projects\MyNiaSmart\MyNiaSmart\ShopManagement.Application.Contract\bin\Debug\net5.0\ShopManagement.Application.Contract.deps.json
+C:\Work\Projects\MyNiaSmart\MyNiaSmart\ShopManagement.Application.Contract\bin\Debug\net5.0\ShopManagement.Application.Contract.dll
+C:\Work\Projects\MyNiaSmart\MyNiaSmart\ShopManagement.Application.Contract\bin\Debug\net5.0\ShopManagement.Application.Contract.pdb
+C:\Work\Projects\MyNiaSmart\MyNiaSmart\ShopManagement.Application.Contract\obj\Debug\net5.0\ShopManagement.Application.Contract.csproj.AssemblyReference.cache
+C:\Work\Projects\MyNiaSmart\MyNiaSmart\ShopManagement.Application.Contract\obj\Debug\net5.0\ShopManagement.Application.Contract.GeneratedMSBuildEditorConfig.editorconfig
+C:\Work\Projects\MyNiaSmart\MyNiaSmart\ShopManagement.Application.Contract\obj\Debug\net5.0\ShopManagement.Application.Contract.AssemblyInfoInputs.cache
+C:\Work\Projects\MyNiaSmart\MyNiaSmart\ShopManagement.Application.Contract\obj\Debug\net5.0\ShopManagement.Application.Contract.AssemblyInfo.cs
+C:\Work\Projects\MyNiaSmart\MyNiaSmart\ShopManagement.Application.Contract\obj\Debug\net5.0\ShopManagement.Application.Contract.csproj.CoreCompileInputs.cache
+C:\Work\Projects\MyNiaSmart\MyNiaSmart\ShopManagement.Application.Contract\obj\Debug\net5.0\ShopManagement.Application.Contract.dll
+C:\Work\Projects\MyNiaSmart\MyNiaSmart\ShopManagement.Application.Contract\obj\Debug\net5.0\refint\ShopManagement.Application.Contract.dll
+C:\Work\Projects\MyNiaSmart\MyNiaSmart\ShopManagement.Application.Contract\obj\Debug\net5.0\ShopManagement.Application.Contract.pdb
+C:\Work\Projects\MyNiaSmart\MyNiaSmart\ShopManagement.Application.Contract\obj\Debug\net5.0\ref\ShopManagement.Application.Contract.dll

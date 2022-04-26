@@ -8,7 +8,7 @@ namespace _0_Framework
 {
     public class PersonalityTitle
     {
-        public const long Client = 1;
-        public const long Colleague = 2;
+        public const int Client = 1;
+        public const int Colleague = 2;
     }
 }
