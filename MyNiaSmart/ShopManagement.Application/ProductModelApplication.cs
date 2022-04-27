@@ -25,6 +25,7 @@ namespace ShopManagement.Application
                 return operation.Failed(ApplicationMessage.DuplicatedRecord);
 
             var productModel = new ProductModel(command.Title);
+            _productModelRepository.Create(productModel);
             _productModelRepository.Savechange();
             return operation.Succedded();
 

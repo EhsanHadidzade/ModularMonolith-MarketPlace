@@ -7,7 +7,7 @@ namespace ShopManagement.Application.Contract.ProductBrand
     {
         OperationResult Create(CreateProductBrand command);
         OperationResult Edit(EditProductBrand command);
-        EditProductBrand GetDetails(int id);
+        EditProductBrand GetDetails(long id);
         List<ProductBrandViewModel> GetList();
     }
 }

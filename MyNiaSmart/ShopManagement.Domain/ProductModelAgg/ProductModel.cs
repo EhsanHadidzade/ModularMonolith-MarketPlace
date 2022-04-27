@@ -1,4 +1,5 @@
-﻿using ShopManagement.Domain.ProductAgg;
+﻿using _0_Framework.Domain;
+using ShopManagement.Domain.ProductAgg;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -7,11 +8,10 @@ using System.Threading.Tasks;
 
 namespace ShopManagement.Domain.ProductModelAgg
 {
-    public class ProductModel
+    public class ProductModel:BaseEntity
     {
         #region Properties
 
-        public int Id { get; private set; }
         public string Title { get; private set; }
         #endregion
 

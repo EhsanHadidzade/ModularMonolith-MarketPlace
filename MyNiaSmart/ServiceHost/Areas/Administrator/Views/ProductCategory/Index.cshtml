@@ -1,0 +1,83 @@
+﻿@inject ShopManagement.Application.Contract.ProductBrand.IProductBrandApplication _productBrandApplication
+
+<div class="row page-titles mx-0">
+    <div class="col-sm-6 p-md-0">
+        <div class="welcome-text">
+            <h4>سلام، خوش آمدید</h4>
+        </div>
+    </div>
+    <div class="col-sm-6 p-md-0 justify-content-sm-end mt-2 mt-sm-0 d-flex">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="/administrator">پنل مدیریت </a></li>
+            <li class="breadcrumb-item active"><a href=""> مدیریت گروه بندی محصولات </a></li>
+        </ol>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-xl-12">
+        <div class="card">
+            <div class="card-header">
+                <h4 class="card-title">زبانه پیشفرض</h4>
+            </div>
+            <div class="card-body">
+                <!-- Nav tabs -->
+                <div class="default-tab">
+                    <ul class="nav nav-tabs" role="tablist">
+                        <li class="nav-item">
+                            <a class="nav-link active" data-toggle="tab" href="#home"><i class="la la-home mr-2"></i> برند</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" data-toggle="tab" href="#profile"><i class="la la-user mr-2"></i>مدل</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" data-toggle="tab" href="#contact"><i class="la la-phone mr-2"></i> وضعیت </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link " data-toggle="tab" href="#message"><i class="la la-envelope mr-2"></i>نوع </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link " data-toggle="tab" href="#status"><i class="la la-envelope mr-2"></i> نحوه استفاده</a>
+                        </li>
+                    </ul>
+                    <div class="tab-content">
+                        <div class="tab-pane fade active show" id="home" role="tabpanel">
+                            <div class="pt-4">
+                                <h4>تعیین برند محصولات</h4>
+                                <partial name="_ProductBrand" model="_productBrandApplication.GetList()"   >
+                                    
+                                
+                            </div>
+                        </div>
+                        <div class="tab-pane fade" id="profile">
+                            <div class="pt-4">
+                                <h4>تعیین مدل محصولات</h4>
+                                <partial name="_ProductModel" />
+                            </div>
+                        </div>
+                        <div class="tab-pane fade" id="contact">
+                            <div class="pt-4">
+                                <h4>تعیین وضعیت محصولات</h4>
+                                <partial name="_ProductStatus" />
+                            </div>
+                        </div>
+                        <div class="tab-pane fade " id="message">
+                            <div class="pt-4">
+                                <h4>تعیین نوع محصولات</h4>
+                                <partial name="_ProductType" />
+                            </div>
+                        </div>
+                        <div class="tab-pane fade  show" id="status">
+                            <div class="pt-4">
+                                <h4>تعیین نحوه استفاده محصولات</h4>
+                                <partial name="_ProductUsageType" />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+

@@ -13,7 +13,7 @@ namespace ShopManagement.Infrastructure.EFCore.Mapping
     {
         public void Configure(EntityTypeBuilder<ProductUsageType> builder)
         {
-            builder.ToTable("ProductUsageType");
+            builder.ToTable("ProductUsageTypes");
 
             builder.HasKey(x => x.Id);
 

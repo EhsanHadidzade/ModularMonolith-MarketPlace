@@ -16,6 +16,7 @@ SinglePage.LoadModal = function () {
             const newForm = forms[forms.length - 1];
             $.validator.unobtrusive.parse(newForm);
             showModal();
+            debugger;
         }).fail(function (error) {
             alert("خطایی رخ داده، لطفا با مدیر سیستم تماس بگیرید.");
         });
@@ -24,6 +25,7 @@ SinglePage.LoadModal = function () {
 
 function showModal() {
     $("#MainModal").modal("show");
+    debugger;
 }
 
 function hideModal() {

@@ -10,6 +10,7 @@
         "dependencies": {
           "Microsoft.EntityFrameworkCore": "5.0.16",
           "Microsoft.Extensions.DependencyInjection.Abstractions": "6.0.0",
+          "ShopManagement.Application": "1.0.0",
           "ShopManagement.Infrastructure.EFCore": "1.0.0"
         },
         "runtime": {
@@ -1330,6 +1331,15 @@
           "0_Framework.dll": {}
         }
       },
+      "ShopManagement.Application/1.0.0": {
+        "dependencies": {
+          "ShopManagement.Application.Contract": "1.0.0",
+          "ShopManagement.Domain": "1.0.0"
+        },
+        "runtime": {
+          "ShopManagement.Application.dll": {}
+        }
+      },
       "ShopManagement.Application.Contract/1.0.0": {
         "dependencies": {
           "0_Framework": "1.0.0"
@@ -2192,6 +2202,11 @@
       "hashPath": "system.xml.xmlserializer.4.3.0.nupkg.sha512"
     },
     "0_Framework/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "ShopManagement.Application/1.0.0": {
       "type": "project",
       "serviceable": false,
       "sha512": ""

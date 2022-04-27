@@ -7,7 +7,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace AccountManagement.Domain.RoleAgg
 {
-    public class Role:BaseEntity<int>
+    public class Role:BaseEntity
     {
         #region Properties
         public string Name { get; private set; }
@@ -19,11 +19,11 @@ namespace AccountManagement.Domain.RoleAgg
         public List<UserRole> UserRoles{ get;private set; }
 
         //relation with RoleType
-        public int? RoleTypeId { get;private set; }
+        public long? RoleTypeId { get;private set; }
         public RoleType RoleType { get;private set; }
         #endregion
 
-        public Role(string name,int? roleTypeId)
+        public Role(string name,long? roleTypeId)
         {
             Name = name;
             RoleTypeId = roleTypeId;
@@ -31,7 +31,7 @@ namespace AccountManagement.Domain.RoleAgg
             UserRoles = new List<UserRole>();
         }
         
-        public void Edit(string name,int? roleTypeId)
+        public void Edit(string name,long? roleTypeId)
         {
             Name=name;
             RoleTypeId=roleTypeId;

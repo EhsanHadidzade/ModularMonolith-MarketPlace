@@ -2463,6 +2463,20 @@
           "bin/placeholder/AccountManagement.Infrastructure.EFCore.dll": {}
         }
       },
+      "ShopManagement.Application/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v5.0",
+        "dependencies": {
+          "ShopManagement.Application.Contract": "1.0.0",
+          "ShopManagement.Domain": "1.0.0"
+        },
+        "compile": {
+          "bin/placeholder/ShopManagement.Application.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/ShopManagement.Application.dll": {}
+        }
+      },
       "ShopManagement.Application.Contract/1.0.0": {
         "type": "project",
         "framework": ".NETCoreApp,Version=v5.0",
@@ -2482,6 +2496,7 @@
         "dependencies": {
           "Microsoft.EntityFrameworkCore": "5.0.16",
           "Microsoft.Extensions.DependencyInjection.Abstractions": "6.0.0",
+          "ShopManagement.Application": "1.0.0",
           "ShopManagement.Infrastructure.EFCore": "1.0.0"
         },
         "compile": {
@@ -11964,6 +11979,11 @@
       "type": "project",
       "path": "../AccountManagement.Infrastructure.EFCore/AccountManagement.Infrastructure.EFCore.csproj",
       "msbuildProject": "../AccountManagement.Infrastructure.EFCore/AccountManagement.Infrastructure.EFCore.csproj"
+    },
+    "ShopManagement.Application/1.0.0": {
+      "type": "project",
+      "path": "../ShopManagement.Application/ShopManagement.Application.csproj",
+      "msbuildProject": "../ShopManagement.Application/ShopManagement.Application.csproj"
     },
     "ShopManagement.Application.Contract/1.0.0": {
       "type": "project",

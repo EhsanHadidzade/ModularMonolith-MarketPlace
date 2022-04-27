@@ -7,10 +7,10 @@ using System.Threading.Tasks;
 
 namespace _0_Framework.Domain
 {
-    public class BaseEntity<TKey>
+    public class BaseEntity
     {
         [Key]
-        public TKey Id { get; set; }
+        public long Id { get; set; }
         public DateTime CreationDate { get; set; }
         public BaseEntity()
         {

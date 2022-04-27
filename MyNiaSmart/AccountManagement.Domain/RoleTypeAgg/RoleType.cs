@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace AccountManagement.Domain.RoleTypeAgg
 {
-    public class RoleType:BaseEntity<int>
+    public class RoleType:BaseEntity
     {
         #region Properties
         public string RoleTypeName { get; private set; }

@@ -9,23 +9,23 @@ using System.Threading.Tasks;
 
 namespace AccountManagement.Domain.UserPersonalityAgg
 {
-    public class UserPersonality:BaseEntity<long>
+    public class UserPersonality:BaseEntity
     {
         public long UserId { get;private set; }
-        public int PersonalityId { get;private set; }
+        public long PersonalityId { get;private set; }
 
 
         //Relation with user and personality
         public User User { get; private set; }
         public Personality Personality{ get; private set; }
 
-        public UserPersonality(long userId, int personalityId)
+        public UserPersonality(long userId, long personalityId)
         {
             UserId = userId;
             PersonalityId = personalityId;
         }
 
-        public void Edit(long userId, int personalityId)
+        public void Edit(long userId, long personalityId)
         {
             UserId = userId;
             PersonalityId = personalityId;

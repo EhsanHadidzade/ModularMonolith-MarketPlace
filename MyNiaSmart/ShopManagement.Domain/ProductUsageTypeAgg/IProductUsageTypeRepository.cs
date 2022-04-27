@@ -8,9 +8,9 @@ using System.Threading.Tasks;
 
 namespace ShopManagement.Domain.ProductUsageTypeAgg
 {
-    public interface IProductUsageTypeRepository:IRepository<int,ProductUsageType>
+    public interface IProductUsageTypeRepository:IRepository<long,ProductUsageType>
     {
-        EditProductUsageType GetDetails(int id);
+        EditProductUsageType GetDetails(long id);
         List<ProductUsageTypeViewModel> GetList();
     }
 }

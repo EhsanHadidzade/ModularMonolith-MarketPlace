@@ -12,20 +12,23 @@ using System.Threading.Tasks;
 
 namespace ShopManagement.Domain.ProductAgg
 {
-    public class Product:BaseEntity<int>
+    public class Product:BaseEntity
     {
         #region Properties
+        public string Title { get; private set; }
+        public string Descriotion { get; private set; }
+        public string Picture { get; private set; }
         public double UnitPrice { get; private set; }
         public int ProductWeight { get; private set; }
         public string Dimensions { get; private set; }
         public string CountryMadeIn { get; private set; }
 
         //Fk
-        public int ProductBrandId { get; set; }
-        public int ProductModelId { get; set; }
-        public int ProductStatusId { get; set; }
-        public int ProductTypeId { get; set; }
-        public int ProductUsageTypeId { get; set; }
+        public long ProductBrandId { get; set; }
+        public long ProductModelId { get; set; }
+        public long ProductStatusId { get; set; }
+        public long ProductTypeId { get; set; }
+        public long ProductUsageTypeId { get; set; }
         #endregion
 
         #region Relations
@@ -35,10 +38,14 @@ namespace ShopManagement.Domain.ProductAgg
         public ProductType ProductType { get; set; }
         public ProductUsageType ProductUsageType { get; set; }
 
-        public Product(double unitPrice, int productWeight, string dimensions,
-            string countryMadeIn, int productBrandId, int productModelId,
-            int productStatusId, int productTypeId, int productUsageTypeId)
+        public Product(string title, string descriotion, string picture,
+            double unitPrice, int productWeight, string dimensions,
+            string countryMadeIn, long productBrandId, long productModelId,
+            long productStatusId, long productTypeId, long productUsageTypeId)
         {
+            Title = title;
+            Descriotion = descriotion;
+            Picture = picture;
             UnitPrice = unitPrice;
             ProductWeight = productWeight;
             Dimensions = dimensions;
@@ -49,6 +56,8 @@ namespace ShopManagement.Domain.ProductAgg
             ProductTypeId = productTypeId;
             ProductUsageTypeId = productUsageTypeId;
         }
+
+
         #endregion
 
 

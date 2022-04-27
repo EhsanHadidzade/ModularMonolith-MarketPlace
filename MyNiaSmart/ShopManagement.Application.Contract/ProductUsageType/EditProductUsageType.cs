@@ -2,6 +2,6 @@
 {
     public class EditProductUsageType:CreateProductUsageType
     {
-        public int Id { get; set; }
+        public long Id { get; set; }
     }
 }

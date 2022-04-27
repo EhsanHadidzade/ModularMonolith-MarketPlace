@@ -17,6 +17,7 @@ namespace ShopManagement.Infrastructure.EFCore
         public DbSet<ProductStatus> ProductStatuses{ get; set; }
         public DbSet<ProductType> ProductTypes{ get; set; }
         public DbSet<ProductUsageType> ProductUsageTypes{ get; set; }
+
         public ShopContext(DbContextOptions<ShopContext> options):base(options)
         {
         }
@@ -26,7 +27,6 @@ namespace ShopManagement.Infrastructure.EFCore
             modelBuilder.ApplyConfigurationsFromAssembly(assembly);
             base.OnModelCreating(modelBuilder);
         }
-
 
     }
 }

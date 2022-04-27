@@ -2,7 +2,7 @@
 {
     public class EditProductStatus : CreateProductStatus
     {
-        public int Id { get; set; }
+        public long Id { get; set; }
 
     }
 }

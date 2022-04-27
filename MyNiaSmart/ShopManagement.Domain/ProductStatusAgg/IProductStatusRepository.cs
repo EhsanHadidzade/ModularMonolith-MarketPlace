@@ -8,9 +8,9 @@ using System.Threading.Tasks;
 
 namespace ShopManagement.Domain.ProductStatusAgg
 {
-    public interface IProductStatusRepository:IRepository<int,ProductStatus>
+    public interface IProductStatusRepository:IRepository<long,ProductStatus>
     {
-        EditProductStatus GetDetails(int id);
+        EditProductStatus GetDetails(long id);
         List<ProductStatusViewModel> GetList();
     }
 }

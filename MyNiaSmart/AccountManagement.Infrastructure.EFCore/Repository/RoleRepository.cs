@@ -31,7 +31,7 @@ namespace AccountManagement.Infrastructure.EFCore.Repository
             }).FirstOrDefault(x=>x.Id == id);
         }
 
-        public List<RoleViewModel> GetList()
+        public List<RoleViewModel> GetList() 
         {
             return _context.Roles.Include(x=>x.RoleType).Select(x=>new RoleViewModel
             {

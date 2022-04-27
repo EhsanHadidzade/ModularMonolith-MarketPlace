@@ -25,6 +25,7 @@ namespace ShopManagement.Application
                 return operation.Failed(ApplicationMessage.DuplicatedRecord);
 
             var productBrand = new ProductBrand(command.Title);
+            _productBrandRepository.Create(productBrand);
             _productBrandRepository.Savechange();
             return operation.Succedded();
             
@@ -45,7 +46,7 @@ namespace ShopManagement.Application
             return operation.Succedded();
         }
 
-        public EditProductBrand GetDetails(int id)
+        public EditProductBrand GetDetails(long id)
         {
             return _productBrandRepository.GetDetails(id);
         }

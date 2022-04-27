@@ -25,6 +25,7 @@ namespace ShopManagement.Application
                 return operation.Failed(ApplicationMessage.DuplicatedRecord);
 
             var productStatus = new ProductStatus(command.Title);
+            _productStatusRepository.Create(productStatus);
             _productStatusRepository.Savechange();
             return operation.Succedded();
 

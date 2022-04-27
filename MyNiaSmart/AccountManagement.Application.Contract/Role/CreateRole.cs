@@ -11,7 +11,7 @@ namespace AccountManagement.Application.Contract.Role
         public string Name { get; set; }
 
         [Range(1,long.MaxValue,ErrorMessage =ValidationMessage.IsRequired)]
-        public int? RoleTypeId { get; set; }
+        public long? RoleTypeId { get; set; }
 
         //To Fill List Of RoleTypes In Create Role Form
         public List<RoleTypeViewModel> RoleTypes { set; get; }

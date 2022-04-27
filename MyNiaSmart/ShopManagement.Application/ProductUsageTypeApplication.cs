@@ -25,6 +25,7 @@ namespace ShopManagement.Application
                 return operation.Failed(ApplicationMessage.DuplicatedRecord);
 
             var productUsageType = new ProductUsageType(command.Title);
+            _productUsageTypeRepository.Create(productUsageType);
             _productUsageTypeRepository.Savechange();
             return operation.Succedded();
 

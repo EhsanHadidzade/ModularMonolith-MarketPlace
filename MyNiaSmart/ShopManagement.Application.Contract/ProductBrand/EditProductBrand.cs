@@ -2,6 +2,6 @@
 {
     public class EditProductBrand:CreateProductBrand
     {
-        public int Id { get; set; }
+        public long Id { get; set; }
     }
 }

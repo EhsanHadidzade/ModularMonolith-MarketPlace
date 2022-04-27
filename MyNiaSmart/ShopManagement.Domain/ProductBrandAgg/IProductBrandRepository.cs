@@ -8,9 +8,9 @@ using System.Threading.Tasks;
 
 namespace ShopManagement.Domain.ProductBrandAgg
 {
-    public interface IProductBrandRepository:IRepository<int,ProductBrand>
+    public interface IProductBrandRepository:IRepository<long,ProductBrand>
     {
-        EditProductBrand GetDetails(int id);
+        EditProductBrand GetDetails(long id);
         List<ProductBrandViewModel> GetList();
     }
 }

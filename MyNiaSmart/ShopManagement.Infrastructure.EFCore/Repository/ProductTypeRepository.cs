@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace ShopManagement.Infrastructure.EFCore.Repository
 {
-    public class ProductTypeRepository : BaseRepository<int, ProductType>, IProductTypeRepository
+    public class ProductTypeRepository : BaseRepository<long, ProductType>, IProductTypeRepository
     {
         private readonly ShopContext _context;
 
@@ -18,7 +18,7 @@ namespace ShopManagement.Infrastructure.EFCore.Repository
             _context = context;
         }
 
-        public EditProductType GetDetails(int id)
+        public EditProductType GetDetails(long id)
         {
             return _context.ProductTypes.Select(x => new EditProductType
             {

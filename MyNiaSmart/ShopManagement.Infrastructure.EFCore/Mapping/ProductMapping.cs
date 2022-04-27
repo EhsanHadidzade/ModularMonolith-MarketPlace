@@ -13,9 +13,12 @@ namespace ShopManagement.Infrastructure.EFCore.Mapping
     {
         public void Configure(EntityTypeBuilder<Product> builder)
         {
-            builder.ToTable("ProductMappings");
+            builder.ToTable("Products");
             builder.HasKey(x => x.Id);
 
+            builder.Property(x => x.Title).HasMaxLength(256);
+            builder.Property(x => x.Descriotion);
+            builder.Property(x => x.Picture).HasMaxLength(256);
             builder.Property(x => x.CountryMadeIn).HasMaxLength(100);
             builder.Property(x => x.Dimensions).HasMaxLength(100);
 
