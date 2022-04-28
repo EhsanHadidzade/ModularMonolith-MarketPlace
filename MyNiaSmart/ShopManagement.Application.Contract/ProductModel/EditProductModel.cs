@@ -1,4 +1,6 @@
-﻿namespace ShopManagement.Application.Contract.ProductBrand
+﻿using ShopManagement.Application.Contract.ProductModel;
+
+namespace ShopManagement.Application.Contract.ProductModel
 {
     public class EditProductModel:CreateProductModel
     {

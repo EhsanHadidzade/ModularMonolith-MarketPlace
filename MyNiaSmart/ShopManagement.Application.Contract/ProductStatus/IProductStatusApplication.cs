@@ -7,7 +7,7 @@ namespace ShopManagement.Application.Contract.ProductStatus
     {
         OperationResult Create(CreateProductStatus command);
         OperationResult Edit(EditProductStatus command);
-        EditProductStatus GetDetails(int id);
+        EditProductStatus GetDetails(long id);
         List<ProductStatusViewModel> GetList();
     }
 }

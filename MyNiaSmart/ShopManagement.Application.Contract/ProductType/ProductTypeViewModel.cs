@@ -1,4 +1,4 @@
-﻿namespace ShopManagement.Application.Contract
+﻿namespace ShopManagement.Application.Contract.ProductType
 {
     public class ProductTypeViewModel
     {

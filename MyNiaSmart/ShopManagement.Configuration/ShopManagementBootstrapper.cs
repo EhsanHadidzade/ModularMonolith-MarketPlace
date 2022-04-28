@@ -1,10 +1,11 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using ShopManagement.Application;
-using ShopManagement.Application.Contract;
 using ShopManagement.Application.Contract.Product;
 using ShopManagement.Application.Contract.ProductBrand;
+using ShopManagement.Application.Contract.ProductModel;
 using ShopManagement.Application.Contract.ProductStatus;
+using ShopManagement.Application.Contract.ProductType;
 using ShopManagement.Application.Contract.ProductUsageType;
 using ShopManagement.Domain.ProductAgg;
 using ShopManagement.Domain.ProductBrandAgg;

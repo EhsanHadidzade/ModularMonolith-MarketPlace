@@ -1,4 +1,4 @@
-﻿namespace ShopManagement.Application.Contract.ProductBrand
+﻿namespace ShopManagement.Application.Contract.ProductModel
 {
     public class ProductModelViewModel
     {

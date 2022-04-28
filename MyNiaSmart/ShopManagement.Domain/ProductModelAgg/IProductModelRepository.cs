@@ -1,5 +1,6 @@
 ﻿using _0_Framework.Domain;
 using ShopManagement.Application.Contract.ProductBrand;
+using ShopManagement.Application.Contract.ProductModel;
 using System;
 using System.Collections.Generic;
 using System.Linq;

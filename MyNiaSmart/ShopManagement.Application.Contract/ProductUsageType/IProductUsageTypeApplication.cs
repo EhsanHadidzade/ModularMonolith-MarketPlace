@@ -7,7 +7,7 @@ namespace ShopManagement.Application.Contract.ProductUsageType
     {
         OperationResult Create(CreateProductUsageType command);
         OperationResult Edit(EditProductUsageType command);
-        EditProductUsageType GetDetails(int id);
+        EditProductUsageType GetDetails(long id);
         List<ProductUsageTypeViewModel> GetList();
     }
 }

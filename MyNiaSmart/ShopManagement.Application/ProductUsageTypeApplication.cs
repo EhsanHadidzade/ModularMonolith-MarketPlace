@@ -46,7 +46,7 @@ namespace ShopManagement.Application
             return operation.Succedded();
         }
 
-        public EditProductUsageType GetDetails(int id)
+        public EditProductUsageType GetDetails(long id)
         {
             return _productUsageTypeRepository.GetDetails(id);
         }

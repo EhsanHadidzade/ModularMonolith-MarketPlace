@@ -1,4 +1,8 @@
 ﻿@inject ShopManagement.Application.Contract.ProductBrand.IProductBrandApplication _productBrandApplication
+@inject ShopManagement.Application.Contract.ProductModel.IProductModelApplication _productModelApplication
+@inject ShopManagement.Application.Contract.ProductStatus.IProductStatusApplication _productStatusApplication
+@inject ShopManagement.Application.Contract.ProductType.IProductTypeApplication _productTypeApplication
+@inject ShopManagement.Application.Contract.ProductUsageType.IProductUsageTypeApplication _productUsageTypeApplication
 
 <div class="row page-titles mx-0">
     <div class="col-sm-6 p-md-0">
@@ -44,7 +48,7 @@
                         <div class="tab-pane fade active show" id="home" role="tabpanel">
                             <div class="pt-4">
                                 <h4>تعیین برند محصولات</h4>
-                                <partial name="_ProductBrand" model="_productBrandApplication.GetList()"   >
+                                <partial name="_ProductBrand" model="_productBrandApplication.GetList()" >
                                     
                                 
                             </div>
@@ -52,25 +56,25 @@
                         <div class="tab-pane fade" id="profile">
                             <div class="pt-4">
                                 <h4>تعیین مدل محصولات</h4>
-                                <partial name="_ProductModel" />
+                                <partial name="_ProductModel" model="_productModelApplication.GetList()" />
                             </div>
                         </div>
                         <div class="tab-pane fade" id="contact">
                             <div class="pt-4">
                                 <h4>تعیین وضعیت محصولات</h4>
-                                <partial name="_ProductStatus" />
+                                <partial name="_ProductStatus" model="_productStatusApplication.GetList()" />
                             </div>
                         </div>
                         <div class="tab-pane fade " id="message">
                             <div class="pt-4">
                                 <h4>تعیین نوع محصولات</h4>
-                                <partial name="_ProductType" />
+                                <partial name="_ProductType" model="_productTypeApplication.GetList()" />
                             </div>
                         </div>
                         <div class="tab-pane fade  show" id="status">
                             <div class="pt-4">
                                 <h4>تعیین نحوه استفاده محصولات</h4>
-                                <partial name="_ProductUsageType" />
+                                <partial name="_ProductUsageType" model="_productUsageTypeApplication.GetList()" />
                             </div>
                         </div>
                     </div>

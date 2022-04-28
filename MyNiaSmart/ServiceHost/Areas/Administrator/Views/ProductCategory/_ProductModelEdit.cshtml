@@ -1,0 +1,56 @@
+﻿@model ShopManagement.Application.Contract.ProductModel.EditProductModel
+
+<form method="post" action="/administrator/ProductCategory/_ProductModelEdit">
+    <div class="modal-content">
+        <div class="modal-header">
+            <h5 class="modal-title">ویرایش مدل </h5>
+            <button type="button" class="close" data-dismiss="modal">
+                <span>×</span>
+            </button>
+        </div>
+        <div class="modal-body">
+            <div class="col-xl-12 col-lg-12">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="basic-form">
+                            <div class="form-row">
+                                <div class="form-group col-md-12">
+                                    <label>عنوان مدل مورد نظر </label>
+                                    <input type="text" asp-for="Title"  class="form-control" placeholder="">
+                                    <span class="text-danger" asp-validation-for="Title">
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="modal-footer">
+            <button type="button" class="btn btn-danger light" data-dismiss="modal">بستن</button>
+            <button type="submit" class="btn btn-primary">ذخیره تغییرات</button>
+        </div>
+    </div>
+    <input type="hidden" asp-for="Id" />
+</form>
+
+<!--To Disable Submit Button before change in form-->
+    <script>
+            $('form')
+            .each(function(){
+                $(this).data('serialized', $(this).serialize())
+            })
+            .on('change input', function(){
+                $(this)
+                    .find('input:submit, button:submit')
+                        .prop('disabled', $(this).serialize() == $(this).data('serialized'))
+                ;
+             })
+            .find('input:submit, button:submit')
+                .prop('disabled', true)
+        ;
+    </script>
+
+    
+    
+

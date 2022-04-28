@@ -1,5 +1,5 @@
 ﻿using _0_Framework.Utilities;
-using ShopManagement.Application.Contract;
+using ShopManagement.Application.Contract.ProductType;
 using ShopManagement.Domain.ProductTypeAgg;
 using System;
 using System.Collections.Generic;
@@ -46,7 +46,7 @@ namespace ShopManagement.Application
             return operation.Succedded();
         }
 
-        public EditProductType GetDetails(int id)
+        public EditProductType GetDetails(long id)
         {
             return _productTypeRepository.GetDetails(id);
         }

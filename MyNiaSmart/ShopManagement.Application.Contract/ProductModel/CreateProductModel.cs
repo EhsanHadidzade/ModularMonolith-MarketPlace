@@ -3,7 +3,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ShopManagement.Application.Contract.ProductBrand
+namespace ShopManagement.Application.Contract.ProductModel
 {
     public class CreateProductModel
     {
