@@ -211,7 +211,6 @@ jQuery.validator.addMethod("FileExtentionLimit",
         debugger;
         if (extention == "jpg")
             return true;
-        debugger;
         if (extention == "JPG")
             return true;
 

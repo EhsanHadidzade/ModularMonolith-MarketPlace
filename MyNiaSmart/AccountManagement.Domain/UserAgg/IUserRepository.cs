@@ -13,5 +13,6 @@ namespace AccountManagement.Domain.UserAgg
         User GetUserByMobileNumber(string mobileNumber);
         EditUser GetDetails(long id);
         List<UserViewModel> GetList();
+        User GetUserByActiveCode(string activeCode);
     }
 }

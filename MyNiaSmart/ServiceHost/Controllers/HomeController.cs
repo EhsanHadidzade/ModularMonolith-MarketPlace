@@ -1,4 +1,6 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using _0_Framework.Utilities;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using ServiceHost.Models;
 using System;
@@ -9,19 +11,22 @@ using System.Threading.Tasks;
 
 namespace ServiceHost.Controllers
 {
+    [Authorize]
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;
+        private readonly IAuthHelper _authHelper;
 
-        public HomeController(ILogger<HomeController> logger)
+        public HomeController(ILogger<HomeController> logger, IAuthHelper authHelper)
         {
             _logger = logger;
+            _authHelper = authHelper;
         }
 
-       
 
         public IActionResult Index()
         {
+            var CurrentUserInfo = _authHelper.CurrentAccountInfo();
             return View();
         }
 

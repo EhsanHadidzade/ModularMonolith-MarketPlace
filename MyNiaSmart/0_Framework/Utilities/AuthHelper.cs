@@ -20,6 +20,19 @@ namespace _0_Framework.Utilities
             _contextAccessor = contextAccessor;
         }
 
+        public AuthViewModel CurrentAccountInfo()
+        {
+            var result = new AuthViewModel();
+            if (!IsAuthenticated())
+                return result;
+
+            var claims=_contextAccessor.HttpContext.User.Claims.ToList();
+            result.Id = long.Parse(claims.FirstOrDefault(x => x.Type == "AccountId").Value);
+            result.Fullname = claims.FirstOrDefault(x => x.Type==ClaimTypes.Name).Value;
+            result.Mobile= claims.FirstOrDefault(x => x.Type==ClaimTypes.MobilePhone).Value;
+            return result;
+        }
+
         public bool IsAuthenticated()
         {
             return _contextAccessor.HttpContext.User.Identity.IsAuthenticated;

@@ -38,7 +38,7 @@ namespace ServiceHost
             services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
                .AddCookie(CookieAuthenticationDefaults.AuthenticationScheme, o =>
                {
-                   o.LoginPath = new PathString("/Account/Login");
+                   o.LoginPath = new PathString("/Account/RegisterOrLogin");
                    o.LogoutPath = new PathString("/Account/LogOut");
                    o.AccessDeniedPath = new PathString("/AccessDenied");
                });
@@ -59,8 +59,12 @@ namespace ServiceHost
                 // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
                 app.UseHsts();
             }
+
+            app.UseAuthentication();
+
             app.UseHttpsRedirection();
             app.UseStaticFiles();
+            app.UseCookiePolicy();
 
             app.UseRouting();
 

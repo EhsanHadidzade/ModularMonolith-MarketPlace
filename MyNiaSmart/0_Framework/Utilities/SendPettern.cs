@@ -15,7 +15,7 @@ namespace _0_Framework.Utilities
     /// <param name="p">نام متغیر</param>
     /// <param name="v">مقدار متغیر</param>
     /// <returns></returns>
-    public class SendPattern
+    public static class SendPattern
     {
         public static string SendSms(string pid, string tnum, string p, string v)
         {

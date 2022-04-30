@@ -11,7 +11,7 @@ namespace _0_Framework.Utilities
         public static string GenerateRandomNo()
         {
             var  _random = new Random();
-            return _random.Next(0, 9999).ToString("D4");
+            return _random.Next(0, 99999).ToString("D5");
         }
     }
 }

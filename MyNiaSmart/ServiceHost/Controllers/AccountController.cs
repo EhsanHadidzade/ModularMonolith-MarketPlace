@@ -43,8 +43,19 @@ namespace ServiceHost.Controllers
         {
             if (!ModelState.IsValid)
                 return View(command);
-
-            return View();
+            var result=_userApplication.CheckVerificationCode(command);
+            if (!result.IsSuccedded)
+            {
+                ViewData["Message"] = result.Message;
+                return View(command);
+            }
+                
+            return Redirect("/");
+        }
+        public IActionResult LogOut()
+        {
+            _userApplication.LogOut();
+            return Redirect("/account/RegisterOrLogin");
         }
 
 

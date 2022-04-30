@@ -10,6 +10,9 @@ namespace AccountManagement.Application.Contract.User
         OperationResult RegisterOrLogin(RegisterOrLoginUser command);
         List<UserViewModel> GetList();
         EditUser GetDetails(long id);
+        OperationResult CheckVerificationCode(VerificationCode command);
+        void LogOut();
+
 
     }
 }

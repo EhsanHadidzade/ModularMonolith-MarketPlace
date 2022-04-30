@@ -1,4 +1,5 @@
 ﻿using _0_Framework.Infrastructure;
+using _0_Framework.Utilities;
 using ShopManagement.Application.Contract.Product;
 using ShopManagement.Domain.ProductAgg;
 using System;
@@ -20,12 +21,33 @@ namespace ShopManagement.Infrastructure.EFCore.Repository
 
         public EditProduct GetDetails(long id)
         {
-            throw new NotImplementedException();
+           return _context.Products.Select(x=>new EditProduct 
+           {
+               Id=x.Id,
+               ProductBrandId=x.ProductBrandId,
+               ProductModelId=x.ProductModelId,
+               ProductStatusId=x.ProductStatusId,
+               ProductTypeId=x.ProductTypeId,
+               ProductUsageTypeId=x.ProductUsageTypeId,
+               Title=x.Title,
+               Description=x.Descriotion,
+               UnitPrice=x.UnitPrice,
+               CountryMadeIn=x.CountryMadeIn,
+               Dimensions=x.Dimensions,
+               ProductWeight=x.ProductWeight
+           }).FirstOrDefault(x=>x.Id == id);   
         }
 
         public List<ProductViewModel> GetList()
         {
-            throw new NotImplementedException();
+            return _context.Products.Select(x=>new ProductViewModel
+            {
+                Id = x.Id,
+                Picture=x.Picture,
+                Title=x.Title,
+                UnitPrice=x.UnitPrice,
+                CreationDate=x.CreationDate.ToFarsi()
+            }).ToList();
         }
     }
 }

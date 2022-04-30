@@ -41,10 +41,18 @@
                                                             <div class="basic-form">
                                                                 <div class="form-row">
                                                                     <div class="form-group col-md-12">
-                                                                        <label> شماره موبایل</label>
+                                                                        <label> کد ارسال شده به شماره همراه خود را اینجا وارد نمایید</label>
                                                                         <input type="number" asp-for="Code" class="form-control" placeholder="">
                                                                         <span class="text-danger" asp-validation-for="Code"></span>
                                                                     </div>
+                                                                    @if (ViewData["Message"] != null)
+                                                                    {
+                                                                        <div class="form-group col-md-12">
+                                                                            <div class="alert alert-danger">
+                                                                                <p>@ViewData["Message"]</p>
+                                                                            </div>
+                                                                        </div>
+                                                                    }
                                                                 </div>
                                                             </div>
                                                         </div>

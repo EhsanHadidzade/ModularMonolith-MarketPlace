@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "BKeBxIyZWXLIxrZro8r8Fze8y9UECRbhFG7Qx5FTPEUDKqhcog2IZ8DLAZFuAsk5c+OFTekXKT7EAYa0XW8iCw==",
+  "dgSpecHash": "R4ZFohY+QVEf2QJ+2HyScHKnc2XCMeEq7/ym9wpAQ1CDOC6RW61OAtP7tN5CNX21LQBQQ13FAe2/5jEZIFhhjg==",
   "success": true,
   "projectFilePath": "C:\\Work\\Projects\\MyNiaSmart\\MyNiaSmart\\0_Framework\\0_Framework.csproj",
   "expectedPackageFiles": [
@@ -17,6 +17,8 @@
     "C:\\Users\\User\\.nuget\\packages\\microsoft.aspnetcore.http.abstractions\\2.2.0\\microsoft.aspnetcore.http.abstractions.2.2.0.nupkg.sha512",
     "C:\\Users\\User\\.nuget\\packages\\microsoft.aspnetcore.http.extensions\\2.2.0\\microsoft.aspnetcore.http.extensions.2.2.0.nupkg.sha512",
     "C:\\Users\\User\\.nuget\\packages\\microsoft.aspnetcore.http.features\\5.0.16\\microsoft.aspnetcore.http.features.5.0.16.nupkg.sha512",
+    "C:\\Users\\User\\.nuget\\packages\\microsoft.aspnetcore.mvc.abstractions\\2.2.0\\microsoft.aspnetcore.mvc.abstractions.2.2.0.nupkg.sha512",
+    "C:\\Users\\User\\.nuget\\packages\\microsoft.aspnetcore.routing.abstractions\\2.2.0\\microsoft.aspnetcore.routing.abstractions.2.2.0.nupkg.sha512",
     "C:\\Users\\User\\.nuget\\packages\\microsoft.aspnetcore.webutilities\\2.2.0\\microsoft.aspnetcore.webutilities.2.2.0.nupkg.sha512",
     "C:\\Users\\User\\.nuget\\packages\\microsoft.entityframeworkcore\\5.0.16\\microsoft.entityframeworkcore.5.0.16.nupkg.sha512",
     "C:\\Users\\User\\.nuget\\packages\\microsoft.entityframeworkcore.abstractions\\5.0.16\\microsoft.entityframeworkcore.abstractions.5.0.16.nupkg.sha512",

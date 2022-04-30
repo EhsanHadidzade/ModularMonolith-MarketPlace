@@ -12,7 +12,7 @@ using System.Threading.Tasks;
 
 namespace ShopManagement.Domain.ProductAgg
 {
-    public class Product:BaseEntity
+    public class Product : BaseEntity
     {
         #region Properties
         public string Title { get; private set; }
@@ -37,6 +37,9 @@ namespace ShopManagement.Domain.ProductAgg
         public ProductStatus ProductStatus { get; set; }
         public ProductType ProductType { get; set; }
         public ProductUsageType ProductUsageType { get; set; }
+        #endregion
+
+
 
         public Product(string title, string descriotion, string picture,
             double unitPrice, int productWeight, string dimensions,
@@ -45,7 +48,10 @@ namespace ShopManagement.Domain.ProductAgg
         {
             Title = title;
             Descriotion = descriotion;
-            Picture = picture;
+
+            if (!string.IsNullOrWhiteSpace(picture))
+                Picture = picture;
+
             UnitPrice = unitPrice;
             ProductWeight = productWeight;
             Dimensions = dimensions;
@@ -58,7 +64,28 @@ namespace ShopManagement.Domain.ProductAgg
         }
 
 
-        #endregion
+        public void Edit(string title, string descriotion, string picture,
+           double unitPrice, int productWeight, string dimensions,
+           string countryMadeIn, long productBrandId, long productModelId,
+           long productStatusId, long productTypeId, long productUsageTypeId)
+        {
+            Title = title;
+            Descriotion = descriotion;
+
+            if (!string.IsNullOrWhiteSpace(picture))
+                Picture = picture;
+
+            UnitPrice = unitPrice;
+            ProductWeight = productWeight;
+            Dimensions = dimensions;
+            CountryMadeIn = countryMadeIn;
+            ProductBrandId = productBrandId;
+            ProductModelId = productModelId;
+            ProductStatusId = productStatusId;
+            ProductTypeId = productTypeId;
+            ProductUsageTypeId = productUsageTypeId;
+        }
+
 
 
 

@@ -84,6 +84,13 @@ namespace AccountManagement.Application
             if (account == null && command.FullName == null)
                 return operation.Failed("شما به عنوان کاربر جدید،باید نام و نام خانوادگی هم پر کنید");
 
+            // اگر شماره همراه ثبت و با نام جدید لاگین شود
+            if(account!=null)
+            {
+                if (command.FullName != null && account.FullName != command.FullName)
+                    return operation.Failed("شماره همراه با نام کاربری متابقت ندارد");
+            }
+
             //اگر کاربر جدید است و میخواهد ثبت نام کند 
             if (account == null && command.FullName != null)
             {
@@ -92,32 +99,62 @@ namespace AccountManagement.Application
                 _userRepository.Savechange();
                 account.GenerateActiveCode(GenerateUniqueCode.GenerateRandomNo());
                 var value = account.ActiveCode;
-                //ToDo Sending Sms With Verification Code then we change active code
-                //Sending sms
-                account.GenerateActiveCode(GenerateUniqueCode.GenerateRandomNo());
-                _userRepository.Savechange();
 
+                //ToDo Sending Sms With Verification Code then we will change active code
+                string[] p = { "KarmandName", "SenderName", "Url" };
+                string[] v = { value, "نام مشتری", "url Value" };
+
+                string pValue = "";
+                string vValue = "";
+                for (int i = 0; i < p.Length; i++)
+                {
+                    pValue = pValue + "p" + (i + 1) + "=" + p[i] + "&";
+                    vValue = vValue + "v" + (i + 1) + "=" + v[i] + "&";
+                }
+                SendPattern.SendSms("h5a27unwzlk3p0t", command.MobileNumber, pValue, vValue);
+                _userRepository.Savechange();
                 return operation.Succedded();
             }
 
-            // اگر شماره همراه ثبت و با نام جدید لاگین شود
-            if (command.FullName!=null && account.FullName != command.FullName)
-                return operation.Failed("شماره همراه با نام کاربری متابقت ندارد");
-
-
             //اگر شماره همراه ثبت و کاربر میخواهد لاگین شود
-
             var newvalue = account.ActiveCode;
-            //ToDo Sending Sms With Verification Code then we change active code
-            //Sending sms
-            account.GenerateActiveCode(GenerateUniqueCode.GenerateRandomNo());
+            string[] pp = { "KarmandName", "SenderName", "Url" };
+            string[] vv = { newvalue, "نام مشتری", "url Value" };
+
+            string ppValue = "";
+            string vvValue = "";
+            for (int i = 0; i < pp.Length; i++)
+            {
+                ppValue = ppValue + "p" + (i + 1) + "=" + pp[i] + "&";
+                vvValue = vvValue + "v" + (i + 1) + "=" + vv[i] + "&";
+            }
+
+            SendPattern.SendSms("h5a27unwzlk3p0t", account.MobileNumber, ppValue, vvValue);
             _userRepository.Savechange();
             return operation.Succedded();
-          
 
-            //var authViewModel = new AuthViewModel(account.Id, account.FullName, account.MobileNumber);
-            //_authHelper.Signin(authViewModel);
+        }
+        public OperationResult CheckVerificationCode(VerificationCode command)
+        {
+            var operation = new OperationResult();
+            var account = _userRepository.GetUserByActiveCode(command.Code);
+            if (account==null)
+                return operation.Failed("کد وارد شده معتبر نیست");
 
+            //حالتی که شانسی یه کد وارد کنه ولی اتفاقی مال یه نفز دیگه باشه. احتمال یک یه )
+            if(account!=null && account.ActiveCode!=command.Code)
+                return operation.Failed("کد وارد شده معتبر نیست");
+
+
+            //ToChangeAccountInformation
+            account.ActiveUser();
+            account.GenerateActiveCode(GenerateUniqueCode.GenerateRandomNo());
+            _userRepository.Savechange();
+
+            //Login Operation
+            var authViewModel = new AuthViewModel(account.Id, account.FullName, account.MobileNumber);
+            _authHelper.Signin(authViewModel);
+            return operation.Succedded();
         }
 
         public EditUser GetDetails(long id)
@@ -130,6 +167,10 @@ namespace AccountManagement.Application
             return _userRepository.GetList();
         }
 
+        public void LogOut()
+        {
+            _authHelper.SignOut();
 
+        }
     }
 }

@@ -6,5 +6,6 @@
         public long Id { get; set; }
         public string Title { get; set; }
         public double UnitPrice { get; set; }
+        public string CreationDate { get; set; }
     }
 }

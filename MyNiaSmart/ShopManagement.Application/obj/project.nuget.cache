@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "nShLYRS9Zsz6Tf1geOi4UeL2v1OvnxwKk11oObJ0EKdDDyMamxrSiO/lVYCL6qKm5WDTvXSq3O98vp3mZNbdjA==",
+  "dgSpecHash": "Ys+yK1aI9PSzYccQ+5ANDP6VqePgKxPP3cbEywR8eK8Uw0BJiB9WR6EbNrgIDZDQhPtiBWABtycAN5aaSn425w==",
   "success": true,
   "projectFilePath": "C:\\Work\\Projects\\MyNiaSmart\\MyNiaSmart\\ShopManagement.Application\\ShopManagement.Application.csproj",
   "expectedPackageFiles": [
@@ -17,6 +17,8 @@
     "C:\\Users\\User\\.nuget\\packages\\microsoft.aspnetcore.http.abstractions\\2.2.0\\microsoft.aspnetcore.http.abstractions.2.2.0.nupkg.sha512",
     "C:\\Users\\User\\.nuget\\packages\\microsoft.aspnetcore.http.extensions\\2.2.0\\microsoft.aspnetcore.http.extensions.2.2.0.nupkg.sha512",
     "C:\\Users\\User\\.nuget\\packages\\microsoft.aspnetcore.http.features\\5.0.16\\microsoft.aspnetcore.http.features.5.0.16.nupkg.sha512",
+    "C:\\Users\\User\\.nuget\\packages\\microsoft.aspnetcore.mvc.abstractions\\2.2.0\\microsoft.aspnetcore.mvc.abstractions.2.2.0.nupkg.sha512",
+    "C:\\Users\\User\\.nuget\\packages\\microsoft.aspnetcore.routing.abstractions\\2.2.0\\microsoft.aspnetcore.routing.abstractions.2.2.0.nupkg.sha512",
     "C:\\Users\\User\\.nuget\\packages\\microsoft.aspnetcore.webutilities\\2.2.0\\microsoft.aspnetcore.webutilities.2.2.0.nupkg.sha512",
     "C:\\Users\\User\\.nuget\\packages\\microsoft.entityframeworkcore\\5.0.16\\microsoft.entityframeworkcore.5.0.16.nupkg.sha512",
     "C:\\Users\\User\\.nuget\\packages\\microsoft.entityframeworkcore.abstractions\\5.0.16\\microsoft.entityframeworkcore.abstractions.5.0.16.nupkg.sha512",

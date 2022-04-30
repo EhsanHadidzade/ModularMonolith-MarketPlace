@@ -12,5 +12,6 @@ namespace _0_Framework.Utilities
         void SignOut();
         bool IsAuthenticated();
         void Signin(AuthViewModel account);
+        AuthViewModel CurrentAccountInfo();
     }
 }
