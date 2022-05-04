@@ -19,6 +19,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\0_Framework\0_Framework.csproj" />
+    <ProjectReference Include="..\0_MyNiaSmartQuery\0_MyNiaSmartQuery.csproj" />
     <ProjectReference Include="..\AccountManagement.Configuration\AccountManagement.Configuration.csproj" />
     <ProjectReference Include="..\ShopManagement.Configuration\ShopManagement.Configuration.csproj" />
   </ItemGroup>
@@ -27,6 +28,7 @@
     <Folder Include="Areas\Administrator\Data\" />
     <Folder Include="Areas\Administrator\Models\" />
     <Folder Include="wwwroot\UploadedFiles\" />
+    <Folder Include="wwwroot\UploadedFiles\UserPhoto\" />
   </ItemGroup>
 
 </Project>

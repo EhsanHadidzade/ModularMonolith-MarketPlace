@@ -1,7 +1,7 @@
 (function($) {
     "use strict"
-
     var form = $("#step-form-horizontal");
+    debugger
     form.children('div').steps({
         headerTag: "h4",
         bodyTag: "section",
@@ -13,6 +13,8 @@
             form.validate().settings.ignore = ":disabled,:hidden";
             return form.valid();
         }
+        
     });
+    //$("#issue").text($("#step-form-horizontal").children('div').children('h4').first().text());
 
 })(jQuery);

@@ -1,0 +1,48 @@
+﻿@{
+    ViewData["Title"] = "پروفایل شخصی";
+}
+@model Tuple<_0_MyNiaSmartQuery.Contract.User.UserInfoQueryModel,AccountManagement.Application.Contract.User.EditUser>
+
+<div class="row page-titles mx-0">
+    <div class="col-sm-6 p-md-0">
+        <div class="welcome-text">
+            <h4>سلام، خوش آمدید</h4>
+            <p class="mb-0">پروفایل شخصی</p>
+        </div>
+    </div>
+    <div class="col-sm-6 p-md-0 justify-content-sm-end mt-2 mt-sm-0 d-flex">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="javascript:void(0)">پروفایل شخصی </a></li>
+            <li class="breadcrumb-item active"><a href="javascript:void(0)">مشاهده پروفایل </a></li>
+        </ol>
+    </div>
+</div>
+
+<!-- row -->
+
+<div class="row">
+ 
+    <div class="col-xl-12">
+        <div class="card">
+            <div class="card-body">
+                <div class="profile-tab">
+                    <div class="custom-tab-1">
+                        <ul class="nav nav-tabs">
+                            <li class="nav-item">
+                                <a href="#about-me" data-toggle="tab" class="nav-link active show">درباره من</a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="#profile-settings" data-toggle="tab" class="nav-link">تنظیمات</a>
+                            </li>
+                        </ul>
+                        <div class="tab-content">
+                        <partial name="_UserProfileInfo" model="@Model.Item1" />
+                    <partial name="_UserProfileEdit" model="@Model.Item2" />
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+

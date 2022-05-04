@@ -32,7 +32,8 @@ namespace AccountManagement.Infrastructure.EFCore.Repository
                 IntroductorFullname = x.IntroductorFullname,
                 IntroductorMobileNumber = x.IntroductorMobileNumber,
                 Grade = x.Grade,
-                Experience=x.Experience
+                Experience=x.Experience,
+                ProfilePicAddress = x.ProfilePhoto
                
             }).FirstOrDefault(x=>x.Id == id);
         }

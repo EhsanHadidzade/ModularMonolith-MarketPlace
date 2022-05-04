@@ -1,0 +1,91 @@
+﻿@model AccountManagement.Application.Contract.User.EditUser
+
+
+<div id="profile-settings" class="tab-pane fade">
+    <div class="pt-3">
+        <div class="settings-form">
+            <h4 class="text-primary">تنظیمات اکانت</h4>
+            <form method="post" action="/user/_UserProfileEdit" enctype="multipart/form-data">
+                <div class="form-row">
+                    <div class="form-group col-md-6">
+                        <label>نام و نام خانوادگی</label>
+                        <input type="text" asp-for="FullName" placeholder="نام و نام خانوادگی" class="form-control">
+                        <span asp-validation-for="FullName">
+                        </span>
+                    </div>
+                    <div class="form-group col-md-6">
+                        <label> کد ملی</label>
+                        <input type="number" asp-for="NationalCode" placeholder="کد ملی" class="form-control">
+                        <span asp-validation-for="NationalCode">
+                        </span>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label>آدرس</label>
+                    <input type="text" asp-for="Address" placeholder="آدرس" class="form-control">
+                </div>
+                <div class="form-row">
+                    <div class="form-group col-md-6">
+                        <label>شهر</label>
+                        <input type="text" asp-for="City" class="form-control" placeholder="شهر">
+                    </div>
+                    <div class="form-group col-md-6">
+                        <label>کشور</label>
+                        <input type="text" asp-for="Capital" placeholder="کشور" class="form-control">
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group col-md-6">
+                        <label>نام و نام خانوادگی معرف</label>
+                        <input type="text" asp-for="IntroductorFullname" class="form-control" placeholder="نام و نام خانوادگی معرف">
+                    </div>
+                    <div class="form-group col-md-6">
+                        <label>شماره همراه معرف</label>
+                        <input type="text" asp-for="IntroductorMobileNumber" placeholder="شماره همراه معرف" class="form-control">
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="input-group mb-3 col-md-6">
+                        <div class="custom-file">
+                            <input type="file" class="custom-file-input" asp-for="ProfilePhoto">
+                            <label class="custom-file-label">انتخاب تصویر پروفایل</label>
+                        </div>
+                    </div>
+                    <div class="form-group col-md-6">
+                        <img src="~/UploadedFiles/@Model.ProfilePicAddress" width="150px" />
+                    </div>
+                </div>
+                <button class="btn btn-primary" type="submit">اعمال تغییرات </button>
+
+                <input type="hidden" asp-for="Id" />
+                @if (ViewData["message"] != null)
+                {
+                    <div class="form-row">
+                        <div class="alert alert-danger">
+                            @ViewData["message"]
+                        </div>
+                    </div>
+                }
+            </form>
+        </div>
+    </div>
+</div>
+
+<!--To Disable Submit Button before change in form-->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<script>
+    debugger;
+        $('form')
+        .each(function(){
+            $(this).data('serialized', $(this).serialize())
+        })
+        .on('change input', function(){
+            $(this)
+                .find('input:submit, button:submit')
+                    .prop('disabled', $(this).serialize() == $(this).data('serialized'))
+            ;
+         })
+        .find('input:submit, button:submit')
+            .prop('disabled', true)
+    ;
+</script>

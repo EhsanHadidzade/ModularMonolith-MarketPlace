@@ -28,7 +28,7 @@ namespace AccountManagement.Domain.UserAgg
         public bool IsAdmin { get; private set; }
 
         //Service girande
-        public bool IsClient { get; private set; }
+        public bool IsClient { get; private set; }  
 
         //User experience
         public long Experience { get; private set; }

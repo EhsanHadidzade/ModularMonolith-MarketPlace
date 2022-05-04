@@ -2416,6 +2416,19 @@
           "bin/placeholder/0_Framework.dll": {}
         }
       },
+      "0_MyNiaSmartQuery/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v5.0",
+        "dependencies": {
+          "AccountManagement.Infrastructure.EFCore": "1.0.0"
+        },
+        "compile": {
+          "bin/placeholder/0_MyNiaSmartQuery.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/0_MyNiaSmartQuery.dll": {}
+        }
+      },
       "AccountManagement.Application/1.0.0": {
         "type": "project",
         "framework": ".NETCoreApp,Version=v5.0",
@@ -2447,6 +2460,7 @@
         "type": "project",
         "framework": ".NETCoreApp,Version=v5.0",
         "dependencies": {
+          "0_MyNiaSmartQuery": "1.0.0",
           "AccountManagement.Application": "1.0.0",
           "AccountManagement.Application.Contract": "1.0.0",
           "AccountManagement.Infrastructure.EFCore": "1.0.0",
@@ -12007,6 +12021,11 @@
       "path": "../0_Framework/0_Framework.csproj",
       "msbuildProject": "../0_Framework/0_Framework.csproj"
     },
+    "0_MyNiaSmartQuery/1.0.0": {
+      "type": "project",
+      "path": "../0_MyNiaSmartQuery/0_MyNiaSmartQuery.csproj",
+      "msbuildProject": "../0_MyNiaSmartQuery/0_MyNiaSmartQuery.csproj"
+    },
     "AccountManagement.Application/1.0.0": {
       "type": "project",
       "path": "../AccountManagement.Application/AccountManagement.Application.csproj",
@@ -12061,6 +12080,7 @@
   "projectFileDependencyGroups": {
     "net5.0": [
       "0_Framework >= 1.0.0",
+      "0_MyNiaSmartQuery >= 1.0.0",
       "AccountManagement.Configuration >= 1.0.0",
       "Microsoft.AspNetCore.Mvc.Razor.RuntimeCompilation >= 5.0.16",
       "Microsoft.EntityFrameworkCore.Design >= 5.0.16",
@@ -12105,6 +12125,9 @@
           "projectReferences": {
             "C:\\Work\\Projects\\MyNiaSmart\\MyNiaSmart\\0_Framework\\0_Framework.csproj": {
               "projectPath": "C:\\Work\\Projects\\MyNiaSmart\\MyNiaSmart\\0_Framework\\0_Framework.csproj"
+            },
+            "C:\\Work\\Projects\\MyNiaSmart\\MyNiaSmart\\0_MyNiaSmartQuery\\0_MyNiaSmartQuery.csproj": {
+              "projectPath": "C:\\Work\\Projects\\MyNiaSmart\\MyNiaSmart\\0_MyNiaSmartQuery\\0_MyNiaSmartQuery.csproj"
             },
             "C:\\Work\\Projects\\MyNiaSmart\\MyNiaSmart\\AccountManagement.Configuration\\AccountManagement.Configuration.csproj": {
               "projectPath": "C:\\Work\\Projects\\MyNiaSmart\\MyNiaSmart\\AccountManagement.Configuration\\AccountManagement.Configuration.csproj"

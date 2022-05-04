@@ -1841,6 +1841,19 @@
           "bin/placeholder/0_Framework.dll": {}
         }
       },
+      "0_MyNiaSmartQuery/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v5.0",
+        "dependencies": {
+          "AccountManagement.Infrastructure.EFCore": "1.0.0"
+        },
+        "compile": {
+          "bin/placeholder/0_MyNiaSmartQuery.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/0_MyNiaSmartQuery.dll": {}
+        }
+      },
       "AccountManagement.Application/1.0.0": {
         "type": "project",
         "framework": ".NETCoreApp,Version=v5.0",
@@ -6527,6 +6540,11 @@
       "path": "../0_Framework/0_Framework.csproj",
       "msbuildProject": "../0_Framework/0_Framework.csproj"
     },
+    "0_MyNiaSmartQuery/1.0.0": {
+      "type": "project",
+      "path": "../0_MyNiaSmartQuery/0_MyNiaSmartQuery.csproj",
+      "msbuildProject": "../0_MyNiaSmartQuery/0_MyNiaSmartQuery.csproj"
+    },
     "AccountManagement.Application/1.0.0": {
       "type": "project",
       "path": "../AccountManagement.Application/AccountManagement.Application.csproj",
@@ -6550,6 +6568,7 @@
   },
   "projectFileDependencyGroups": {
     "net5.0": [
+      "0_MyNiaSmartQuery >= 1.0.0",
       "AccountManagement.Application >= 1.0.0",
       "AccountManagement.Application.Contract >= 1.0.0",
       "AccountManagement.Infrastructure.EFCore >= 1.0.0",
@@ -6588,6 +6607,9 @@
         "net5.0": {
           "targetAlias": "net5.0",
           "projectReferences": {
+            "C:\\Work\\Projects\\MyNiaSmart\\MyNiaSmart\\0_MyNiaSmartQuery\\0_MyNiaSmartQuery.csproj": {
+              "projectPath": "C:\\Work\\Projects\\MyNiaSmart\\MyNiaSmart\\0_MyNiaSmartQuery\\0_MyNiaSmartQuery.csproj"
+            },
             "C:\\Work\\Projects\\MyNiaSmart\\MyNiaSmart\\AccountManagement.Application.Contract\\AccountManagement.Application.Contract.csproj": {
               "projectPath": "C:\\Work\\Projects\\MyNiaSmart\\MyNiaSmart\\AccountManagement.Application.Contract\\AccountManagement.Application.Contract.csproj"
             },

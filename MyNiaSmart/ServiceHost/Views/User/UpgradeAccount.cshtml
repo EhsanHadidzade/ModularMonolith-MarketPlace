@@ -1,0 +1,350 @@
+﻿@{
+    ViewData["Title"] = "ارتقاء حساب کاربری";
+}
+
+
+<!-- Form step -->
+<link href="/MainTheme/vendor/jquery-steps/css/jquery.steps.css" rel="stylesheet">
+<!-- Custom Stylesheet -->
+<link href="/MainTheme/vendor/bootstrap-select/dist/css/bootstrap-select.min.css" rel="stylesheet">
+<link href="/MainTheme/css/style.css" rel="stylesheet">
+
+
+
+
+
+<div class="row page-titles mx-0">
+    <div class="col-sm-6 p-md-0">
+        <div class="welcome-text">
+            <h4>سلام، خوش آمدید</h4>
+            <p class="mb-0">پروفایل شخصی</p>
+        </div>
+    </div>
+    <div class="col-sm-6 p-md-0 justify-content-sm-end mt-2 mt-sm-0 d-flex">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="javascript:void(0)">پروفایل شخصی </a></li>
+            <li class="breadcrumb-item active"><a href="javascript:void(0)">ارتقاء حساب کاربری </a></li>
+        </ol>
+    </div>
+</div>
+
+
+<!-- row -->
+<div class="row">
+    <div class="col-xl-12 col-xxl-12">
+        <div class="card">
+            <div class="card-header">
+                <h4 id="issue" class="card-title">مرحله فرم</h4>
+            </div>
+            <div class="card-body">
+                <form action="#" id="step-form-horizontal" class="step-form-horizontal">
+                    <div>
+                        <h4>ثبت اطلاعات هویتی</h4>
+                        <section>
+                            <h5 class="card-title">ثبت اطلاعات هویتی</h5>
+                            <hr />
+                            <br />
+                            <div class="row">
+                                <div class="col-lg-6 mb-2">
+                                    <div class="form-group">
+                                        <label class="text-label">نام اصلی*</label>
+                                        <input type="text" name="firstName" class="form-control" placeholder="جک" required>
+                                    </div>
+                                </div>
+                                <div class="col-lg-6 mb-2">
+                                    <div class="form-group">
+                                        <label class="text-label">نام خانوادگی*</label>
+                                        <input type="text" name="lastName" class="form-control" placeholder="اسپارو" required>
+                                    </div>
+                                </div>
+                                <div class="col-lg-12 mb-2">
+                                    <div class="form-group">
+                                        <label class="text-label">آدرس ایمیل*</label>
+                                        <input type="email" class="form-control" id="inputGroupPrepend2" aria-describedby="inputGroupPrepend2" placeholder="example@example.com.com" required>
+                                    </div>
+                                </div>
+                                <div class="col-lg-12 mb-2">
+                                    <div class="form-group">
+                                        <label class="text-label">شماره تلفن*</label>
+                                        <input type="text" name="phoneNumber" class="form-control" placeholder="(+1)408-657-9007" required>
+                                    </div>
+                                </div>
+                                <div class="col-lg-12 mb-2">
+                                    <div class="form-group">
+                                        <label class="text-label">شما اهل کجا هستید*</label>
+                                        <input type="text" name="place" class="form-control" required>
+                                    </div>
+                                </div>
+                            </div>
+                        </section>
+                        <h4>آپلود اطلاعات هویتی</h4>
+                        <section>
+                            <h5 class="card-title">آپلود اطلاعات هویتی</h5>
+                            <hr />
+                            <br />
+                            <div class="row">
+                                <div class="col-lg-6 mb-2">
+                                    <div class="form-group">
+                                        <label class="text-label">نام اصلی*</label>
+                                        <input type="text" name="firstName" class="form-control" placeholder="جک" required>
+                                    </div>
+                                </div>
+                                <div class="col-lg-6 mb-2">
+                                    <div class="form-group">
+                                        <label class="text-label">نام خانوادگی*</label>
+                                        <input type="text" name="lastName" class="form-control" placeholder="اسپارو" required>
+                                    </div>
+                                </div>
+                                <div class="col-lg-12 mb-2">
+                                    <div class="form-group">
+                                        <label class="text-label">آدرس ایمیل*</label>
+                                        <input type="email" class="form-control" id="inputGroupPrepend2" aria-describedby="inputGroupPrepend2" placeholder="example@example.com.com" required>
+                                    </div>
+                                </div>
+                                <div class="col-lg-12 mb-2">
+                                    <div class="form-group">
+                                        <label class="text-label">شماره تلفن*</label>
+                                        <input type="text" name="phoneNumber" class="form-control" placeholder="(+1)408-657-9007" required>
+                                    </div>
+                                </div>
+                                <div class="col-lg-12 mb-2">
+                                    <div class="form-group">
+                                        <label class="text-label">شما اهل کجا هستید*</label>
+                                        <input type="text" name="place" class="form-control" required>
+                                    </div>
+                                </div>
+                            </div>
+                        </section>
+                        <h4> ثبت اطلاعات بانکی</h4>
+                        <section>
+                            <h5 class="card-title">ثبت اطلاعات بانکی</h5>
+                            <hr />
+                            <br />
+                            <div class="row">
+                                <div class="col-lg-6 mb-2">
+                                    <div class="form-group">
+                                        <label class="text-label">نام اصلی*</label>
+                                        <input type="text" name="firstName" class="form-control" placeholder="جک" required>
+                                    </div>
+                                </div>
+                                <div class="col-lg-6 mb-2">
+                                    <div class="form-group">
+                                        <label class="text-label">نام خانوادگی*</label>
+                                        <input type="text" name="lastName" class="form-control" placeholder="اسپارو" required>
+                                    </div>
+                                </div>
+                                <div class="col-lg-12 mb-2">
+                                    <div class="form-group">
+                                        <label class="text-label">آدرس ایمیل*</label>
+                                        <input type="email" class="form-control" id="inputGroupPrepend2" aria-describedby="inputGroupPrepend2" placeholder="example@example.com.com" required>
+                                    </div>
+                                </div>
+                                <div class="col-lg-12 mb-2">
+                                    <div class="form-group">
+                                        <label class="text-label">شماره تلفن*</label>
+                                        <input type="text" name="phoneNumber" class="form-control" placeholder="(+1)408-657-9007" required>
+                                    </div>
+                                </div>
+                                <div class="col-lg-12 mb-2">
+                                    <div class="form-group">
+                                        <label class="text-label">شما اهل کجا هستید*</label>
+                                        <input type="text" name="place" class="form-control" required>
+                                    </div>
+                                </div>
+                            </div>
+                        </section>
+                        <h4>اپلود اطلاعات بانکی</h4>
+                        <section>
+                            <h5 class="card-title">اپلود اطلاعات بانکی</h5>
+                            <hr />
+                            <br />
+                            <div class="row">
+                                <div class="col-lg-12 mb-2">
+                                    <div class="form-group">
+                                        <label class="text-label">نام شرکت*</label>
+                                        <input type="text" name="firstName" class="form-control" placeholder="کمپانی ب ت چه" required>
+                                    </div>
+                                </div>
+                                <div class="col-lg-12 mb-2">
+                                    <div class="form-group">
+                                        <label class="text-label">آدرس ایمیل شرکت*</label>
+                                        <input type="email" class="form-control" id="emial1" placeholder="example@example.com.com" required>
+                                    </div>
+                                </div>
+                                <div class="col-lg-12 mb-2">
+                                    <div class="form-group">
+                                        <label class="text-label">شماره تلفن شرکت*</label>
+                                        <input type="text" name="phoneNumber" class="form-control" placeholder="(+1)408-657-9007" required>
+                                    </div>
+                                </div>
+                                <div class="col-lg-12 mb-2">
+                                    <div class="form-group">
+                                        <label class="text-label">موقعیت شما در شرکت*</label>
+                                        <input type="text" name="place" class="form-control" required>
+                                    </div>
+                                </div>
+                            </div>
+                        </section>
+                        <h4>ثبت اطلاعات ضمانتنامه</h4>
+                        <section>
+                            <h5 class="card-title">ثبت اطلاعات ضمانتنامه</h5>
+                            <hr />
+                            <br />
+                            <div class="row">
+                                <div class="col-4 col-sm-3 mb-2">
+                                    <h4>شنبه *</h4>
+                                </div>
+                                <div class="col-4 col-sm-3 mb-2">
+                                    <div class="form-group">
+                                        <input class="form-control" value="9.00" type="number" name="input1" id="input1">
+                                    </div>
+                                </div>
+                                <div class="col-4 col-sm-3 mb-2">
+                                    <div class="form-group">
+                                        <input class="form-control" value="6.00" type="number" name="input2" id="input2">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-4 col-sm-3 mb-2">
+                                    <h4>یک شنبه *</h4>
+                                </div>
+                                <div class="col-4 col-sm-3 mb-2">
+                                    <div class="form-group">
+                                        <input class="form-control" value="9.00" type="number" name="input3" id="input3">
+                                    </div>
+                                </div>
+                                <div class="col-4 col-sm-3 mb-2">
+                                    <div class="form-group">
+                                        <input class="form-control" value="6.00" type="number" name="input4" id="input4">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-4 col-sm-3 mb-2">
+                                    <h4>دوشنبه *</h4>
+                                </div>
+                                <div class="col-4 col-sm-3 mb-2">
+                                    <div class="form-group">
+                                        <input class="form-control" value="9.00" type="number" name="input5" id="input5">
+                                    </div>
+                                </div>
+                                <div class="col-4 col-sm-3 mb-2">
+                                    <div class="form-group">
+                                        <input class="form-control" value="6.00" type="number" name="input6" id="input6">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-4 col-sm-3 mb-2">
+                                    <h4>سه شنبه *</h4>
+                                </div>
+                                <div class="col-4 col-sm-3 mb-2">
+                                    <div class="form-group">
+                                        <input class="form-control" value="9.00" type="number" name="input7" id="input7">
+                                    </div>
+                                </div>
+                                <div class="col-4 col-sm-3 mb-2">
+                                    <div class="form-group">
+                                        <input class="form-control" value="6.00" type="number" name="input8" id="input8">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-4 col-sm-3 mb-2">
+                                    <h4>چهارشنبه *</h4>
+                                </div>
+                                <div class="col-4 col-sm-3 mb-2">
+                                    <div class="form-group">
+                                        <input class="form-control" value="9.00" type="number" name="input9" id="input9">
+                                    </div>
+                                </div>
+                                <div class="col-4 col-sm-3 mb-2">
+                                    <div class="form-group">
+                                        <input class="form-control" value="6.00" type="number" name="input10" id="input10">
+                                    </div>
+                                </div>
+                            </div>
+                        </section>
+                        <h4>آپلود اطلاعات ضمانت نامه</h4>
+                        <section>
+                            <h5 class="card-title">آپلود اطلاعات ضمانتنامه</h5>
+                            <hr />
+                            <br />
+                            <div class="row emial-setup">
+                                <div class="col-sm-3 col-6">
+                                    <div class="form-group">
+                                        <label for="mailclient11" class="mailclinet mailclinet-gmail">
+                                            <input type="radio" name="emailclient" id="mailclient11">
+                                            <span class="mail-icon">
+                                                <i class="mdi mdi-google-plus" aria-hidden="true"></i>
+                                            </span>
+                                            <span class="mail-text">من از Gmail استفاده می کنم</span>
+                                        </label>
+                                    </div>
+                                </div>
+                                <div class="col-sm-3 col-6">
+                                    <div class="form-group">
+                                        <label for="mailclient12" class="mailclinet mailclinet-office">
+                                            <input type="radio" name="emailclient" id="mailclient12">
+                                            <span class="mail-icon">
+                                                <i class="mdi mdi-office" aria-hidden="true"></i>
+                                            </span>
+                                            <span class="mail-text">من از دفتر استفاده می کنم</span>
+                                        </label>
+                                    </div>
+                                </div>
+                                <div class="col-sm-3 col-6">
+                                    <div class="form-group">
+                                        <label for="mailclient13" class="mailclinet mailclinet-drive">
+                                            <input type="radio" name="emailclient" id="mailclient13">
+                                            <span class="mail-icon">
+                                                <i class="mdi mdi-google-drive" aria-hidden="true"></i>
+                                            </span>
+                                            <span class="mail-text">من راننده هستم</span>
+                                        </label>
+                                    </div>
+                                </div>
+                                <div class="col-sm-3 col-6">
+                                    <div class="form-group">
+                                        <label for="mailclient14" class="mailclinet mailclinet-another">
+                                            <input type="radio" name="emailclient" id="mailclient14">
+                                            <span class="mail-icon">
+                                                <i class="fa fa-question-circle-o"
+                                                   aria-hidden="true"></i>
+                                            </span>
+                                            <span class="mail-text">خدمات نویسندگی</span>
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-12">
+                                    <div class="skip-email text-center">
+                                        <p>یا اگر می خواهید این مرحله را کاملاً رد کنید و بعداً آن را تنظیم کنید</p>
+                                        <a href="javascript:void()">رد کردن مرحله</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </section>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts{
+<!--Scripts-->
+<script src="/MainTheme/vendor/jquery-steps/build/jquery.steps.min.js"></script>
+<script src="/MainTheme/vendor/jquery-validation/jquery.validate.min.js"></script>
+<!-- Form validate init -->
+<script src="/MainTheme/js/plugins-init/jquery.validate-init.js"></script>
+
+
+
+<!-- Form step init -->
+<script src="/MainTheme/js/plugins-init/jquery-steps-init.js"></script>
+}
+

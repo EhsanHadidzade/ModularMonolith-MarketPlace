@@ -53,7 +53,7 @@ namespace _0_Framework.Utilities
 
             var authProperties = new AuthenticationProperties
             {
-                ExpiresUtc = DateTimeOffset.UtcNow.AddDays(1)
+                IsPersistent = true
             };
 
             _contextAccessor.HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme,

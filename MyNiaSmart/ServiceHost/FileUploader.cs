@@ -16,6 +16,15 @@ namespace ServiceHost.Uploder
             _webHostEnvironment = webHostEnvironment;
         }
 
+        public void RemovePicture(string UserPhoto)
+        {
+            var directoryPath = $"{_webHostEnvironment.WebRootPath}//UploadedFiles//{UserPhoto}";
+
+            if (File.Exists(directoryPath))
+                File.Delete(directoryPath);
+
+        }
+
         public string Upload(IFormFile file, string path)
         {
             if (file == null) return "";

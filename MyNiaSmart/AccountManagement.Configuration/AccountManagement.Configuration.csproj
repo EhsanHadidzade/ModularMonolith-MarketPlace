@@ -9,6 +9,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\0_MyNiaSmartQuery\0_MyNiaSmartQuery.csproj" />
     <ProjectReference Include="..\AccountManagement.Application.Contract\AccountManagement.Application.Contract.csproj" />
     <ProjectReference Include="..\AccountManagement.Application\AccountManagement.Application.csproj" />
     <ProjectReference Include="..\AccountManagement.Infrastructure.EFCore\AccountManagement.Infrastructure.EFCore.csproj" />

@@ -12,6 +12,9 @@ namespace ServiceHost.Controllers
             _userApplication = userApplication;
         }
 
+        #region RegisterOrLogin
+
+
         public IActionResult RegisterOrLogin()
         {
             return View();
@@ -33,6 +36,11 @@ namespace ServiceHost.Controllers
 
             return Redirect("/account/verifyCode");
         }
+        #endregion
+
+
+        #region VerificationCode
+
         public IActionResult VerifyCode()
         {
             return View();
@@ -52,12 +60,17 @@ namespace ServiceHost.Controllers
                 
             return Redirect("/");
         }
+        #endregion
+
+
+        #region LogOut
+
         public IActionResult LogOut()
         {
             _userApplication.LogOut();
             return Redirect("/account/RegisterOrLogin");
         }
-
+        #endregion
 
     }
 }

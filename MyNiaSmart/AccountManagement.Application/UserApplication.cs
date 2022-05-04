@@ -7,6 +7,7 @@ using AccountManagement.Domain.UserAgg;
 using AccountManagement.Domain.UserPersonalityAgg;
 using System;
 using System.Collections.Generic;
+using System.IO;
 
 namespace AccountManagement.Application
 {
@@ -68,6 +69,9 @@ namespace AccountManagement.Application
             if (command.Birthday != null)
                 birthday = command.Birthday.ToGeorgianDateTime();
 
+            if (command.ProfilePhoto != null)
+               _fileUploader.RemovePicture(user.ProfilePhoto);
+
             var picturePath = _fileUploader.Upload(command.ProfilePhoto, "UserPhoto");
 
             user.Edit(command.FullName, command.MobileNumber
@@ -117,6 +121,7 @@ namespace AccountManagement.Application
             }
 
             //اگر شماره همراه ثبت و کاربر میخواهد لاگین شود
+            account.GenerateActiveCode(GenerateUniqueCode.GenerateRandomNo());
             var newvalue = account.ActiveCode;
             string[] pp = { "KarmandName", "SenderName", "Url" };
             string[] vv = { newvalue, "نام مشتری", "url Value" };
@@ -141,7 +146,7 @@ namespace AccountManagement.Application
             if (account==null)
                 return operation.Failed("کد وارد شده معتبر نیست");
 
-            //حالتی که شانسی یه کد وارد کنه ولی اتفاقی مال یه نفز دیگه باشه. احتمال یک یه )
+            //حالتی که شانسی یه کد وارد کنه ولی اتفاقی مال یه نفز دیگه باشه. احتمال یک به )
             if(account!=null && account.ActiveCode!=command.Code)
                 return operation.Failed("کد وارد شده معتبر نیست");
 

@@ -1,0 +1,83 @@
+﻿@model _0_MyNiaSmartQuery.Contract.User.UserInfoQueryModel
+
+
+
+
+
+
+
+<div id="about-me" class="tab-pane fade active show">
+    <div class="profile-personal-info" style="padding:20px">
+        <h4 class="text-primary mb-4">اطلاعات شخصی</h4>
+        <div class="row mb-2">
+            <div class="col-3">
+                <h5 class="f-w-500">
+                    نام و نام خانوادگی<span class="pull-right">:</span>
+                </h5>
+            </div>
+            <div class="col-9">
+                <span>@Model.FullName</span>
+            </div>
+        </div>
+        <div class="row mb-2">
+            <div class="col-3">
+                <h5 class="f-w-500">
+                    کد ملی <span class="pull-right">:</span>
+                </h5>
+            </div>
+            <div class="col-9">
+                <span>@Model.NationalCode</span>
+            </div>
+        </div>
+        <div class="row mb-2">
+            <div class="col-3">
+                <h5 class="f-w-500">تاریخ تولد <span class="pull-right">:</span></h5>
+            </div>
+            <div class="col-9">
+                <span>@Model.Birthday</span>
+            </div>
+        </div>
+        <div class="row mb-2">
+            <div class="col-3">
+                <h5 class="f-w-500">شهر <span class="pull-right">:</span></h5>
+            </div>
+            <div class="col-9">
+                <span>@Model.City</span>
+            </div>
+        </div>
+        <div class="row mb-2">
+            <div class="col-3">
+                <h5 class="f-w-500">استان <span class="pull-right">:</span></h5>
+            </div>
+            <div class="col-9">
+                <span>@Model.Capital </span>
+            </div>
+        </div>
+        <div class="row mb-2">
+            <div class="col-3">
+                <h5 class="f-w-500">آدرس <span class="pull-right">:</span></h5>
+            </div>
+            <div class="col-9">
+                <span>@Model.Address </span>
+            </div>
+        </div>
+        <div class="row mb-2">
+            <div class="col-3">
+                <h5 class="f-w-500">نام و نام خانوادگی معرف <span class="pull-right">:</span></h5>
+            </div>
+            <div class="col-9">
+                <span>@Model.IntroductorFullname </span>
+            </div>
+        </div>
+        <div class="row mb-2">
+            <div class="col-3">
+                <h5 class="f-w-500">شماره همراه معرف <span class="pull-right">:</span></h5>
+            </div>
+            <div class="col-9">
+                <span> @Model.IntroductorMobileNumber</span>
+            </div>
+        </div>
+    </div>
+
+
+</div>

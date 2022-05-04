@@ -22,6 +22,10 @@
     list-style: none !important;
     padding: 0;
     margin: 0;
+    float:left;
+    margin-right:-55px;
+    display:inline-flex;
+    flex-direction:row-reverse
 }
 
 .wizard ul > li,
@@ -36,7 +40,7 @@
 .tabcontrol > .steps .current-info
 {
     position: absolute;
-    left: -999em;
+    left: -450em;
 }
 
 .wizard > .content > .title,

@@ -1,4 +1,6 @@
-﻿using AccountManagement.Application;
+﻿using _0_MyNiaSmartQuery.Contract.User;
+using _0_MyNiaSmartQuery.Query;
+using AccountManagement.Application;
 using AccountManagement.Application.Contract.Personality;
 using AccountManagement.Application.Contract.Role;
 using AccountManagement.Application.Contract.RoleType;
@@ -43,6 +45,9 @@ namespace AccountManagement.Configuration
 
             services.AddTransient<IUserPersonalityApplication,UserPersonalityApplication>();
             services.AddTransient<IUserPersonalityRepository,UserPersonalityRepository>();
+
+            //client query
+            services.AddTransient<IUserQuery, UserQuery>();
 
 
             services.AddDbContext<AccountContext>(item => item.UseSqlServer(connectionstring));

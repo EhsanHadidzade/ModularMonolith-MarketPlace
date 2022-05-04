@@ -8,7 +8,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using ServiceHost.Uploder;
-
+using System;
 
 namespace ServiceHost
 {
@@ -35,11 +35,17 @@ namespace ServiceHost
             services.AddTransient<IFileUploader,FileUploader>();
             services.AddTransient<IAuthHelper,AuthHelper>();
 
-            services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
-               .AddCookie(CookieAuthenticationDefaults.AuthenticationScheme, o =>
+            services.AddAuthentication(options =>
+            {
+                options.DefaultAuthenticateScheme = CookieAuthenticationDefaults.AuthenticationScheme;
+                options.DefaultChallengeScheme = CookieAuthenticationDefaults.AuthenticationScheme;
+                options.DefaultSignInScheme = CookieAuthenticationDefaults.AuthenticationScheme;
+
+            }).AddCookie(CookieAuthenticationDefaults.AuthenticationScheme, o =>
                {
                    o.LoginPath = new PathString("/Account/RegisterOrLogin");
                    o.LogoutPath = new PathString("/Account/LogOut");
+                   o.ExpireTimeSpan = TimeSpan.FromMinutes(43200);
                    o.AccessDeniedPath = new PathString("/AccessDenied");
                });
 

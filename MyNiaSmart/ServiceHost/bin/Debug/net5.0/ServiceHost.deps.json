@@ -34,6 +34,7 @@
       "ServiceHost/1.0.0": {
         "dependencies": {
           "0_Framework": "1.0.0",
+          "0_MyNiaSmartQuery": "1.0.0",
           "AccountManagement.Configuration": "1.0.0",
           "Microsoft.AspNetCore.Mvc.Razor.RuntimeCompilation": "5.0.16",
           "Microsoft.EntityFrameworkCore.Design": "5.0.16",
@@ -2050,6 +2051,17 @@
           "0_Framework.dll": {}
         }
       },
+      "0_MyNiaSmartQuery/1.0.0": {
+        "dependencies": {
+          "AccountManagement.Infrastructure.EFCore": "1.0.0"
+        },
+        "runtime": {
+          "0_MyNiaSmartQuery.dll": {}
+        },
+        "compile": {
+          "0_MyNiaSmartQuery.dll": {}
+        }
+      },
       "AccountManagement.Application/1.0.0": {
         "dependencies": {
           "AccountManagement.Application.Contract": "1.0.0",
@@ -2075,6 +2087,7 @@
       },
       "AccountManagement.Configuration/1.0.0": {
         "dependencies": {
+          "0_MyNiaSmartQuery": "1.0.0",
           "AccountManagement.Application": "1.0.0",
           "AccountManagement.Application.Contract": "1.0.0",
           "AccountManagement.Infrastructure.EFCore": "1.0.0",
@@ -4931,6 +4944,11 @@
       "hashPath": "system.xml.xmlserializer.4.3.0.nupkg.sha512"
     },
     "0_Framework/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "0_MyNiaSmartQuery/1.0.0": {
       "type": "project",
       "serviceable": false,
       "sha512": ""

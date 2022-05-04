@@ -24,7 +24,12 @@ namespace AccountManagement.Application.Contract.User
         public string Address { get;  set; }
         public string NationalCode { get;  set; }
         public string Birthday { get;  set; }
+
+        //Profile Photo
         public IFormFile ProfilePhoto { get;  set; }
+        public string ProfilePicAddress { get; set; }
+
+
         public string IntroductorFullname { get;  set; }
         public string IntroductorMobileNumber { get;  set; }
 
