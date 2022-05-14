@@ -6906,7 +6906,7 @@ button.bg-dark:focus {
 
 .mb-2,
 .my-2 {
-  margin-bottom: 0.5rem !important; }
+  margin-bottom: -0.5rem !important; }
 
 .ml-2,
 .mx-2 {
@@ -11815,6 +11815,8 @@ html[dir="rtl"] [direction="rtl"][data-sidebar-style="compact"]:not([data-layout
   position: absolute;
   left: 2.8125rem;
   top: 0.625rem; }
+
+
 
 .content-body {
   margin-right: 17.1875rem;
@@ -22802,7 +22804,9 @@ Fixing Order => Base + Typography >> General Layout + Grid >> Page Layout + Comp
         [data-theme-version="dark"] .step-form-horizontal .wizard .steps li:not(:last-child).current ~ li::after {
           background: #181f39; }
   .step-form-horizontal .wizard .actions {
-    padding: 0; }
+    padding: 0;
+    margin-top:150px;
+  }
     @media only screen and (max-width: 575px) {
       .step-form-horizontal .wizard .actions {
         padding: 0; } }

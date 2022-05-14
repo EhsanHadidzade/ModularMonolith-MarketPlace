@@ -1,7 +1,6 @@
 (function($) {
     "use strict"
     var form = $("#step-form-horizontal");
-    debugger
     form.children('div').steps({
         headerTag: "h4",
         bodyTag: "section",

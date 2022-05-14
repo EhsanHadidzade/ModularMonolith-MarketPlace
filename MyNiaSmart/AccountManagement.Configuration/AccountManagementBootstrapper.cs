@@ -2,14 +2,20 @@
 using _0_MyNiaSmartQuery.Query;
 using AccountManagement.Application;
 using AccountManagement.Application.Contract.Personality;
+using AccountManagement.Application.Contract.RejectionReason;
 using AccountManagement.Application.Contract.Role;
 using AccountManagement.Application.Contract.RoleType;
+using AccountManagement.Application.Contract.UpAccountRequest;
+using AccountManagement.Application.Contract.UpAccountRequestRejectionReason;
 using AccountManagement.Application.Contract.User;
 using AccountManagement.Application.Contract.UserPersonality;
 using AccountManagement.Application.Contract.UserRole;
 using AccountManagement.Domain.PersonalityAgg;
+using AccountManagement.Domain.RejectionReasonAgg;
 using AccountManagement.Domain.RoleAgg;
 using AccountManagement.Domain.RoleTypeAgg;
+using AccountManagement.Domain.UpAccountRequestRejectionReasonAgg;
+using AccountManagement.Domain.UPAccountRequestsAgg;
 using AccountManagement.Domain.UserAgg;
 using AccountManagement.Domain.UserPersonalityAgg;
 using AccountManagement.Domain.UserRoleAgg;
@@ -45,6 +51,15 @@ namespace AccountManagement.Configuration
 
             services.AddTransient<IUserPersonalityApplication,UserPersonalityApplication>();
             services.AddTransient<IUserPersonalityRepository,UserPersonalityRepository>();
+
+            services.AddTransient<IUPAccountRequestApplication,UpAccountRequestApplication>();
+            services.AddTransient<IUPAccountRequestRepository, UpAccountRequestRepository>();
+
+            services.AddTransient<IRejectionReasonApplication, RejectionReasonApplication>();
+            services.AddTransient<IRejectionReasonRepository, RejectionReasonRepository>();
+
+            services.AddTransient<IUpAccountRequestRejectionReasonApplication, UpAccountRequestRejectionReasonApplication>();
+            services.AddTransient<IUpAccountRequestRejectionReasonRepository, UpAccountRequestRejectionReasonRepository>();
 
             //client query
             services.AddTransient<IUserQuery, UserQuery>();

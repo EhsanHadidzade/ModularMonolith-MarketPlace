@@ -1,4 +1,6 @@
-﻿using AccountManagement.Domain.UserAgg;
+﻿using AccountManagement.Domain.UPAccountRequestsAgg;
+using AccountManagement.Domain.UserAgg;
+using AccountManagement.Domain.WalletAgg.PersonalwalletAgg;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using System;
@@ -29,8 +31,12 @@ namespace AccountManagement.Infrastructure.EFCore.Mapping
 
             //Relations
             builder.HasMany(x => x.UserRoles).WithOne(x => x.User).HasForeignKey(x => x.UserId);
+            builder.HasOne(x => x.UpAccountRequest).WithOne(x => x.User).HasForeignKey<UpAccountRequest>(x => x.UserId);
+            builder.HasOne(x => x.PersonalWallet).WithOne(x => x.User).HasForeignKey<PersonalWallet>(x => x.UserId);
 
-            
+
+
+
         }
     }
 }

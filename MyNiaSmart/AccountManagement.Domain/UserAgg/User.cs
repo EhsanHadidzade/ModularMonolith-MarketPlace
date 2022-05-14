@@ -1,7 +1,9 @@
 ﻿using _0_Framework.Domain;
 using AccountManagement.Domain.RoleAgg;
+using AccountManagement.Domain.UPAccountRequestsAgg;
 using AccountManagement.Domain.UserPersonalityAgg;
 using AccountManagement.Domain.UserRoleAgg;
+using AccountManagement.Domain.WalletAgg.PersonalwalletAgg;
 using System;
 using System.Collections.Generic;
 
@@ -42,6 +44,8 @@ namespace AccountManagement.Domain.UserAgg
         #region Relations
         public List<UserRole> UserRoles { get; private set; }
         public List<UserPersonality> UserPersonalities{ get; set; }
+        public UpAccountRequest UpAccountRequest{ get; private set; }
+        public PersonalWallet PersonalWallet{ get; private set; }
         #endregion
 
         public User(string fullName, string mobileNumber)
@@ -49,6 +53,8 @@ namespace AccountManagement.Domain.UserAgg
             FullName = fullName;
             MobileNumber = mobileNumber;
             IsActive = false;
+            Grade = 1;
+            Experience = 1;
         }
 
         public User(string fullName, string mobileNumber, string capital

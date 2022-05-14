@@ -1,0 +1,29 @@
+﻿@model Tuple<List<AccountManagement.Application.Contract.RejectionReason.RejectionReasonViewModel>, List<long>, long>
+
+
+<div class="row">
+    <div class="col-xl-12 col-lg-12">
+        <div class="card">
+            <div class="card-header">
+                <h4 class="card-title"> علت رد درخواست ارتقا حساب کاربری </h4>
+            </div>
+            <div class="card-body">
+                <form method="post" action="/administrator/UpAccountRequest/RejectRequest">
+                    @foreach (var reason in Model.Item1)
+                    {
+                   
+                        <div class="form-check mb-2">
+                            <input type="checkbox" class="form-check-input" id="check1" name="reasons" value="@reason.Id" @((Model.Item2.Any(x=>x==reason.Id))?"Checked":"")>
+                            <label class="form-check-label" for="check1"> @reason.Title</label>
+                        </div>
+                    }
+                    <input type="hidden" asp-for="Item3" value="@Model.Item3" name="requestId" />
+                    <button type="submit" class="btn btn-info">اعمال تغییرات</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+

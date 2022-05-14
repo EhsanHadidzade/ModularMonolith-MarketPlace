@@ -1,0 +1,21 @@
+﻿@model List<AccountManagement.Application.Contract.RejectionReason.RejectionReasonViewModel>
+
+
+<div class="row">
+    <div class="col-lg-6">
+        <div class="card">
+            <div class="card-header d-block">
+                <h4 class="card-title">اندازه نشان ها</h4>
+                <p class="mb-0 subtitle">نشان های پیش فرض بوت استرپ</p>
+            </div>
+            <div class="card-body">
+                <ul>
+                   @foreach(var item in Model)
+                   {
+                       <li>@item.Title</li>
+                   }
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>

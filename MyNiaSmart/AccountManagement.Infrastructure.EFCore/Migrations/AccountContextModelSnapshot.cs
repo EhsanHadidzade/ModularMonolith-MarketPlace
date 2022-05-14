@@ -38,6 +38,25 @@ namespace AccountManagement.Infrastructure.EFCore.Migrations
                     b.ToTable("Personalities");
                 });
 
+            modelBuilder.Entity("AccountManagement.Domain.RejectionReasonAgg.RejectionReason", b =>
+                {
+                    b.Property<long>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("bigint")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<DateTime>("CreationDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("Title")
+                        .HasMaxLength(1000)
+                        .HasColumnType("nvarchar(1000)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("RejectionReasons");
+                });
+
             modelBuilder.Entity("AccountManagement.Domain.RoleAgg.Role", b =>
                 {
                     b.Property<long>("Id")
@@ -85,6 +104,182 @@ namespace AccountManagement.Infrastructure.EFCore.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("RoleTypes");
+                });
+
+            modelBuilder.Entity("AccountManagement.Domain.UPAccountRequestsAgg.UpAccountRequest", b =>
+                {
+                    b.Property<long>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("bigint")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("BD_CreditCardBackSide")
+                        .HasMaxLength(128)
+                        .HasColumnType("nvarchar(128)");
+
+                    b.Property<string>("BD_CreditCardFrontSide")
+                        .HasMaxLength(128)
+                        .HasColumnType("nvarchar(128)");
+
+                    b.Property<string>("BD_ShabaPrint")
+                        .HasMaxLength(128)
+                        .HasColumnType("nvarchar(128)");
+
+                    b.Property<string>("BI_BankAccountNumber")
+                        .HasMaxLength(128)
+                        .HasColumnType("nvarchar(128)");
+
+                    b.Property<string>("BI_BankName")
+                        .HasMaxLength(128)
+                        .HasColumnType("nvarchar(128)");
+
+                    b.Property<string>("BI_CreditCardNumber")
+                        .HasMaxLength(128)
+                        .HasColumnType("nvarchar(128)");
+
+                    b.Property<bool>("BI_IsCreditCardWithFullInfo")
+                        .HasColumnType("bit");
+
+                    b.Property<string>("BI_ShabaNumber")
+                        .HasMaxLength(128)
+                        .HasColumnType("nvarchar(128)");
+
+                    b.Property<string>("Capital")
+                        .HasMaxLength(128)
+                        .HasColumnType("nvarchar(128)");
+
+                    b.Property<string>("City")
+                        .HasMaxLength(128)
+                        .HasColumnType("nvarchar(128)");
+
+                    b.Property<DateTime>("CreationDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("GD_ChequeBackSide")
+                        .HasMaxLength(128)
+                        .HasColumnType("nvarchar(128)");
+
+                    b.Property<string>("GD_ChequeFrontSide")
+                        .HasMaxLength(128)
+                        .HasColumnType("nvarchar(128)");
+
+                    b.Property<string>("GD_SafteBackSide")
+                        .HasMaxLength(128)
+                        .HasColumnType("nvarchar(128)");
+
+                    b.Property<string>("GD_SafteFrontSide")
+                        .HasMaxLength(128)
+                        .HasColumnType("nvarchar(128)");
+
+                    b.Property<string>("GI_ChequeBankBranch")
+                        .HasMaxLength(128)
+                        .HasColumnType("nvarchar(128)");
+
+                    b.Property<string>("GI_ChequeNumber")
+                        .HasMaxLength(128)
+                        .HasColumnType("nvarchar(128)");
+
+                    b.Property<bool>("GI_IsChequeGuarantyType")
+                        .HasColumnType("bit");
+
+                    b.Property<string>("GI_SafteNumber")
+                        .HasMaxLength(128)
+                        .HasColumnType("nvarchar(128)");
+
+                    b.Property<string>("GI_ShenaseSayadiCheque")
+                        .HasMaxLength(128)
+                        .HasColumnType("nvarchar(128)");
+
+                    b.Property<bool>("IsRequestConfirmedByAdmin")
+                        .HasColumnType("bit");
+
+                    b.Property<bool>("IsRequestConfirmedByClient")
+                        .HasColumnType("bit");
+
+                    b.Property<string>("PD_IdentityCard")
+                        .HasMaxLength(128)
+                        .HasColumnType("nvarchar(128)");
+
+                    b.Property<string>("PD_NationalCardBackSide")
+                        .HasMaxLength(128)
+                        .HasColumnType("nvarchar(128)");
+
+                    b.Property<string>("PD_NationalCardFrontSide")
+                        .HasMaxLength(128)
+                        .HasColumnType("nvarchar(128)");
+
+                    b.Property<string>("PD_NationalCodeTrackingPaper")
+                        .HasMaxLength(128)
+                        .HasColumnType("nvarchar(128)");
+
+                    b.Property<DateTime>("PI_BirthdayDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("PI_FUllName")
+                        .HasMaxLength(128)
+                        .HasColumnType("nvarchar(128)");
+
+                    b.Property<string>("PI_FatherName")
+                        .HasMaxLength(128)
+                        .HasColumnType("nvarchar(128)");
+
+                    b.Property<string>("PI_IdentityNumber")
+                        .HasMaxLength(128)
+                        .HasColumnType("nvarchar(128)");
+
+                    b.Property<bool>("PI_IsMale")
+                        .HasColumnType("bit");
+
+                    b.Property<bool>("PI_IsNewIdentity")
+                        .HasColumnType("bit");
+
+                    b.Property<bool>("PI_IsNewNationalCard")
+                        .HasColumnType("bit");
+
+                    b.Property<string>("PI_NationalCode")
+                        .HasMaxLength(128)
+                        .HasColumnType("nvarchar(128)");
+
+                    b.Property<DateTime>("PI_RegistrationDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("RejectionReason")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<long>("UserId")
+                        .HasColumnType("bigint");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("UserId")
+                        .IsUnique();
+
+                    b.ToTable("UpAccountRequests");
+                });
+
+            modelBuilder.Entity("AccountManagement.Domain.UpAccountRequestRejectionReasonAgg.UpAccountRequestRejectionReason", b =>
+                {
+                    b.Property<long>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("bigint")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<DateTime>("CreationDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<long>("RejectionReasonId")
+                        .HasColumnType("bigint");
+
+                    b.Property<long>("UpAccountRequestId")
+                        .HasColumnType("bigint");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("RejectionReasonId");
+
+                    b.HasIndex("UpAccountRequestId");
+
+                    b.ToTable("UpAccountRequestRejectionReasons");
                 });
 
             modelBuilder.Entity("AccountManagement.Domain.UserAgg.User", b =>
@@ -218,6 +413,36 @@ namespace AccountManagement.Infrastructure.EFCore.Migrations
                     b.Navigation("RoleType");
                 });
 
+            modelBuilder.Entity("AccountManagement.Domain.UPAccountRequestsAgg.UpAccountRequest", b =>
+                {
+                    b.HasOne("AccountManagement.Domain.UserAgg.User", "User")
+                        .WithOne("UpAccountRequest")
+                        .HasForeignKey("AccountManagement.Domain.UPAccountRequestsAgg.UpAccountRequest", "UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("User");
+                });
+
+            modelBuilder.Entity("AccountManagement.Domain.UpAccountRequestRejectionReasonAgg.UpAccountRequestRejectionReason", b =>
+                {
+                    b.HasOne("AccountManagement.Domain.RejectionReasonAgg.RejectionReason", "RejectionReason")
+                        .WithMany("UpAccountRequestRejectionReasons")
+                        .HasForeignKey("RejectionReasonId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("AccountManagement.Domain.UPAccountRequestsAgg.UpAccountRequest", "UpAccountRequest")
+                        .WithMany("UpAccountRequestRejectionReasons")
+                        .HasForeignKey("UpAccountRequestId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("RejectionReason");
+
+                    b.Navigation("UpAccountRequest");
+                });
+
             modelBuilder.Entity("AccountManagement.Domain.UserPersonalityAgg.UserPersonality", b =>
                 {
                     b.HasOne("AccountManagement.Domain.PersonalityAgg.Personality", "Personality")
@@ -261,6 +486,11 @@ namespace AccountManagement.Infrastructure.EFCore.Migrations
                     b.Navigation("UserPersonalities");
                 });
 
+            modelBuilder.Entity("AccountManagement.Domain.RejectionReasonAgg.RejectionReason", b =>
+                {
+                    b.Navigation("UpAccountRequestRejectionReasons");
+                });
+
             modelBuilder.Entity("AccountManagement.Domain.RoleAgg.Role", b =>
                 {
                     b.Navigation("UserRoles");
@@ -271,8 +501,15 @@ namespace AccountManagement.Infrastructure.EFCore.Migrations
                     b.Navigation("Roles");
                 });
 
+            modelBuilder.Entity("AccountManagement.Domain.UPAccountRequestsAgg.UpAccountRequest", b =>
+                {
+                    b.Navigation("UpAccountRequestRejectionReasons");
+                });
+
             modelBuilder.Entity("AccountManagement.Domain.UserAgg.User", b =>
                 {
+                    b.Navigation("UpAccountRequest");
+
                     b.Navigation("UserPersonalities");
 
                     b.Navigation("UserRoles");

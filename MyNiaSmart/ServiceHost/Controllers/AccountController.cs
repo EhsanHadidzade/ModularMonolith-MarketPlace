@@ -51,6 +51,7 @@ namespace ServiceHost.Controllers
         {
             if (!ModelState.IsValid)
                 return View(command);
+
             var result=_userApplication.CheckVerificationCode(command);
             if (!result.IsSuccedded)
             {

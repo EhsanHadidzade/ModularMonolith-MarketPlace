@@ -1,6 +1,5 @@
 ﻿@model _0_MyNiaSmartQuery.Contract.User.UserInfoQueryModel
-
-
+@inject AccountManagement.Application.Contract.UpAccountRequest.IUPAccountRequestApplication _uPAccountRequestApplication
 
 
 
@@ -77,7 +76,43 @@
                 <span> @Model.IntroductorMobileNumber</span>
             </div>
         </div>
+        @if (ViewData["UpRequestResult"] != null)
+        {
+            <div class="row mb-2">
+                <div class="alert alert-success">
+                    <p>@ViewData["UpRequestResult"]</p>
+                </div>
+            </div>
+        }
+
+        @if (_uPAccountRequestApplication.GetByUserId(Model.Id) != null)
+        {
+            <hr />
+            <div class="row mb-2">
+                <div class="col-3">
+                    <h5 class="f-w-500">وضعیت درخواست ارتقا حساب کاربری <span class="pull-right">:</span></h5>
+                </div>
+                <div class="col-9">
+                    @if (!_uPAccountRequestApplication.IsUpAccountRequestConfirmedWithAdminByUserId(Model.Id))
+                    {
+                        <span class="alert alert-warning" style="padding:20px">
+                            درخواست شما در حال بررسی میباشد
+                        </span>
+                        <a href="/user/EditUpgradeAccount/@Model.UserUpAccountRequestId" class="btn btn-info">ویرایش درخواست</a>
+                    }
+                    else
+                    {
+                        <span class="alert alert-success">
+                            درخواست شما با موفقیت تایید شد
+                        </span>
+                    }
+                </div>
+
+            </div>
+        }
+
     </div>
 
 
 </div>
+

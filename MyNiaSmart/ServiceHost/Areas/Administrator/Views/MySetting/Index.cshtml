@@ -1,0 +1,81 @@
+﻿
+@{
+    ViewData["Title"] = "تنظیمات برنامه";
+}
+
+@inject AccountManagement.Application.Contract.RoleType.IRoleTypeApplication _roleTypeApplication
+@inject AccountManagement.Application.Contract.Role.IRoleApplication _roleApplication
+@inject AccountManagement.Application.Contract.Personality.IPersonalityApplication _personalityApplication
+@inject AccountManagement.Application.Contract.RejectionReason.IRejectionReasonApplication _rejectionReasonApplication
+
+<div class="row page-titles mx-0">
+    <div class="col-sm-6 p-md-0">
+        <div class="welcome-text">
+            <h4>سلام، خوش آمدید</h4>
+        </div>
+    </div>
+    <div class="col-sm-6 p-md-0 justify-content-sm-end mt-2 mt-sm-0 d-flex">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="/administrator">پنل مدیریت </a></li>
+            <li class="breadcrumb-item active"><a href=""> تنظیمات برنامه </a></li>
+        </ol>
+    </div>
+</div>
+
+
+<div class="row">
+    <div class="col-xl-12">
+        <div class="card">
+            <div class="card-header">
+                <h4 class="card-title"> تنظیمات</h4>
+            </div>
+            <div class="card-body">
+                <!-- Nav tabs -->
+                <div class="default-tab">
+                    <ul class="nav nav-tabs" role="tablist">
+                        <li class="nav-item">
+                            <a class="nav-link active" data-toggle="tab" href="#profile"><i class="la la-user mr-2"></i> گروه بندی نقش ها</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link " data-toggle="tab" href="#home"><i class="la la-home mr-2"></i>  نقش ها</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" data-toggle="tab" href="#contact"><i class="la la-phone mr-2"></i> شخصیت های سازمان </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link " data-toggle="tab" href="#message"><i class="la la-envelope mr-2"></i>دلایل رد درخواست ارتقا حساب کاربری </a>
+                        </li>
+                    </ul>
+                    <div class="tab-content">
+                        <div class="tab-pane fade active show" id="profile">
+                            <div class="pt-4">
+                                <h4>گروه بندی نقش ها</h4>
+                                <partial name="_RoleType" model="_roleTypeApplication.GetList()" />
+                            </div>
+                        </div>
+                        <div class="tab-pane fade " id="home" role="tabpanel">
+                            <div class="pt-4">
+                                <h4> نقش ها</h4>
+                               <partial name="_Role" model="_roleApplication.GetList()" />
+                            </div>
+                        </div>
+                        <div class="tab-pane fade" id="contact">
+                            <div class="pt-4">
+                                <h4>شخصیت های سازمان </h4>
+                              <partial name="_Personality" model="_personalityApplication.Getlist()" />
+                            </div>
+                        </div>
+                        <div class="tab-pane fade " id="message">
+                            <div class="pt-4">
+                                <h4>دلایل رد درخواست ارتقا حساب کاربری</h4>
+                            <partial name="_RejectionReason" model="_rejectionReasonApplication.GetList()" />
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+

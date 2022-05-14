@@ -1,0 +1,78 @@
+﻿@{
+    ViewData["Title"] = "کیف پول های کاربر";
+}
+
+@section header{
+  <link href="https://fonts.googleapis.com/css?family=Raleway|Rock+Salt|Source+Code+Pro:300,400,600" rel="stylesheet"><link rel="stylesheet" href="/mainTheme/css/Wallet.css">
+}
+<style>
+    .center {
+        list-style-type: none;
+        display: flex;
+        justify-content: center;
+        border-top: 1px solid #dee2e6
+    }
+</style>
+
+<div class="row page-titles mx-0">
+    <div class="col-sm-6 p-md-0">
+        <div class="welcome-text">
+            <h4>سلام، خوش آمدید</h4>
+            <p class="mb-0">پروفایل شخصی</p>
+        </div>
+    </div>
+    <div class="col-sm-6 p-md-0 justify-content-sm-end mt-2 mt-sm-0 d-flex">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="javascript:void(0)">پروفایل شخصی </a></li>
+            <li class="breadcrumb-item active"><a href="javascript:void(0)">کیف پول های کاربر </a></li>
+        </ol>
+    </div>
+</div>
+
+
+<div class="row">
+    <div class="col-xl-12">
+        <div class="card">
+            <div class="card-header">
+                <h4 class="card-title"> کیف پول های کاربر</h4>
+            </div>
+            <div class="card-body">
+                <!-- Nav tabs -->
+                <div class="custom-tab-1">
+
+                    <div class="tab-content">
+                        <div class="tab-pane fade active show" id="personalwallet" role="tabpanel">
+                            <div class="pt-4" dir="ltr">
+                                <partial name="_Personalwallet" />
+                            </div>
+                        </div>
+                        <div class="tab-pane fade" id="businesswallet">
+                            <div class="pt-4">
+                                <h4>این عنوان نمایه است</h4>
+                                <p>
+                                    لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک است. چاپگرها و متون بلکه روزنامه و مجله در ستون و سطرآنچنان که لازم است و برای شرایط فعلی تکنولوژی مورد نیاز و کاربردهای متنوع با هدف بهبود ابزارهای کاربردی می باشد..
+                                </p>
+                                <p>
+                                    لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک است. چاپگرها و متون بلکه روزنامه و مجله در ستون و سطرآنچنان که لازم است و برای شرایط فعلی تکنولوژی مورد نیاز و کاربردهای متنوع با هدف بهبود ابزارهای کاربردی می باشد..
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                    <ul class="nav center">
+                        <li class="nav-item">
+                            <a class="nav-link active" data-toggle="tab" href="#personalwallet"><i class="la la-home mr-2"></i> کیف پول شخصی</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" data-toggle="tab" href="#businesswallet"><i class="la la-user mr-2"></i> کیف پول بیزنسی</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<!-- partial -->
+  <script src='https://cdnjs.cloudflare.com/ajax/libs/imask/3.4.0/imask.min.js'></script><script  src="/maintheme/js/wallet.js"></script>
+

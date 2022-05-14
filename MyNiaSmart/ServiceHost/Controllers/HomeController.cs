@@ -1,4 +1,4 @@
-﻿using _0_Framework.Utilities;
+﻿using _0_Framework.Contract;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;

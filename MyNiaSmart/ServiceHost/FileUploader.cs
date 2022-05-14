@@ -16,9 +16,9 @@ namespace ServiceHost.Uploder
             _webHostEnvironment = webHostEnvironment;
         }
 
-        public void RemovePicture(string UserPhoto)
+        public void RemovePicture(string photo)
         {
-            var directoryPath = $"{_webHostEnvironment.WebRootPath}//UploadedFiles//{UserPhoto}";
+            var directoryPath = $"{_webHostEnvironment.WebRootPath}//UploadedFiles//{photo}";
 
             if (File.Exists(directoryPath))
                 File.Delete(directoryPath);
@@ -41,6 +41,23 @@ namespace ServiceHost.Uploder
             file.CopyTo(stream);
             return $"{path}/{fileName}";
         }
-       
+
+        public string UploadDocument(IFormFile file,string Type, string path)
+        {
+            if (file == null) return "";
+
+            var directoryPath = $"{_webHostEnvironment.WebRootPath}//UploadedFiles//{path}";
+
+            if (!Directory.Exists(directoryPath))
+            {
+                Directory.CreateDirectory(directoryPath);
+            }
+            var fileName = DateTime.Now.ToFileName()+ Type + file.FileName;
+            var filePath = $"{directoryPath}//{fileName}";
+            using var stream = new FileStream(filePath, FileMode.Create);
+            file.CopyTo(stream);
+            return $"{path}/{fileName}";
+        }
+
     }
 }

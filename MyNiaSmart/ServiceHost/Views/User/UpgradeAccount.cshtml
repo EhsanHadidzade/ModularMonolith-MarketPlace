@@ -1,4 +1,5 @@
-﻿@{
+﻿@model AccountManagement.Application.Contract.UpAccountRequest.CreateUpAccountRequest
+@{
     ViewData["Title"] = "ارتقاء حساب کاربری";
 }
 
@@ -8,8 +9,6 @@
 <!-- Custom Stylesheet -->
 <link href="/MainTheme/vendor/bootstrap-select/dist/css/bootstrap-select.min.css" rel="stylesheet">
 <link href="/MainTheme/css/style.css" rel="stylesheet">
-
-
 
 
 
@@ -37,7 +36,7 @@
                 <h4 id="issue" class="card-title">مرحله فرم</h4>
             </div>
             <div class="card-body">
-                <form action="#" id="step-form-horizontal" class="step-form-horizontal">
+                <form method="post" enctype="multipart/form-data" action="/user/UpgradeAccount" id="step-form-horizontal" class="step-form-horizontal">
                     <div>
                         <h4>ثبت اطلاعات هویتی</h4>
                         <section>
@@ -47,33 +46,53 @@
                             <div class="row">
                                 <div class="col-lg-6 mb-2">
                                     <div class="form-group">
-                                        <label class="text-label">نام اصلی*</label>
-                                        <input type="text" name="firstName" class="form-control" placeholder="جک" required>
+                                        <label class="text-label">نام و نام خانوادگی</label>
+                                        <input type="text" asp-for="PI_FUllName" class="form-control" placeholder="نام و نام خانوادگی">
                                     </div>
                                 </div>
                                 <div class="col-lg-6 mb-2">
                                     <div class="form-group">
-                                        <label class="text-label">نام خانوادگی*</label>
-                                        <input type="text" name="lastName" class="form-control" placeholder="اسپارو" required>
+                                        <label class="text-label">نام پدر</label>
+                                        <input type="text" asp-for="PI_FatherName" class="form-control">
                                     </div>
                                 </div>
-                                <div class="col-lg-12 mb-2">
+                                <div class="col-lg-6 mb-2">
                                     <div class="form-group">
-                                        <label class="text-label">آدرس ایمیل*</label>
-                                        <input type="email" class="form-control" id="inputGroupPrepend2" aria-describedby="inputGroupPrepend2" placeholder="example@example.com.com" required>
+                                        <label class="text-label">شماره شناسنامه</label>
+                                        <input type="number" asp-for="PI_IdentityNumber" class="form-control" id="inputGroupPrepend2" aria-describedby="inputGroupPrepend2">
                                     </div>
                                 </div>
-                                <div class="col-lg-12 mb-2">
+                                <div class="col-lg-6 mb-2">
                                     <div class="form-group">
-                                        <label class="text-label">شماره تلفن*</label>
-                                        <input type="text" name="phoneNumber" class="form-control" placeholder="(+1)408-657-9007" required>
+                                        <label class="text-label">کد ملی</label>
+                                        <input type="number" asp-for="PI_NationalCode" class="form-control" placeholder="">
                                     </div>
                                 </div>
-                                <div class="col-lg-12 mb-2">
+                                  <div class="col-lg-6 mb-2">
                                     <div class="form-group">
-                                        <label class="text-label">شما اهل کجا هستید*</label>
-                                        <input type="text" name="place" class="form-control" required>
+                                        <label class="text-label"> استان</label>
+                                        <input type="text" asp-for="PI_Capital" class="form-control" id="inputGroupPrepend2" aria-describedby="inputGroupPrepend2">
                                     </div>
+                                </div>
+                                <div class="col-lg-6 mb-2">
+                                    <div class="form-group">
+                                        <label class="text-label">شهر</label>
+                                        <input type="text" asp-for="PI_City" class="form-control" placeholder="">
+                                    </div>
+                                </div>
+                                <div class="col-lg-6 mb-2">
+                                    <div class="form-group">
+                                        <label class="text-label">تاریخ عضویت</label>
+                                        <input type="text" asp-for="PI_RegistrationDate" class="form-control persianDateInput">
+                                    </div>
+                                    <br />
+                                </div>
+                                <div class="col-lg-6 mb-2">
+                                    <div class="form-group">
+                                        <label class="text-label">تاریخ تولد</label>
+                                        <input type="text" asp-for="PI_BirthdayDate" class="form-control persianDateInput">
+                                    </div>
+                                    <br />
                                 </div>
                             </div>
                         </section>
@@ -85,32 +104,70 @@
                             <div class="row">
                                 <div class="col-lg-6 mb-2">
                                     <div class="form-group">
-                                        <label class="text-label">نام اصلی*</label>
-                                        <input type="text" name="firstName" class="form-control" placeholder="جک" required>
+                                        <label class="text-label"> شناسنامه </label>
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="radio" value="true">
+                                            <label class="form-check-label">
+                                                قدیم
+                                            </label>
+                                        </div>
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="radio" value="True">
+                                            <label class="form-check-label">
+                                                جدید
+                                            </label>
+                                        </div>
+                                    </div>
+                                    <br />
+                                </div>
+                                <div class="col-lg-6 mb-2">
+                                    <div class="form-group">
+                                        <label class="text-label"> کارت ملی </label>
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="radio" value="False">
+                                            <label class="form-check-label">
+                                                قدیم
+                                            </label>
+                                        </div>
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="radio" value="True">
+                                            <label class="form-check-label">
+                                                جدید
+                                            </label>
+                                        </div>
+                                    </div>
+                                    <br />
+                                </div>
+                                <div class="col-lg-6 mb-2">
+                                    <div class="form-group">
+                                        <label class="text-label">اپلود تصویر شناسنامه (با فرمت PNG)</label>
+                                        <input type="file" asp-for="UploadPD_IdentityCard" class="form-control Upload" >
+                                        <br />
+                                        <img src="~/MainTheme/images/cameraLogo2.jpg"  width="500px" height="200px" class="UploadPD_IdentityCard" id="UploadPD_IdentityCard" />
                                     </div>
                                 </div>
                                 <div class="col-lg-6 mb-2">
                                     <div class="form-group">
-                                        <label class="text-label">نام خانوادگی*</label>
-                                        <input type="text" name="lastName" class="form-control" placeholder="اسپارو" required>
+                                        <label class="text-label">اپلود تصویر روی کارت ملی (با فرمت PNG)</label>
+                                        <input type="file" asp-for="UploadPD_NationalCardFrontSide" class="form-control Upload">
+                                        <br />
+                                        <img src="~/MainTheme/images/cameraLogo2.jpg"  width="500px" height="200px" class="UploadPD_NationalCardFrontSide" id="UploadPD_NationalCardFrontSide" />
                                     </div>
                                 </div>
-                                <div class="col-lg-12 mb-2">
+                                <div class="col-lg-6 mb-2">
                                     <div class="form-group">
-                                        <label class="text-label">آدرس ایمیل*</label>
-                                        <input type="email" class="form-control" id="inputGroupPrepend2" aria-describedby="inputGroupPrepend2" placeholder="example@example.com.com" required>
+                                        <label class="text-label">اپلود تصویر پشت کارت ملی (با فرمت PNG)</label>
+                                        <input type="file" asp-for="UploadPD_NationalCardBackSide" class="form-control Upload">
+                                        <br />
+                                        <img src="~/MainTheme/images/cameraLogo2.jpg" width="500px" height="200px" class="UploadPD_NationalCardBackSide" id="UploadPD_NationalCardBackSide"  />
                                     </div>
                                 </div>
-                                <div class="col-lg-12 mb-2">
+                                <div class="col-lg-6 mb-2">
                                     <div class="form-group">
-                                        <label class="text-label">شماره تلفن*</label>
-                                        <input type="text" name="phoneNumber" class="form-control" placeholder="(+1)408-657-9007" required>
-                                    </div>
-                                </div>
-                                <div class="col-lg-12 mb-2">
-                                    <div class="form-group">
-                                        <label class="text-label">شما اهل کجا هستید*</label>
-                                        <input type="text" name="place" class="form-control" required>
+                                        <label class="text-label">آپلود رسید رهگیری کارت ملی جدید (با فرمت PNG)</label>
+                                        <input type="file" asp-for="UploadPD_NationalCodeTrackingPaper" class="form-control Upload">
+                                        <br />
+                                        <img src="~/MainTheme/images/cameraLogo2.jpg" width="500px" height="200px" class="UploadPD_NationalCodeTrackingPaper" id="UploadPD_NationalCodeTrackingPaper" />
                                     </div>
                                 </div>
                             </div>
@@ -123,32 +180,26 @@
                             <div class="row">
                                 <div class="col-lg-6 mb-2">
                                     <div class="form-group">
-                                        <label class="text-label">نام اصلی*</label>
-                                        <input type="text" name="firstName" class="form-control" placeholder="جک" required>
+                                        <label class="text-label">نام بانک</label>
+                                        <input type="text" asp-for="BI_BankName" class="form-control">
                                     </div>
                                 </div>
                                 <div class="col-lg-6 mb-2">
                                     <div class="form-group">
-                                        <label class="text-label">نام خانوادگی*</label>
-                                        <input type="text" name="lastName" class="form-control" placeholder="اسپارو" required>
+                                        <label class="text-label">شماره حساب بانکی</label>
+                                        <input type="number" asp-for="BI_BankName" class="form-control">
                                     </div>
                                 </div>
-                                <div class="col-lg-12 mb-2">
+                                <div class="col-lg-6 mb-2">
                                     <div class="form-group">
-                                        <label class="text-label">آدرس ایمیل*</label>
-                                        <input type="email" class="form-control" id="inputGroupPrepend2" aria-describedby="inputGroupPrepend2" placeholder="example@example.com.com" required>
+                                        <label class="text-label"> شماره کارت</label>
+                                        <input type="number" asp-for="BI_CreditCardNumber" class="form-control">
                                     </div>
                                 </div>
-                                <div class="col-lg-12 mb-2">
+                                <div class="col-lg-6 mb-2">
                                     <div class="form-group">
-                                        <label class="text-label">شماره تلفن*</label>
-                                        <input type="text" name="phoneNumber" class="form-control" placeholder="(+1)408-657-9007" required>
-                                    </div>
-                                </div>
-                                <div class="col-lg-12 mb-2">
-                                    <div class="form-group">
-                                        <label class="text-label">شما اهل کجا هستید*</label>
-                                        <input type="text" name="place" class="form-control" required>
+                                        <label class="text-label">شماره شبا</label>
+                                        <input type="number" asp-for="BI_ShabaNumber" class="form-control">
                                     </div>
                                 </div>
                             </div>
@@ -159,28 +210,28 @@
                             <hr />
                             <br />
                             <div class="row">
-                                <div class="col-lg-12 mb-2">
+                                <div class="col-lg-6 mb-2">
                                     <div class="form-group">
-                                        <label class="text-label">نام شرکت*</label>
-                                        <input type="text" name="firstName" class="form-control" placeholder="کمپانی ب ت چه" required>
+                                        <label class="text-label">اپلود تصویر روی کارت اعتباری (با فرمت PNG)</label>
+                                        <input type="file" asp-for="UploadBD_CreditCardFrontSide" class="form-control Upload" >
+                                        <br />
+                                        <img src="~/MainTheme/images/cameraLogo2.jpg"  width="500px" height="200px" class="UploadBD_CreditCardFrontSide" id="UploadBD_CreditCardFrontSide" />
+                                    </div>
+                                </div>
+                                <div class="col-lg-6 mb-2">
+                                    <div class="form-group">
+                                        <label class="text-label">اپلود تصویر پشت کارت اعتباری (با فرمت PNG)</label>
+                                        <input type="file" asp-for="UploadBD_CreditCardBackSide" class="form-control Upload">
+                                        <br />
+                                        <img src="~/MainTheme/images/cameraLogo2.jpg" width="500px" height="200px" class="UploadBD_CreditCardBackSide" id="UploadBD_CreditCardBackSide" />
                                     </div>
                                 </div>
                                 <div class="col-lg-12 mb-2">
                                     <div class="form-group">
-                                        <label class="text-label">آدرس ایمیل شرکت*</label>
-                                        <input type="email" class="form-control" id="emial1" placeholder="example@example.com.com" required>
-                                    </div>
-                                </div>
-                                <div class="col-lg-12 mb-2">
-                                    <div class="form-group">
-                                        <label class="text-label">شماره تلفن شرکت*</label>
-                                        <input type="text" name="phoneNumber" class="form-control" placeholder="(+1)408-657-9007" required>
-                                    </div>
-                                </div>
-                                <div class="col-lg-12 mb-2">
-                                    <div class="form-group">
-                                        <label class="text-label">موقعیت شما در شرکت*</label>
-                                        <input type="text" name="place" class="form-control" required>
+                                        <label class="text-label">اپلود تصویر پرینت شبا  (با فرمت PNG)</label>
+                                        <input type="file" asp-for="UploadBD_ShabaPrint" class="form-control Upload">
+                                        <br />
+                                        <img src="~/MainTheme/images/cameraLogo2.jpg" width="500px" height="200px" class="UploadBD_ShabaPrint" id="UploadBD_ShabaPrint" />
                                     </div>
                                 </div>
                             </div>
@@ -191,77 +242,48 @@
                             <hr />
                             <br />
                             <div class="row">
-                                <div class="col-4 col-sm-3 mb-2">
-                                    <h4>شنبه *</h4>
+                                <div class="col-lg-6 mb-2">
+                                    <div class="row">
+                                        <label class="col-form-label col-sm-3 pt-0">نوع ضمانت نامه</label>
+                                        <div class="col-sm-9">
+                                            <div class="form-check">
+                                                <input class="form-check-input" type="radio" value="چک">
+                                                <label class="form-check-label">
+                                                    چک
+                                                </label>
+                                            </div>
+                                            <div class="form-check">
+                                                <input class="form-check-input" type="radio" value="سفته">
+                                                <label class="form-check-label">
+                                                    سفته
+                                                </label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <br />
                                 </div>
-                                <div class="col-4 col-sm-3 mb-2">
+                                <div class="col-lg-12 mb-2">
                                     <div class="form-group">
-                                        <input class="form-control" value="9.00" type="number" name="input1" id="input1">
+                                        <label class="text-label">شماره چک</label>
+                                        <input type="number" asp-for="GI_ChequeNumber" class="form-control">
                                     </div>
                                 </div>
-                                <div class="col-4 col-sm-3 mb-2">
+                                <div class="col-lg-12 mb-2">
                                     <div class="form-group">
-                                        <input class="form-control" value="6.00" type="number" name="input2" id="input2">
+                                        <label class="text-label"> شماره سفته</label>
+                                        <input type="number" asp-for="GI_SafteNumber" class="form-control">
                                     </div>
                                 </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-4 col-sm-3 mb-2">
-                                    <h4>یک شنبه *</h4>
-                                </div>
-                                <div class="col-4 col-sm-3 mb-2">
+                                <div class="col-lg-12 mb-2">
                                     <div class="form-group">
-                                        <input class="form-control" value="9.00" type="number" name="input3" id="input3">
+                                        <label class="text-label">شعبه  جک</label>
+                                        <input type="number" asp-for="GI_ChequeBankBranch" class="form-control">
                                     </div>
                                 </div>
-                                <div class="col-4 col-sm-3 mb-2">
+                                <div class="col-lg-12 mb-2">
                                     <div class="form-group">
-                                        <input class="form-control" value="6.00" type="number" name="input4" id="input4">
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-4 col-sm-3 mb-2">
-                                    <h4>دوشنبه *</h4>
-                                </div>
-                                <div class="col-4 col-sm-3 mb-2">
-                                    <div class="form-group">
-                                        <input class="form-control" value="9.00" type="number" name="input5" id="input5">
-                                    </div>
-                                </div>
-                                <div class="col-4 col-sm-3 mb-2">
-                                    <div class="form-group">
-                                        <input class="form-control" value="6.00" type="number" name="input6" id="input6">
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-4 col-sm-3 mb-2">
-                                    <h4>سه شنبه *</h4>
-                                </div>
-                                <div class="col-4 col-sm-3 mb-2">
-                                    <div class="form-group">
-                                        <input class="form-control" value="9.00" type="number" name="input7" id="input7">
-                                    </div>
-                                </div>
-                                <div class="col-4 col-sm-3 mb-2">
-                                    <div class="form-group">
-                                        <input class="form-control" value="6.00" type="number" name="input8" id="input8">
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-4 col-sm-3 mb-2">
-                                    <h4>چهارشنبه *</h4>
-                                </div>
-                                <div class="col-4 col-sm-3 mb-2">
-                                    <div class="form-group">
-                                        <input class="form-control" value="9.00" type="number" name="input9" id="input9">
-                                    </div>
-                                </div>
-                                <div class="col-4 col-sm-3 mb-2">
-                                    <div class="form-group">
-                                        <input class="form-control" value="6.00" type="number" name="input10" id="input10">
+                                        <label class="text-label"> شناسه صیادی چک</label>
+                                        <input type="number" asp-for="GI_ShenaseSayadiCheque" class="form-control">
                                     </div>
                                 </div>
                             </div>
@@ -271,61 +293,60 @@
                             <h5 class="card-title">آپلود اطلاعات ضمانتنامه</h5>
                             <hr />
                             <br />
-                            <div class="row emial-setup">
-                                <div class="col-sm-3 col-6">
+                            <div class="row">
+                                <div class="col-lg-6 mb-2">
                                     <div class="form-group">
-                                        <label for="mailclient11" class="mailclinet mailclinet-gmail">
-                                            <input type="radio" name="emailclient" id="mailclient11">
-                                            <span class="mail-icon">
-                                                <i class="mdi mdi-google-plus" aria-hidden="true"></i>
-                                            </span>
-                                            <span class="mail-text">من از Gmail استفاده می کنم</span>
-                                        </label>
+                                        <label class="text-label">اپلود تصویر رو از چک (با فرمت PNG)</label>
+                                        <input type="file" asp-for="UploadGD_ChequeFrontSide" class="form-control Upload">
+                                        <br />
+                                        <img src="~/MainTheme/images/cameraLogo2.jpg" width="500px" height="200px" class="UploadGD_ChequeFrontSide" id="UploadUploadGD_ChequeFrontSideBD_CreditCardBackSide" />
                                     </div>
                                 </div>
-                                <div class="col-sm-3 col-6">
+                                <div class="col-lg-6 mb-2">
                                     <div class="form-group">
-                                        <label for="mailclient12" class="mailclinet mailclinet-office">
-                                            <input type="radio" name="emailclient" id="mailclient12">
-                                            <span class="mail-icon">
-                                                <i class="mdi mdi-office" aria-hidden="true"></i>
-                                            </span>
-                                            <span class="mail-text">من از دفتر استفاده می کنم</span>
-                                        </label>
+                                        <label class="text-label">اپلود تصویر پشت چک (با فرمت PNG)</label>
+                                        <input type="file" asp-for="UploadGD_ChequeBackSide" class="form-control Upload">
+                                        <br />
+                                        <img src="~/MainTheme/images/cameraLogo2.jpg"  width="500px" height="200px" class="UploadGD_ChequeBackSide" id="UploadGD_ChequeBackSide" />
                                     </div>
                                 </div>
-                                <div class="col-sm-3 col-6">
+                                <div class="col-lg-6 mb-2">
                                     <div class="form-group">
-                                        <label for="mailclient13" class="mailclinet mailclinet-drive">
-                                            <input type="radio" name="emailclient" id="mailclient13">
-                                            <span class="mail-icon">
-                                                <i class="mdi mdi-google-drive" aria-hidden="true"></i>
-                                            </span>
-                                            <span class="mail-text">من راننده هستم</span>
-                                        </label>
+                                        <label class="text-label">اپلود تصویرروی سفته (با فرمت PNG)</label>
+                                        <input type="file" asp-for="UploadGD_SafteFrontSide" class="form-control Upload">
+                                        <br />
+                                        <img src="~/MainTheme/images/cameraLogo2.jpg" width="500px" height="200px" class="UploadGD_SafteFrontSide" id="UploadGD_SafteFrontSide" />
                                     </div>
                                 </div>
-                                <div class="col-sm-3 col-6">
+                                <div class="col-lg-6 mb-2">
                                     <div class="form-group">
-                                        <label for="mailclient14" class="mailclinet mailclinet-another">
-                                            <input type="radio" name="emailclient" id="mailclient14">
-                                            <span class="mail-icon">
-                                                <i class="fa fa-question-circle-o"
-                                                   aria-hidden="true"></i>
-                                            </span>
-                                            <span class="mail-text">خدمات نویسندگی</span>
-                                        </label>
+                                        <label class="text-label">آپلود تصویر پشت سفته (با فرمت PNG)</label>
+                                        <input type="file" asp-for="UploadGD_SafteBackSide" class="form-control Upload">
+                                        <br />
+                                        <img src="~/MainTheme/images/cameraLogo2.jpg" width="500px" height="200px" class="UploadGD_SafteBackSide" id="UploadGD_SafteBackSide" />
                                     </div>
                                 </div>
                             </div>
-
                             <div class="row">
                                 <div class="col-12">
                                     <div class="skip-email text-center">
                                         <p>یا اگر می خواهید این مرحله را کاملاً رد کنید و بعداً آن را تنظیم کنید</p>
-                                        <a href="javascript:void()">رد کردن مرحله</a>
+                                        <input type="submit" class="btn btn-primary" value="ایجاد" />
                                     </div>
                                 </div>
+                            </div>
+                            <div class="actions clearfix">
+                                <ul role="menu" aria-label="صفحه ساز">
+                                    <li class="" aria-disabled="false">
+                                        <a href="#previous" role="menuitem">قبلی</a>
+                                    </li>
+                                    <li aria-hidden="true" aria-disabled="true" class="disabled" style="display: none;">
+                                        <a href="#next" role="menuitem">بعدی</a>
+                                    </li>
+                                    <li aria-hidden="false" style="">
+                                        <a href="#finish" role="menuitem">پایان22</a>
+                                    </li>
+                                </ul>
                             </div>
                         </section>
                     </div>
@@ -335,16 +356,89 @@
     </div>
 </div>
 
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<script src="/lib/jquery/dist/jquery.min.js"></script>
+<script>
+    //     debugger;
+    //       $(document).ready(function(){
+    //        $("a[href='#finish']").click(function(){
+    //           window.location.href="/user/upgradeaccount#finish"
+    //             debugger;
+
+    //        });
+    //    });
+    //    $(document).ready(function() {
+    //      if (window.location.href.indexOf("#finish") > -1) {
+    //          $("#step-form-horizontal").submit();
+
+    //      }
+    //    });
+    //</script>
+
 @section Scripts{
 <!--Scripts-->
 <script src="/MainTheme/vendor/jquery-steps/build/jquery.steps.min.js"></script>
 <script src="/MainTheme/vendor/jquery-validation/jquery.validate.min.js"></script>
 <!-- Form validate init -->
 <script src="/MainTheme/js/plugins-init/jquery.validate-init.js"></script>
-
-
-
 <!-- Form step init -->
 <script src="/MainTheme/js/plugins-init/jquery-steps-init.js"></script>
-}
 
+<script>
+
+    $('.persianDateInput').persianDatepicker({
+        format: 'YYYY/MM/DD',
+        autoClose: true,
+        initialValueType:false,
+        initialValueType: "persian"
+    });
+
+
+     function readURL(input,id) {
+            if (input.files && input.files[0]) {
+                var reader = new FileReader();
+                reader.onload = function (e) {
+                    $('.Upload').parent('div.form-group').find("img"+(".")+id).attr('src', e.target.result);
+                    debugger
+
+                }
+                reader.readAsDataURL(input.files[0]);
+            } else {
+                alert('select a file to see preview');
+                $('#previewHolder').attr('src', '');
+            }
+        }
+
+
+        $(".Upload").change(function () {
+            debugger
+            let id=this.id;
+            readURL(this,id);
+            debugger
+        });
+        debugger
+        //
+
+
+
+
+</script>
+
+}
+@* function readURL(input) {
+    if (input.files && input.files[0]) {
+    var reader = new FileReader();
+    reader.onload = function (e) {
+    $('#imgCourse').attr('src', e.target.result);
+    }
+    reader.readAsDataURL(input.files[0]);
+    } else {
+    alert('select a file to see preview');
+    $('#previewHolder').attr('src', '');
+    }
+    }
+
+    $("#CourseImageFile").change(function () {
+    readURL(this);
+    });
+*@

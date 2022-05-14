@@ -26,7 +26,6 @@ namespace AccountManagement.Application
             _userPersonalityRepository = userPersonalityRepository;
             _authHelper = authHelper;
         }
-
         public OperationResult Create(CreateUser command)
         {
             var operation = new OperationResult();
@@ -105,8 +104,8 @@ namespace AccountManagement.Application
                 var value = account.ActiveCode;
 
                 //ToDo Sending Sms With Verification Code then we will change active code
-                string[] p = { "KarmandName", "SenderName", "Url" };
-                string[] v = { value, "نام مشتری", "url Value" };
+                string[] p = { "ActiveCode" };
+                string[] v = { value };
 
                 string pValue = "";
                 string vValue = "";
@@ -115,7 +114,7 @@ namespace AccountManagement.Application
                     pValue = pValue + "p" + (i + 1) + "=" + p[i] + "&";
                     vValue = vValue + "v" + (i + 1) + "=" + v[i] + "&";
                 }
-                SendPattern.SendSms("h5a27unwzlk3p0t", command.MobileNumber, pValue, vValue);
+                SendPattern.SendSms("rhnx93pt0h2iw2x", command.MobileNumber, pValue, vValue);
                 _userRepository.Savechange();
                 return operation.Succedded();
             }
@@ -123,8 +122,8 @@ namespace AccountManagement.Application
             //اگر شماره همراه ثبت و کاربر میخواهد لاگین شود
             account.GenerateActiveCode(GenerateUniqueCode.GenerateRandomNo());
             var newvalue = account.ActiveCode;
-            string[] pp = { "KarmandName", "SenderName", "Url" };
-            string[] vv = { newvalue, "نام مشتری", "url Value" };
+            string[] pp = { "ActiveCode" };
+            string[] vv = { newvalue };
 
             string ppValue = "";
             string vvValue = "";
@@ -134,7 +133,7 @@ namespace AccountManagement.Application
                 vvValue = vvValue + "v" + (i + 1) + "=" + vv[i] + "&";
             }
 
-            SendPattern.SendSms("h5a27unwzlk3p0t", account.MobileNumber, ppValue, vvValue);
+            SendPattern.SendSms("rhnx93pt0h2iw2x", account.MobileNumber, ppValue, vvValue);
             _userRepository.Savechange();
             return operation.Succedded();
 

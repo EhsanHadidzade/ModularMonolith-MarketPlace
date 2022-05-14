@@ -21,5 +21,12 @@ namespace _0_MyNiaSmartQuery.Contract.User
         public string ProfilePhoto { get;  set; }
         public string IntroductorFullname { get;  set; }
         public string IntroductorMobileNumber { get;  set; }
+
+        //upaccount request
+        public int UpAccountRequestCount { get; set; }
+        public long UserUpAccountRequestId { get; set; }
+        public string RejectionReason { get; set; }
+        public bool IsConfirmedByAdmin { get; set; }
+        public bool IsConfirmedByClient { get; set; }
     }
 }

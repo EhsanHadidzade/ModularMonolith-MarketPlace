@@ -150,6 +150,7 @@
     overflow: hidden;
     position: relative;
     width: auto;
+    height:fit-content;
 
     -webkit-border-radius: 5px;
     -moz-border-radius: 5px;
@@ -167,7 +168,7 @@
 .wizard > .content > .body
 {
     float: left;
-    position: absolute;
+    position: inherit;
     width: 95%;
     height: 95%;
     padding: 2.5%;
