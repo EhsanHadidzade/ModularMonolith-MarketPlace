@@ -18,7 +18,7 @@ namespace AccountManagement.Domain.UserRoleAgg
             RoleId = roleId;
             UserId = userId;
         }
-        public void Eit(long roleId, long userId)
+        public void Edit(long roleId, long userId)
         {
             RoleId = roleId;
             UserId = userId;

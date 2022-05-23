@@ -13,8 +13,6 @@ namespace AccountManagement.Application.Contract.UpAccountRequest
         List<UpAccountRequestViewModel> GetList();
         UpAccountRequestViewModel GetByUserId(long userId);
 
-
-
         //To Confirm a request by admin 
         void ConfirmUpAccountRequestByAdmin(long id);
 

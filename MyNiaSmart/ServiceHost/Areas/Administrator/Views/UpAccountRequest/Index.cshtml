@@ -30,7 +30,7 @@
         <div class="card">
 
             <div class="card-header">
-                <h4 class="card-title">لیست درخواست ها</h4>
+                <h4 class="card-title">لیست درخواست ها های ارتقا حساب کاربری</h4>
             </div>
 
             <div class="card-body">
@@ -61,21 +61,21 @@
                                     <td>
                                         @if (item.IsConfirmedByClient)
                                         {
-                                            <span class="text-warning">نیاز به بررسی توسط ادمین</span>
+                                            <span class="badge light badge-warning">نیاز به بررسی توسط ادمین</span>
                                         }
                                         else
                                         {
-                                            <span class="text-success">بررسی توسط ادمین انجام شده است</span>
+                                            <span class="badge badge-success light">بررسی توسط ادمین انجام شده است</span>
                                         }
                                     </td>
                                     <td>
                                         @if (item.IsConfirmedByAdmin)
                                         {
-                                            <span class="text-success">تایید شده</span>
+                                            <span class="badge badge-success">تایید شده</span>
                                         }
                                         else
                                         {
-                                            <span class="text-warning">در انتظار</span>
+                                            <span class="badge light badge-warning">در انتظار</span>
                                         }
                                     </td>
                                     <td>

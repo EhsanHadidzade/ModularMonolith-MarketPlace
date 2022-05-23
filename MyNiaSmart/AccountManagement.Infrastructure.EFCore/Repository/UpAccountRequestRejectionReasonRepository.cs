@@ -17,8 +17,6 @@ namespace AccountManagement.Infrastructure.EFCore.Repository
             _context = context;
         }
 
-       
-
         public List<UpAccountRequestRejectionReason> GetUpAccountRequestRejectionReasonsOfOneRequestByRequestId(long requestId)
         {
             return _context.UpAccountRequestRejectionReasons.Where(x=>x.UpAccountRequestId == requestId).ToList();
@@ -36,7 +34,14 @@ namespace AccountManagement.Infrastructure.EFCore.Repository
 
         public bool HasRequestRejectedByReason(long requestId)
         {
-            return _context.UpAccountRequestRejectionReasons.Any(x=>x.UpAccountRequestId==requestId);
+            var isConfirmedByClient = _context.UpAccountRequests.Select(x => new { x.Id, x.IsRequestConfirmedByClient })
+                .FirstOrDefault(x => x.Id == requestId).IsRequestConfirmedByClient;
+
+            if (!isConfirmedByClient && _context.UpAccountRequestRejectionReasons.Any(x => x.UpAccountRequestId == requestId))
+                return true;
+
+            return false;
+
         }
     }
 }

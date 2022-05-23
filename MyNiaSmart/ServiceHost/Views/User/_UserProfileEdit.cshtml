@@ -30,8 +30,8 @@
                         <input type="text" asp-for="City" class="form-control" placeholder="شهر">
                     </div>
                     <div class="form-group col-md-6">
-                        <label>کشور</label>
-                        <input type="text" asp-for="Capital" placeholder="کشور" class="form-control">
+                        <label>استان</label>
+                        <input type="text" asp-for="Capital" placeholder="استان" class="form-control">
                     </div>
                 </div>
                 <div class="form-row">
@@ -47,25 +47,17 @@
                 <div class="form-row">
                     <div class="input-group mb-3 col-md-6">
                         <div class="custom-file">
-                            <input type="file" class="custom-file-input" asp-for="ProfilePhoto">
+                            <input type="file" class="custom-file-input Upload" asp-for="ProfilePhoto">
                             <label class="custom-file-label">انتخاب تصویر پروفایل</label>
                         </div>
                     </div>
                     <div class="form-group col-md-6">
-                        <img src="~/UploadedFiles/@Model.ProfilePicAddress" width="150px" />
+                        <img src="~/UploadedFiles/@Model.ProfilePicAddress" width="150px" class="ProfilePhoto" />
                     </div>
                 </div>
                 <button class="btn btn-primary" type="submit">اعمال تغییرات </button>
 
                 <input type="hidden" asp-for="Id" />
-                @if (ViewData["message"] != null)
-                {
-                    <div class="form-row">
-                        <div class="alert alert-danger">
-                            @ViewData["message"]
-                        </div>
-                    </div>
-                }
             </form>
         </div>
     </div>
@@ -74,6 +66,29 @@
 <!--To Disable Submit Button before change in form-->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 <script>
+
+      function readURL(input,id) {
+            if (input.files && input.files[0]) {
+                var reader = new FileReader();
+                reader.onload = function (e) {
+                    $("img"+(".")+id).attr('src', e.target.result);
+                    debugger
+
+                }
+                reader.readAsDataURL(input.files[0]);
+            } else {
+                alert('select a file to see preview');
+                $('#previewHolder').attr('src', '');
+            }
+        }
+
+
+        $(".Upload").change(function () {
+            debugger
+            let id=this.id;
+            readURL(this,id);
+            debugger
+        });
     debugger;
         $('form')
         .each(function(){

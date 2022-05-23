@@ -9,8 +9,4 @@
     <ProjectReference Include="..\AccountManagement.Application.Contract\AccountManagement.Application.Contract.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="WalletAgg\BusinessWalletAgg\" />
-  </ItemGroup>
-
 </Project>

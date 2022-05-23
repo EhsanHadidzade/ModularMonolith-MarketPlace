@@ -17,7 +17,7 @@ namespace AccountManagement.Domain.UPAccountRequestsAgg
         //TO Get List of requests in admin panel
         List<UpAccountRequestViewModel> GetList();
 
-        //to see if a user has an upAccountRequest Or not
+        //to see if a user has an upAccountRequest Or not . if its true, we disable button of up account request 
         bool HasUserRequestedForUpAccount(long userId);
 
         //to false client confirmation after telling them the rejectionReason

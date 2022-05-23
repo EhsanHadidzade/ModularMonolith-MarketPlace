@@ -13,6 +13,9 @@ namespace AccountManagement.Application.Contract.User
         OperationResult CheckVerificationCode(VerificationCode command);
         void LogOut();
 
+        //To check if a user is AdminOrNot
+        bool IsUserAdmin(long userId);
+
 
     }
 }

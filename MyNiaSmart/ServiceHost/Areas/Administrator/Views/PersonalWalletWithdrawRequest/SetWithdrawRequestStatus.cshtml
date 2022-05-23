@@ -1,0 +1,31 @@
+﻿@model AccountManagement.Application.Contract.PersonalWalletOperation.SetPersonalWalletOperationWithdrawRequestStatus
+@using _0_Framework.Utilities
+
+
+<div class="row">
+    <div class="col-xl-12 col-lg-12">
+        <div class="card">
+            <div class="card-header">
+                <h4 class="card-title">تعیین وضعیت درخواست برداشت از  کیف پول شخصی</h4>
+            </div>
+            <div class="card-body">
+                <div class="basic-form">
+                    <form method="post" action="/administrator/PersonalWalletWithdrawRequest/SetWithdrawRequestStatus">
+                            <label>لیست را انتخاب کنید (یکی را انتخاب کنید):</label>
+                            <div class="form-group">
+                                <select class="form-control" tabindex="-98" asp-for="WithdrawRequestStatus">
+                                    <option value="@PersonalWalletWithdrawStatus.Processing">در انتظار بررسی</option>
+                                    <option value="@PersonalWalletWithdrawStatus.WaitingForPayment">در انتظار واریز</option>
+                                    <option value="@PersonalWalletWithdrawStatus.IsConfirmed">تایید شده</option>
+                                    <option value="@PersonalWalletWithdrawStatus.IsCanceled">تایید نشده</option>
+                                </select>
+                            </div>
+                            <input type="hidden" asp-for="PersonalWalletOperationId" value="@ViewData["PersonalWalletOperationId"]" />
+                            <button type="submit" class="btn btn-outline-dark">اعمال تغییرات</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+

@@ -31,6 +31,7 @@ namespace _0_Framework.Infrastructure
           return  _context.Find<T>(id);
         }
 
+
         public bool IsExist(Expression<Func<T, bool>> expression)
         {
             return _context.Set<T>().Any(expression);

@@ -1,0 +1,36 @@
+﻿@model AccountManagement.Application.Contract.PersonalWalletOperation.TransferToAnotherWallet
+
+@{
+    ViewData["Title"] = "اعتبار سنجی انتقال به کارت دیگر";
+}
+
+<div class="row page-titles mx-0">
+    <div class="col-sm-6 p-md-0">
+        <div class="welcome-text">
+            <h4>سلام، خوش آمدید</h4>
+            <p class="mb-0">پروفایل شخصی</p>
+        </div>
+    </div>
+    <div class="col-sm-6 p-md-0 justify-content-sm-end mt-2 mt-sm-0 d-flex">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="javascript:void(0)">پروفایل شخصی </a></li>
+            <li class="breadcrumb-item active"><a href="javascript:void(0)">اعتبار سنجی  کارت به کارت</a></li>
+        </ol>
+    </div>
+</div>
+
+
+
+
+<form method="post" action="/user/cashtransferverify">
+    <div class="form-group">
+        <label class="text-lg-right">لطفا پس ار تایید پیامک ارسال شده، رمز دوم موجود در پیامک را اینجا وارد نمایید</label>
+        <input type="text" asp-for="VerifyCode" class="form-control input-default " placeholder="رمز دوم">
+        <span asp-validation-for="VerifyCode" class="text-danger"></span>
+    </div>
+    <input type="hidden" value="@Model.DestinationCardNumber" asp-for="DestinationCardNumber"  >
+    <input type="hidden" value="@Model.Amount" asp-for="Amount">
+
+    <button type="submit" class="btn btn-outline-dark">تایید و ارسال پول</button>
+</form>
+

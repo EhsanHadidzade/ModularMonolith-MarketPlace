@@ -1,5 +1,6 @@
 using _0_Framework.Contract;
 using _0_Framework.Utilities;
+using _0_Framework.Utilities.ZarinPal;
 using _01_Framework.Application;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Builder;
@@ -35,6 +36,7 @@ namespace ServiceHost
             //Framework Configuration
             services.AddTransient<IFileUploader,FileUploader>();
             services.AddTransient<IAuthHelper,AuthHelper>();
+            services.AddTransient<IZarinPalFactory,ZarinPalFactory>();
 
             services.AddAuthentication(options =>
             {

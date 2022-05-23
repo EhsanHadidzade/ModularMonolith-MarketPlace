@@ -48,6 +48,11 @@ namespace AccountManagement.Infrastructure.EFCore.Repository
             return _context.Users.FirstOrDefault(x=>x.MobileNumber == mobileNumber);
         }
 
+        public bool IsUserAdmin(long userId)
+        {
+            return _context.Users.Select(x => new {x.IsAdmin,x.Id}).FirstOrDefault(x=>x.Id==userId).IsAdmin;
+        }
+
         List<UserViewModel> IUserRepository.GetList()
         {
             return _context.Users.Select(x => new UserViewModel

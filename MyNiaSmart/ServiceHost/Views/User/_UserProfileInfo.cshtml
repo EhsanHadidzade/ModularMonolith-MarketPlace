@@ -1,7 +1,10 @@
 ﻿@model _0_MyNiaSmartQuery.Contract.User.UserInfoQueryModel
-@inject AccountManagement.Application.Contract.UpAccountRequest.IUPAccountRequestApplication _uPAccountRequestApplication
-
-
+@using AccountManagement.Application.Contract.UpAccountRequest
+@using AccountManagement.Application.Contract.UserCooperationRequest
+@using AccountManagement.Application.Contract.UserRole
+@inject IUPAccountRequestApplication _uPAccountRequestApplication
+@inject IUserCooperationRequestApplication _userCooperaitonRequestApplication
+@inject IUserRoleApplication _userRoleApplication
 
 
 
@@ -9,78 +12,67 @@
     <div class="profile-personal-info" style="padding:20px">
         <h4 class="text-primary mb-4">اطلاعات شخصی</h4>
         <div class="row mb-2">
-            <div class="col-3">
+            <div class="col-12">
                 <h5 class="f-w-500">
-                    نام و نام خانوادگی<span class="pull-right">:</span>
+                    نام و نام خانوادگی :  <span>@Model.FullName</span>
                 </h5>
             </div>
-            <div class="col-9">
-                <span>@Model.FullName</span>
-            </div>
         </div>
         <div class="row mb-2">
-            <div class="col-3">
+            <div class="col-12">
                 <h5 class="f-w-500">
-                    کد ملی <span class="pull-right">:</span>
+                    کد ملی :      <span>@Model.NationalCode</span>
                 </h5>
             </div>
-            <div class="col-9">
-                <span>@Model.NationalCode</span>
+
+        </div>
+        <div class="row mb-2">
+            <div class="col-12">
+                <h5 class="f-w-500">
+                    تاریخ تولد :         <span>@Model.Birthday</span>
+                </h5>
             </div>
         </div>
         <div class="row mb-2">
-            <div class="col-3">
-                <h5 class="f-w-500">تاریخ تولد <span class="pull-right">:</span></h5>
-            </div>
-            <div class="col-9">
-                <span>@Model.Birthday</span>
-            </div>
-        </div>
-        <div class="row mb-2">
-            <div class="col-3">
-                <h5 class="f-w-500">شهر <span class="pull-right">:</span></h5>
-            </div>
-            <div class="col-9">
-                <span>@Model.City</span>
+            <div class="col-12">
+                <h5 class="f-w-500">
+                    شهر :              <span>@Model.City</span>
+                </h5>
             </div>
         </div>
         <div class="row mb-2">
-            <div class="col-3">
-                <h5 class="f-w-500">استان <span class="pull-right">:</span></h5>
-            </div>
-            <div class="col-9">
-                <span>@Model.Capital </span>
-            </div>
-        </div>
-        <div class="row mb-2">
-            <div class="col-3">
-                <h5 class="f-w-500">آدرس <span class="pull-right">:</span></h5>
-            </div>
-            <div class="col-9">
-                <span>@Model.Address </span>
+            <div class="col-12">
+                <h5 class="f-w-500">
+                    استان  :  <span>@Model.Capital </span>
+
+                </h5>
             </div>
         </div>
         <div class="row mb-2">
-            <div class="col-3">
-                <h5 class="f-w-500">نام و نام خانوادگی معرف <span class="pull-right">:</span></h5>
-            </div>
-            <div class="col-9">
-                <span>@Model.IntroductorFullname </span>
+            <div class="col-12">
+                <h5 class="f-w-500">آدرس :  <span>@Model.Address </span> </h5>
+
             </div>
         </div>
         <div class="row mb-2">
-            <div class="col-3">
-                <h5 class="f-w-500">شماره همراه معرف <span class="pull-right">:</span></h5>
-            </div>
-            <div class="col-9">
-                <span> @Model.IntroductorMobileNumber</span>
+            <div class="col-12">
+                <h5 class="f-w-500">
+                    نام و نام خانوادگی معرف  : <span>@Model.IntroductorFullname </span>
+                </h5>
             </div>
         </div>
-        @if (ViewData["UpRequestResult"] != null)
+        <div class="row mb-2">
+            <div class="col-12">
+                <h5 class="f-w-500">
+                    شماره همراه معرف  :  <span> @Model.IntroductorMobileNumber</span>
+                </h5>
+            </div>
+        </div>
+        @if (ViewData["message"] != null)
         {
             <div class="row mb-2">
                 <div class="alert alert-success">
-                    <p>@ViewData["UpRequestResult"]</p>
+                    <p>@ViewData["message"]</p>
                 </div>
             </div>
         }
@@ -88,6 +80,7 @@
         @if (_uPAccountRequestApplication.GetByUserId(Model.Id) != null)
         {
             <hr />
+            <br />
             <div class="row mb-2">
                 <div class="col-3">
                     <h5 class="f-w-500">وضعیت درخواست ارتقا حساب کاربری <span class="pull-right">:</span></h5>
@@ -95,7 +88,7 @@
                 <div class="col-9">
                     @if (!_uPAccountRequestApplication.IsUpAccountRequestConfirmedWithAdminByUserId(Model.Id))
                     {
-                        <span class="alert alert-warning" style="padding:20px">
+                        <span class="alert alert-warning" style="padding:20px;margin-left:10px">
                             درخواست شما در حال بررسی میباشد
                         </span>
                         <a href="/user/EditUpgradeAccount/@Model.UserUpAccountRequestId" class="btn btn-info">ویرایش درخواست</a>
@@ -111,8 +104,93 @@
             </div>
         }
 
-    </div>
+        @if (_userCooperaitonRequestApplication.IsUserRequestedForCooperation(Model.Id))
+        {
+            <br />
+            <hr />
+            <br />
+            <div class="row mb-2">
 
+                @if (!_userCooperaitonRequestApplication.IsUserRequestForCooperationRecognizedByAdmin(Model.Id))
+                {
+                    <div class="col-3">
+                        <h5 class="f-w-500">وضعیت درخواست همکاری <span class="pull-right">:</span></h5>
+                    </div>
+                    <div class="col-9">
+                        <span class="alert alert-warning" style="padding:20px;">
+                            درخواست شما در حال بررسی میباشد
+                        </span>
+                    </div>
+                }
+                else
+                {
+                    <div class="col-12">
+                        <h5 class="f-w-500">وضعیت درخواست همکاری <span class="pull-right">:</span></h5>
+                    </div>
+                    <br />
+                    <br />
+                    <br />
+                    <div class="col-xl-12">
+                        <div class="card">
+                            <div class="card-body">
+                                <!-- Nav tabs -->
+                        <div class="default-tab">
+                                    <ul class="nav nav-tabs" role="tablist">
+                                        <li class="nav-item">
+                                            <a class="nav-link active" data-toggle="tab" href="#home"> لیست واحد هایی که شما جهت همکاری ارسال کرده اید</a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a class="nav-link" data-toggle="tab" href="#profile"> لیست واحد هایی که مدیریت تایید کرده </a>
+                                        </li>
+                                    </ul>
+                                    <div class="tab-content">
+                                        <div class="tab-pane fade active show" id="home" role="tabpanel">
+                                            <div class="pt-4">
+                                                <div class="col-xl-12 col-lg-12 col-sm-12">
+                                                    <div class="card">
+
+                                                        <div class="card-body pb-0">
+                                                            <ul class="list-group list-group-flush">
+                                                                @foreach (var requestedRole in _userCooperaitonRequestApplication.GetRequestedRolesByUserId(Model.Id))
+                                                                {
+                                                                    <li class="list-group-item d-flex px-0 justify-content-between">
+                                                                        <strong>@requestedRole.Name</strong>
+                                                                    </li>
+                                                                }
+                                                            </ul>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="tab-pane fade" id="profile">
+                                            <div class="pt-4">
+                                                <div class="col-xl-12 col-lg-12 col-sm-12">
+                                                    <div class="card">
+                                                        <div class="card-body pb-0">
+                                                            <ul class="list-group list-group-flush">
+                                                                @foreach (var userRole in _userRoleApplication.GetUserRolesByUserId(Model.Id))
+                                                                {
+                                                                    <li class="list-group-item d-flex px-0 justify-content-between">
+                                                                        <strong>@userRole.Name</strong>
+                                                                    </li>
+                                                                }
+                                                            </ul>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                }
+            </div>
+        }
+
+    </div>
 
 </div>
 

@@ -1,5 +1,6 @@
 ﻿using AccountManagement.Application.Contract.UpAccountRequestRejectionReason;
 using AccountManagement.Domain.UpAccountRequestRejectionReasonAgg;
+using AccountManagement.Domain.UPAccountRequestsAgg;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,10 +12,13 @@ namespace AccountManagement.Application
     public class UpAccountRequestRejectionReasonApplication : IUpAccountRequestRejectionReasonApplication
     {
         private readonly IUpAccountRequestRejectionReasonRepository _upAccountRequestRejectionReasonRepository;
+        private readonly IUPAccountRequestRepository _uPAccountRequestRepository;
 
-        public UpAccountRequestRejectionReasonApplication(IUpAccountRequestRejectionReasonRepository upAccountRequestRejectionReasonRepository)
+        public UpAccountRequestRejectionReasonApplication(IUpAccountRequestRejectionReasonRepository upAccountRequestRejectionReasonRepository,
+            IUPAccountRequestRepository uPAccountRequestRepository)
         {
             _upAccountRequestRejectionReasonRepository = upAccountRequestRejectionReasonRepository;
+            _uPAccountRequestRepository = uPAccountRequestRepository;
         }
 
         public void CreateUpAccountRequestRejectionReasons(CreateUpAccountRequestRejectionReason command)
@@ -46,6 +50,7 @@ namespace AccountManagement.Application
         public bool HasRequestRejectedByReason(long requestId)
         {
             return _upAccountRequestRejectionReasonRepository.HasRequestRejectedByReason(requestId);
+            
         }
 
         public void RemoveUpAccountRequestRejectionReasonsofOneUserByUserId(long RequestId)

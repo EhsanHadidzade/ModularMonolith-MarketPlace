@@ -16,8 +16,33 @@ namespace AccountManagement.Infrastructure.EFCore.Migrations
 #pragma warning disable 612, 618
             modelBuilder
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
-                .HasAnnotation("ProductVersion", "5.0.16")
+                .HasAnnotation("ProductVersion", "5.0.17")
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+            modelBuilder.Entity("AccountManagement.Domain.CooperationRequestAgg.UserCooperationRequest", b =>
+                {
+                    b.Property<long>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("bigint")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<DateTime>("CreationDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<long>("RoleId")
+                        .HasColumnType("bigint");
+
+                    b.Property<long>("UserId")
+                        .HasColumnType("bigint");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("RoleId");
+
+                    b.HasIndex("UserId");
+
+                    b.ToTable("UserCooperationRequests");
+                });
 
             modelBuilder.Entity("AccountManagement.Domain.PersonalityAgg.Personality", b =>
                 {
@@ -404,6 +429,197 @@ namespace AccountManagement.Infrastructure.EFCore.Migrations
                     b.ToTable("UserRoles");
                 });
 
+            modelBuilder.Entity("AccountManagement.Domain.WalletAgg.BusinessWalletAgg.BusinessWallet", b =>
+                {
+                    b.Property<long>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("bigint")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("CardNumber")
+                        .HasMaxLength(128)
+                        .HasColumnType("nvarchar(128)");
+
+                    b.Property<DateTime>("CreationDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int>("Grade")
+                        .HasColumnType("int");
+
+                    b.Property<string>("OwnerFullName")
+                        .HasMaxLength(500)
+                        .HasColumnType("nvarchar(500)");
+
+                    b.Property<string>("OwnerRegistrationDate")
+                        .HasMaxLength(120)
+                        .HasColumnType("nvarchar(120)");
+
+                    b.Property<long>("UserId")
+                        .HasColumnType("bigint");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("UserId")
+                        .IsUnique();
+
+                    b.ToTable("BusinessWallets");
+                });
+
+            modelBuilder.Entity("AccountManagement.Domain.WalletAgg.OperationTypeAgg.WalletOperationType", b =>
+                {
+                    b.Property<long>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("bigint")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<DateTime>("CreationDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("OperationTypeTitle")
+                        .HasMaxLength(500)
+                        .HasColumnType("nvarchar(500)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("WalletOperationTypes");
+                });
+
+            modelBuilder.Entity("AccountManagement.Domain.WalletAgg.PersonalWalletChartAgg.PersonalWalletChart", b =>
+                {
+                    b.Property<long>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("bigint")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<long>("Balance")
+                        .HasColumnType("bigint");
+
+                    b.Property<DateTime>("BalanceUpdateDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<long>("PersonalwalletId")
+                        .HasColumnType("bigint");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("PersonalwalletId");
+
+                    b.ToTable("PersonalWalletCharts");
+                });
+
+            modelBuilder.Entity("AccountManagement.Domain.WalletAgg.PersonalWalletOperationAgg.Personalwalletoperation", b =>
+                {
+                    b.Property<long>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("bigint")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<long>("Amount")
+                        .HasColumnType("bigint");
+
+                    b.Property<DateTime>("CreationDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int>("DepositeType")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Description")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<bool>("IsPay")
+                        .HasColumnType("bit");
+
+                    b.Property<long>("PersonalWalletId")
+                        .HasColumnType("bigint");
+
+                    b.Property<string>("ReceiverFullName")
+                        .HasMaxLength(300)
+                        .HasColumnType("nvarchar(300)");
+
+                    b.Property<string>("SenderFullName")
+                        .HasMaxLength(300)
+                        .HasColumnType("nvarchar(300)");
+
+                    b.Property<string>("VerifyCode")
+                        .HasMaxLength(20)
+                        .HasColumnType("nvarchar(20)");
+
+                    b.Property<long>("WalletOperationTypeId")
+                        .HasColumnType("bigint");
+
+                    b.Property<int>("WithdrawStatus")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("PersonalWalletId");
+
+                    b.HasIndex("WalletOperationTypeId");
+
+                    b.ToTable("PersonalWalletOperations");
+                });
+
+            modelBuilder.Entity("AccountManagement.Domain.WalletAgg.PersonalwalletAgg.PersonalWallet", b =>
+                {
+                    b.Property<long>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("bigint")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<DateTime>("BalanceUpdateDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("CardNumber")
+                        .HasMaxLength(128)
+                        .HasColumnType("nvarchar(128)");
+
+                    b.Property<DateTime>("CreationDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int>("Grade")
+                        .HasColumnType("int");
+
+                    b.Property<string>("OwnerFullName")
+                        .HasMaxLength(500)
+                        .HasColumnType("nvarchar(500)");
+
+                    b.Property<string>("OwnerRegistrationDate")
+                        .HasMaxLength(120)
+                        .HasColumnType("nvarchar(120)");
+
+                    b.Property<long>("UserId")
+                        .HasColumnType("bigint");
+
+                    b.Property<long>("WalletBalance")
+                        .HasColumnType("bigint");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("UserId")
+                        .IsUnique();
+
+                    b.ToTable("PersonalWallets");
+                });
+
+            modelBuilder.Entity("AccountManagement.Domain.CooperationRequestAgg.UserCooperationRequest", b =>
+                {
+                    b.HasOne("AccountManagement.Domain.RoleAgg.Role", "Role")
+                        .WithMany("UserCooperationRequests")
+                        .HasForeignKey("RoleId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("AccountManagement.Domain.UserAgg.User", "User")
+                        .WithMany("UserCooperationRequests")
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Role");
+
+                    b.Navigation("User");
+                });
+
             modelBuilder.Entity("AccountManagement.Domain.RoleAgg.Role", b =>
                 {
                     b.HasOne("AccountManagement.Domain.RoleTypeAgg.RoleType", "RoleType")
@@ -481,6 +697,58 @@ namespace AccountManagement.Infrastructure.EFCore.Migrations
                     b.Navigation("User");
                 });
 
+            modelBuilder.Entity("AccountManagement.Domain.WalletAgg.BusinessWalletAgg.BusinessWallet", b =>
+                {
+                    b.HasOne("AccountManagement.Domain.UserAgg.User", "User")
+                        .WithOne("BusinessWallet")
+                        .HasForeignKey("AccountManagement.Domain.WalletAgg.BusinessWalletAgg.BusinessWallet", "UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("User");
+                });
+
+            modelBuilder.Entity("AccountManagement.Domain.WalletAgg.PersonalWalletChartAgg.PersonalWalletChart", b =>
+                {
+                    b.HasOne("AccountManagement.Domain.WalletAgg.PersonalwalletAgg.PersonalWallet", "PersonalWallet")
+                        .WithMany("PersonalWalletCharts")
+                        .HasForeignKey("PersonalwalletId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("PersonalWallet");
+                });
+
+            modelBuilder.Entity("AccountManagement.Domain.WalletAgg.PersonalWalletOperationAgg.Personalwalletoperation", b =>
+                {
+                    b.HasOne("AccountManagement.Domain.WalletAgg.PersonalwalletAgg.PersonalWallet", "PersonalWallet")
+                        .WithMany("PersonalWalletOperations")
+                        .HasForeignKey("PersonalWalletId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("AccountManagement.Domain.WalletAgg.OperationTypeAgg.WalletOperationType", "WalletOperationType")
+                        .WithMany("PersonalWalletOperations")
+                        .HasForeignKey("WalletOperationTypeId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("PersonalWallet");
+
+                    b.Navigation("WalletOperationType");
+                });
+
+            modelBuilder.Entity("AccountManagement.Domain.WalletAgg.PersonalwalletAgg.PersonalWallet", b =>
+                {
+                    b.HasOne("AccountManagement.Domain.UserAgg.User", "User")
+                        .WithOne("PersonalWallet")
+                        .HasForeignKey("AccountManagement.Domain.WalletAgg.PersonalwalletAgg.PersonalWallet", "UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("User");
+                });
+
             modelBuilder.Entity("AccountManagement.Domain.PersonalityAgg.Personality", b =>
                 {
                     b.Navigation("UserPersonalities");
@@ -493,6 +761,8 @@ namespace AccountManagement.Infrastructure.EFCore.Migrations
 
             modelBuilder.Entity("AccountManagement.Domain.RoleAgg.Role", b =>
                 {
+                    b.Navigation("UserCooperationRequests");
+
                     b.Navigation("UserRoles");
                 });
 
@@ -508,11 +778,29 @@ namespace AccountManagement.Infrastructure.EFCore.Migrations
 
             modelBuilder.Entity("AccountManagement.Domain.UserAgg.User", b =>
                 {
+                    b.Navigation("BusinessWallet");
+
+                    b.Navigation("PersonalWallet");
+
                     b.Navigation("UpAccountRequest");
+
+                    b.Navigation("UserCooperationRequests");
 
                     b.Navigation("UserPersonalities");
 
                     b.Navigation("UserRoles");
+                });
+
+            modelBuilder.Entity("AccountManagement.Domain.WalletAgg.OperationTypeAgg.WalletOperationType", b =>
+                {
+                    b.Navigation("PersonalWalletOperations");
+                });
+
+            modelBuilder.Entity("AccountManagement.Domain.WalletAgg.PersonalwalletAgg.PersonalWallet", b =>
+                {
+                    b.Navigation("PersonalWalletCharts");
+
+                    b.Navigation("PersonalWalletOperations");
                 });
 #pragma warning restore 612, 618
         }

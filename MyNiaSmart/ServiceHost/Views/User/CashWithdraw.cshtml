@@ -1,0 +1,24 @@
+﻿@model AccountManagement.Application.Contract.PersonalWalletOperation.WithdrawPersonalWallet
+
+<div class="row">
+    <div class="col-xl-12 col-lg-6">
+        <div class="card">
+            <div class="card-header">
+                <h4 class="card-title">مبلغ مورد نظر برای برداشت از کیف پول را وارد کنید</h4>
+            </div>
+            <div class="card-body">
+                <div class="basic-form">
+                    <form method="post" action="/user/CashWithdraw">
+                        <div class="form-group">
+                            <input type="number" asp-for="Amount" class="form-control input-default " placeholder="به تومان">
+                            <span asp-validation-for="Amount"></span>
+                        </div>
+                       <input type="hidden" value="@ViewData["personalWalletId"]" asp-for="PersonalWalletId" /> 
+                       <input type="hidden" value="@_0_Framework.Utilities.PersonalWalletOperationType.Withdraw" asp-for="WalletOperationTypeId" /> 
+                       <button type="submit" class="btn btn-outline-success">ارسال درخواست برای برداشت وجه</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

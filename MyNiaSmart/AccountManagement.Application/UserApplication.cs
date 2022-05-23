@@ -5,9 +5,13 @@ using _01_Framework.Application;
 using AccountManagement.Application.Contract.User;
 using AccountManagement.Domain.UserAgg;
 using AccountManagement.Domain.UserPersonalityAgg;
+using AccountManagement.Domain.WalletAgg.BusinessWalletAgg;
+using AccountManagement.Domain.WalletAgg.PersonalwalletAgg;
+using AccountManagement.Domain.WalletAgg.PersonalWalletChartAgg;
 using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 
 namespace AccountManagement.Application
 {
@@ -17,14 +21,23 @@ namespace AccountManagement.Application
         private readonly IFileUploader _fileUploader;
         private readonly IUserPersonalityRepository _userPersonalityRepository;
         private readonly IAuthHelper _authHelper;
+        private readonly IPersonalWalletRepository _personalWalletRepository;
+        private readonly IBusinessWalletRepository _businessWalletRepository;
+        private readonly IPersonalWalletChartRepository _personalWalletChartRepository;
 
         public UserApplication(IUserRepository userRepository, IFileUploader fileUploader,
-            IUserPersonalityRepository userPersonalityRepository, IAuthHelper authHelper)
+            IUserPersonalityRepository userPersonalityRepository, IAuthHelper authHelper,
+            IPersonalWalletRepository personalWalletRepository,
+            IBusinessWalletRepository businessWalletRepository,
+            IPersonalWalletChartRepository personalWalletChartRepository)
         {
             _userRepository = userRepository;
             _fileUploader = fileUploader;
             _userPersonalityRepository = userPersonalityRepository;
             _authHelper = authHelper;
+            _personalWalletRepository = personalWalletRepository;
+            _businessWalletRepository = businessWalletRepository;
+            _personalWalletChartRepository = personalWalletChartRepository;
         }
         public OperationResult Create(CreateUser command)
         {
@@ -35,8 +48,6 @@ namespace AccountManagement.Application
             var birthday = DateTime.MinValue;
             if (command.Birthday != null)
                 birthday = command.Birthday.ToGeorgianDateTime();
-
-
 
             var picturePath = _fileUploader.Upload(command.ProfilePhoto, "UserPhoto");
             var user = new User(command.FullName, command.MobileNumber
@@ -103,7 +114,7 @@ namespace AccountManagement.Application
                 account.GenerateActiveCode(GenerateUniqueCode.GenerateRandomNo());
                 var value = account.ActiveCode;
 
-                //ToDo Sending Sms With Verification Code then we will change active code
+                #region ToDo Sending Sms With Verification Code then we will change active code
                 string[] p = { "ActiveCode" };
                 string[] v = { value };
 
@@ -115,7 +126,39 @@ namespace AccountManagement.Application
                     vValue = vValue + "v" + (i + 1) + "=" + v[i] + "&";
                 }
                 SendPattern.SendSms("rhnx93pt0h2iw2x", command.MobileNumber, pValue, vValue);
+                #endregion
+
                 _userRepository.Savechange();
+
+                #region Creating personal and business Wallet for new user
+                var stringDate = DateTime.Now.ToFarsi().ToArray().ToList();
+                var first = stringDate[1].ToString() + stringDate[2].ToString() + stringDate[3].ToString();
+                var walletNumber = account.MobileNumber.Substring(1);
+                var PersonalcardNumber = first + "1" + "98" + walletNumber;
+                var owneregistrationDate = stringDate[2].ToString() + stringDate[3].ToString() + stringDate[4].ToString() + stringDate[5].ToString() + stringDate[6].ToString();
+                var personalWallet = new PersonalWallet(PersonalcardNumber, account.FullName, owneregistrationDate,account.Grade, account.Id);
+
+                //personalWallet.SaveBalanceUpdateDate(DateTime.Now);
+                if (_personalWalletRepository.IsExist(x => x.UserId == account.Id))
+                    return operation.Failed(ApplicationMessage.DuplicatedRecord);
+
+                _personalWalletRepository.Create(personalWallet);
+                _personalWalletRepository.Savechange();
+
+                var personalWalletChart = new PersonalWalletChart(account.Grade, DateTime.Now, personalWallet.Id);
+                _personalWalletChartRepository.Create(personalWalletChart);
+                _personalWalletChartRepository.Savechange();
+
+                //creating businessWallet
+                var businessCardNumber= first + "2" + "98" + walletNumber;
+                var businessWallet =new BusinessWallet(businessCardNumber, account.FullName, owneregistrationDate,account.Grade, account.Id);
+                if (_businessWalletRepository.IsExist(x => x.UserId == account.Id))
+                    return operation.Failed(ApplicationMessage.DuplicatedRecord);
+
+                _businessWalletRepository.Create(businessWallet);
+                _businessWalletRepository.Savechange();
+                #endregion
+
                 return operation.Succedded();
             }
 
@@ -175,6 +218,11 @@ namespace AccountManagement.Application
         {
             _authHelper.SignOut();
 
+        }
+
+        public bool IsUserAdmin(long userId)
+        {
+           return _userRepository.IsUserAdmin(userId);
         }
     }
 }

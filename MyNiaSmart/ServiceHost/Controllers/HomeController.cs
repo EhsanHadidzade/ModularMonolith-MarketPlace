@@ -1,4 +1,5 @@
 ﻿using _0_Framework.Contract;
+using _0_Framework.Utilities;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
@@ -26,7 +27,6 @@ namespace ServiceHost.Controllers
 
         public IActionResult Index()
         {
-            var CurrentUserInfo = _authHelper.CurrentAccountInfo();
             return View();
         }
 
@@ -41,4 +41,6 @@ namespace ServiceHost.Controllers
             return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
         }
     }
+
+  
 }

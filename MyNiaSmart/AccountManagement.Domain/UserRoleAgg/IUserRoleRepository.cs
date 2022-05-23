@@ -1,4 +1,5 @@
 ﻿using _0_Framework.Domain;
+using AccountManagement.Application.Contract.Role;
 using AccountManagement.Application.Contract.UserRole;
 using System;
 using System.Collections.Generic;
@@ -15,6 +16,9 @@ namespace AccountManagement.Domain.UserRoleAgg
 
         //TO remove userRoles records of one specific user
         void RemoveUserRolesofOneUserByUserId(long userId);
+
+        //to get list of roles that a user is Cooperating
+        List<RoleViewModel> GetUserRolesByUserId(long userId);
 
     }
 }

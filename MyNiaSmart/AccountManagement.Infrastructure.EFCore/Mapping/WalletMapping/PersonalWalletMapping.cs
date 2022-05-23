@@ -20,7 +20,10 @@ namespace AccountManagement.Infrastructure.EFCore.Mapping.WalletMapping
             builder.Property(x=>x.OwnerFullName).HasMaxLength(500);
             builder.Property(x=>x.OwnerRegistrationDate).HasMaxLength(120);
 
+            builder.HasOne(x => x.User).WithOne(x => x.PersonalWallet).HasForeignKey<PersonalWallet>(x => x.UserId);
             builder.HasMany(x => x.PersonalWalletOperations).WithOne(x => x.PersonalWallet).HasForeignKey(x => x.PersonalWalletId);
+            builder.HasMany(x => x.PersonalWalletCharts).WithOne(x => x.PersonalWallet).HasForeignKey(x => x.PersonalwalletId);
+
         }
     }
 }

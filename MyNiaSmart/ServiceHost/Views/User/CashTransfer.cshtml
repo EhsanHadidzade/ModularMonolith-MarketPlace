@@ -1,0 +1,31 @@
+﻿@model AccountManagement.Application.Contract.PersonalWalletOperation.TransferToAnotherWallet
+
+<div class="row">
+    <div class="col-xl-12 col-lg-6">
+        <div class="card">
+            <div class="card-header">
+                <h4 class="card-title">لطفا شماره کارت مقصد و مبلغ مورد نظر را وارد نمایید</h4>
+            </div>
+            <div class="card-body">
+                <div class="basic-form">
+                    <form method="post" action="/user/CashTransfer">
+                        <div class="form-group">
+                            <label>شماره کارت مقصد</label>
+                            <input type="number" asp-for="DestinationCardNumber" class="form-control input-default " placeholder="شماره کارت">
+                            <span class="text-danger" asp-validation-for="DestinationCardNumber"></span>
+                        </div>
+                        <div class="form-group">
+                            <label>مبلغ</label>
+                            <input type="number" asp-for="Amount" class="form-control input-default " placeholder="به تومان">
+                            <input id="ccn" type="tel" inputmode="numeric" pattern="[0-9\s]{13,19}" autocomplete="cc-number" maxlength="19" placeholder="xxxx xxxx xxxx xxxx">
+                            <span class="text-danger" asp-validation-for="Amount"></span>
+                        </div>
+                        <input type="hidden" value="@ViewData["personalWalletId"]" asp-for="PersonalWalletId" />
+                        <input type="hidden" value="@_0_Framework.Utilities.PersonalWalletOperationType.Transfer" asp-for="WalletOperationTypeId" />
+                        <button onclick="sendsms()" class="btn btn-outline-success">دریافت رمز پویا و اعتبار سنجی</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

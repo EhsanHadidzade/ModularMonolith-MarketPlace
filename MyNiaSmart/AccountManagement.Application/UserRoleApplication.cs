@@ -1,12 +1,8 @@
 ﻿using _0_Framework.Utilities;
-using AccountManagement.Application.Contract.UserPersonality;
+using AccountManagement.Application.Contract.Role;
 using AccountManagement.Application.Contract.UserRole;
 using AccountManagement.Domain.UserRoleAgg;
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace AccountManagement.Application
 {
@@ -19,14 +15,16 @@ namespace AccountManagement.Application
             _userRoleRepository = userRoleRepository;
         }
 
-        public void CreateUserRoles(CreateUserRole command)
+        public OperationResult CreateUserRoles(CreateUserRole command)
         {
+            var operation = new OperationResult();
             foreach(var roleId in command.SelectedRoleIds)
             {
                 var userRole = new UserRole(roleId,command.UserId);
                 _userRoleRepository.Create(userRole);
                 _userRoleRepository.Savechange();
             }
+            return operation.Succedded();
         }
 
         public void EditUserRole(EditUserRole command)
@@ -55,6 +53,11 @@ namespace AccountManagement.Application
                 RoleIds.Add(userRole.RoleId);
             }
             return RoleIds;
+        }
+
+        public List<RoleViewModel> GetUserRolesByUserId(long userId)
+        {
+            return _userRoleRepository.GetUserRolesByUserId(userId);
         }
 
         public void RemoveUserRolesofOneUserByUserId(long userId)

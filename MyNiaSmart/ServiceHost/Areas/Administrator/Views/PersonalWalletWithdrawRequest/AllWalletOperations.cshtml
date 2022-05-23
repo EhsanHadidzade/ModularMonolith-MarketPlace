@@ -1,0 +1,341 @@
+﻿@model List<AccountManagement.Application.Contract.PersonalWalletOperation.PersonalWalletOperationViewModel>
+@using _0_Framework.Utilities
+<div class="row">
+    <div class="col-xl-12 col-xxl-12 col-lg-12 col-md-12 ">
+        <div class="card bg-primary text-white">
+            <div class="card-header  border-0 pb-3 ">
+                <h4 class="card-title text-white">لیست گردش حساب های @Model.First().OwnerFullName</h4>
+            </div>
+            <div class="card-body pt-0">
+                <div class="custom-tab-1">
+                    <div class="tab-content">
+                        <div class="tab-pane fade active show" id="personalcard">
+
+                            <br />
+                            <br />
+                            <hr />
+                            <div class="card-body">
+                                <div class="widget-media">
+                                    <ul class="timeline">
+                                        @foreach (var operation in Model)
+                                        {
+                                            if (operation.WalletOperationTypeId == PersonalWalletOperationType.Deposite && operation.DepositeType == PersonalWalletDepositeType.OnlineGatewayPayment && operation.IsPay)
+                                            {
+                                                <li>
+                                                    <div class="timeline-panel">
+                                                        <div class="media mr-2 media-success">
+                                                            واریز
+                                                        </div>
+                                                        <div class="media-body">
+                                                            <h4 class="mb-1 text-white">واریز وجه</h4>
+                                                            <h6 class="mb-1 text-white">مبلغ @operation.Amount تومان به پرسونال کارت از طریق درگاه اینترنتی</h6>
+                                                            <small class="d-block">@operation.CreationDate</small>
+                                                        </div>
+                                                        <div class="dropdown">
+                                                            <button type="button" class="btn btn-info light sharp" data-toggle="dropdown">
+                                                                <svg width="20px" height="20px" viewBox="0 0 24 24" version="1.1"><g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd"><rect x="0" y="0" width="24" height="24"></rect><circle fill="#000000" cx="5" cy="12" r="2"></circle><circle fill="#000000" cx="12" cy="12" r="2"></circle><circle fill="#000000" cx="19" cy="12" r="2"></circle></g></svg>
+                                                            </button>
+                                                            <div class="dropdown-menu">
+                                                                <a class="dropdown-item" href="#">ویرایش</a>
+                                                                <a class="dropdown-item" href="#">حذف</a>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </li>
+                                            }
+                                            else if (operation.WalletOperationTypeId == PersonalWalletOperationType.Deposite && operation.DepositeType == PersonalWalletDepositeType.BankTicketPayment)
+                                            {
+                                                <li>
+                                                    <div class="timeline-panel">
+                                                        <div class="media mr-2 media-success">
+                                                            واریز
+                                                        </div>
+                                                        <div class="media-body">
+                                                            <h4 class="mb-1 text-white">واریز وجه</h4>
+                                                            <h6 class="mb-1 text-white">مبلغ @operation.Amount تومان به پرسونال کارت از طریق فیش بانکی</h6>
+                                                            <small class="d-block">@operation.CreationDate</small>
+                                                        </div>
+                                                        <div class="dropdown">
+                                                            <button type="button" class="btn btn-info light sharp" data-toggle="dropdown">
+                                                                <svg width="20px" height="20px" viewBox="0 0 24 24" version="1.1"><g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd"><rect x="0" y="0" width="24" height="24"></rect><circle fill="#000000" cx="5" cy="12" r="2"></circle><circle fill="#000000" cx="12" cy="12" r="2"></circle><circle fill="#000000" cx="19" cy="12" r="2"></circle></g></svg>
+                                                            </button>
+                                                            <div class="dropdown-menu">
+                                                                <a class="dropdown-item" href="#">ویرایش</a>
+                                                                <a class="dropdown-item" href="#">حذف</a>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </li>
+                                            }
+                                            else if (operation.WalletOperationTypeId == PersonalWalletOperationType.Transfer && operation.IsPay)
+                                            {
+                                                <li>
+                                                    <div class="timeline-panel">
+                                                        <div class="media mr-2 media-info">
+                                                            انتقال
+                                                        </div>
+                                                        <div class="media-body">
+                                                            <h4 class="mb-1 text-white">انتقال وجه</h4>
+                                                            <h6 class="mb-1 text-white">مبلغ @operation.Amount تومان به کارت شخصی @operation.ReceiverFullName</h6>
+                                                            <small class="d-block">@operation.CreationDate</small>
+                                                        </div>
+                                                        <div class="dropdown">
+                                                            <button type="button" class="btn btn-info light sharp" data-toggle="dropdown">
+                                                                <svg width="20px" height="20px" viewBox="0 0 24 24" version="1.1"><g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd"><rect x="0" y="0" width="24" height="24"></rect><circle fill="#000000" cx="5" cy="12" r="2"></circle><circle fill="#000000" cx="12" cy="12" r="2"></circle><circle fill="#000000" cx="19" cy="12" r="2"></circle></g></svg>
+                                                            </button>
+                                                            <div class="dropdown-menu">
+                                                                <a class="dropdown-item" href="#">ویرایش</a>
+                                                                <a class="dropdown-item" href="#">حذف</a>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </li>
+
+                                            }
+                                            else if (operation.WalletOperationTypeId == PersonalWalletOperationType.Receive && operation.IsPay)
+                                            {
+                                                <li>
+                                                    <div class="timeline-panel">
+                                                        <div class="media mr-2 media-info">
+                                                            دریافت
+                                                        </div>
+                                                        <div class="media-body">
+                                                            <h4 class="mb-1 text-white">دریافت وجه</h4>
+                                                            <h6 class="mb-1 text-white">مبلغ @operation.Amount تومان از طرف  </h6>
+                                                            <small class="d-block">@operation.CreationDate</small>
+                                                        </div>
+                                                        <div class="dropdown">
+                                                            <button type="button" class="btn btn-info light sharp" data-toggle="dropdown">
+                                                                <svg width="20px" height="20px" viewBox="0 0 24 24" version="1.1"><g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd"><rect x="0" y="0" width="24" height="24"></rect><circle fill="#000000" cx="5" cy="12" r="2"></circle><circle fill="#000000" cx="12" cy="12" r="2"></circle><circle fill="#000000" cx="19" cy="12" r="2"></circle></g></svg>
+                                                            </button>
+                                                            <div class="dropdown-menu">
+                                                                <a class="dropdown-item" href="#">ویرایش</a>
+                                                                <a class="dropdown-item" href="#">حذف</a>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </li>
+
+                                            }
+                                            else if (operation.WalletOperationTypeId == PersonalWalletOperationType.Withdraw)
+                                            {
+                                                <li>
+                                                    <div class="media-body">
+                                                        <div class="timeline-panel">
+                                                            <div class="media mr-2 media-warning">
+                                                                برداشت
+                                                            </div>
+                                                            <div class="media-body">
+                                                                <h4 class="mb-1 text-white">برداشت وجه</h4>
+                                                                <h6 class="mb-1 text-white">مبلغ @operation.Amount تومان برداشت </h6>
+                                                                @if (operation.WithdrawStatus == PersonalWalletWithdrawStatus.Processing)
+                                                                {
+                                                                    <h8 class="mb-1 text-white">وضعیت : در حال بررسی</h8>
+                                                                }
+                                                                @if (operation.WithdrawStatus == PersonalWalletWithdrawStatus.IsConfirmed)
+                                                                {
+                                                                    <h8 class="mb-1 text-white">وضعیت : انجام شده  </h8>
+                                                                }
+                                                                @if (operation.WithdrawStatus == PersonalWalletWithdrawStatus.IsCanceled)
+                                                                {
+                                                                    <h8 class="mb-1 text-white">وضعیت : رد شده </h8>
+                                                                }
+                                                                @if (operation.WithdrawStatus == PersonalWalletWithdrawStatus.WaitingForPayment)
+                                                                {
+                                                                    <h8 class="mb-1 text-white">وضعیت : در انتظار پرداخت </h8>
+                                                                }
+                                                                <small class="d-block">@operation.CreationDate</small>
+                                                            </div>
+                                                            <div class="dropdown">
+                                                                <button type="button" class="btn btn-info light sharp" data-toggle="dropdown">
+                                                                    <svg width="20px" height="20px" viewBox="0 0 24 24" version="1.1"><g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd"><rect x="0" y="0" width="24" height="24"></rect><circle fill="#000000" cx="5" cy="12" r="2"></circle><circle fill="#000000" cx="12" cy="12" r="2"></circle><circle fill="#000000" cx="19" cy="12" r="2"></circle></g></svg>
+                                                                </button>
+                                                                <div class="dropdown-menu">
+                                                                    <a class="dropdown-item" href="#">ویرایش</a>
+                                                                    <a class="dropdown-item" href="#">حذف</a>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </li>
+                                            }
+                                        }
+                                    </ul>
+                                    <br />
+                                    <br />
+                                </div>
+                            </div>
+                          
+                        </div>
+                        <div class="tab-pane fade" id="personalcardChart" role="tabpanel">
+                            <div class="pt-4 text-white">
+                                <h4 class="text-white">نمودار تغییرات کیف پول</h4>
+                                <canvas id="lineChart_3Kk"></canvas>
+
+                                <br />
+                                <br />
+                                <hr />
+                                <h4 class="text-white">لیست تمامی گردش ها</h4>
+                                <div class="widget-media">
+
+                                    <ul class="timeline">
+                                        @foreach (var operation in Model)
+                                        {
+                                            if (operation.WalletOperationTypeId == PersonalWalletOperationType.Deposite && operation.DepositeType == PersonalWalletDepositeType.OnlineGatewayPayment && operation.IsPay)
+                                            {
+                                                <li>
+                                                    <div class="timeline-panel">
+                                                        <div class="media mr-2 media-success">
+                                                            واریز
+                                                        </div>
+                                                        <div class="media-body">
+                                                            <h4 class="mb-1 text-white">واریز وجه</h4>
+                                                            <h6 class="mb-1 text-white">مبلغ @operation.Amount تومان به پرسونال کارت از طریق درگاه اینترنتی</h6>
+                                                            <small class="d-block">@operation.CreationDate</small>
+                                                        </div>
+                                                        <div class="dropdown">
+                                                            <button type="button" class="btn btn-info light sharp" data-toggle="dropdown">
+                                                                <svg width="20px" height="20px" viewBox="0 0 24 24" version="1.1"><g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd"><rect x="0" y="0" width="24" height="24"></rect><circle fill="#000000" cx="5" cy="12" r="2"></circle><circle fill="#000000" cx="12" cy="12" r="2"></circle><circle fill="#000000" cx="19" cy="12" r="2"></circle></g></svg>
+                                                            </button>
+                                                            <div class="dropdown-menu">
+                                                                <a class="dropdown-item" href="#">ویرایش</a>
+                                                                <a class="dropdown-item" href="#">حذف</a>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </li>
+                                            }
+                                            else if (operation.WalletOperationTypeId == PersonalWalletOperationType.Deposite && operation.DepositeType == PersonalWalletDepositeType.BankTicketPayment)
+                                            {
+                                                <li>
+                                                    <div class="timeline-panel">
+                                                        <div class="media mr-2 media-success">
+                                                            واریز
+                                                        </div>
+                                                        <div class="media-body">
+                                                            <h4 class="mb-1 text-white">واریز وجه</h4>
+                                                            <h6 class="mb-1 text-white">مبلغ @operation.Amount تومان به پرسونال کارت از طریق فیش بانکی</h6>
+                                                            <small class="d-block">@operation.CreationDate</small>
+                                                        </div>
+                                                        <div class="dropdown">
+                                                            <button type="button" class="btn btn-info light sharp" data-toggle="dropdown">
+                                                                <svg width="20px" height="20px" viewBox="0 0 24 24" version="1.1"><g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd"><rect x="0" y="0" width="24" height="24"></rect><circle fill="#000000" cx="5" cy="12" r="2"></circle><circle fill="#000000" cx="12" cy="12" r="2"></circle><circle fill="#000000" cx="19" cy="12" r="2"></circle></g></svg>
+                                                            </button>
+                                                            <div class="dropdown-menu">
+                                                                <a class="dropdown-item" href="#">ویرایش</a>
+                                                                <a class="dropdown-item" href="#">حذف</a>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </li>
+                                            }
+                                            else if (operation.WalletOperationTypeId == PersonalWalletOperationType.Transfer && operation.IsPay)
+                                            {
+                                                <li>
+                                                    <div class="timeline-panel">
+                                                        <div class="media mr-2 media-info">
+                                                            انتقال
+                                                        </div>
+                                                        <div class="media-body">
+                                                            <h4 class="mb-1 text-white">انتقال وجه</h4>
+                                                            <h6 class="mb-1 text-white">مبلغ @operation.Amount تومان به کارت شخصی @operation.ReceiverFullName</h6>
+                                                            <small class="d-block">@operation.CreationDate</small>
+                                                        </div>
+                                                        <div class="dropdown">
+                                                            <button type="button" class="btn btn-info light sharp" data-toggle="dropdown">
+                                                                <svg width="20px" height="20px" viewBox="0 0 24 24" version="1.1"><g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd"><rect x="0" y="0" width="24" height="24"></rect><circle fill="#000000" cx="5" cy="12" r="2"></circle><circle fill="#000000" cx="12" cy="12" r="2"></circle><circle fill="#000000" cx="19" cy="12" r="2"></circle></g></svg>
+                                                            </button>
+                                                            <div class="dropdown-menu">
+                                                                <a class="dropdown-item" href="#">ویرایش</a>
+                                                                <a class="dropdown-item" href="#">حذف</a>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </li>
+
+                                            }
+                                            else if (operation.WalletOperationTypeId == PersonalWalletOperationType.Receive && operation.IsPay)
+                                            {
+                                                <li>
+                                                    <div class="timeline-panel">
+                                                        <div class="media mr-2 media-info">
+                                                            دریافت
+                                                        </div>
+                                                        <div class="media-body">
+                                                            <h4 class="mb-1 text-white">دریافت وجه</h4>
+                                                            <h6 class="mb-1 text-white">مبلغ @operation.Amount تومان از طرف کارت شخصی @operation.SenderFullName </h6>
+                                                            <small class="d-block">@operation.CreationDate</small>
+                                                        </div>
+                                                        <div class="dropdown">
+                                                            <button type="button" class="btn btn-info light sharp" data-toggle="dropdown">
+                                                                <svg width="20px" height="20px" viewBox="0 0 24 24" version="1.1"><g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd"><rect x="0" y="0" width="24" height="24"></rect><circle fill="#000000" cx="5" cy="12" r="2"></circle><circle fill="#000000" cx="12" cy="12" r="2"></circle><circle fill="#000000" cx="19" cy="12" r="2"></circle></g></svg>
+                                                            </button>
+                                                            <div class="dropdown-menu">
+                                                                <a class="dropdown-item" href="#">ویرایش</a>
+                                                                <a class="dropdown-item" href="#">حذف</a>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </li>
+
+                                            }
+                                            else if (operation.WalletOperationTypeId == PersonalWalletOperationType.Withdraw)
+                                            {
+                                                <li>
+                                                    <div class="media-body">
+                                                        <div class="timeline-panel">
+                                                            <div class="media mr-2 media-warning">
+                                                                برداشت
+                                                            </div>
+                                                            <div class="media-body">
+                                                                <h4 class="mb-1 text-white">برداشت وجه</h4>
+                                                                <h6 class="mb-1 text-white">مبلغ @operation.Amount تومان برداشت </h6>
+                                                                @if (operation.WithdrawStatus == PersonalWalletWithdrawStatus.Processing)
+                                                                {
+                                                                    <h8 class="mb-1 text-white">وضعیت : در حال بررسی</h8>
+                                                                }
+                                                                @if (operation.WithdrawStatus == PersonalWalletWithdrawStatus.IsConfirmed)
+                                                                {
+                                                                    <h8 class="mb-1 text-white">وضعیت : انجام شده  </h8>
+                                                                }
+                                                                @if (operation.WithdrawStatus == PersonalWalletWithdrawStatus.IsCanceled)
+                                                                {
+                                                                    <h8 class="mb-1 text-white">وضعیت : رد شده </h8>
+                                                                }
+                                                                @if (operation.WithdrawStatus == PersonalWalletWithdrawStatus.WaitingForPayment)
+                                                                {
+                                                                    <h8 class="mb-1 text-white">وضعیت : در انتظار پرداخت </h8>
+                                                                }
+                                                                <small class="d-block">@operation.CreationDate</small>
+                                                            </div>
+                                                            <div class="dropdown">
+                                                                <button type="button" class="btn btn-info light sharp" data-toggle="dropdown">
+                                                                    <svg width="20px" height="20px" viewBox="0 0 24 24" version="1.1"><g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd"><rect x="0" y="0" width="24" height="24"></rect><circle fill="#000000" cx="5" cy="12" r="2"></circle><circle fill="#000000" cx="12" cy="12" r="2"></circle><circle fill="#000000" cx="19" cy="12" r="2"></circle></g></svg>
+                                                                </button>
+                                                                <div class="dropdown-menu">
+                                                                    <a class="dropdown-item" href="#">ویرایش</a>
+                                                                    <a class="dropdown-item" href="#">حذف</a>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </li>
+                                            }
+                                        }
+                                    </ul>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            </div>
+        </div>
+    </div>
+    <!-- partial -->
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/imask/3.4.0/imask.min.js'></script><script src="/maintheme/js/wallet.js"></script>
+
+
+
+

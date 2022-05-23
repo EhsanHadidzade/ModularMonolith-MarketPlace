@@ -44,7 +44,7 @@
                                                                 <div class="form-row">
                                                                     <div class="form-group col-md-12">
                                                                         <label> شماره موبایل</label>
-                                                                        <input type="number" asp-for="MobileNumber" class="form-control" placeholder="">
+                                                                        <input type="text" asp-for="MobileNumber" maxlength="11" onkeypress="return onlyNumberKey(event)" class="form-control" placeholder="">
                                                                         <span class="text-danger" asp-validation-for="MobileNumber"></span>
                                                                     </div>
                                                                 </div>
@@ -70,12 +70,12 @@
                                                                         @if (ViewData["NewUser"] != null)
                                                                         {
                                                                             <script>
-                                                                               $(document).ready(
-                                                                                   function(){
-                                                                                       debugger;
-                                                                                        $("#fullnamesection").click();
-                                                                                   }
-                                                                               )
+                                                                                $(document).ready(
+                                                                                    function(){
+                                                                                        debugger;
+                                                                                         $("#fullnamesection").click();
+                                                                                    }
+                                                                                )
                                                                             </script>
                                                                         }
                                                                     </div>
@@ -110,19 +110,28 @@
 
     <!--To Disable Submit Button before change in form-->
     <script>
-            $('form')
-            .each(function(){
-                $(this).data('serialized', $(this).serialize())
-            })
-            .on('change input', function(){
-                $(this)
-                    .find('input:submit, button:submit')
-                        .prop('disabled', $(this).serialize() == $(this).data('serialized'))
-                ;
-             })
-            .find('input:submit, button:submit')
-                .prop('disabled', true)
-        ;
+             function onlyNumberKey(evt) {
+
+            // Only ASCII character in that range allowed
+            var ASCIICode = (evt.which) ? evt.which : evt.keyCode
+            if (ASCIICode > 31 && (ASCIICode < 48 || ASCIICode > 57))
+                return false;
+            return true;
+        }
+
+                $('form')
+                .each(function(){
+                    $(this).data('serialized', $(this).serialize())
+                })
+                .on('change input', function(){
+                    $(this)
+                        .find('input:submit, button:submit')
+                            .prop('disabled', $(this).serialize() == $(this).data('serialized'))
+                    ;
+                 })
+                .find('input:submit, button:submit')
+                    .prop('disabled', true)
+            ;
     </script>
 
 </body>

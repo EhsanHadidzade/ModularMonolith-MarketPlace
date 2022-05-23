@@ -6,6 +6,7 @@ namespace ServiceHost.Areas.Administrator.Controllers
     {
         [Area("Administrator")]
         public IActionResult Index()
+        
         {
             return View();
         }

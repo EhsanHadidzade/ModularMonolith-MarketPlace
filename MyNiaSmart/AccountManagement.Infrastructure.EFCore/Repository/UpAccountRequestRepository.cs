@@ -99,7 +99,7 @@ namespace AccountManagement.Infrastructure.EFCore.Repository
                 IsConfirmedByAdmin=x.IsRequestConfirmedByAdmin,
                 IsConfirmedByClient=x.IsRequestConfirmedByClient,
                 UserId=x.UserId
-            }).Where(x=>x.UserId==userId).SingleOrDefault();
+            }).FirstOrDefault(x=>x.UserId==userId);
             return req;
         }
     }
