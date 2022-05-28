@@ -1,5 +1,6 @@
 ﻿using _0_Framework.Infrastructure;
 using _0_Framework.Utilities;
+using AccountManagement.Application.Contract.Personality;
 using AccountManagement.Application.Contract.Role;
 using AccountManagement.Application.Contract.UserCooperationRequest;
 using AccountManagement.Domain.CooperationRequestAgg;
@@ -18,36 +19,40 @@ namespace AccountManagement.Infrastructure.EFCore.Repository
             _context = context;
         }
 
-        public List<UserCooperationRequest> GetAllUserRequestedRolesByUserId(long userId)
+
+
+        public List<UserCooperationRequest> GetAllUserRequestedPersonalitiesByUserId(long userId)
         {
             return _context.UserCooperationRequests.Where(x => x.UserId == userId).ToList();
         }
 
-        public List<RoleViewModel> GetRequestedRolesByRoleIds(List<long> roleIds)
+        public List<PersonalityViewModel> GetRequestedPersonalitiesByRoleIds(List<long> roleIds)
         {
-            var selectedRoles = new List<RoleViewModel>();
+            var SelectedPersonalities = new List<PersonalityViewModel>();
             foreach (var roleId in roleIds)
             {
-                var role = _context.Roles.Select(x => new RoleViewModel { Id = x.Id, Name = x.Name }).FirstOrDefault(x => x.Id == roleId);
-                selectedRoles.Add(role);
+                var personality = _context.Personalities.Select(x => new PersonalityViewModel { Id = x.Id, Title = x.Title }).FirstOrDefault(x => x.Id == roleId);
+                SelectedPersonalities.Add(personality);
             }
-            return selectedRoles;
+            return SelectedPersonalities;
         }
 
-        public List<RoleViewModel> GetRequestedRolesByUserId(long userId)
+        public List<PersonalityViewModel> GetRequestedPersonalitiesByUserId(long userId)
         {
-            var RequestedRoleIds = _context.UserCooperationRequests.Where(x=>x.UserId == userId).Select(x=>x.RoleId).ToList();
-            var requestedRoles=new List<RoleViewModel>();
+            var RequestedRoleIds = _context.UserCooperationRequests.Where(x => x.UserId == userId).Select(x => x.PersonalityId).ToList();
+            var requestedPersonalities = new List<PersonalityViewModel>();
             foreach (var roleId in RequestedRoleIds)
             {
-                var requstedRole= _context.Roles.Select(x=>new RoleViewModel 
-                { Name=x.Name,
-                    Id=x.Id
-                }).FirstOrDefault(x=>x.Id==roleId);
-                requestedRoles.Add(requstedRole);
+                var requstedPersonality = _context.Personalities.Select(x => new PersonalityViewModel
+                {
+                    Id = x.Id,
+                    Title=x.Title,
+                    PersonalityTypeId=x.PersonalityTypeId,
+                }).FirstOrDefault(x => x.Id == roleId);
+                requestedPersonalities.Add(requstedPersonality);
             }
 
-            return requestedRoles;
+            return requestedPersonalities;
         }
 
         public List<UserRequestedForCooperationViewModel> GetUsersWithCooperationRequest()
@@ -57,7 +62,7 @@ namespace AccountManagement.Infrastructure.EFCore.Repository
                 UserId = x.Id,
                 CreationDate = x.CreationDate.ToFarsiFull(),
                 FullName = x.FullName,
-                IsRecognizedByAdmin=_context.UserRoles.Any(s=>s.UserId==x.Id),
+                IsRecognizedByAdmin = _context.UserPersonalities.Any(s => s.UserId == x.Id),
             }).OrderByDescending(x => x.UserId).ToList();
         }
 
@@ -66,7 +71,7 @@ namespace AccountManagement.Infrastructure.EFCore.Repository
             return _context.UserCooperationRequests.Any(x => x.UserId == userId);
         }
 
-        public bool  IsUserRequestForCooperationRecognizedByAdmin(long userId)
+        public bool IsUserRequestForCooperationRecognizedByAdmin(long userId)
         {
             return _context.UserRoles.Any(x => x.UserId == userId);
 

@@ -1,0 +1,83 @@
+﻿@using AccountManagement.Application.Contract.PersonalityType
+@using AccountManagement.Application.Contract.UserCooperationRequest
+@inject IUserCooperationRequestApplication _userCooperationRequestAppliation
+@model Tuple<List<PersonalityTypeViewModel>,List<long>,long>
+@{
+    var requestedPersonality = _userCooperationRequestAppliation.GetRequestedRolesByRoleIds(Model.Item2);
+}
+
+
+
+<form class="form" method="post" action="/Administrator/UserCooperationRequest/SetPersonalitiesForUser">
+    <div class="modal-content">
+        <div class="modal-header">
+            <h5 class="modal-title">مدیریت نقش های انتخابی کاربر </h5>
+            <button type="button" class="close" data-dismiss="modal">
+                <span>×</span>
+            </button>
+        </div>
+        <div class="modal-body">
+            <div class="row">
+                <div class="col-xl-12">
+                    <div class="card">
+                        <div class="card-header">
+                            <h4 class="card-title">مدیریت نقش  کاربر </h4>
+                        </div>
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col-xl-3">
+                                    <div class="nav flex-column nav-pills mb-3">
+                                        @foreach (var personalityType in Model.Item1)
+                                        {
+                                            <a href="#v-pills-@personalityType.Id" data-toggle="pill" class="nav-link @((Model.Item1.IndexOf(personalityType)==0)? "active":"")"> @personalityType.Title</a>
+                                        }
+                                    </div>
+                                </div>
+                                <div class="col-xl-9" style=" border-right: 1px solid rgba(192,192,192, .5) ;">
+                                    <div class="tab-content">
+                                        @foreach (var personalityType in Model.Item1)
+                                        {
+                                            <div id="v-pills-@personalityType.Id" class="tab-pane fade @((Model.Item1.IndexOf(personalityType)==0)? "active show":"")">
+                                                @foreach (var personality in personalityType.Personalities)
+                                                {
+                                                    <div class="form-check mb-2">
+                                                        9
+                                                        <input type="checkbox" class="form-check-input" id="check1" name="ConfirmedPersonalityIds" value="@personality.Id" @((Model.Item2.Any(x=>x==personality.Id))? "Checked":"")>
+                                                        <label class="form-check-label" for="check1"> @personality.Title</label>
+                                                    </div>
+                                                }
+                                            </div>
+                                        }
+                                    </div>
+                                </div>
+                            </div>
+
+                            <input type="hidden" name="userId" value="@Model.Item3" />
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xl-12">
+                    <div class="card">
+                        <div class="card-header">
+                              <h4 class="card-title">نقش های درخواستی کاربر</h4>
+                        </div>
+                        <div class="card-body">
+                            <div class="row">
+                                <ul>
+                                  @foreach(var personality in requestedPersonality)
+                                    {
+                                          <li> @personality.Name</li>
+                                    }
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-danger light" data-dismiss="modal">بستن</button>
+        <button type="submit" class="btn btn-primary">ذخیره تغییرات</button>
+    </div>
+</form>

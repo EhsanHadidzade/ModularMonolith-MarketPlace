@@ -28,7 +28,7 @@ namespace AccountManagement.Application
             if(_personalityRepository.IsExist(x=>x.Title == command.Title))
                 return operation.Failed(ApplicationMessage.DuplicatedRecord);
 
-            var personality = new Personality(command.Title);
+            var personality = new Personality(command.Title,command.PersonalityTypeId);
             _personalityRepository.Create(personality);
             _personalityRepository.Savechange();
             return operation.Succedded();
@@ -45,7 +45,7 @@ namespace AccountManagement.Application
             if (_personalityRepository.IsExist(x => x.Title == command.Title && x.Id != command.Id))
                 return operation.Failed(ApplicationMessage.DuplicatedRecord);
 
-            personality.Edit(command.Title);
+            personality.Edit(command.Title,command.PersonalityTypeId);
             _personalityRepository.Savechange();
             return operation.Succedded();
         }

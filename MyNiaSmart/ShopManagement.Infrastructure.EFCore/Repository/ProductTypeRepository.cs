@@ -1,6 +1,6 @@
 ﻿using _0_Framework.Infrastructure;
 using ShopManagement.Application.Contract.ProductType;
-using ShopManagement.Domain.ProductTypeAgg;
+using ShopManagement.Domain.ProductCategoryAgg.ProductTypeAgg;
 using System;
 using System.Collections.Generic;
 using System.Linq;

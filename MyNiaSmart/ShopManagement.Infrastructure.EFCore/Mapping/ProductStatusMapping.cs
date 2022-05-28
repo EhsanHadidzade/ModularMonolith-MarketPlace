@@ -1,6 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
-using ShopManagement.Domain.ProductStatusAgg;
+using ShopManagement.Domain.ProductCategoryAgg.ProductStatusAgg;
 using System;
 using System.Collections.Generic;
 using System.Linq;

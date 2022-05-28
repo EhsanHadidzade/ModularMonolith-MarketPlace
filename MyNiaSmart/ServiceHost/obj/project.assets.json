@@ -3151,7 +3151,7 @@
         "type": "project",
         "framework": ".NETCoreApp,Version=v5.0",
         "dependencies": {
-          "Microsoft.EntityFrameworkCore": "5.0.16",
+          "Microsoft.EntityFrameworkCore": "5.0.17",
           "Microsoft.Extensions.DependencyInjection.Abstractions": "6.0.0",
           "ShopManagement.Application": "1.0.0",
           "ShopManagement.Infrastructure.EFCore": "1.0.0"
@@ -3168,6 +3168,7 @@
         "framework": ".NETCoreApp,Version=v5.0",
         "dependencies": {
           "0_Framework": "1.0.0",
+          "AccountManagement.Domain": "1.0.0",
           "ShopManagement.Application.Contract": "1.0.0"
         },
         "compile": {
@@ -3181,8 +3182,9 @@
         "type": "project",
         "framework": ".NETCoreApp,Version=v5.0",
         "dependencies": {
-          "Microsoft.EntityFrameworkCore": "5.0.16",
-          "Microsoft.EntityFrameworkCore.SqlServer": "5.0.16",
+          "AccountManagement.Infrastructure.EFCore": "1.0.0",
+          "Microsoft.EntityFrameworkCore": "5.0.17",
+          "Microsoft.EntityFrameworkCore.SqlServer": "5.0.17",
           "ShopManagement.Domain": "1.0.0"
         },
         "compile": {

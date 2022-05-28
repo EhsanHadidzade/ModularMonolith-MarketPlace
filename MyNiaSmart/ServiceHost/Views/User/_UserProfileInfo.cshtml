@@ -5,6 +5,9 @@
 @inject IUPAccountRequestApplication _uPAccountRequestApplication
 @inject IUserCooperationRequestApplication _userCooperaitonRequestApplication
 @inject IUserRoleApplication _userRoleApplication
+@{
+    var acceptedRoleIds = _userRoleApplication.GetAllRoleIdsOfOneUserByUserId(Model.Id);
+}
 
 
 
@@ -71,7 +74,7 @@
         @if (ViewData["message"] != null)
         {
             <div class="row mb-2">
-                <div class="alert alert-success">
+                <div class="alert alert-info">
                     <p>@ViewData["message"]</p>
                 </div>
             </div>
@@ -139,9 +142,9 @@
                                         <li class="nav-item">
                                             <a class="nav-link active" data-toggle="tab" href="#home"> لیست واحد هایی که شما جهت همکاری ارسال کرده اید</a>
                                         </li>
-                                        <li class="nav-item">
+                                       @* <li class="nav-item">
                                             <a class="nav-link" data-toggle="tab" href="#profile"> لیست واحد هایی که مدیریت تایید کرده </a>
-                                        </li>
+                                        </li>*@
                                     </ul>
                                     <div class="tab-content">
                                         <div class="tab-pane fade active show" id="home" role="tabpanel">
@@ -153,8 +156,37 @@
                                                             <ul class="list-group list-group-flush">
                                                                 @foreach (var requestedRole in _userCooperaitonRequestApplication.GetRequestedRolesByUserId(Model.Id))
                                                                 {
+                                                                    @*  if(acceptedRoleIds.Any(x=>x==requestedRole.Id))
+                                                                        {
+                                                                        <li class="success">
+                                                                        <strong>@requestedRole.Name</strong>
+                                                                        @if(requestedRole.Id==18)
+                                                                        {
+                                                                        <a class="btn btn-success">فرم ایجاد پنل فروشنده</a>
+                                                                        }
+
+                                                                        </li>
+                                                                        }
+                                                                        else
+                                                                        {
+                                                                        <li class="danger">
+                                                                        <strong>@requestedRole.Name</strong>
+                                                                        </li>
+                                                                        }*@
                                                                     <li class="list-group-item d-flex px-0 justify-content-between">
                                                                         <strong>@requestedRole.Name</strong>
+                                                                        @if (!acceptedRoleIds.Any(x => x == requestedRole.Id))
+                                                                        {
+                                                                            <a class="btn btn-outline-danger">تایید نشده</a>
+
+                                                                        }
+                                                                        else
+                                                                        {
+                                                                            if(requestedRole.Id==21)
+                                                                            {
+                                                                            <a href="#showmodal=/user/CreateSellerPanel" class="btn btn-outline-success">تکمیل فرم درخواست پنل فروشنده</a>
+                                                                            }
+                                                                        }
                                                                     </li>
                                                                 }
                                                             </ul>
@@ -163,7 +195,7 @@
                                                 </div>
                                             </div>
                                         </div>
-                                        <div class="tab-pane fade" id="profile">
+                                      @*  <div class="tab-pane fade" id="profile">
                                             <div class="pt-4">
                                                 <div class="col-xl-12 col-lg-12 col-sm-12">
                                                     <div class="card">
@@ -180,7 +212,7 @@
                                                     </div>
                                                 </div>
                                             </div>
-                                        </div>
+                                        </div>*@
                                     </div>
                                 </div>
                             </div>

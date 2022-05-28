@@ -3,6 +3,7 @@ using AccountManagement.Domain.CooperationRequestAgg;
 using AccountManagement.Domain.RoleAgg;
 using AccountManagement.Domain.UPAccountRequestsAgg;
 using AccountManagement.Domain.UserPersonalityAgg;
+using AccountManagement.Domain.UserPersonalityRequestAgg;
 using AccountManagement.Domain.UserRoleAgg;
 using AccountManagement.Domain.WalletAgg.BusinessWalletAgg;
 using AccountManagement.Domain.WalletAgg.PersonalwalletAgg;
@@ -47,6 +48,7 @@ namespace AccountManagement.Domain.UserAgg
         public List<UserRole> UserRoles { get; private set; }
         public List<UserCooperationRequest> UserCooperationRequests { get; private set; }
         public List<UserPersonality> UserPersonalities{ get; set; }
+        public List<UserPersonalityRequest> UserPersonalityRequests { get; private set; }
         public UpAccountRequest UpAccountRequest{ get; private set; }
         public PersonalWallet PersonalWallet{ get; private set; }
         public BusinessWallet BusinessWallet{ get; private set; }

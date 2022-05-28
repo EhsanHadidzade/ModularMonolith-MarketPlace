@@ -1,9 +1,9 @@
 ﻿using _0_Framework.Domain;
-using ShopManagement.Domain.ProductBrandAgg;
-using ShopManagement.Domain.ProductModelAgg;
-using ShopManagement.Domain.ProductStatusAgg;
-using ShopManagement.Domain.ProductTypeAgg;
-using ShopManagement.Domain.ProductUsageTypeAgg;
+using ShopManagement.Domain.ProductCategoryAgg.ProductBrandAgg;
+using ShopManagement.Domain.ProductCategoryAgg.ProductModelAgg;
+using ShopManagement.Domain.ProductCategoryAgg.ProductStatusAgg;
+using ShopManagement.Domain.ProductCategoryAgg.ProductTypeAgg;
+using ShopManagement.Domain.ProductCategoryAgg.ProductUsageTypeAgg;
 using System;
 using System.Collections.Generic;
 using System.Linq;

@@ -22,14 +22,14 @@ namespace AccountManagement.Application
         public OperationResult CreateUserCoopeartionRequest(CreateUserCooperationRequest command)
         {
             var operation = new OperationResult();
-            foreach (var roleId in command.SelectedRoleIds)
+            foreach (var personalityId in command.SelectedPersonalityIds)
             {
-                if (_userCooperationRequestRepository.IsExist(x => x.UserId == command.UserId && x.RoleId == roleId))
+                if (_userCooperationRequestRepository.IsExist(x => x.UserId == command.UserId && x.PersonalityId == personalityId))
                 {
                     return operation.Failed(ApplicationMessage.DuplicatedRecord);
                 }
-                var RequestedRoleId = new UserCooperationRequest(roleId, command.UserId);
-                _userCooperationRequestRepository.Create(RequestedRoleId);
+                var RequestedPersonalityId = new UserCooperationRequest(personalityId, command.UserId);
+                _userCooperationRequestRepository.Create(RequestedPersonalityId);
                 _userCooperationRequestRepository.Savechange();
             }
             return operation.Succedded("درخواست همکاری شما با موفقیت ثبت و نتیجه آن در پنل کاربری شما قابل مشاهده خواهد بود");
@@ -38,11 +38,11 @@ namespace AccountManagement.Application
 
         public List<long> GetAllRequestedRoleIdsByUserId(long userId)
         {
-            var requestedRoles = _userCooperationRequestRepository.GetAllUserRequestedRolesByUserId(userId);
+            var requestedPersonalities = _userCooperationRequestRepository.GetAllUserRequestedPersonalitiesByUserId(userId);
             var requestedRoleIds = new List<long>();
-            foreach (var item in requestedRoles)
+            foreach (var item in requestedPersonalities)
             {
-                requestedRoleIds.Add(item.RoleId);
+                requestedRoleIds.Add(item.PersonalityId);
             }
             return requestedRoleIds;
         }
@@ -54,7 +54,7 @@ namespace AccountManagement.Application
 
         public List<RoleViewModel> GetRequestedRolesByUserId(long userId)
         {
-            return _userCooperationRequestRepository.GetRequestedRolesByUserId(userId);
+            return _userCooperationRequestRepository.GetRequestedPersonalitiesByUserId(userId);
         }
 
         public List<UserRequestedForCooperationViewModel> GetUsersWithCooperationRequest()
@@ -71,5 +71,6 @@ namespace AccountManagement.Application
         {
             return _userCooperationRequestRepository.IsUserRequestForCooperationRecognizedByAdmin(userId);
         }
+
     }
 }

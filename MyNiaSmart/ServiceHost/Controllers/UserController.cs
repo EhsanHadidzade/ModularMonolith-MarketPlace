@@ -3,6 +3,7 @@ using _0_Framework.Utilities;
 using _0_Framework.Utilities.ZarinPal;
 using _0_MyNiaSmartQuery.Contract.User;
 using AccountManagement.Application.Contract.BusinessWallet;
+using AccountManagement.Application.Contract.PersonalityType;
 using AccountManagement.Application.Contract.PersonalWallet;
 using AccountManagement.Application.Contract.PersonalWalletOperation;
 using AccountManagement.Application.Contract.RejectionReason;
@@ -14,6 +15,7 @@ using AccountManagement.Application.Contract.UserCooperationRequest;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
+using ShopManagement.Application.Contract.SellerPanel;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -35,13 +37,16 @@ namespace ServiceHost.Controllers
         private readonly IZarinPalFactory _zarinPalFactory;
         public readonly IUserCooperationRequestApplication _UserCooperationRequestApplication;
         private readonly IRoleTypeApplication _roleTypeApplication;
+        private readonly ISellerPanelApplication _sellerPanelApplication;
+        private readonly IPersonalityTypeApplication _personalityTypeApplication;
 
         public UserController(IUserQuery userQuery, IAuthHelper authHelper, IUserApplication userApplication,
             IUPAccountRequestApplication upAccountRequestApplication, IRejectionReasonApplication rejectionReasonApplication,
             IUpAccountRequestRejectionReasonApplication upAccountRequestRejectionReasonApplication,
             IPersonalWalletApplication personalWalletApplication, IBusinessWalletApplication businessWalletApplication,
             IPersonalWalletOperationApplication personalWalletOperationApplication, IZarinPalFactory zarinPalFactory,
-            IUserCooperationRequestApplication userCooperationRequestApplication, IRoleTypeApplication roleTypeApplication)
+            IUserCooperationRequestApplication userCooperationRequestApplication, IRoleTypeApplication roleTypeApplication, ISellerPanelApplication sellerPanelApplication,
+            IPersonalityTypeApplication personalityTypeApplication)
         {
             _userQuery = userQuery;
             _authHelper = authHelper;
@@ -55,6 +60,8 @@ namespace ServiceHost.Controllers
             _zarinPalFactory = zarinPalFactory;
             _UserCooperationRequestApplication = userCooperationRequestApplication;
             _roleTypeApplication = roleTypeApplication;
+            _sellerPanelApplication = sellerPanelApplication;
+            _personalityTypeApplication = personalityTypeApplication;
         }
 
         #region for users To Edit profile details in their profile
@@ -66,8 +73,9 @@ namespace ServiceHost.Controllers
             long userId = _authHelper.CurrentAccountInfo().Id;
             var userInfo = _userQuery.GetUserInfo(userId);
             var EditUser = _userApplication.GetDetails(userId);
-            var RoleTypesWithRoles = _roleTypeApplication.GetList();
-            var model = new Tuple<UserInfoQueryModel, EditUser,List<RoleTypeViewModel>>(userInfo, EditUser,RoleTypesWithRoles);
+            //var RoleTypesWithRoles = _roleTypeApplication.GetList();
+            var PersonalityTypesWithPersonalities = _personalityTypeApplication.GetList();
+            var model = new Tuple<UserInfoQueryModel, EditUser,List<PersonalityTypeViewModel>>(userInfo, EditUser, PersonalityTypesWithPersonalities);
             return View(model);
         }
 
@@ -260,7 +268,24 @@ namespace ServiceHost.Controllers
         }
         #endregion
 
-      
+        #region CreateSellerPanel
+
+        public IActionResult CreateSellerPanel()
+        {
+            return PartialView();
+        }
+
+        [HttpPost]
+        public IActionResult CreateSellerPanel(CreateSellerPanel command, List<long> RequestedPersonalityIds)
+        {
+            var result=_sellerPanelApplication.Create(command, RequestedPersonalityIds);
+            return RedirectToAction("UserProfile", new { message = result.Message });
+
+
+        }
+        #endregion
+
+
 
 
     }

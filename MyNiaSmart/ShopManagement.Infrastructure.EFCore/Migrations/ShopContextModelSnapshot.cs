@@ -16,7 +16,7 @@ namespace ShopManagement.Infrastructure.EFCore.Migrations
 #pragma warning disable 612, 618
             modelBuilder
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
-                .HasAnnotation("ProductVersion", "5.0.16")
+                .HasAnnotation("ProductVersion", "5.0.17")
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
             modelBuilder.Entity("ShopManagement.Domain.ProductAgg.Product", b =>
@@ -84,7 +84,7 @@ namespace ShopManagement.Infrastructure.EFCore.Migrations
                     b.ToTable("Products");
                 });
 
-            modelBuilder.Entity("ShopManagement.Domain.ProductBrandAgg.ProductBrand", b =>
+            modelBuilder.Entity("ShopManagement.Domain.ProductCategoryAgg.ProductBrandAgg.ProductBrand", b =>
                 {
                     b.Property<long>("Id")
                         .ValueGeneratedOnAdd()
@@ -102,7 +102,7 @@ namespace ShopManagement.Infrastructure.EFCore.Migrations
                     b.ToTable("ProductBrands");
                 });
 
-            modelBuilder.Entity("ShopManagement.Domain.ProductModelAgg.ProductModel", b =>
+            modelBuilder.Entity("ShopManagement.Domain.ProductCategoryAgg.ProductModelAgg.ProductModel", b =>
                 {
                     b.Property<long>("Id")
                         .ValueGeneratedOnAdd()
@@ -120,7 +120,7 @@ namespace ShopManagement.Infrastructure.EFCore.Migrations
                     b.ToTable("ProductModels");
                 });
 
-            modelBuilder.Entity("ShopManagement.Domain.ProductStatusAgg.ProductStatus", b =>
+            modelBuilder.Entity("ShopManagement.Domain.ProductCategoryAgg.ProductStatusAgg.ProductStatus", b =>
                 {
                     b.Property<long>("Id")
                         .ValueGeneratedOnAdd()
@@ -138,7 +138,7 @@ namespace ShopManagement.Infrastructure.EFCore.Migrations
                     b.ToTable("ProductStatuses");
                 });
 
-            modelBuilder.Entity("ShopManagement.Domain.ProductTypeAgg.ProductType", b =>
+            modelBuilder.Entity("ShopManagement.Domain.ProductCategoryAgg.ProductTypeAgg.ProductType", b =>
                 {
                     b.Property<long>("Id")
                         .ValueGeneratedOnAdd()
@@ -156,7 +156,7 @@ namespace ShopManagement.Infrastructure.EFCore.Migrations
                     b.ToTable("ProductTypes");
                 });
 
-            modelBuilder.Entity("ShopManagement.Domain.ProductUsageTypeAgg.ProductUsageType", b =>
+            modelBuilder.Entity("ShopManagement.Domain.ProductCategoryAgg.ProductUsageTypeAgg.ProductUsageType", b =>
                 {
                     b.Property<long>("Id")
                         .ValueGeneratedOnAdd()
@@ -174,33 +174,72 @@ namespace ShopManagement.Infrastructure.EFCore.Migrations
                     b.ToTable("ProductUsageTypes");
                 });
 
+            modelBuilder.Entity("ShopManagement.Domain.SellerPanel.SellerPanel", b =>
+                {
+                    b.Property<long>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("bigint")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("Address")
+                        .HasMaxLength(1000)
+                        .HasColumnType("nvarchar(1000)");
+
+                    b.Property<int>("BuyersCategory")
+                        .HasColumnType("int");
+
+                    b.Property<bool>("CanMarketerSee")
+                        .HasColumnType("bit");
+
+                    b.Property<DateTime>("CreationDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<bool>("IsConfirmedByAdmin")
+                        .HasColumnType("bit");
+
+                    b.Property<string>("StoreMobileNumber")
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)");
+
+                    b.Property<string>("StoreName")
+                        .HasMaxLength(256)
+                        .HasColumnType("nvarchar(256)");
+
+                    b.Property<long>("UserId")
+                        .HasColumnType("bigint");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("SellerPanels");
+                });
+
             modelBuilder.Entity("ShopManagement.Domain.ProductAgg.Product", b =>
                 {
-                    b.HasOne("ShopManagement.Domain.ProductBrandAgg.ProductBrand", "ProductBrand")
+                    b.HasOne("ShopManagement.Domain.ProductCategoryAgg.ProductBrandAgg.ProductBrand", "ProductBrand")
                         .WithMany("Products")
                         .HasForeignKey("ProductBrandId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("ShopManagement.Domain.ProductModelAgg.ProductModel", "ProductModel")
+                    b.HasOne("ShopManagement.Domain.ProductCategoryAgg.ProductModelAgg.ProductModel", "ProductModel")
                         .WithMany("Products")
                         .HasForeignKey("ProductModelId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("ShopManagement.Domain.ProductStatusAgg.ProductStatus", "ProductStatus")
+                    b.HasOne("ShopManagement.Domain.ProductCategoryAgg.ProductStatusAgg.ProductStatus", "ProductStatus")
                         .WithMany("Products")
                         .HasForeignKey("ProductStatusId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("ShopManagement.Domain.ProductTypeAgg.ProductType", "ProductType")
+                    b.HasOne("ShopManagement.Domain.ProductCategoryAgg.ProductTypeAgg.ProductType", "ProductType")
                         .WithMany("Products")
                         .HasForeignKey("ProductTypeId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("ShopManagement.Domain.ProductUsageTypeAgg.ProductUsageType", "ProductUsageType")
+                    b.HasOne("ShopManagement.Domain.ProductCategoryAgg.ProductUsageTypeAgg.ProductUsageType", "ProductUsageType")
                         .WithMany("Products")
                         .HasForeignKey("ProductUsageTypeId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -217,27 +256,27 @@ namespace ShopManagement.Infrastructure.EFCore.Migrations
                     b.Navigation("ProductUsageType");
                 });
 
-            modelBuilder.Entity("ShopManagement.Domain.ProductBrandAgg.ProductBrand", b =>
+            modelBuilder.Entity("ShopManagement.Domain.ProductCategoryAgg.ProductBrandAgg.ProductBrand", b =>
                 {
                     b.Navigation("Products");
                 });
 
-            modelBuilder.Entity("ShopManagement.Domain.ProductModelAgg.ProductModel", b =>
+            modelBuilder.Entity("ShopManagement.Domain.ProductCategoryAgg.ProductModelAgg.ProductModel", b =>
                 {
                     b.Navigation("Products");
                 });
 
-            modelBuilder.Entity("ShopManagement.Domain.ProductStatusAgg.ProductStatus", b =>
+            modelBuilder.Entity("ShopManagement.Domain.ProductCategoryAgg.ProductStatusAgg.ProductStatus", b =>
                 {
                     b.Navigation("Products");
                 });
 
-            modelBuilder.Entity("ShopManagement.Domain.ProductTypeAgg.ProductType", b =>
+            modelBuilder.Entity("ShopManagement.Domain.ProductCategoryAgg.ProductTypeAgg.ProductType", b =>
                 {
                     b.Navigation("Products");
                 });
 
-            modelBuilder.Entity("ShopManagement.Domain.ProductUsageTypeAgg.ProductUsageType", b =>
+            modelBuilder.Entity("ShopManagement.Domain.ProductCategoryAgg.ProductUsageTypeAgg.ProductUsageType", b =>
                 {
                     b.Navigation("Products");
                 });

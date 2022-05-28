@@ -16,7 +16,8 @@ namespace AccountManagement.Infrastructure.EFCore.Mapping
             builder.ToTable("UserCooperationRequests");
             builder.HasKey(x => x.Id);
 
-            builder.HasOne(x => x.Role).WithMany(x => x.UserCooperationRequests).HasForeignKey(x => x.RoleId);
+            //builder.HasOne(x => x.Role).WithMany(x => x.UserCooperationRequests).HasForeignKey(x => x.RoleId);
+            builder.HasOne(x => x.Personality).WithMany(x => x.UserCooperationRequests).HasForeignKey(x => x.PersonalityId);
             builder.HasOne(x => x.User).WithMany(x => x.UserCooperationRequests).HasForeignKey(x => x.UserId);
         }
     }

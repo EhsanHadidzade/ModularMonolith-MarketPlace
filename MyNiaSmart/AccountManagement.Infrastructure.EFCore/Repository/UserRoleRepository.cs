@@ -15,18 +15,22 @@ namespace AccountManagement.Infrastructure.EFCore.Repository
     {
         private readonly AccountContext _context;
 
-        public UserRoleRepository(AccountContext context):base(context)
+        public UserRoleRepository(AccountContext context) : base(context)
         {
             _context = context;
         }
 
         public List<RoleViewModel> GetUserRolesByUserId(long userId)
         {
-            var userRoleIds=_context.UserRoles.Where(x => x.UserId == userId).Select(x=>x.RoleId).ToList();
+            var userRoleIds = _context.UserRoles.Where(x => x.UserId == userId).Select(x => x.RoleId).ToList();
             var userRoles = new List<RoleViewModel>();
             foreach (var roleId in userRoleIds)
             {
-               var role= _context.Roles.Select(x => new RoleViewModel { Id=x.Id,Name=x.Name}).FirstOrDefault(x => x.Id == roleId);
+                var role = _context.Roles.Select(x => new RoleViewModel
+                {
+                    Id = x.Id,
+                    Name = x.Name
+                }).FirstOrDefault(x => x.Id == roleId);
                 userRoles.Add(role);
             }
             return userRoles;
@@ -34,12 +38,12 @@ namespace AccountManagement.Infrastructure.EFCore.Repository
 
         public List<UserRole> GetUserRolesOfOneUserByUserId(long userId)
         {
-            return _context.UserRoles.Where(x=>x.UserId == userId).ToList();
+            return _context.UserRoles.Where(x => x.UserId == userId).ToList();
         }
 
         public void RemoveUserRolesofOneUserByUserId(long userId)
         {
-            var userRoles=GetUserRolesOfOneUserByUserId(userId);
+            var userRoles = GetUserRolesOfOneUserByUserId(userId);
             foreach (var userRole in userRoles)
             {
                 _context.UserRoles.Remove(userRole);

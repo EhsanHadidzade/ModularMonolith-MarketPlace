@@ -1,6 +1,9 @@
-﻿using AccountManagement.Application.Contract.RoleType;
+﻿using AccountManagement.Application.Contract.PersonalityType;
+using AccountManagement.Application.Contract.RoleType;
 using AccountManagement.Application.Contract.UserCooperationRequest;
+using AccountManagement.Application.Contract.UserPersonality;
 using AccountManagement.Application.Contract.UserRole;
+using AccountManagement.Domain.PersonalityTypeAgg;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
@@ -13,13 +16,18 @@ namespace ServiceHost.Areas.Administrator.Controllers
         private readonly IUserCooperationRequestApplication _userCooperationRequestApplication;
         private readonly IRoleTypeApplication _roleTypeApplication;
         private readonly IUserRoleApplication _userRoleApplication;
+        private readonly IPersonalityTypeApplication _personalityTypeApplication;
+        private readonly IUserPersonalityApplication _userPersonalityApplication;
 
         public UserCooperationRequestController(IUserCooperationRequestApplication userCooperationRequestApplication,
-            IRoleTypeApplication roleTypeApplication, IUserRoleApplication userRoleApplication)
+            IRoleTypeApplication roleTypeApplication, IUserRoleApplication userRoleApplication,
+            IPersonalityTypeApplication personalityTypeApplication, IUserPersonalityApplication userPersonalityApplication)
         {
             _userCooperationRequestApplication = userCooperationRequestApplication;
             _roleTypeApplication = roleTypeApplication;
             _userRoleApplication = userRoleApplication;
+            _personalityTypeApplication = personalityTypeApplication;
+            _userPersonalityApplication = userPersonalityApplication;
         }
 
         public IActionResult Index()
@@ -28,24 +36,24 @@ namespace ServiceHost.Areas.Administrator.Controllers
             return View(usersWithRequests);
         }
 
-        public IActionResult ShowAndSetRequestedRoles(long id)
+        public IActionResult ShowAndSetRequestedPersonalities(long id)
         {
             //id is the userId from tables to return his requested RoleIds
             var RequestedRoleIds = _userCooperationRequestApplication.GetAllRequestedRoleIdsByUserId(id);
-            var roleTypesWithRoles = _roleTypeApplication.GetList();
-            var model = new Tuple<List<RoleTypeViewModel>, List<long>, long>(roleTypesWithRoles, RequestedRoleIds, id);
+            var personalityTypesWithPersonalities = _personalityTypeApplication.GetList();
+            var model = new Tuple<List<PersonalityTypeViewModel>, List<long>, long>(personalityTypesWithPersonalities, RequestedRoleIds, id);
             return PartialView(model);
         }
 
         [HttpPost]
-        public IActionResult SetRolesForUser(long userId, List<int> ConfirmedRoleIds)
+        public IActionResult SetPersonalitiesForUser(long userId, List<int> ConfirmedPersonalityIds)
         {
-            var command = new CreateUserRole
+            var command = new CreateUserPersonality
             {
                 UserId = userId,
-                SelectedRoleIds = ConfirmedRoleIds
+                SelectedPersonalityIds = ConfirmedPersonalityIds
             };
-            var result = _userRoleApplication.CreateUserRoles(command);
+            _userPersonalityApplication.CreateUserPersonalities(command);
             return Redirect("./index");
 
 

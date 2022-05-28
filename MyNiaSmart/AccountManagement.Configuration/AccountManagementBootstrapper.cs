@@ -3,6 +3,7 @@ using _0_MyNiaSmartQuery.Query;
 using AccountManagement.Application;
 using AccountManagement.Application.Contract.BusinessWallet;
 using AccountManagement.Application.Contract.Personality;
+using AccountManagement.Application.Contract.PersonalityType;
 using AccountManagement.Application.Contract.PersonalWallet;
 using AccountManagement.Application.Contract.PersonalWalletChart;
 using AccountManagement.Application.Contract.PersonalWalletOperation;
@@ -14,10 +15,12 @@ using AccountManagement.Application.Contract.UpAccountRequestRejectionReason;
 using AccountManagement.Application.Contract.User;
 using AccountManagement.Application.Contract.UserCooperationRequest;
 using AccountManagement.Application.Contract.UserPersonality;
+using AccountManagement.Application.Contract.UserPersonalityRequest;
 using AccountManagement.Application.Contract.UserRole;
 using AccountManagement.Application.Wallet;
 using AccountManagement.Domain.CooperationRequestAgg;
 using AccountManagement.Domain.PersonalityAgg;
+using AccountManagement.Domain.PersonalityTypeAgg;
 using AccountManagement.Domain.RejectionReasonAgg;
 using AccountManagement.Domain.RoleAgg;
 using AccountManagement.Domain.RoleTypeAgg;
@@ -25,6 +28,7 @@ using AccountManagement.Domain.UpAccountRequestRejectionReasonAgg;
 using AccountManagement.Domain.UPAccountRequestsAgg;
 using AccountManagement.Domain.UserAgg;
 using AccountManagement.Domain.UserPersonalityAgg;
+using AccountManagement.Domain.UserPersonalityRequestAgg;
 using AccountManagement.Domain.UserRoleAgg;
 using AccountManagement.Domain.WalletAgg.BusinessWalletAgg;
 using AccountManagement.Domain.WalletAgg.PersonalwalletAgg;
@@ -61,8 +65,14 @@ namespace AccountManagement.Configuration
             services.AddTransient<IPersonalityApplication,PersonalityApplication>();
             services.AddTransient<IPersonalityRepository,PersonalityRepository>();
 
+            services.AddTransient<IPersonalityTypeApplication, PersonalityTypeApplication>();
+            services.AddTransient<IPersonalityTypeRepository, PersonalityTypeRepository>();
+
             services.AddTransient<IUserPersonalityApplication,UserPersonalityApplication>();
             services.AddTransient<IUserPersonalityRepository,UserPersonalityRepository>();
+
+            services.AddTransient<IUserPersonalityRequestApplication, UserPersonalityRequestApplication>();
+            services.AddTransient<IUserPersonalityRequestRepository, UserPersonalityRequestRepository>();
 
             services.AddTransient<IUPAccountRequestApplication,UpAccountRequestApplication>();
             services.AddTransient<IUPAccountRequestRepository, UpAccountRequestRepository>();

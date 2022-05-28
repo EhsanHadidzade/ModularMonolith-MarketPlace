@@ -20,6 +20,8 @@ namespace AccountManagement.Domain.UserAgg
         //To check if a user is AdminOrNot
         bool IsUserAdmin(long userId);
 
+        string GetFullNameByUserId(long userId);
+
      
 
         

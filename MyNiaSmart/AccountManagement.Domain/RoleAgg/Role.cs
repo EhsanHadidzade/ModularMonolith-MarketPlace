@@ -20,7 +20,7 @@ namespace AccountManagement.Domain.RoleAgg
         public List<UserRole> UserRoles{ get;private set; }
 
         //relation with userCooperationRequest
-        public List<UserCooperationRequest> UserCooperationRequests { get; private set; }
+        //public List<UserCooperationRequest> UserCooperationRequests { get; private set; }
 
         //relation with RoleType
         public long? RoleTypeId { get;private set; }
@@ -33,7 +33,7 @@ namespace AccountManagement.Domain.RoleAgg
             RoleTypeId = roleTypeId;
             IsRemoved=false;
             UserRoles = new List<UserRole>();
-            UserCooperationRequests = new List<UserCooperationRequest>();
+            //UserCooperationRequests = new List<UserCooperationRequest>();
         }
         
         public void Edit(string name,long? roleTypeId)

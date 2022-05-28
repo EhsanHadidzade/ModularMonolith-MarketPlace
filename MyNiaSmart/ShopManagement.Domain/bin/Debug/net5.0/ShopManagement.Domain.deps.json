@@ -9,6 +9,7 @@
       "ShopManagement.Domain/1.0.0": {
         "dependencies": {
           "0_Framework": "1.0.0",
+          "AccountManagement.Domain": "1.0.0",
           "ShopManagement.Application.Contract": "1.0.0"
         },
         "runtime": {
@@ -1121,6 +1122,23 @@
           "0_Framework.dll": {}
         }
       },
+      "AccountManagement.Application.Contract/1.0.0": {
+        "dependencies": {
+          "0_Framework": "1.0.0"
+        },
+        "runtime": {
+          "AccountManagement.Application.Contract.dll": {}
+        }
+      },
+      "AccountManagement.Domain/1.0.0": {
+        "dependencies": {
+          "0_Framework": "1.0.0",
+          "AccountManagement.Application.Contract": "1.0.0"
+        },
+        "runtime": {
+          "AccountManagement.Domain.dll": {}
+        }
+      },
       "ShopManagement.Application.Contract/1.0.0": {
         "dependencies": {
           "0_Framework": "1.0.0"
@@ -1985,6 +2003,16 @@
       "hashPath": "system.valuetuple.4.5.0.nupkg.sha512"
     },
     "0_Framework/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "AccountManagement.Application.Contract/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "AccountManagement.Domain/1.0.0": {
       "type": "project",
       "serviceable": false,
       "sha512": ""

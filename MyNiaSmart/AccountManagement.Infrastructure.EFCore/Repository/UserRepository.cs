@@ -38,6 +38,11 @@ namespace AccountManagement.Infrastructure.EFCore.Repository
             }).FirstOrDefault(x=>x.Id == id);
         }
 
+        public string GetFullNameByUserId(long userId)
+        {
+            return _context.Users.Select(x => new {x.Id,x.FullName}).FirstOrDefault(x=>x.Id==userId).FullName;
+        }
+
         public User GetUserByActiveCode(string activeCode)
         {
             return _context.Users.SingleOrDefault(x=>x.ActiveCode == activeCode);

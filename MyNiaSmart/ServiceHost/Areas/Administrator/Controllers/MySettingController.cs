@@ -1,4 +1,5 @@
 ﻿using AccountManagement.Application.Contract.Personality;
+using AccountManagement.Application.Contract.PersonalityType;
 using AccountManagement.Application.Contract.RejectionReason;
 using AccountManagement.Application.Contract.Role;
 using AccountManagement.Application.Contract.RoleType;
@@ -14,15 +15,17 @@ namespace ServiceHost.Areas.Administrator.Controllers
         private readonly IRoleApplication _roleApplication;
         private readonly IPersonalityApplication _personalityApplication;
         private readonly IRejectionReasonApplication _rejectionReasonApplication;
+        private readonly IPersonalityTypeApplication _personalityTypeApplication;
 
 
         public MySettingController(IRoleTypeApplication roleTypeApplication, IRejectionReasonApplication rejectionReasonApplication,
-            IPersonalityApplication personalityApplication, IRoleApplication roleApplication)
+            IPersonalityApplication personalityApplication, IRoleApplication roleApplication, IPersonalityTypeApplication personalityTypeApplication)
         {
             _roleTypeApplication = roleTypeApplication;
             _rejectionReasonApplication = rejectionReasonApplication;
             _personalityApplication = personalityApplication;
             _roleApplication = roleApplication;
+            _personalityTypeApplication = personalityTypeApplication;
         }
 
         public IActionResult Index()
@@ -88,9 +91,39 @@ namespace ServiceHost.Areas.Administrator.Controllers
         }
         #endregion
 
+        #region PersonalityTypes Management
+        public IActionResult _PersonalityTypeCreate()
+        {
+
+            return PartialView();
+        }
+
+        [HttpPost]
+        public IActionResult _PersonalityTypeCreate(CreatePersonalityType command)
+        {
+            var result=_personalityTypeApplication.Create(command);
+            return Redirect("./index");
+        }
+
+        public IActionResult _PersonalityTypeEdit(long id)
+        {
+            var personalityType = _personalityTypeApplication.GetDetails(id);
+            return PartialView(personalityType);
+        }
+
+        [HttpPost]
+        public IActionResult _PersonalityTypeEdit(EditPersonalityType command)
+        {
+            var result = _personalityTypeApplication.Edit(command);
+            return Redirect("./index");
+        }
+
+        #endregion
+
         #region Personalities management
         public IActionResult _PersonalityCreate()
         {
+            ViewData["PersonalityTypes"] = new SelectList(_personalityTypeApplication.GetList(), "Id", "Title");
             return PartialView();
         }
 
@@ -102,6 +135,7 @@ namespace ServiceHost.Areas.Administrator.Controllers
         }
         public IActionResult _PersonalityEdit(long id)
         {
+            ViewData["PersonalityTypes"] = new SelectList(_personalityTypeApplication.GetList(), "Id", "Title");
             var personality = _personalityApplication.GetDetails(id);
             return PartialView(personality);
         }

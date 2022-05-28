@@ -9,6 +9,6 @@ namespace AccountManagement.Application.Contract.UserCooperationRequest
     public class CreateUserCooperationRequest
     {
         public long UserId { get; set; }
-        public List<long> SelectedRoleIds { get; set; }
+        public List<long> SelectedPersonalityIds { get; set; }
     }
 }

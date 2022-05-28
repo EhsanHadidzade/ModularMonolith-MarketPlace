@@ -20,7 +20,7 @@ namespace AccountManagement.Infrastructure.EFCore.Mapping
 
             //Relations
             builder.HasMany(x => x.UserRoles).WithOne(x => x.Role).HasForeignKey(x => x.RoleId);
-            builder.HasMany(x => x.UserCooperationRequests).WithOne(x => x.Role).HasForeignKey(x => x.RoleId);
+            //builder.HasMany(x => x.UserCooperationRequests).WithOne(x => x.Role).HasForeignKey(x => x.RoleId);
 
             builder.HasOne(x=>x.RoleType).WithMany(x=>x.Roles).HasForeignKey(x=>x.RoleTypeId);
         }

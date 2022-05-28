@@ -1,6 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
-using ShopManagement.Domain.ProductUsageTypeAgg;
+using ShopManagement.Domain.ProductCategoryAgg.ProductUsageTypeAgg;
 using System;
 using System.Collections.Generic;
 using System.Linq;

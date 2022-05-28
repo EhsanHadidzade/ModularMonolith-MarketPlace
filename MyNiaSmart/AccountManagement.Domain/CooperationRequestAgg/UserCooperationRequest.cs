@@ -1,4 +1,5 @@
 ﻿using _0_Framework.Domain;
+using AccountManagement.Domain.PersonalityAgg;
 using AccountManagement.Domain.RoleAgg;
 using AccountManagement.Domain.UserAgg;
 using System;
@@ -11,21 +12,21 @@ namespace AccountManagement.Domain.CooperationRequestAgg
 {
     public class UserCooperationRequest:BaseEntity
     {
-        public long RoleId { get; private set; }
+        public long PersonalityId { get; private set; }
         public long UserId { get; private set; }
 
         //Relation with user and role
-        public Role Role { get; private set; }
+        public Personality Personality { get; private set; }
         public User User { get; private set; }
 
-        public UserCooperationRequest(long roleId, long userId)
+        public UserCooperationRequest(long personalityId, long userId)
         {
-            RoleId = roleId;
+            PersonalityId = personalityId;
             UserId = userId;
         }
-        public void Edit(long roleId, long userId)
+        public void Edit(long personalityId, long userId)
         {
-            RoleId = roleId;
+            PersonalityId = personalityId;
             UserId = userId;
         }
     }

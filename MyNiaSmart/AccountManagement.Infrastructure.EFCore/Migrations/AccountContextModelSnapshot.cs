@@ -29,7 +29,7 @@ namespace AccountManagement.Infrastructure.EFCore.Migrations
                     b.Property<DateTime>("CreationDate")
                         .HasColumnType("datetime2");
 
-                    b.Property<long>("RoleId")
+                    b.Property<long>("PersonalityId")
                         .HasColumnType("bigint");
 
                     b.Property<long>("UserId")
@@ -37,7 +37,7 @@ namespace AccountManagement.Infrastructure.EFCore.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("RoleId");
+                    b.HasIndex("PersonalityId");
 
                     b.HasIndex("UserId");
 
@@ -54,13 +54,37 @@ namespace AccountManagement.Infrastructure.EFCore.Migrations
                     b.Property<DateTime>("CreationDate")
                         .HasColumnType("datetime2");
 
+                    b.Property<long>("PersonalityTypeId")
+                        .HasColumnType("bigint");
+
                     b.Property<string>("Title")
                         .HasMaxLength(100)
                         .HasColumnType("nvarchar(100)");
 
                     b.HasKey("Id");
 
+                    b.HasIndex("PersonalityTypeId");
+
                     b.ToTable("Personalities");
+                });
+
+            modelBuilder.Entity("AccountManagement.Domain.PersonalityTypeAgg.PersonalityType", b =>
+                {
+                    b.Property<long>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("bigint")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<DateTime>("CreationDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("Title")
+                        .HasMaxLength(256)
+                        .HasColumnType("nvarchar(256)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("PersonalityTypes");
                 });
 
             modelBuilder.Entity("AccountManagement.Domain.RejectionReasonAgg.RejectionReason", b =>
@@ -404,6 +428,31 @@ namespace AccountManagement.Infrastructure.EFCore.Migrations
                     b.ToTable("UserPersonalities");
                 });
 
+            modelBuilder.Entity("AccountManagement.Domain.UserPersonalityRequestAgg.UserPersonalityRequest", b =>
+                {
+                    b.Property<long>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("bigint")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<DateTime>("CreationDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<long>("PersonalityId")
+                        .HasColumnType("bigint");
+
+                    b.Property<long>("UserId")
+                        .HasColumnType("bigint");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("PersonalityId");
+
+                    b.HasIndex("UserId");
+
+                    b.ToTable("UserPersonalityRequests");
+                });
+
             modelBuilder.Entity("AccountManagement.Domain.UserRoleAgg.UserRole", b =>
                 {
                     b.Property<long>("Id")
@@ -603,9 +652,9 @@ namespace AccountManagement.Infrastructure.EFCore.Migrations
 
             modelBuilder.Entity("AccountManagement.Domain.CooperationRequestAgg.UserCooperationRequest", b =>
                 {
-                    b.HasOne("AccountManagement.Domain.RoleAgg.Role", "Role")
+                    b.HasOne("AccountManagement.Domain.PersonalityAgg.Personality", "Personality")
                         .WithMany("UserCooperationRequests")
-                        .HasForeignKey("RoleId")
+                        .HasForeignKey("PersonalityId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
@@ -615,9 +664,20 @@ namespace AccountManagement.Infrastructure.EFCore.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.Navigation("Role");
+                    b.Navigation("Personality");
 
                     b.Navigation("User");
+                });
+
+            modelBuilder.Entity("AccountManagement.Domain.PersonalityAgg.Personality", b =>
+                {
+                    b.HasOne("AccountManagement.Domain.PersonalityTypeAgg.PersonalityType", "PersonalityType")
+                        .WithMany("Personalities")
+                        .HasForeignKey("PersonalityTypeId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("PersonalityType");
                 });
 
             modelBuilder.Entity("AccountManagement.Domain.RoleAgg.Role", b =>
@@ -669,6 +729,25 @@ namespace AccountManagement.Infrastructure.EFCore.Migrations
 
                     b.HasOne("AccountManagement.Domain.UserAgg.User", "User")
                         .WithMany("UserPersonalities")
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Personality");
+
+                    b.Navigation("User");
+                });
+
+            modelBuilder.Entity("AccountManagement.Domain.UserPersonalityRequestAgg.UserPersonalityRequest", b =>
+                {
+                    b.HasOne("AccountManagement.Domain.PersonalityAgg.Personality", "Personality")
+                        .WithMany("UserPersonalityRequests")
+                        .HasForeignKey("PersonalityId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("AccountManagement.Domain.UserAgg.User", "User")
+                        .WithMany("UserPersonalityRequests")
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -751,7 +830,16 @@ namespace AccountManagement.Infrastructure.EFCore.Migrations
 
             modelBuilder.Entity("AccountManagement.Domain.PersonalityAgg.Personality", b =>
                 {
+                    b.Navigation("UserCooperationRequests");
+
                     b.Navigation("UserPersonalities");
+
+                    b.Navigation("UserPersonalityRequests");
+                });
+
+            modelBuilder.Entity("AccountManagement.Domain.PersonalityTypeAgg.PersonalityType", b =>
+                {
+                    b.Navigation("Personalities");
                 });
 
             modelBuilder.Entity("AccountManagement.Domain.RejectionReasonAgg.RejectionReason", b =>
@@ -761,8 +849,6 @@ namespace AccountManagement.Infrastructure.EFCore.Migrations
 
             modelBuilder.Entity("AccountManagement.Domain.RoleAgg.Role", b =>
                 {
-                    b.Navigation("UserCooperationRequests");
-
                     b.Navigation("UserRoles");
                 });
 
@@ -787,6 +873,8 @@ namespace AccountManagement.Infrastructure.EFCore.Migrations
                     b.Navigation("UserCooperationRequests");
 
                     b.Navigation("UserPersonalities");
+
+                    b.Navigation("UserPersonalityRequests");
 
                     b.Navigation("UserRoles");
                 });

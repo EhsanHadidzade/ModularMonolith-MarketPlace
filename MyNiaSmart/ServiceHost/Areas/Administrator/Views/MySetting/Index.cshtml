@@ -5,6 +5,7 @@
 
 @inject AccountManagement.Application.Contract.RoleType.IRoleTypeApplication _roleTypeApplication
 @inject AccountManagement.Application.Contract.Role.IRoleApplication _roleApplication
+@inject AccountManagement.Application.Contract.PersonalityType.IPersonalityTypeApplication _personalityTypeApplication
 @inject AccountManagement.Application.Contract.Personality.IPersonalityApplication _personalityApplication
 @inject AccountManagement.Application.Contract.RejectionReason.IRejectionReasonApplication _rejectionReasonApplication
 
@@ -39,6 +40,9 @@
                         <li class="nav-item">
                             <a class="nav-link " data-toggle="tab" href="#home"><i class="la la-home mr-2"></i>  نقش ها</a>
                         </li>
+                         <li class="nav-item">
+                            <a class="nav-link " data-toggle="tab" href="#personalityType"><i class="la la-user mr-2"></i> گروه بندی شخصیت های سازمان</a>
+                        </li>
                         <li class="nav-item">
                             <a class="nav-link" data-toggle="tab" href="#contact"><i class="la la-phone mr-2"></i> شخصیت های سازمان </a>
                         </li>
@@ -57,6 +61,12 @@
                             <div class="pt-4">
                                 <h4> نقش ها</h4>
                                <partial name="_Role" model="_roleApplication.GetList()" />
+                            </div>
+                        </div>
+                           <div class="tab-pane fade " id="personalityType">
+                            <div class="pt-4">
+                                <h4>گروه بندی شخصیت های سازمان</h4>
+                                <partial name="_PersonalityType" model="_personalityTypeApplication.GetList()" />
                             </div>
                         </div>
                         <div class="tab-pane fade" id="contact">

@@ -7,12 +7,15 @@ using ShopManagement.Application.Contract.ProductModel;
 using ShopManagement.Application.Contract.ProductStatus;
 using ShopManagement.Application.Contract.ProductType;
 using ShopManagement.Application.Contract.ProductUsageType;
+using ShopManagement.Application.Contract.SellerPanel;
+using ShopManagement.Application.ProductCategoryApplication;
 using ShopManagement.Domain.ProductAgg;
-using ShopManagement.Domain.ProductBrandAgg;
-using ShopManagement.Domain.ProductModelAgg;
-using ShopManagement.Domain.ProductStatusAgg;
-using ShopManagement.Domain.ProductTypeAgg;
-using ShopManagement.Domain.ProductUsageTypeAgg;
+using ShopManagement.Domain.ProductCategoryAgg.ProductBrandAgg;
+using ShopManagement.Domain.ProductCategoryAgg.ProductModelAgg;
+using ShopManagement.Domain.ProductCategoryAgg.ProductStatusAgg;
+using ShopManagement.Domain.ProductCategoryAgg.ProductTypeAgg;
+using ShopManagement.Domain.ProductCategoryAgg.ProductUsageTypeAgg;
+using ShopManagement.Domain.SellerPanel;
 using ShopManagement.Infrastructure.EFCore;
 using ShopManagement.Infrastructure.EFCore.Repository;
 using System;
@@ -45,6 +48,9 @@ namespace ShopManagement.Configuration
 
             services.AddTransient<IProductRepository, ProductRepository>();
             services.AddTransient<IProductApplication, ProductApplication>();
+
+            services.AddTransient<ISellerPanelRepository,SellerPanelRepository>();
+            services.AddTransient<ISellerPanelApplication, SellerPanelApplication>();
 
 
             services.AddDbContext<ShopContext>(item => item.UseSqlServer(connectionstring));

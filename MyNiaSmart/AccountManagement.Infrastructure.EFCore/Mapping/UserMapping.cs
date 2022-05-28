@@ -33,6 +33,7 @@ namespace AccountManagement.Infrastructure.EFCore.Mapping
             //Relations
             builder.HasMany(x => x.UserRoles).WithOne(x => x.User).HasForeignKey(x => x.UserId);
             builder.HasMany(x => x.UserCooperationRequests).WithOne(x => x.User).HasForeignKey(x => x.UserId);
+            builder.HasMany(x => x.UserPersonalityRequests).WithOne(x => x.User).HasForeignKey(x => x.UserId);
             builder.HasOne(x => x.UpAccountRequest).WithOne(x => x.User).HasForeignKey<UpAccountRequest>(x => x.UserId);
             builder.HasOne(x => x.PersonalWallet).WithOne(x => x.User).HasForeignKey<PersonalWallet>(x => x.UserId);
             builder.HasOne(x => x.BusinessWallet).WithOne(x => x.User).HasForeignKey<BusinessWallet>(x => x.UserId);

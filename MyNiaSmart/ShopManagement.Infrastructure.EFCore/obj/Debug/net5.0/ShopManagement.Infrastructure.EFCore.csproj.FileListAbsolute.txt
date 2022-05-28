@@ -4,10 +4,16 @@ C:\Work\Projects\MyNiaSmart\MyNiaSmart\ShopManagement.Infrastructure.EFCore\bin\
 C:\Work\Projects\MyNiaSmart\MyNiaSmart\ShopManagement.Infrastructure.EFCore\bin\Debug\net5.0\ShopManagement.Infrastructure.EFCore.dll
 C:\Work\Projects\MyNiaSmart\MyNiaSmart\ShopManagement.Infrastructure.EFCore\bin\Debug\net5.0\ShopManagement.Infrastructure.EFCore.pdb
 C:\Work\Projects\MyNiaSmart\MyNiaSmart\ShopManagement.Infrastructure.EFCore\bin\Debug\net5.0\0_Framework.dll
+C:\Work\Projects\MyNiaSmart\MyNiaSmart\ShopManagement.Infrastructure.EFCore\bin\Debug\net5.0\AccountManagement.Application.Contract.dll
+C:\Work\Projects\MyNiaSmart\MyNiaSmart\ShopManagement.Infrastructure.EFCore\bin\Debug\net5.0\AccountManagement.Domain.dll
+C:\Work\Projects\MyNiaSmart\MyNiaSmart\ShopManagement.Infrastructure.EFCore\bin\Debug\net5.0\AccountManagement.Infrastructure.EFCore.dll
 C:\Work\Projects\MyNiaSmart\MyNiaSmart\ShopManagement.Infrastructure.EFCore\bin\Debug\net5.0\ShopManagement.Application.Contract.dll
 C:\Work\Projects\MyNiaSmart\MyNiaSmart\ShopManagement.Infrastructure.EFCore\bin\Debug\net5.0\ShopManagement.Domain.dll
+C:\Work\Projects\MyNiaSmart\MyNiaSmart\ShopManagement.Infrastructure.EFCore\bin\Debug\net5.0\AccountManagement.Infrastructure.EFCore.pdb
 C:\Work\Projects\MyNiaSmart\MyNiaSmart\ShopManagement.Infrastructure.EFCore\bin\Debug\net5.0\ShopManagement.Domain.pdb
 C:\Work\Projects\MyNiaSmart\MyNiaSmart\ShopManagement.Infrastructure.EFCore\bin\Debug\net5.0\0_Framework.pdb
+C:\Work\Projects\MyNiaSmart\MyNiaSmart\ShopManagement.Infrastructure.EFCore\bin\Debug\net5.0\AccountManagement.Application.Contract.pdb
+C:\Work\Projects\MyNiaSmart\MyNiaSmart\ShopManagement.Infrastructure.EFCore\bin\Debug\net5.0\AccountManagement.Domain.pdb
 C:\Work\Projects\MyNiaSmart\MyNiaSmart\ShopManagement.Infrastructure.EFCore\bin\Debug\net5.0\ShopManagement.Application.Contract.pdb
 C:\Work\Projects\MyNiaSmart\MyNiaSmart\ShopManagement.Infrastructure.EFCore\obj\Debug\net5.0\ShopManagement.Infrastructure.EFCore.csproj.AssemblyReference.cache
 C:\Work\Projects\MyNiaSmart\MyNiaSmart\ShopManagement.Infrastructure.EFCore\obj\Debug\net5.0\ShopManagement.Infrastructure.EFCore.GeneratedMSBuildEditorConfig.editorconfig

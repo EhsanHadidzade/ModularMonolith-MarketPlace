@@ -1,5 +1,6 @@
 ﻿using AccountManagement.Domain.CooperationRequestAgg;
 using AccountManagement.Domain.PersonalityAgg;
+using AccountManagement.Domain.PersonalityTypeAgg;
 using AccountManagement.Domain.RejectionReasonAgg;
 using AccountManagement.Domain.RoleAgg;
 using AccountManagement.Domain.RoleTypeAgg;
@@ -7,6 +8,7 @@ using AccountManagement.Domain.UpAccountRequestRejectionReasonAgg;
 using AccountManagement.Domain.UPAccountRequestsAgg;
 using AccountManagement.Domain.UserAgg;
 using AccountManagement.Domain.UserPersonalityAgg;
+using AccountManagement.Domain.UserPersonalityRequestAgg;
 using AccountManagement.Domain.UserRoleAgg;
 using AccountManagement.Domain.WalletAgg.BusinessWalletAgg;
 using AccountManagement.Domain.WalletAgg.OperationTypeAgg;
@@ -27,13 +29,15 @@ namespace AccountManagement.Infrastructure.EFCore
     {
         public DbSet<RoleType> RoleTypes { get; set; }
         public DbSet<Role> Roles { get; set; }
-        public DbSet<UserRole> UserRoles{ get; set; }
         public DbSet<UserCooperationRequest> UserCooperationRequests{ get; set; }
+        public DbSet<UserRole> UserRoles{ get; set; }
         public DbSet<User> Users{ get; set; }
-        public DbSet<Personality> Personalities{ get; set; }
         public DbSet<UserPersonality> UserPersonalities{ get; set; }
+        public DbSet<UserPersonalityRequest> UserPersonalityRequests { get; set; }
+        public DbSet<Personality> Personalities { get; set; }
+        public DbSet<PersonalityType> PersonalityTypes{ get; set; }
 
-        //AboutUpAccountRequest
+        //AboutUpAccountRequests
         public DbSet<UpAccountRequest> UpAccountRequests { get; set; }
         public DbSet<RejectionReason> RejectionReasons { set; get; }
         public DbSet<UpAccountRequestRejectionReason> UpAccountRequestRejectionReasons { get; set; }

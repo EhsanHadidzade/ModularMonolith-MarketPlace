@@ -18,6 +18,7 @@
                     <table class="table table-responsive-md">
                       <thead>
                             <tr>
+                                <th>عنوان گروه بندی شخصیت</th>
                                 <th>عنوان شخصیت</th>
                                 <th>عملیات</th>
                             </tr>
@@ -26,6 +27,7 @@
                             @foreach (var item in Model)
                             {
                                 <tr>
+                                    <td> @item.PersonalityTypeTitle</td>
                                     <td> @item.Title</td>
                                     <td>
                                         <div class="d-flex">

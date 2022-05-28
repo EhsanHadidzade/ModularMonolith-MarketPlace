@@ -1,6 +1,6 @@
 ﻿using _0_Framework.Infrastructure;
 using ShopManagement.Application.Contract.ProductStatus;
-using ShopManagement.Domain.ProductStatusAgg;
+using ShopManagement.Domain.ProductCategoryAgg.ProductStatusAgg;
 using System;
 using System.Collections.Generic;
 using System.Linq;

@@ -1757,6 +1757,33 @@
           "bin/placeholder/0_Framework.dll": {}
         }
       },
+      "AccountManagement.Application.Contract/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v5.0",
+        "dependencies": {
+          "0_Framework": "1.0.0"
+        },
+        "compile": {
+          "bin/placeholder/AccountManagement.Application.Contract.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/AccountManagement.Application.Contract.dll": {}
+        }
+      },
+      "AccountManagement.Domain/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v5.0",
+        "dependencies": {
+          "0_Framework": "1.0.0",
+          "AccountManagement.Application.Contract": "1.0.0"
+        },
+        "compile": {
+          "bin/placeholder/AccountManagement.Domain.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/AccountManagement.Domain.dll": {}
+        }
+      },
       "ShopManagement.Application.Contract/1.0.0": {
         "type": "project",
         "framework": ".NETCoreApp,Version=v5.0",
@@ -5943,6 +5970,16 @@
       "path": "../0_Framework/0_Framework.csproj",
       "msbuildProject": "../0_Framework/0_Framework.csproj"
     },
+    "AccountManagement.Application.Contract/1.0.0": {
+      "type": "project",
+      "path": "../AccountManagement.Application.Contract/AccountManagement.Application.Contract.csproj",
+      "msbuildProject": "../AccountManagement.Application.Contract/AccountManagement.Application.Contract.csproj"
+    },
+    "AccountManagement.Domain/1.0.0": {
+      "type": "project",
+      "path": "../AccountManagement.Domain/AccountManagement.Domain.csproj",
+      "msbuildProject": "../AccountManagement.Domain/AccountManagement.Domain.csproj"
+    },
     "ShopManagement.Application.Contract/1.0.0": {
       "type": "project",
       "path": "../ShopManagement.Application.Contract/ShopManagement.Application.Contract.csproj",
@@ -5952,6 +5989,7 @@
   "projectFileDependencyGroups": {
     "net5.0": [
       "0_Framework >= 1.0.0",
+      "AccountManagement.Domain >= 1.0.0",
       "ShopManagement.Application.Contract >= 1.0.0"
     ]
   },
@@ -5989,6 +6027,9 @@
           "projectReferences": {
             "C:\\Work\\Projects\\MyNiaSmart\\MyNiaSmart\\0_Framework\\0_Framework.csproj": {
               "projectPath": "C:\\Work\\Projects\\MyNiaSmart\\MyNiaSmart\\0_Framework\\0_Framework.csproj"
+            },
+            "C:\\Work\\Projects\\MyNiaSmart\\MyNiaSmart\\AccountManagement.Domain\\AccountManagement.Domain.csproj": {
+              "projectPath": "C:\\Work\\Projects\\MyNiaSmart\\MyNiaSmart\\AccountManagement.Domain\\AccountManagement.Domain.csproj"
             },
             "C:\\Work\\Projects\\MyNiaSmart\\MyNiaSmart\\ShopManagement.Application.Contract\\ShopManagement.Application.Contract.csproj": {
               "projectPath": "C:\\Work\\Projects\\MyNiaSmart\\MyNiaSmart\\ShopManagement.Application.Contract\\ShopManagement.Application.Contract.csproj"
