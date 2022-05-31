@@ -16,12 +16,15 @@ namespace ShopManagement.Infrastructure.EFCore.Mapping
             builder.Property(x => x.Picture).HasMaxLength(256);
             builder.Property(x => x.CountryMadeIn).HasMaxLength(100);
             builder.Property(x => x.Dimensions).HasMaxLength(100);
+            builder.Property(x => x.PartNumber).HasMaxLength(100);
 
             builder.HasOne(x=>x.ProductBrand).WithMany(x=>x.Products).HasForeignKey(x=>x.ProductBrandId);
             builder.HasOne(x=>x.ProductModel).WithMany(x=>x.Products).HasForeignKey(x=>x.ProductModelId);
             builder.HasOne(x=>x.ProductStatus).WithMany(x=>x.Products).HasForeignKey(x=>x.ProductStatusId);
             builder.HasOne(x=>x.ProductType).WithMany(x=>x.Products).HasForeignKey(x=>x.ProductTypeId);
             builder.HasOne(x=>x.ProductUsageType).WithMany(x=>x.Products).HasForeignKey(x=>x.ProductUsageTypeId);
+
+            builder.HasMany(x => x.SellerProducts).WithOne(x => x.Product).HasForeignKey(x => x.ProductId);
         }
     }
 }

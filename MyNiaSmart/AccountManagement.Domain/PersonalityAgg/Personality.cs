@@ -2,7 +2,7 @@
 using AccountManagement.Domain.CooperationRequestAgg;
 using AccountManagement.Domain.PersonalityTypeAgg;
 using AccountManagement.Domain.UserPersonalityAgg;
-using AccountManagement.Domain.UserPersonalityRequestAgg;
+//using AccountManagement.Domain.UserPersonalityRequestAgg;
 using System.Collections.Generic;
 
 namespace AccountManagement.Domain.PersonalityAgg
@@ -17,7 +17,7 @@ namespace AccountManagement.Domain.PersonalityAgg
         public long PersonalityTypeId { get;private set; }
         public PersonalityType PersonalityType{ get; private set; }
         public List<UserPersonality> UserPersonalities{ get; private set; }
-        public List<UserPersonalityRequest> UserPersonalityRequests { get; private set; }
+        //public List<UserPersonalityRequest> UserPersonalityRequests { get; private set; }
         public List<UserCooperationRequest> UserCooperationRequests { get; private set; }
 
         #endregion
@@ -27,7 +27,7 @@ namespace AccountManagement.Domain.PersonalityAgg
             Title = title;
             PersonalityTypeId = personalityTypeId;
             UserPersonalities = new List<UserPersonality>();
-            UserPersonalityRequests = new List<UserPersonalityRequest>();
+            //UserPersonalityRequests = new List<UserPersonalityRequest>();
         }
 
         public void Edit(string title, long personalityTypeId)

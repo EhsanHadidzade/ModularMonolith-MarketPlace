@@ -3,7 +3,7 @@
 @inject IUserCooperationRequestApplication _userCooperationRequestAppliation
 @model Tuple<List<PersonalityTypeViewModel>,List<long>,long>
 @{
-    var requestedPersonality = _userCooperationRequestAppliation.GetRequestedRolesByRoleIds(Model.Item2);
+    var requestedPersonality = _userCooperationRequestAppliation.GetRequestedPersonalitiesByPersonalityIds(Model.Item2);
 }
 
 
@@ -66,7 +66,7 @@
                                 <ul>
                                   @foreach(var personality in requestedPersonality)
                                     {
-                                          <li> @personality.Name</li>
+                                          <li> @personality.Title</li>
                                     }
                                 </ul>
                             </div>

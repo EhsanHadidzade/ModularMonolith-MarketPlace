@@ -4,6 +4,7 @@ using ShopManagement.Domain.ProductCategoryAgg.ProductModelAgg;
 using ShopManagement.Domain.ProductCategoryAgg.ProductStatusAgg;
 using ShopManagement.Domain.ProductCategoryAgg.ProductTypeAgg;
 using ShopManagement.Domain.ProductCategoryAgg.ProductUsageTypeAgg;
+using ShopManagement.Domain.SellerProductAgg;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -18,17 +19,17 @@ namespace ShopManagement.Domain.ProductAgg
         public string Title { get; private set; }
         public string Descriotion { get; private set; }
         public string Picture { get; private set; }
-        public double UnitPrice { get; private set; }
+        public string PartNumber { get; private set; }
         public int ProductWeight { get; private set; }
         public string Dimensions { get; private set; }
         public string CountryMadeIn { get; private set; }
 
         //Fk
-        public long ProductBrandId { get; set; }
-        public long ProductModelId { get; set; }
-        public long ProductStatusId { get; set; }
-        public long ProductTypeId { get; set; }
-        public long ProductUsageTypeId { get; set; }
+        public long ProductBrandId { get; private set; }
+        public long ProductModelId { get; private set; }
+        public long ProductStatusId { get; private set; }
+        public long ProductTypeId { get; private set; }
+        public long ProductUsageTypeId { get; private set; }
         #endregion
 
         #region Relations
@@ -37,12 +38,14 @@ namespace ShopManagement.Domain.ProductAgg
         public ProductStatus ProductStatus { get; set; }
         public ProductType ProductType { get; set; }
         public ProductUsageType ProductUsageType { get; set; }
+
+        public List<SellerProduct> SellerProducts{ get; private set; }
         #endregion
 
 
 
         public Product(string title, string descriotion, string picture,
-            double unitPrice, int productWeight, string dimensions,
+            string partNumber, int productWeight, string dimensions,
             string countryMadeIn, long productBrandId, long productModelId,
             long productStatusId, long productTypeId, long productUsageTypeId)
         {
@@ -52,7 +55,7 @@ namespace ShopManagement.Domain.ProductAgg
             if (!string.IsNullOrWhiteSpace(picture))
                 Picture = picture;
 
-            UnitPrice = unitPrice;
+            PartNumber = partNumber;
             ProductWeight = productWeight;
             Dimensions = dimensions;
             CountryMadeIn = countryMadeIn;
@@ -61,11 +64,13 @@ namespace ShopManagement.Domain.ProductAgg
             ProductStatusId = productStatusId;
             ProductTypeId = productTypeId;
             ProductUsageTypeId = productUsageTypeId;
+
+            SellerProducts = new List<SellerProduct>();
         }
 
 
         public void Edit(string title, string descriotion, string picture,
-           double unitPrice, int productWeight, string dimensions,
+           string partNumber, int productWeight, string dimensions,
            string countryMadeIn, long productBrandId, long productModelId,
            long productStatusId, long productTypeId, long productUsageTypeId)
         {
@@ -75,7 +80,7 @@ namespace ShopManagement.Domain.ProductAgg
             if (!string.IsNullOrWhiteSpace(picture))
                 Picture = picture;
 
-            UnitPrice = unitPrice;
+            PartNumber = partNumber;
             ProductWeight = productWeight;
             Dimensions = dimensions;
             CountryMadeIn = countryMadeIn;

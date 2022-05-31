@@ -1,12 +1,17 @@
 ﻿@model _0_MyNiaSmartQuery.Contract.User.UserInfoQueryModel
 @using AccountManagement.Application.Contract.UpAccountRequest
 @using AccountManagement.Application.Contract.UserCooperationRequest
-@using AccountManagement.Application.Contract.UserRole
+@using AccountManagement.Application.Contract.UserPersonality
+@using ShopManagement.Application.Contract.SellerPanel
+@using _0_Framework.Utilities;
 @inject IUPAccountRequestApplication _uPAccountRequestApplication
 @inject IUserCooperationRequestApplication _userCooperaitonRequestApplication
-@inject IUserRoleApplication _userRoleApplication
+@inject IUserPersonalityApplication _userPersonalityApplication
+@inject ISellerPanelApplication _sellerPanelApplication
 @{
-    var acceptedRoleIds = _userRoleApplication.GetAllRoleIdsOfOneUserByUserId(Model.Id);
+    var acceptedPersonalityIds = _userPersonalityApplication.GetAllPersonalityIdsOfOneUserByUserId(Model.Id);
+    var requestedPersonalities = _userCooperaitonRequestApplication.GetRequestedPersonalitiesByUserId(Model.Id);
+    var HasUserRequestedForSellerPanel = _sellerPanelApplication.HasUserRequestedForSellerPanel(Model.Id);
 }
 
 
@@ -139,80 +144,90 @@
                                 <!-- Nav tabs -->
                         <div class="default-tab">
                                     <ul class="nav nav-tabs" role="tablist">
-                                        <li class="nav-item">
-                                            <a class="nav-link active" data-toggle="tab" href="#home"> لیست واحد هایی که شما جهت همکاری ارسال کرده اید</a>
-                                        </li>
-                                       @* <li class="nav-item">
-                                            <a class="nav-link" data-toggle="tab" href="#profile"> لیست واحد هایی که مدیریت تایید کرده </a>
-                                        </li>*@
+                                        @if (requestedPersonalities.Any(x => x.PersonalityTypeId == PersonalityTypeId.Seller))
+                                        {
+                                            <li class="nav-item">
+                                                <a class="nav-link active" data-toggle="tab" href="#seller"> لیست واحد هایی که شما جهت همکاری در زمینه فروش درخواست کرده اید</a>
+                                            </li>
+                                        }
+                                        @if (requestedPersonalities.Any(x => x.PersonalityTypeId == PersonalityTypeId.Marketer))
+                                        {
+                                            <li class="nav-item">
+                                                <a class="nav-link " data-toggle="tab" href="#marketer"> لیست واحد هایی که شما جهت همکاری در زمینه بازاریابی درخواست کرده اید</a>
+                                            </li>
+                                        }
+                                        @if (requestedPersonalities.Any(x => x.PersonalityTypeId == PersonalityTypeId.ServiceMan))
+                                        {
+                                            <li class="nav-item">
+                                                <a class="nav-link " data-toggle="tab" href="#serviceman"> لیست واحد هایی که شما جهت همکاری در زمینه خدمات فنی و تعمیرات درخواست کرده اید</a>
+                                            </li>
+                                        }
                                     </ul>
                                     <div class="tab-content">
-                                        <div class="tab-pane fade active show" id="home" role="tabpanel">
-                                            <div class="pt-4">
-                                                <div class="col-xl-12 col-lg-12 col-sm-12">
-                                                    <div class="card">
+                                        @if (requestedPersonalities.Any(x => x.PersonalityTypeId == PersonalityTypeId.Seller))
+                                        {
+                                            <div class="tab-pane fade active show" id="seller" role="tabpanel">
+                                                <div class="pt-4">
+                                                    <div class="col-xl-12 col-lg-12 col-sm-12">
+                                                        <div class="card">
 
-                                                        <div class="card-body pb-0">
-                                                            <ul class="list-group list-group-flush">
-                                                                @foreach (var requestedRole in _userCooperaitonRequestApplication.GetRequestedRolesByUserId(Model.Id))
+                                                            <div class="card-body pb-0">
+
+                                                                @foreach (var item in requestedPersonalities.Where(x => x.PersonalityTypeId == PersonalityTypeId.Seller))
                                                                 {
-                                                                    @*  if(acceptedRoleIds.Any(x=>x==requestedRole.Id))
-                                                                        {
-                                                                        <li class="success">
-                                                                        <strong>@requestedRole.Name</strong>
-                                                                        @if(requestedRole.Id==18)
-                                                                        {
-                                                                        <a class="btn btn-success">فرم ایجاد پنل فروشنده</a>
-                                                                        }
-
-                                                                        </li>
-                                                                        }
-                                                                        else
-                                                                        {
-                                                                        <li class="danger">
-                                                                        <strong>@requestedRole.Name</strong>
-                                                                        </li>
-                                                                        }*@
-                                                                    <li class="list-group-item d-flex px-0 justify-content-between">
-                                                                        <strong>@requestedRole.Name</strong>
-                                                                        @if (!acceptedRoleIds.Any(x => x == requestedRole.Id))
-                                                                        {
-                                                                            <a class="btn btn-outline-danger">تایید نشده</a>
-
-                                                                        }
-                                                                        else
-                                                                        {
-                                                                            if(requestedRole.Id==21)
-                                                                            {
-                                                                            <a href="#showmodal=/user/CreateSellerPanel" class="btn btn-outline-success">تکمیل فرم درخواست پنل فروشنده</a>
-                                                                            }
-                                                                        }
-                                                                    </li>
+                                                                    <div class="alert alert-outline@((acceptedPersonalityIds.Any(x=>x==item.Id))?"-success":"-danger") alert-dismissible fade show">
+                                                                        <p>@item.Title</p>
+                                                                    </div>
                                                                 }
-                                                            </ul>
+                                                            </div>
+                                                        </div>
+                                                            <a href="#ShowModal=/user/CreateSellerPanel" class="btn btn-square btn-outline-secondary @((HasUserRequestedForSellerPanel)?"disabledd":"")" >ساخت پنل بازاریابی</a>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        }
+                                        @if (requestedPersonalities.Any(x => x.PersonalityTypeId == PersonalityTypeId.Marketer))
+                                        {
+                                            <div class="tab-pane fade" id="marketer" role="tabpanel">
+                                                <div class="pt-4">
+                                                    <div class="col-xl-12 col-lg-12 col-sm-12">
+                                                        <div class="card">
+
+                                                            <div class="card-body pb-0">
+
+                                                                @foreach (var item in requestedPersonalities.Where(x => x.PersonalityTypeId == PersonalityTypeId.Marketer))
+                                                                {
+                                                                    <div class="alert alert-outline@((acceptedPersonalityIds.Any(x=>x==item.Id))?"-success":"-danger") alert-dismissible fade show">
+                                                                        <p>@item.Title</p>
+                                                                    </div>
+                                                                }
+                                                            </div>
                                                         </div>
                                                     </div>
                                                 </div>
                                             </div>
-                                        </div>
-                                      @*  <div class="tab-pane fade" id="profile">
-                                            <div class="pt-4">
-                                                <div class="col-xl-12 col-lg-12 col-sm-12">
-                                                    <div class="card">
-                                                        <div class="card-body pb-0">
-                                                            <ul class="list-group list-group-flush">
-                                                                @foreach (var userRole in _userRoleApplication.GetUserRolesByUserId(Model.Id))
+                                        }
+                                        @if (requestedPersonalities.Any(x => x.PersonalityTypeId == PersonalityTypeId.ServiceMan))
+                                        {
+                                            <div class="tab-pane fade" id="serviceman" role="tabpanel">
+                                                <div class="pt-4">
+                                                    <div class="col-xl-12 col-lg-12 col-sm-12">
+                                                        <div class="card">
+
+                                                            <div class="card-body pb-0">
+
+                                                                @foreach (var item in requestedPersonalities.Where(x => x.PersonalityTypeId == PersonalityTypeId.ServiceMan))
                                                                 {
-                                                                    <li class="list-group-item d-flex px-0 justify-content-between">
-                                                                        <strong>@userRole.Name</strong>
-                                                                    </li>
+                                                                    <div class="alert alert-outline@((acceptedPersonalityIds.Any(x=>x==item.Id))?"-success":"-danger") alert-dismissible fade show">
+                                                                        <p>@item.Title</p>
+                                                                    </div>
                                                                 }
-                                                            </ul>
+                                                            </div>
                                                         </div>
                                                     </div>
                                                 </div>
                                             </div>
-                                        </div>*@
+                                        }
                                     </div>
                                 </div>
                             </div>

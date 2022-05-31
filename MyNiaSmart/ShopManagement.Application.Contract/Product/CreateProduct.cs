@@ -18,7 +18,7 @@ namespace ShopManagement.Application.Contract.Product
         public IFormFile Picture { get; set; }
 
         [Required(ErrorMessage = ValidationMessage.IsRequired)]
-        public double UnitPrice { get;  set; }
+        public string PartNumber { get;  set; }
         public int ProductWeight { get;  set; }
         public string Dimensions { get;  set; }
         public string CountryMadeIn { get;  set; }

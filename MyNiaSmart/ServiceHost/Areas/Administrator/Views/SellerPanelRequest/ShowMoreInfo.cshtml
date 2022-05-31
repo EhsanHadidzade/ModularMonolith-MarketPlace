@@ -1,0 +1,139 @@
+﻿@model ShopManagement.Application.Contract.SellerPanel.EditSellerPanel
+
+<div class="row">
+    <div class="col-xl-12 col-lg-12">
+        <div class="card">
+            <div class="card-header">
+                <h4 class="card-title">فرم درخواست پنل فروشندگی</h4>
+            </div>
+            <div class="card-body">
+                <div class="basic-form">
+                    <form method="post" action="/Administrator/sellerpanelRequest/Confirm">
+                        <div class="form-row">
+                            <div class="form-group col-md-12">
+                                <label>شماره همراه برای فروشگاه</label>
+                                <input type="number" class="form-control" asp-for="SellerMobileNumber" placeholder="شماره">
+                            </div>
+                            <div class="form-group col-md-6">
+                                <label>استان</label>
+                                <input type="text" class="form-control" asp-for="Capital" placeholder="استان">
+                            </div>
+                            <div class="form-group col-md-6">
+                                <label>شهر</label>
+                                <input type="text" class="form-control" asp-for="City" placeholder="شهر">
+                            </div>
+                            <div class="form-group col-md-6">
+                                <label>مدت زمان تحویل توی شهر</label>
+                                <input type="number" class="form-control" asp-for="DeliveryDurationForCity" placeholder="بر حسب ساعت">
+                                <span class="text-danger" asp-validation-for="DeliveryDurationForCity">
+                                </span>
+                            </div>
+                            <div class="form-group col-md-6">
+                                <label>مدت زمان تحویل توی استان</label>
+                                <input type="number" class="form-control" asp-for="DeliveryDurationForCapital" placeholder="بر حسب ساعت">
+                                <span class="text-danger" asp-validation-for="DeliveryDurationForCapital">
+                                </span>
+                            </div>
+                            <div class="form-group col-md-6">
+                                <label>مدت زمان تحویل به سایر نقاط</label>
+                                <input type="number" class="form-control" asp-for="DeliveryDurationForOther" placeholder="بر حسب ساعت">
+                                <span class="text-danger" asp-validation-for="DeliveryDurationForOther">
+                                </span>
+                            </div>
+                            <div class="form-group col-md-12">
+                                <label>آدرس</label>
+                                <input type="text" class="form-control" asp-for="Address" placeholder="آدرس">
+                            </div>
+                            <div class="form-group col-md-6">
+                                <label>انتخاب نوع گارانتی محصولات</label>
+                                <select class="form-control" asp-for="WarrantyTypeId">
+                                    <option value="0">انتخاب کنید</option>
+                                    <option value="1"> ساعت</option>
+                                    <option value="2"> روز</option>
+                                    <option value="3"> ماه</option>
+                                    <option value="4"> سال</option>
+                                </select>
+                                <span class="text-danger" asp-validation-for="WarrantyTypeId">
+                                </span>
+                            </div>
+                            <div class="form-group col-md-6">
+                                <label>مقدار گارانتی</label>
+                                <input type="number" class="form-control" asp-for="WarrantyAmount" onkeypress="return onlyNumberKey(event)">
+                                <span class="text-danger" asp-validation-for="WarrantyAmount">
+                                </span>
+                            </div>
+                            <div class="form-group col-md-12">
+                                <label>انتخاب گروه خریداران</label>
+                                <select class="form-control" asp-for="BuyersCategory">
+                                    <option value="0">انتخاب کنید</option>
+                                    <option value="1"> خریداران عادی</option>
+                                    <option value="2"> تعمیر کننده ها</option>
+                                    <option value="3"> هر دو</option>
+                                </select>
+                            </div>
+                            <div class="form-group col-md-12">
+                                <div class="custom-control custom-switch custom-control-inline mb-1">
+                                    <input type="checkbox" class="custom-control-input" id="customSwitch1" asp-for="CanMarketerSee">
+                                    <label class="custom-control-label mr-1" for="customSwitch1">
+                                    </label>
+                                    <span>من مایلم بازار یاب ها محصولات من را مشاهده کنند</span>
+                                </div>
+                            </div>
+                            <div class="form-group col-md-12">
+                                <div class="custom-control custom-switch custom-control-inline mb-1">
+                                    <input type="checkbox" class="custom-control-input" id="customSwitch2" asp-for="IsUserLegal">
+                                    <label class="custom-control-label mr-1" for="customSwitch2">
+                                    </label>
+                                    <span>من یک شخص حقوقی و دارای  شناسه اقتصادی هستم</span>
+                                </div>
+                            </div>
+                            @if (!Model.IsUserLegal)
+                            {
+                                <div class="form-group col-md-12" id="illegaluser">
+                                    <label>نام فروشگاه</label>
+                                    <input type="text" class="form-control" asp-for="StoreName" placeholder="نام فروشکاه">
+                                </div>
+                            }
+                            else
+                            {
+                                <div class="form-group col-md-12" id="legaluser1">
+                                    <label>اسم شرکت</label>
+                                    <input type="text" class="form-control" asp-for="CompanyName" placeholder="اسم شرکت">
+
+                                </div>
+                                <div class="form-group col-md-12" id="legaluser2">
+                                    <label>شماره ثبت</label>
+                                    <input type="number" class="form-control" asp-for="CompanyRegistrationCode" placeholder="شماره ثبت">
+                                </div>
+                                <div class="form-group col-md-12" id="legaluser3">
+                                    <label>شناسه ملی</label>
+                                    <input type="number" class="form-control" asp-for="CompanyEconomicCode" placeholder="شناسه ملی">
+                                </div>
+                            }
+                            <input type="hidden" asp-for="Id" value="@Model.Id" name="sellerpanelid" />
+                            <button type="submit" class="btn btn-primary">تایید درخواست مورد نظر</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+@*<script>
+    debugger
+    $(document).ready(function() {
+    if($(this).prop("checked") == true) {
+    $("#legaluser1").css("display","block");
+    $("#legaluser2").css("display","block");
+    $("#legaluser3").css("display","block");
+    $("#illegaluser").css("display","none");
+    }
+    else if($(this).prop("checked") == false) {
+    $("#legaluser1").css("display","none");
+    $("#legaluser2").css("display","none");
+    $("#legaluser3").css("display","none");
+    $("#illegaluser").css("display","block");
+    }
+    });
+    </script>
+*@

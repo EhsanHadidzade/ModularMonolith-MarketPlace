@@ -1,13 +1,16 @@
 ﻿@using _0_Framework.Contract
 @using AccountManagement.Application.Contract.UpAccountRequest
+@using ShopManagement.Application.Contract.SellerPanel
 @using AccountManagement.Application.Contract.User
 @inject IUPAccountRequestApplication _upAccountRequestApplication
+@inject ISellerPanelApplication _sellerPanelApplication
 @inject IAuthHelper _authHelper
 @inject IUserApplication _userApplication
 @{
     var userId = _authHelper.CurrentAccountInfo().Id;
     bool hasUserRequestedForUp = _upAccountRequestApplication.HasUserRequestedForUpAccount(userId);
     bool isUserAdmin = _userApplication.IsUserAdmin(_authHelper.CurrentAccountInfo().Id);
+    bool IsSellerPanelConfirmedByAdmin = _sellerPanelApplication.HasUserSellerPanelConfirmedByAdmin(userId);
 
 }
 
@@ -98,19 +101,11 @@
             <div class="tab-pane fade" id="components">
 
                 <ul class="metismenu tab-nav-menu">
-                    <li class="nav-label">فرم ها</li>
+                    <li class="nav-label">پنل ها</li>
                     <li>
-                        <a class="has-arrow ai-icon" href="javascript:void()" aria-expanded="false">
-                            <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="24px" viewBox="0 0 24 24" version="1.1"><g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd"><polygon points="0 0 24 0 24 24 0 24" /><path d="M5.85714286,2 L13.7364114,2 C14.0910962,2 14.4343066,2.12568431 14.7051108,2.35473959 L19.4686994,6.3839416 C19.8056532,6.66894833 20,7.08787823 20,7.52920201 L20,20.0833333 C20,21.8738751 19.9795521,22 18.1428571,22 L5.85714286,22 C4.02044787,22 4,21.8738751 4,20.0833333 L4,3.91666667 C4,2.12612489 4.02044787,2 5.85714286,2 Z" fill="#000000" fill-rule="nonzero" opacity="0.3" /><rect fill="#000000" x="6" y="11" width="9" height="2" rx="1" /><rect fill="#000000" x="6" y="15" width="5" height="2" rx="1" /></g></svg> 							<span class="nav-text">فرم ها</span>
-                            <span class="badge badge-xs badge-light">05</span>
+                        <a class="ai-icon" href="/sellerpanel/index" style="display:@((IsSellerPanelConfirmedByAdmin)?"":"none")">
+                            پنل فروشندگی
                         </a>
-                        <ul aria-expanded="false">
-                            <li><a href="form-element.html">فرم عناصر</a></li>
-                            <li><a href="form-wizard.html">ویزارد</a></li>
-                            <li><a href="form-editor-summernote.html">یادداشت تابستانی</a></li>
-                            <li><a href="form-pickers.html">جمع کننده ها</a></li>
-                            <li><a href="form-validation-jquery.html">اعتبار سنجی</a></li>
-                        </ul>
                     </li>
                 </ul>
             </div>

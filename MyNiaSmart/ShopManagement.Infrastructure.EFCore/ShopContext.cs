@@ -5,7 +5,8 @@ using ShopManagement.Domain.ProductCategoryAgg.ProductModelAgg;
 using ShopManagement.Domain.ProductCategoryAgg.ProductStatusAgg;
 using ShopManagement.Domain.ProductCategoryAgg.ProductTypeAgg;
 using ShopManagement.Domain.ProductCategoryAgg.ProductUsageTypeAgg;
-using ShopManagement.Domain.SellerPanel;
+using ShopManagement.Domain.SellerPanelAgg;
+using ShopManagement.Domain.SellerProductAgg;
 using ShopManagement.Infrastructure.EFCore.Mapping;
 
 namespace ShopManagement.Infrastructure.EFCore
@@ -19,6 +20,7 @@ namespace ShopManagement.Infrastructure.EFCore
         public DbSet<ProductUsageType> ProductUsageTypes{ get; set; }
         public DbSet<Product> Products{ get; set; }
         public DbSet<SellerPanel> SellerPanels { get; set; }
+        public DbSet<SellerProduct> SellerProducts{ get; set; }
 
         public ShopContext(DbContextOptions<ShopContext> options):base(options)
         {

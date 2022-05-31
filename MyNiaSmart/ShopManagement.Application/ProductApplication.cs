@@ -30,7 +30,7 @@ namespace ShopManagement.Application
             var picturePath = _fileUploader.Upload(command.Picture,$"ProductPictures//{command.Title}");
 
             var product = new Product(command.Title, command.Description, picturePath,
-                command.UnitPrice, command.ProductWeight,command.Dimensions,command.CountryMadeIn,
+                command.PartNumber, command.ProductWeight,command.Dimensions,command.CountryMadeIn,
                 command.ProductBrandId, command.ProductModelId, command.ProductStatusId, command.ProductTypeId,
                 command.ProductUsageTypeId);
 
@@ -53,7 +53,7 @@ namespace ShopManagement.Application
             var picturePath = _fileUploader.Upload(command.Picture, $"ProductPictures//{command.Title}");
 
             product.Edit(command.Title, command.Description, picturePath,
-                command.UnitPrice, command.ProductWeight, command.Dimensions, command.CountryMadeIn,
+                command.PartNumber, command.ProductWeight, command.Dimensions, command.CountryMadeIn,
                 command.ProductBrandId, command.ProductModelId, command.ProductStatusId, command.ProductTypeId,
                 command.ProductUsageTypeId);
 

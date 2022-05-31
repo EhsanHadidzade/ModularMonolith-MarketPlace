@@ -73,7 +73,6 @@
                 reader.onload = function (e) {
                     $("img"+(".")+id).attr('src', e.target.result);
                     debugger
-
                 }
                 reader.readAsDataURL(input.files[0]);
             } else {
@@ -81,7 +80,6 @@
                 $('#previewHolder').attr('src', '');
             }
         }
-
 
         $(".Upload").change(function () {
             debugger

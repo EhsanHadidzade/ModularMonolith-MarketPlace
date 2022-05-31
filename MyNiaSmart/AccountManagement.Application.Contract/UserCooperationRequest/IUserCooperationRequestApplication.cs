@@ -1,4 +1,5 @@
 ﻿using _0_Framework.Utilities;
+using AccountManagement.Application.Contract.Personality;
 using AccountManagement.Application.Contract.Role;
 using System;
 using System.Collections.Generic;
@@ -12,8 +13,8 @@ namespace AccountManagement.Application.Contract.UserCooperationRequest
     {
         OperationResult CreateUserCoopeartionRequest(CreateUserCooperationRequest command);
 
-        //To get list of user RoleIds that requested to cooperate  
-        List<long> GetAllRequestedRoleIdsByUserId(long userId);
+        //To get list of user PersonalityIds that requested to cooperate  
+        List<long> GetAllRequestedPersonalityIdsByUserId(long userId);
 
         //to check if a user is requested for cooperation or not to disable cooperationRequestButton
         bool IsUserRequestedForCooperation(long userId);
@@ -22,10 +23,10 @@ namespace AccountManagement.Application.Contract.UserCooperationRequest
         List<UserRequestedForCooperationViewModel> GetUsersWithCooperationRequest();
 
         //to use when admin is checking cooperation request and want to see requested roles
-        List<RoleViewModel> GetRequestedRolesByRoleIds(List<long> roleIds);
+        List<PersonalityViewModel> GetRequestedPersonalitiesByPersonalityIds(List<long> personalityIds);
 
-        //to use for show in user profile to show them what role has they requested to cooperate
-        List<RoleViewModel> GetRequestedRolesByUserId(long userId);
+        //to use for show in user profile to show them what personalities has they requested to cooperate
+        List<PersonalityViewModel> GetRequestedPersonalitiesByUserId(long userId);
 
         //to check if user request for cooperation is recognized by admin or not
         bool IsUserRequestForCooperationRecognizedByAdmin(long userId);

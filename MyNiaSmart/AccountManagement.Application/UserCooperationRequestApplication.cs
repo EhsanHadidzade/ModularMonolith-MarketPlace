@@ -1,4 +1,5 @@
 ﻿using _0_Framework.Utilities;
+using AccountManagement.Application.Contract.Personality;
 using AccountManagement.Application.Contract.Role;
 using AccountManagement.Application.Contract.UserCooperationRequest;
 using AccountManagement.Domain.CooperationRequestAgg;
@@ -36,7 +37,7 @@ namespace AccountManagement.Application
 
         }
 
-        public List<long> GetAllRequestedRoleIdsByUserId(long userId)
+        public List<long> GetAllRequestedPersonalityIdsByUserId(long userId)
         {
             var requestedPersonalities = _userCooperationRequestRepository.GetAllUserRequestedPersonalitiesByUserId(userId);
             var requestedRoleIds = new List<long>();
@@ -47,12 +48,12 @@ namespace AccountManagement.Application
             return requestedRoleIds;
         }
 
-        public List<RoleViewModel> GetRequestedRolesByRoleIds(List<long> roleIds)
+        public List<PersonalityViewModel> GetRequestedPersonalitiesByPersonalityIds(List<long> personalityIds)
         {
-            return _userCooperationRequestRepository.GetRequestedRolesByRoleIds(roleIds);
+            return _userCooperationRequestRepository.GetRequestedPersonalitiesByPersonalityIds(personalityIds);
         }
 
-        public List<RoleViewModel> GetRequestedRolesByUserId(long userId)
+        public List<PersonalityViewModel> GetRequestedPersonalitiesByUserId(long userId)
         {
             return _userCooperationRequestRepository.GetRequestedPersonalitiesByUserId(userId);
         }

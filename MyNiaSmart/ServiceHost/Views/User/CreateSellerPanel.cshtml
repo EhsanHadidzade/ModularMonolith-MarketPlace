@@ -1,31 +1,80 @@
 ﻿@model ShopManagement.Application.Contract.SellerPanel.CreateSellerPanel
 
+
+
 <div class="row">
     <div class="col-xl-12 col-lg-12">
         <div class="card">
             <div class="card-header">
-                <h4 class="card-title">فرم افقی</h4>
+                <h4 class="card-title">فرم درخواست پنل فروشندگی</h4>
             </div>
             <div class="card-body">
                 <div class="basic-form">
-                    <form>
-
+                    <form method="post" action="/user/CreateSellerPanel">
                         <div class="form-row">
-                            <div class="form-group col-md-6">
-                                <label>نام فروشگاه</label>
-                                <input type="text" class="form-control" asp-for="StoreName" placeholder="نام فروشکاه">
+                            <div class="form-group col-md-12">
+                                <label>شماره همراه برای فروشگاه</label>
+                                <input type="text" onkeypress="return onlyNumberKey(event)" maxlength="11" class="form-control" asp-for="SellerMobileNumber" placeholder="شماره">
+                                <span class="text-danger" asp-validation-for="SellerMobileNumber">
+                                </span>
                             </div>
                             <div class="form-group col-md-6">
-                                <label>شماره همراه برای فروشگاه</label>
-                                <input type="number" class="form-control" asp-for="StoreMobileNumber" placeholder="شماره فروشگاه">
+                                <label>استان</label>
+                                <input type="text" class="form-control" asp-for="Capital" placeholder="استان">
+                                <span class="text-danger" asp-validation-for="Capital">
+                                </span>
+                            </div>
+                            <div class="form-group col-md-6">
+                                <label>شهر</label>
+                                <input type="text" class="form-control" asp-for="City" placeholder="شهر">
+                                <span class="text-danger" asp-validation-for="City">
+                                </span>
+                            </div>
+                            <div class="form-group col-md-6">
+                                <label>مدت زمان تحویل توی شهر</label>
+                                <input type="number" class="form-control" asp-for="DeliveryDurationForCity" onkeypress="return onlyNumberKey(event)" placeholder="بر حسب ساعت">
+                                <span class="text-danger" asp-validation-for="DeliveryDurationForCity">
+                                </span>
+                            </div>
+                            <div class="form-group col-md-6">
+                                <label>مدت زمان تحویل توی استان</label>
+                                <input type="number" class="form-control" asp-for="DeliveryDurationForCapital" onkeypress="return onlyNumberKey(event)" placeholder="بر حسب ساعت">
+                                <span class="text-danger" asp-validation-for="DeliveryDurationForCapital">
+                                </span>
+                            </div>
+                            <div class="form-group col-md-6">
+                                <label>مدت زمان تحویل به سایر نقاط</label>
+                                <input type="number" class="form-control" asp-for="DeliveryDurationForOther" onkeypress="return onlyNumberKey(event)" placeholder="بر حسب ساعت">
+                                <span class="text-danger" asp-validation-for="DeliveryDurationForOther">
+                                </span>
                             </div>
                             <div class="form-group col-md-12">
                                 <label>آدرس</label>
                                 <input type="text" class="form-control" asp-for="Address" placeholder="آدرس">
+                                <span class="text-danger" asp-validation-for="Address">
+                                </span>
+                            </div>
+                            <div class="form-group col-md-6">
+                                <label>انتخاب نوع گارانتی محصولات</label>
+                                <select class="form-control" asp-for="WarrantyTypeId">
+                                    <option value="0">انتخاب کنید</option>
+                                    <option value="1"> ساعت</option>
+                                    <option value="2"> روز</option>
+                                    <option value="3"> ماه</option>
+                                    <option value="4"> سال</option>
+                                </select>
+                                <span class="text-danger" asp-validation-for="WarrantyTypeId">
+                                </span>
+                            </div>
+                            <div class="form-group col-md-6">
+                                <label>مقدار گارانتی</label>
+                                <input type="number" class="form-control" asp-for="WarrantyAmount" onkeypress="return onlyNumberKey(event)">
+                                <span class="text-danger" asp-validation-for="WarrantyAmount">
+                                </span>
                             </div>
                             <div class="form-group col-md-12">
                                 <label>انتخاب گروه خریداران</label>
-                                <select class="form-control" asp-for="BuyersCategory" asp-items="@ViewData["ProductBrands"] as SelectList">
+                                <select class="form-control" asp-for="BuyersCategory">
                                     <option value="0">انتخاب کنید</option>
                                     <option value="1"> خریداران عادی</option>
                                     <option value="2"> تعمیر کننده ها</option>
@@ -35,19 +84,79 @@
                                 </span>
                             </div>
                             <div class="form-group col-md-12">
-                                <div class="form-check">
-                                    <input class="form-check-input" type="checkbox" asp-for="CanMarketerSee">
-                                    <label class="form-check-label">
-                                        آیا مایلید بازار یاب ها محصولات شمارا ببینند
+                                <div class="custom-control custom-switch custom-control-inline mb-1">
+                                    <input type="checkbox" class="custom-control-input" id="customSwitch1" asp-for="CanMarketerSee">
+                                    <label class="custom-control-label mr-1" for="customSwitch1">
                                     </label>
+                                    <span>من مایلم بازار یاب ها محصولات من را مشاهده کنند</span>
                                 </div>
                             </div>
+                            <div class="form-group col-md-12">
+                                <div class="custom-control custom-switch custom-control-inline mb-1">
+                                    <input type="checkbox" class="custom-control-input" id="customSwitch2" asp-for="IsUserLegal">
+                                    <label class="custom-control-label mr-1" for="customSwitch2">
+                                    </label>
+                                    <span>من یک شخص حقوقی و دارای  شناسه اقتصادی هستم</span>
+                                </div>
+                            </div>
+                            <div class="form-group col-md-12" id="illegaluser">
+                                <label>نام فروشگاه</label>
+                                <input type="text" class="form-control" asp-for="StoreName" placeholder="نام فروشکاه">
+                                <span class="text-danger" asp-validation-for="StoreName"></span>
+                            </div>
+                            <div class="form-group col-md-12" id="legaluser1" style="display:none">
+                                <label>اسم شرکت</label>
+                                <input type="text" class="form-control" asp-for="CompanyName" placeholder="اسم شرکت">
+                                <span class="text-danger" asp-validation-for="CompanyName"></span>
+
+                            </div>
+                            <div class="form-group col-md-12" id="legaluser2" style="display:none">
+                                <label>شماره ثبت</label>
+                                <input type="text" class="form-control" asp-for="CompanyRegistrationCode" placeholder="شماره ثبت">
+                                <span class="text-danger" asp-validation-for="CompanyRegistrationCode"></span>
+                            </div>
+                            <div class="form-group col-md-12" id="legaluser3" style="display:none">
+                                <label>شناسه ملی</label>
+                                <input type="text" class="form-control" asp-for="CompanyEconomicCode" placeholder="شناسه ملی">
+                                <span class="text-danger" asp-validation-for="CompanyEconomicCode"></span>
+                            </div>
+                            <button type="submit" class="btn btn-primary">ارسال درخواست</button>
                         </div>
-                        <button type="submit" class="btn btn-primary">ورود</button>
                     </form>
                 </div>
             </div>
         </div>
     </div>
-
 </div>
+<script>
+    debugger
+      $(document).ready(function() {
+          $("#customSwitch2").click(function() {
+              if($(this).prop("checked") == true) {
+                $("#legaluser1").css("display","block");
+                $("#legaluser2").css("display","block");
+                $("#legaluser3").css("display","block");
+                $("#illegaluser").css("display","none");
+              }
+              else if($(this).prop("checked") == false) {
+               $("#legaluser1").css("display","none");
+               $("#legaluser2").css("display","none");
+               $("#legaluser3").css("display","none");
+                $("#illegaluser").css("display","block");
+              }
+            });
+        });
+
+         function onlyNumberKey(evt) {
+
+            // Only ASCII character in that range allowed
+            var ASCIICode = (evt.which) ? evt.which : evt.keyCode
+            if (ASCIICode > 31 && (ASCIICode < 48 || ASCIICode > 57))
+                return false;
+            return true;
+        }
+</script>
+
+
+
+

@@ -27,7 +27,7 @@
     </div>
 </div>
 
-@if (ViewData["IsRequestRejected"] !=null)
+@if (ViewData["IsRequestRejected"] != null)
 {
     <div class="row">
         <div class="col-xl-12 col-xxl-12">
@@ -122,40 +122,20 @@
                             <br />
                             <div class="row">
                                 <div class="col-lg-6 mb-2">
-                                    <div class="form-group">
-                                        <label class="text-label"> شناسنامه </label>
-                                        <div class="form-check">
-                                            <input class="form-check-input" type="radio" value="true">
-                                            <label class="form-check-label">
-                                                قدیم
-                                            </label>
-                                        </div>
-                                        <div class="form-check">
-                                            <input class="form-check-input" type="radio" value="True">
-                                            <label class="form-check-label">
-                                                جدید
-                                            </label>
-                                        </div>
+                                    <div class="custom-control custom-switch custom-control-inline mb-1">
+                                        <input type="checkbox" class="custom-control-input" id="customSwitch1"  asp-for="PI_IsNewIdentity">
+                                        <label class="custom-control-label mr-1" for="customSwitch1">
+                                        </label>
+                                        <span>شناسنامه من جدید است</span>
                                     </div>
-                                    <br />
                                 </div>
                                 <div class="col-lg-6 mb-2">
-                                    <div class="form-group">
-                                        <label class="text-label"> کارت ملی </label>
-                                        <div class="form-check">
-                                            <input class="form-check-input" type="radio" value="False">
-                                            <label class="form-check-label">
-                                                قدیم
-                                            </label>
-                                        </div>
-                                        <div class="form-check">
-                                            <input class="form-check-input" type="radio" value="True">
-                                            <label class="form-check-label">
-                                                جدید
-                                            </label>
-                                        </div>
+                                    <div class="custom-control custom-switch custom-control-inline mb-1">
+                                        <input type="checkbox" class="custom-control-input" id="customSwitch1" asp-for="PI_IsNewNationalCard">
+                                        <label class="custom-control-label mr-1" for="customSwitch1">
+                                        </label>
+                                        <span>کارت ملی من جدید است</span>
                                     </div>
-                                    <br />
                                 </div>
                                 <div class="col-lg-6 mb-2">
                                     <div class="form-group">

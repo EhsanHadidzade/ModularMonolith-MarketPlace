@@ -87,13 +87,13 @@ namespace ServiceHost.Controllers
         }
 
         [HttpPost]
-        public IActionResult CooperationRequest(List<long> RoleList)
+        public IActionResult CooperationRequest(List<long> PersonalityList)
         {
             var userId = _authHelper.CurrentAccountInfo().Id;
             var command = new CreateUserCooperationRequest
             {
                 UserId = userId,
-                SelectedRoleIds = RoleList
+                SelectedPersonalityIds = PersonalityList
             };
             var result = _UserCooperationRequestApplication.CreateUserCoopeartionRequest(command);
             return RedirectToAction("userProfile", new {message=result.Message});
@@ -276,17 +276,13 @@ namespace ServiceHost.Controllers
         }
 
         [HttpPost]
-        public IActionResult CreateSellerPanel(CreateSellerPanel command, List<long> RequestedPersonalityIds)
+        public IActionResult CreateSellerPanel(CreateSellerPanel command)
         {
-            var result=_sellerPanelApplication.Create(command, RequestedPersonalityIds);
+            command.UserId = _authHelper.CurrentAccountInfo().Id;
+            var result=_sellerPanelApplication.Create(command);
             return RedirectToAction("UserProfile", new { message = result.Message });
-
-
         }
         #endregion
-
-
-
 
     }
 

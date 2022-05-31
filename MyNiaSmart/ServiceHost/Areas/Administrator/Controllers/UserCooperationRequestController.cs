@@ -39,7 +39,7 @@ namespace ServiceHost.Areas.Administrator.Controllers
         public IActionResult ShowAndSetRequestedPersonalities(long id)
         {
             //id is the userId from tables to return his requested RoleIds
-            var RequestedRoleIds = _userCooperationRequestApplication.GetAllRequestedRoleIdsByUserId(id);
+            var RequestedRoleIds = _userCooperationRequestApplication.GetAllRequestedPersonalityIdsByUserId(id);
             var personalityTypesWithPersonalities = _personalityTypeApplication.GetList();
             var model = new Tuple<List<PersonalityTypeViewModel>, List<long>, long>(personalityTypesWithPersonalities, RequestedRoleIds, id);
             return PartialView(model);

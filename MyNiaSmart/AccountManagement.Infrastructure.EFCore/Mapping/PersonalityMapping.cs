@@ -19,7 +19,7 @@ namespace AccountManagement.Infrastructure.EFCore.Mapping
             builder.Property(x=>x.Title).HasMaxLength(100);
             builder.HasOne(x=>x.PersonalityType).WithMany(x=>x.Personalities).HasForeignKey(x=>x.PersonalityTypeId);
             builder.HasMany(x => x.UserPersonalities).WithOne(x => x.Personality).HasForeignKey(x => x.PersonalityId);
-            builder.HasMany(x => x.UserPersonalityRequests).WithOne(x => x.Personality).HasForeignKey(x => x.PersonalityId);
+            //builder.HasMany(x => x.UserPersonalityRequests).WithOne(x => x.Personality).HasForeignKey(x => x.PersonalityId);
             builder.HasMany(x => x.UserCooperationRequests).WithOne(x => x.Personality).HasForeignKey(x => x.PersonalityId);
 
         }

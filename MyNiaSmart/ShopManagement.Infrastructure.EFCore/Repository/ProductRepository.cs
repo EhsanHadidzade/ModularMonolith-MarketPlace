@@ -31,7 +31,7 @@ namespace ShopManagement.Infrastructure.EFCore.Repository
                ProductUsageTypeId=x.ProductUsageTypeId,
                Title=x.Title,
                Description=x.Descriotion,
-               UnitPrice=x.UnitPrice,
+               PartNumber=x.PartNumber,
                CountryMadeIn=x.CountryMadeIn,
                Dimensions=x.Dimensions,
                ProductWeight=x.ProductWeight
@@ -45,7 +45,7 @@ namespace ShopManagement.Infrastructure.EFCore.Repository
                 Id = x.Id,
                 Picture=x.Picture,
                 Title=x.Title,
-                UnitPrice=x.UnitPrice,
+                PartNumber=x.PartNumber,
                 CreationDate=x.CreationDate.ToFarsi()
             }).ToList();
         }

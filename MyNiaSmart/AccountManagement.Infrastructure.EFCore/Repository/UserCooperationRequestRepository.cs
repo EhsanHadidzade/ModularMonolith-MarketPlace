@@ -19,19 +19,18 @@ namespace AccountManagement.Infrastructure.EFCore.Repository
             _context = context;
         }
 
-
-
         public List<UserCooperationRequest> GetAllUserRequestedPersonalitiesByUserId(long userId)
         {
             return _context.UserCooperationRequests.Where(x => x.UserId == userId).ToList();
         }
 
-        public List<PersonalityViewModel> GetRequestedPersonalitiesByRoleIds(List<long> roleIds)
+
+        public List<PersonalityViewModel> GetRequestedPersonalitiesByPersonalityIds(List<long> personalityIds)
         {
             var SelectedPersonalities = new List<PersonalityViewModel>();
-            foreach (var roleId in roleIds)
+            foreach (var personalityId in personalityIds)
             {
-                var personality = _context.Personalities.Select(x => new PersonalityViewModel { Id = x.Id, Title = x.Title }).FirstOrDefault(x => x.Id == roleId);
+                var personality = _context.Personalities.Select(x => new PersonalityViewModel { Id = x.Id, Title = x.Title }).FirstOrDefault(x => x.Id == personalityId);
                 SelectedPersonalities.Add(personality);
             }
             return SelectedPersonalities;
@@ -43,11 +42,12 @@ namespace AccountManagement.Infrastructure.EFCore.Repository
             var requestedPersonalities = new List<PersonalityViewModel>();
             foreach (var roleId in RequestedRoleIds)
             {
-                var requstedPersonality = _context.Personalities.Select(x => new PersonalityViewModel
+                var requstedPersonality = _context.Personalities.Include(x=>x.PersonalityType).Select(x => new PersonalityViewModel
                 {
                     Id = x.Id,
                     Title=x.Title,
                     PersonalityTypeId=x.PersonalityTypeId,
+                    PersonalityTypeTitle=x.PersonalityType.Title
                 }).FirstOrDefault(x => x.Id == roleId);
                 requestedPersonalities.Add(requstedPersonality);
             }
@@ -73,7 +73,7 @@ namespace AccountManagement.Infrastructure.EFCore.Repository
 
         public bool IsUserRequestForCooperationRecognizedByAdmin(long userId)
         {
-            return _context.UserRoles.Any(x => x.UserId == userId);
+            return _context.UserPersonalities.Any(x => x.UserId == userId);
 
 
         }

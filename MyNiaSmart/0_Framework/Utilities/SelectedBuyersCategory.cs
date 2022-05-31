@@ -8,8 +8,8 @@ namespace _0_Framework.Utilities
 {
     public class SelectedBuyersCategory
     {
-        const int NormalPeople = 1;
-        const int Marketers = 2;
-        const int both = 3;
+       public const int NormalPeople = 1;
+       public const int Marketers = 2;
+       public const int both = 3;
     }
 }
