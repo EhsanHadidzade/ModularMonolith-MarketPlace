@@ -665,6 +665,8 @@ C:\Work\Projects\MyNiaSmart\MyNiaSmart\ServiceHost\obj\Release\net5.0\PubTmp\Out
 C:\Work\Projects\MyNiaSmart\MyNiaSmart\ServiceHost\obj\Release\net5.0\PubTmp\Out\wwwroot\lib\jquery\dist\jquery.min.js
 C:\Work\Projects\MyNiaSmart\MyNiaSmart\ServiceHost\obj\Release\net5.0\PubTmp\Out\wwwroot\lib\jquery\dist\jquery.min.map
 C:\Work\Projects\MyNiaSmart\MyNiaSmart\ServiceHost\obj\Release\net5.0\PubTmp\Out\wwwroot\lib\jquery\LICENSE.txt
+C:\Work\Projects\MyNiaSmart\MyNiaSmart\ServiceHost\obj\Release\net5.0\PubTmp\Out\wwwroot\MainTheme\css\bootstrap-extended.css
+C:\Work\Projects\MyNiaSmart\MyNiaSmart\ServiceHost\obj\Release\net5.0\PubTmp\Out\wwwroot\MainTheme\css\bootstrap.min.css
 C:\Work\Projects\MyNiaSmart\MyNiaSmart\ServiceHost\obj\Release\net5.0\PubTmp\Out\wwwroot\MainTheme\css\Custom.css
 C:\Work\Projects\MyNiaSmart\MyNiaSmart\ServiceHost\obj\Release\net5.0\PubTmp\Out\wwwroot\MainTheme\css\fonts\anjoman\eot\Anjoman-Bold.eot
 C:\Work\Projects\MyNiaSmart\MyNiaSmart\ServiceHost\obj\Release\net5.0\PubTmp\Out\wwwroot\MainTheme\css\fonts\anjoman\eot\Anjoman-Light.eot
@@ -1058,6 +1060,7 @@ C:\Work\Projects\MyNiaSmart\MyNiaSmart\ServiceHost\obj\Release\net5.0\PubTmp\Out
 C:\Work\Projects\MyNiaSmart\MyNiaSmart\ServiceHost\obj\Release\net5.0\PubTmp\Out\wwwroot\MainTheme\css\fonts\woff\robotoregular.woff
 C:\Work\Projects\MyNiaSmart\MyNiaSmart\ServiceHost\obj\Release\net5.0\PubTmp\Out\wwwroot\MainTheme\css\fonts\woff\Yekan.woff
 C:\Work\Projects\MyNiaSmart\MyNiaSmart\ServiceHost\obj\Release\net5.0\PubTmp\Out\wwwroot\MainTheme\css\persian-datepicker.min.css
+C:\Work\Projects\MyNiaSmart\MyNiaSmart\ServiceHost\obj\Release\net5.0\PubTmp\Out\wwwroot\MainTheme\css\SimpleToggle.css
 C:\Work\Projects\MyNiaSmart\MyNiaSmart\ServiceHost\obj\Release\net5.0\PubTmp\Out\wwwroot\MainTheme\css\style.css
 C:\Work\Projects\MyNiaSmart\MyNiaSmart\ServiceHost\obj\Release\net5.0\PubTmp\Out\wwwroot\MainTheme\css\Wallet.css
 C:\Work\Projects\MyNiaSmart\MyNiaSmart\ServiceHost\obj\Release\net5.0\PubTmp\Out\wwwroot\MainTheme\Edge\index.html
@@ -1188,6 +1191,7 @@ C:\Work\Projects\MyNiaSmart\MyNiaSmart\ServiceHost\obj\Release\net5.0\PubTmp\Out
 C:\Work\Projects\MyNiaSmart\MyNiaSmart\ServiceHost\obj\Release\net5.0\PubTmp\Out\wwwroot\MainTheme\images\tab\3.jpg
 C:\Work\Projects\MyNiaSmart\MyNiaSmart\ServiceHost\obj\Release\net5.0\PubTmp\Out\wwwroot\MainTheme\images\tab\4.jpg
 C:\Work\Projects\MyNiaSmart\MyNiaSmart\ServiceHost\obj\Release\net5.0\PubTmp\Out\wwwroot\MainTheme\image\index.html
+C:\Work\Projects\MyNiaSmart\MyNiaSmart\ServiceHost\obj\Release\net5.0\PubTmp\Out\wwwroot\MainTheme\js\cities.dev.js
 C:\Work\Projects\MyNiaSmart\MyNiaSmart\ServiceHost\obj\Release\net5.0\PubTmp\Out\wwwroot\MainTheme\js\custom.min.js
 C:\Work\Projects\MyNiaSmart\MyNiaSmart\ServiceHost\obj\Release\net5.0\PubTmp\Out\wwwroot\MainTheme\js\dashboard\dashboard-1.js
 C:\Work\Projects\MyNiaSmart\MyNiaSmart\ServiceHost\obj\Release\net5.0\PubTmp\Out\wwwroot\MainTheme\js\dashboard\dashboard-2.js
@@ -1304,29 +1308,6 @@ C:\Work\Projects\MyNiaSmart\MyNiaSmart\ServiceHost\obj\Release\net5.0\PubTmp\Out
 C:\Work\Projects\MyNiaSmart\MyNiaSmart\ServiceHost\obj\Release\net5.0\PubTmp\Out\wwwroot\UploadedFiles\ProductPictures\همکار\2022-04-30-13-11-42profile.png
 C:\Work\Projects\MyNiaSmart\MyNiaSmart\ServiceHost\obj\Release\net5.0\PubTmp\Out\wwwroot\UploadedFiles\UpAccountDocument\رحیم مقدم\2022-05-11-14-10-06پشت کارت ملی4.jpg
 C:\Work\Projects\MyNiaSmart\MyNiaSmart\ServiceHost\obj\Release\net5.0\PubTmp\Out\wwwroot\UploadedFiles\UpAccountDocument\رحیم مقدم\2022-05-11-14-11-57شناسنامه1.jpg
-C:\Work\Projects\MyNiaSmart\MyNiaSmart\ServiceHost\obj\Release\net5.0\PubTmp\Out\wwwroot\UploadedFiles\UpAccountDocument\یاسین حدیدزاده\2022-05-08-09-48-59شناسنامهidentitycard.png
-C:\Work\Projects\MyNiaSmart\MyNiaSmart\ServiceHost\obj\Release\net5.0\PubTmp\Out\wwwroot\UploadedFiles\UpAccountDocument\یاسین حدیدزاده\2022-05-08-09-51-41روی چکchequefrontside.png
-C:\Work\Projects\MyNiaSmart\MyNiaSmart\ServiceHost\obj\Release\net5.0\PubTmp\Out\wwwroot\UploadedFiles\UpAccountDocument\یاسین حدیدزاده\2022-05-08-15-45-54روی چک2022-04-19-15-20-08aspnetcore-developer-roadmap.png
-C:\Work\Projects\MyNiaSmart\MyNiaSmart\ServiceHost\obj\Release\net5.0\PubTmp\Out\wwwroot\UploadedFiles\UpAccountDocument\یاسین حدیدزاده\2022-05-09-09-17-52 رسید رهگیری کارت ملی قدیم7.jpg
-C:\Work\Projects\MyNiaSmart\MyNiaSmart\ServiceHost\obj\Release\net5.0\PubTmp\Out\wwwroot\UploadedFiles\UpAccountDocument\یاسین حدیدزاده\2022-05-09-09-17-52روی سفته7.jpg
-C:\Work\Projects\MyNiaSmart\MyNiaSmart\ServiceHost\obj\Release\net5.0\PubTmp\Out\wwwroot\UploadedFiles\UpAccountDocument\یاسین حدیدزاده\2022-05-09-09-17-52روی کارت عابر بانک3.jpg
-C:\Work\Projects\MyNiaSmart\MyNiaSmart\ServiceHost\obj\Release\net5.0\PubTmp\Out\wwwroot\UploadedFiles\UpAccountDocument\یاسین حدیدزاده\2022-05-09-09-17-52پرینت شبا9.jpg
-C:\Work\Projects\MyNiaSmart\MyNiaSmart\ServiceHost\obj\Release\net5.0\PubTmp\Out\wwwroot\UploadedFiles\UpAccountDocument\یاسین حدیدزاده\2022-05-09-09-17-52پشت سفته1.jpg
-C:\Work\Projects\MyNiaSmart\MyNiaSmart\ServiceHost\obj\Release\net5.0\PubTmp\Out\wwwroot\UploadedFiles\UpAccountDocument\یاسین حدیدزاده\2022-05-09-09-17-52پشت کارت ملی4.jpg
-C:\Work\Projects\MyNiaSmart\MyNiaSmart\ServiceHost\obj\Release\net5.0\PubTmp\Out\wwwroot\UploadedFiles\UpAccountDocument\یاسین حدیدزاده\2022-05-09-12-05-59پشت کارت عابر بانک6.jpg
-C:\Work\Projects\MyNiaSmart\MyNiaSmart\ServiceHost\obj\Release\net5.0\PubTmp\Out\wwwroot\UploadedFiles\UpAccountDocument\یاسین حدیدزاده\2022-05-09-22-27-59پشت چک3.jpg
-C:\Work\Projects\MyNiaSmart\MyNiaSmart\ServiceHost\obj\Release\net5.0\PubTmp\Out\wwwroot\UploadedFiles\UpAccountDocument\یاسین حدیدزاده\2022-05-10-14-53-59شناسنامه6.jpg
-C:\Work\Projects\MyNiaSmart\MyNiaSmart\ServiceHost\obj\Release\net5.0\PubTmp\Out\wwwroot\UploadedFiles\UpAccountDocument\یاسین حدیدزاده\2022-05-11-11-26-34روی کارت ملی7.jpg
-C:\Work\Projects\MyNiaSmart\MyNiaSmart\ServiceHost\obj\Release\net5.0\PubTmp\Out\wwwroot\UploadedFiles\UpAccountDocument\یاسین حدیدزاده\2022-05-14-12-19-28 رسید رهگیری کارت ملی قدیمpic1.jpg
-C:\Work\Projects\MyNiaSmart\MyNiaSmart\ServiceHost\obj\Release\net5.0\PubTmp\Out\wwwroot\UploadedFiles\UpAccountDocument\یاسین حدیدزاده\2022-05-14-12-19-28پرینت شبا6.jpg
-C:\Work\Projects\MyNiaSmart\MyNiaSmart\ServiceHost\obj\Release\net5.0\PubTmp\Out\wwwroot\UploadedFiles\UpAccountDocument\یاسین حدیدزاده\2022-05-14-12-19-28پشت چک4.jpg
-C:\Work\Projects\MyNiaSmart\MyNiaSmart\ServiceHost\obj\Release\net5.0\PubTmp\Out\wwwroot\UploadedFiles\UpAccountDocument\یاسین حدیدزاده\2022-05-14-12-56-42شناسنامه7.jpg
-C:\Work\Projects\MyNiaSmart\MyNiaSmart\ServiceHost\obj\Release\net5.0\PubTmp\Out\wwwroot\UploadedFiles\UpAccountDocument\یاسین حدیدزاده\2022-05-14-13-14-58پشت کارت عابر بانک6.jpg
-C:\Work\Projects\MyNiaSmart\MyNiaSmart\ServiceHost\obj\Release\net5.0\PubTmp\Out\wwwroot\UploadedFiles\UpAccountDocument\یاسین خان\2022-05-22-09-53-05 رسید رهگیری کارت ملی قدیم5.jpg
-C:\Work\Projects\MyNiaSmart\MyNiaSmart\ServiceHost\obj\Release\net5.0\PubTmp\Out\wwwroot\UploadedFiles\UpAccountDocument\یاسین خان\2022-05-22-09-53-05روی چک3.jpg
-C:\Work\Projects\MyNiaSmart\MyNiaSmart\ServiceHost\obj\Release\net5.0\PubTmp\Out\wwwroot\UploadedFiles\UpAccountDocument\یاسین خان\2022-05-22-09-53-05روی کارت عابر بانک3.jpg
-C:\Work\Projects\MyNiaSmart\MyNiaSmart\ServiceHost\obj\Release\net5.0\PubTmp\Out\wwwroot\UploadedFiles\UpAccountDocument\یاسین خان\2022-05-22-09-53-05شناسنامه6.jpg
-C:\Work\Projects\MyNiaSmart\MyNiaSmart\ServiceHost\obj\Release\net5.0\PubTmp\Out\wwwroot\UploadedFiles\UpAccountDocument\یاسین خان\2022-05-22-09-53-05پشت سفته7.jpg
 C:\Work\Projects\MyNiaSmart\MyNiaSmart\ServiceHost\obj\Release\net5.0\PubTmp\Out\wwwroot\UploadedFiles\UserPhoto\2022-05-04-11-00-365.jpg
 C:\Work\Projects\MyNiaSmart\MyNiaSmart\ServiceHost\obj\Release\net5.0\PubTmp\Out\wwwroot\UploadedFiles\UserPhoto\2022-05-04-11-10-58pic1.jpg
 C:\Work\Projects\MyNiaSmart\MyNiaSmart\ServiceHost\obj\Release\net5.0\PubTmp\Out\appsettings.Development.json

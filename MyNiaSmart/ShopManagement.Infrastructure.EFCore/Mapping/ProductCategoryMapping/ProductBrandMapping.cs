@@ -17,6 +17,7 @@ namespace ShopManagement.Infrastructure.EFCore.Mapping.ProductCategoryMapping
             builder.HasKey(x => x.Id);
 
             builder.HasMany(x => x.Products).WithOne(x => x.ProductBrand).HasForeignKey(x => x.ProductBrandId);
+            builder.HasMany(x=>x.ProductModels).WithOne(x=>x.ProductBrand).HasForeignKey(x => x.ProductBrandId);
         }
     }
 }

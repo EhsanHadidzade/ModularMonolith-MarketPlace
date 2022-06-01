@@ -1,5 +1,6 @@
 ﻿using _0_Framework.Domain;
 using ShopManagement.Domain.ProductAgg;
+using ShopManagement.Domain.ProductCategoryAgg.ProductModelAgg;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -16,6 +17,7 @@ namespace ShopManagement.Domain.ProductCategoryAgg.ProductBrandAgg
 
         #region Relations
         public List<Product> Products { get; set; }
+        public List<ProductModel> ProductModels{ get; private set; }
         #endregion
 
 

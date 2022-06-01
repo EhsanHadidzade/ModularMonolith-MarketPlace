@@ -126,7 +126,7 @@
                                         <img src="~/MainTheme/images/cameraLogo2.jpg" width="500px" height="200px" class="UploadPD_IdentityCard" id="UploadPD_IdentityCard" />
                                     </div>
                                 </div>
-                                <div class="col-lg-6 mb-2">
+                                <div class="col-lg-6 mb-2" id="UploadPD_NationalCardFrontSide">
                                     <div class="form-group">
                                         <label class="text-label">اپلود تصویر روی کارت ملی (با فرمت PNG)</label>
                                         <input type="file" asp-for="UploadPD_NationalCardFrontSide" class="form-control Upload">
@@ -134,7 +134,7 @@
                                         <img src="~/MainTheme/images/cameraLogo2.jpg" width="500px" height="200px" class="UploadPD_NationalCardFrontSide" id="UploadPD_NationalCardFrontSide" />
                                     </div>
                                 </div>
-                                <div class="col-lg-6 mb-2">
+                                <div class="col-lg-6 mb-2" id="UploadPD_NationalCardBackSide">
                                     <div class="form-group">
                                         <label class="text-label">اپلود تصویر پشت کارت ملی (با فرمت PNG)</label>
                                         <input type="file" asp-for="UploadPD_NationalCardBackSide" class="form-control Upload">
@@ -142,7 +142,7 @@
                                         <img src="~/MainTheme/images/cameraLogo2.jpg" width="500px" height="200px" class="UploadPD_NationalCardBackSide" id="UploadPD_NationalCardBackSide" />
                                     </div>
                                 </div>
-                                <div class="col-lg-6 mb-2">
+                                <div class="col-lg-6 mb-2" id="UploadPD_NationalCodeTrackingPaper" style="display:none">
                                     <div class="form-group">
                                         <label class="text-label">آپلود رسید رهگیری کارت ملی جدید (با فرمت PNG)</label>
                                         <input type="file" asp-for="UploadPD_NationalCodeTrackingPaper" class="form-control Upload">
@@ -236,7 +236,7 @@
                                         <input type="number" asp-for="GI_ChequeNumber" class="form-control">
                                     </div>
                                 </div>
-                                <div class="col-lg-12 mb-2" id="GI_SafteNumber">
+                                <div class="col-lg-12 mb-2" id="GI_SafteNumber" style="display:none">
                                     <div class="form-group">
                                         <label class="text-label"> شماره سفته</label>
                                         <input type="number" asp-for="GI_SafteNumber" class="form-control">
@@ -278,7 +278,7 @@
                                         <img src="~/MainTheme/images/cameraLogo2.jpg" width="500px" height="200px" class="UploadGD_ChequeBackSide" id="UploadGD_ChequeBackSide" />
                                     </div>
                                 </div>
-                                <div class="col-lg-6 mb-2" id="UploadGD_SafteFrontSide">
+                                <div class="col-lg-6 mb-2" id="UploadGD_SafteFrontSide" style="display:none">
                                     <div class="form-group">
                                         <label class="text-label">اپلود تصویرروی سفته (با فرمت PNG)</label>
                                         <input type="file" asp-for="UploadGD_SafteFrontSide" class="form-control Upload">
@@ -286,7 +286,7 @@
                                         <img src="~/MainTheme/images/cameraLogo2.jpg" width="500px" height="200px" class="UploadGD_SafteFrontSide" id="UploadGD_SafteFrontSide" />
                                     </div>
                                 </div>
-                                <div class="col-lg-6 mb-2" id="UploadGD_SafteBackSide">
+                                <div class="col-lg-6 mb-2" id="UploadGD_SafteBackSide" style="display:none">
                                     <div class="form-group">
                                         <label class="text-label">آپلود تصویر پشت سفته (با فرمت PNG)</label>
                                         <input type="file" asp-for="UploadGD_SafteBackSide" class="form-control Upload">
@@ -298,24 +298,24 @@
                             <div class="row">
                                 <div class="col-12">
                                     <div class="skip-email text-center">
-                                        <p>یا اگر می خواهید این مرحله را کاملاً رد کنید و بعداً آن را تنظیم کنید</p>
+                                        @*<p>یا اگر می خواهید این مرحله را کاملاً رد کنید و بعداً آن را تنظیم کنید</p>*@
                                         <input type="submit" class="btn btn-primary" value="ایجاد" />
                                     </div>
                                 </div>
                             </div>
-                            <div class="actions clearfix">
+                            @*  <div class="actions clearfix">
                                 <ul role="menu" aria-label="صفحه ساز">
-                                    <li class="" aria-disabled="false">
-                                        <a href="#previous" role="menuitem">قبلی</a>
-                                    </li>
-                                    <li aria-hidden="true" aria-disabled="true" class="disabled" style="display: none;">
-                                        <a href="#next" role="menuitem">بعدی</a>
-                                    </li>
-                                    <li aria-hidden="false" style="">
-                                        <a href="#finish" role="menuitem">پایان22</a>
-                                    </li>
+                                <li class="" aria-disabled="false">
+                                <a href="#previous" role="menuitem">قبلی</a>
+                                </li>
+                                <li aria-hidden="true" aria-disabled="true" class="disabled" style="display: none;">
+                                <a href="#next" role="menuitem">بعدی</a>
+                                </li>
+                                <li aria-hidden="false" style="">
+                                <a href="#finish" role="menuitem">پایان22</a>
+                                </li>
                                 </ul>
-                            </div>
+                                </div>*@
                         </section>
                     </div>
                 </form>
@@ -340,58 +340,73 @@
 <script src="/MainTheme/js/plugins-init/jquery-steps-init.js"></script>
 
 <script>
-      $(document).ready(function() {
-          $("#customSwitch3").click(function() {
-              if($(this).prop("checked") == true) {
-                   $("#GI_ChequeNumber").css("display","block");
-                  $("#GI_ChequeBankBranch").css("display","block");
-                  $("#GI_ShenaseSayadiCheque").css("display","block");
-                  $("#UploadGD_ChequeFrontSide").css("display","block");
-                  $("#UploadGD_ChequeBackSide").css("display","block");
-                  $("#GI_SafteNumber").css("display","none");
-                  $("#UploadGD_SafteFrontSide").css("display","none");
-                  $("#UploadGD_SafteBackSide").css("display","none");
-              }
-              else if($(this).prop("checked") == false) {
-               $("#GI_ChequeNumber").css("display","none");
-                  $("#GI_ChequeBankBranch").css("display","none");
-                  $("#GI_ShenaseSayadiCheque").css("display","none");
-                  $("#UploadGD_ChequeFrontSide").css("display","none");
-                  $("#UploadGD_ChequeBackSide").css("display","none");
-                  $("#GI_SafteNumber").css("display","block");
-                  $("#UploadGD_SafteFrontSide").css("display","block");
-                  $("#UploadGD_SafteBackSide").css("display","block");
-              }
-            });
-        });
-
-      $('.persianDateInput').persianDatepicker({
-          format: 'YYYY/MM/DD',
-          autoClose: true,
-          initialValueType:false,
-          initialValueType: "persian"
+    $(document).ready(function() {
+        $("#customSwitch3").click(function() {
+            if($(this).prop("checked") == true) {
+                 $("#GI_ChequeNumber").css("display","block");
+                $("#GI_ChequeBankBranch").css("display","block");
+                $("#GI_ShenaseSayadiCheque").css("display","block");
+                $("#UploadGD_ChequeFrontSide").css("display","block");
+                $("#UploadGD_ChequeBackSide").css("display","block");
+                $("#GI_SafteNumber").css("display","none");
+                $("#UploadGD_SafteFrontSide").css("display","none");
+                $("#UploadGD_SafteBackSide").css("display","none");
+            }
+            else if($(this).prop("checked") == false) {
+             $("#GI_ChequeNumber").css("display","none");
+                $("#GI_ChequeBankBranch").css("display","none");
+                $("#GI_ShenaseSayadiCheque").css("display","none");
+                $("#UploadGD_ChequeFrontSide").css("display","none");
+                $("#UploadGD_ChequeBackSide").css("display","none");
+                $("#GI_SafteNumber").css("display","block");
+                $("#UploadGD_SafteFrontSide").css("display","block");
+                $("#UploadGD_SafteBackSide").css("display","block");
+            }
+          });
       });
 
+       $(document).ready(function() {
+        $("#customSwitch2").click(function() {
+            if($(this).prop("checked") == true) {
+                $("#UploadPD_NationalCardFrontSide").css("display","block");
+                $("#UploadPD_NationalCardBackSide").css("display","block");
+                $("#UploadPD_NationalCodeTrackingPaper").css("display","none");
 
-       function readURL(input,id) {
-              if (input.files && input.files[0]) {
-                  var reader = new FileReader();
-                  reader.onload = function (e) {
-                      $('.Upload').parent('div.form-group').find("img"+(".")+id).attr('src', e.target.result);
-
-                  }
-                  reader.readAsDataURL(input.files[0]);
-              } else {
-                  alert('select a file to see preview');
-                  $('#previewHolder').attr('src', '');
-              }
-          }
-
-
-          $(".Upload").change(function () {
-              let id=this.id;
-              readURL(this,id);
+            }
+            else if($(this).prop("checked") == false) {
+                $("#UploadPD_NationalCardFrontSide").css("display","none");
+                $("#UploadPD_NationalCardBackSide").css("display","none");
+                $("#UploadPD_NationalCodeTrackingPaper").css("display","block");
+            }
           });
+      });
+
+    $('.persianDateInput').persianDatepicker({
+        format: 'YYYY/MM/DD',
+        autoClose: true,
+        initialValueType:false,
+        initialValueType: "persian"
+    });
+
+     function readURL(input,id) {
+            if (input.files && input.files[0]) {
+                var reader = new FileReader();
+                reader.onload = function (e) {
+                    $('.Upload').parent('div.form-group').find("img"+(".")+id).attr('src', e.target.result);
+
+                }
+                reader.readAsDataURL(input.files[0]);
+            } else {
+                alert('select a file to see preview');
+                $('#previewHolder').attr('src', '');
+            }
+        }
+
+
+        $(".Upload").change(function () {
+            let id=this.id;
+            readURL(this,id);
+        });
 
 
 

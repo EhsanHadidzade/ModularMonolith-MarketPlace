@@ -113,10 +113,15 @@ namespace ShopManagement.Infrastructure.EFCore.Migrations
                     b.Property<DateTime>("CreationDate")
                         .HasColumnType("datetime2");
 
+                    b.Property<long>("ProductBrandId")
+                        .HasColumnType("bigint");
+
                     b.Property<string>("Title")
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("ProductBrandId");
 
                     b.ToTable("ProductModels");
                 });
@@ -356,6 +361,17 @@ namespace ShopManagement.Infrastructure.EFCore.Migrations
                     b.Navigation("ProductUsageType");
                 });
 
+            modelBuilder.Entity("ShopManagement.Domain.ProductCategoryAgg.ProductModelAgg.ProductModel", b =>
+                {
+                    b.HasOne("ShopManagement.Domain.ProductCategoryAgg.ProductBrandAgg.ProductBrand", "ProductBrand")
+                        .WithMany("ProductModels")
+                        .HasForeignKey("ProductBrandId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("ProductBrand");
+                });
+
             modelBuilder.Entity("ShopManagement.Domain.SellerProductAgg.SellerProduct", b =>
                 {
                     b.HasOne("ShopManagement.Domain.ProductAgg.Product", "Product")
@@ -382,6 +398,8 @@ namespace ShopManagement.Infrastructure.EFCore.Migrations
 
             modelBuilder.Entity("ShopManagement.Domain.ProductCategoryAgg.ProductBrandAgg.ProductBrand", b =>
                 {
+                    b.Navigation("ProductModels");
+
                     b.Navigation("Products");
                 });
 

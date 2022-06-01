@@ -1,4 +1,5 @@
 ﻿using _0_Framework.Infrastructure;
+using Microsoft.EntityFrameworkCore;
 using ShopManagement.Application.Contract.ProductBrand;
 using ShopManagement.Application.Contract.ProductModel;
 using ShopManagement.Domain.ProductCategoryAgg.ProductModelAgg;
@@ -24,17 +25,40 @@ namespace ShopManagement.Infrastructure.EFCore.Repository
             return _context.ProductModels.Select(x => new EditProductModel
             {
                 Id = x.Id,
-                Title = x.Title
+                Title = x.Title,
+                ProductBrandId = x.ProductBrandId
             }).FirstOrDefault(x => x.Id == id);
+        }
+
+        public List<ProductModelViewModel> GetFilteredModels(long brandId)
+        {
+            var query = _context.ProductModels.Include(x => x.ProductBrand)
+                .Select(x => new ProductModelViewModel
+                {
+                    Id = x.Id,
+                    Title = x.Title,
+                    ProductBrandId = x.ProductBrandId,
+                    ProductBrandTitle = x.ProductBrand.Title
+                });
+
+            if (brandId > 0)
+            {
+                query = query.Where(x => x.ProductBrandId == brandId);
+            }
+            return query.ToList();
+
         }
 
         public List<ProductModelViewModel> GetList()
         {
-            return _context.ProductModels.Select(x => new ProductModelViewModel
-            {
-                Id = x.Id,
-                Title = x.Title
-            }).ToList();
+            return _context.ProductModels.Include(x => x.ProductBrand)
+                .Select(x => new ProductModelViewModel
+                {
+                    Id = x.Id,
+                    Title = x.Title,
+                    ProductBrandId = x.ProductBrandId,
+                    ProductBrandTitle = x.ProductBrand.Title
+                }).ToList();
         }
     }
 }

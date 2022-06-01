@@ -24,7 +24,7 @@ namespace ServiceHost.Controllers
             _authHelper = authHelper;
         }
 
-
+        [Authorize]
         public IActionResult Index()
         {
             return View();

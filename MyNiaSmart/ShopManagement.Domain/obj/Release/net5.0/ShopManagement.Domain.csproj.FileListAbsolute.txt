@@ -15,3 +15,7 @@ C:\Work\Projects\MyNiaSmart\MyNiaSmart\ShopManagement.Domain\obj\Release\net5.0\
 C:\Work\Projects\MyNiaSmart\MyNiaSmart\ShopManagement.Domain\obj\Release\net5.0\refint\ShopManagement.Domain.dll
 C:\Work\Projects\MyNiaSmart\MyNiaSmart\ShopManagement.Domain\obj\Release\net5.0\ShopManagement.Domain.pdb
 C:\Work\Projects\MyNiaSmart\MyNiaSmart\ShopManagement.Domain\obj\Release\net5.0\ref\ShopManagement.Domain.dll
+C:\Work\Projects\MyNiaSmart\MyNiaSmart\ShopManagement.Domain\bin\Release\net5.0\AccountManagement.Application.Contract.dll
+C:\Work\Projects\MyNiaSmart\MyNiaSmart\ShopManagement.Domain\bin\Release\net5.0\AccountManagement.Domain.dll
+C:\Work\Projects\MyNiaSmart\MyNiaSmart\ShopManagement.Domain\bin\Release\net5.0\AccountManagement.Domain.pdb
+C:\Work\Projects\MyNiaSmart\MyNiaSmart\ShopManagement.Domain\bin\Release\net5.0\AccountManagement.Application.Contract.pdb

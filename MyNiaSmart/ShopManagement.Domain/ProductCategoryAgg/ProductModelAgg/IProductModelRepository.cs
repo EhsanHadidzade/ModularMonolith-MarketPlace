@@ -12,6 +12,7 @@ namespace ShopManagement.Domain.ProductCategoryAgg.ProductModelAgg
     public interface IProductModelRepository : IRepository<long, ProductModel>
     {
         EditProductModel GetDetails(long id);
+        List<ProductModelViewModel> GetFilteredModels(long brandId);
         List<ProductModelViewModel> GetList();
     }
 }

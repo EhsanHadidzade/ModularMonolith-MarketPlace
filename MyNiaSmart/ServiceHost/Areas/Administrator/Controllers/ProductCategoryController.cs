@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using ShopManagement.Application.Contract.ProductBrand;
 using ShopManagement.Application.Contract.ProductModel;
 using ShopManagement.Application.Contract.ProductStatus;
@@ -63,6 +64,7 @@ namespace ServiceHost.Areas.Administrator.Controllers
         #region ProductModel
         public IActionResult _ProductModelCreate()
         {
+            ViewData["ProductBrands"] = new SelectList(_productBrandApplication.GetList(), "Id", "Title");
             return PartialView();
         }
 
@@ -74,6 +76,7 @@ namespace ServiceHost.Areas.Administrator.Controllers
         }
         public IActionResult _ProductModelEdit(long id)
         {
+            ViewData["ProductBrands"] = new SelectList(_productBrandApplication.GetList(), "Id", "Title");
             var productModel = _productModelApplication.GetDetails(id);
             return PartialView(productModel);
         }

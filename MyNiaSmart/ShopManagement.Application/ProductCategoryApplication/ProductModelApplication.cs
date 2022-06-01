@@ -25,7 +25,7 @@ namespace ShopManagement.Application.ProductCategoryApplication
             if (_productModelRepository.IsExist(x => x.Title == command.Title))
                 return operation.Failed(ApplicationMessage.DuplicatedRecord);
 
-            var productModel = new ProductModel(command.Title);
+            var productModel = new ProductModel(command.Title, command.ProductBrandId);
             _productModelRepository.Create(productModel);
             _productModelRepository.Savechange();
             return operation.Succedded();
@@ -42,7 +42,7 @@ namespace ShopManagement.Application.ProductCategoryApplication
             if (productModel == null)
                 return operation.Failed(ApplicationMessage.RecordNotFound);
 
-            productModel.Edit(command.Title);
+            productModel.Edit(command.Title, command.ProductBrandId);
             _productModelRepository.Savechange();
             return operation.Succedded();
         }
@@ -52,10 +52,15 @@ namespace ShopManagement.Application.ProductCategoryApplication
             return _productModelRepository.GetDetails(id);
         }
 
+        public List<ProductModelViewModel> GetFilteredModels(long brandId)
+        {
+            return _productModelRepository.GetFilteredModels(brandId);
+        }
+
         public List<ProductModelViewModel> GetList()
         {
             return _productModelRepository.GetList();
-        }
 
+        }
     }
 }

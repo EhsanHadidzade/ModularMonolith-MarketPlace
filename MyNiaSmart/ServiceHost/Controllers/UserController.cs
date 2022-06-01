@@ -143,7 +143,7 @@ namespace ServiceHost.Controllers
         }
         #endregion
 
-        #region To SHow client the reasons that admin rejected their up account request
+        #region To Show client the reasons that admin rejected their up account request
         public IActionResult ShowRejectionReason(long id)
         {
             var reasons = _rejectionReasonApplication.GetReasonsOfSpecificUpAccountRequest(id);

@@ -18,7 +18,7 @@
     <div class="col-sm-6 p-md-0 justify-content-sm-end mt-2 mt-sm-0 d-flex">
         <ol class="breadcrumb">
             <li class="breadcrumb-item"><a href="/administrator">پنل مدیریت </a></li>
-            <li class="breadcrumb-item active"><a href=""> مدیریت درخواست های ارتقا حساب ماربری </a></li>
+            <li class="breadcrumb-item active"><a href=""> مدیریت درخواست های ارتقا حساب کاربری </a></li>
         </ol>
     </div>
 </div>
@@ -54,37 +54,37 @@
                         <tbody>
                             @foreach (var item in Model)
                             {
-                                <tr>
-                                    <td>@item.FullName</td>
-                                    <td> @item.Capital</td>
-                                    <td>@item.City</td>
-                                    <td>
+                                    <tr>
+                                        <td>@item.FullName</td>
+                                        <td>@item.Capital</td>
+                                        <td>@item.City</td>
+                                        <td>
                                         @if (item.IsConfirmedByClient)
                                         {
-                                            <span class="badge light badge-warning">نیاز به بررسی توسط ادمین</span>
+                                                    <span class="badge light badge-warning">نیاز به بررسی توسط ادمین</span>
                                         }
                                         else
                                         {
-                                            <span class="badge badge-success light">بررسی توسط ادمین انجام شده است</span>
+                                                    <span class="badge badge-success light">بررسی توسط ادمین انجام شده است</span>
                                         }
-                                    </td>
-                                    <td>
+                                        </td>
+                                        <td>
                                         @if (item.IsConfirmedByAdmin)
                                         {
-                                            <span class="badge badge-success">تایید شده</span>
+                                                    <span class="badge badge-success">تایید شده</span>
                                         }
                                         else
                                         {
-                                            <span class="badge light badge-warning">در انتظار</span>
+                                                    <span class="badge light badge-warning">در انتظار</span>
                                         }
-                                    </td>
-                                    <td>
-                                        <div class="d-flex">
-                                            <a href="/administrator/UpAccountRequest/Edit/@item.Id" class="btn btn-primary shadow btn-xs sharp mr-1"><i class="fa fa-pencil"></i></a>
-                                            <a href="#" class="btn btn-danger shadow btn-xs sharp"><i class="fa fa-trash"></i></a>
-                                        </div>
-                                    </td>
-                                </tr>
+                                        </td>
+                                        <td>
+                                            <div class="d-flex">
+                                                <a href="/administrator/UpAccountRequest/Edit/@item.Id" class="btn btn-primary shadow btn-xs sharp mr-1"><i class="fa fa-pencil"></i></a>
+                                                <a href="#" class="btn btn-danger shadow btn-xs sharp"><i class="fa fa-trash"></i></a>
+                                            </div>
+                                        </td>
+                                    </tr>
                             }
                         </tbody>
                     </table>

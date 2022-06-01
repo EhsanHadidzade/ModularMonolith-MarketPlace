@@ -1,4 +1,4 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿    using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using ShopManagement.Application.Contract.Product;
 using ShopManagement.Application.Contract.ProductBrand;
@@ -31,7 +31,7 @@ namespace ServiceHost.Areas.Administrator.Controllers
             _productStatusApplication = productStatusApplication;
             _productUsageTypeApplication = productUsageTypeApplication;
         }
-      
+
 
         public IActionResult Index()
         {
@@ -43,6 +43,7 @@ namespace ServiceHost.Areas.Administrator.Controllers
 
         public IActionResult Create()
         {
+            
             ViewData["ProductTypes"] = new SelectList(_productTypeApplication.GetList(), "Id", "Title");
             ViewData["ProductBrands"] = new SelectList(_productBrandApplication.GetList(), "Id", "Title");
             ViewData["ProductModels"] = new SelectList(_productModelApplication.GetList(), "Id", "Title");
@@ -84,7 +85,7 @@ namespace ServiceHost.Areas.Administrator.Controllers
         #region EditProduct
         public IActionResult Edit(long id)
         {
-            var product=_productApplication.GetDetails(id);
+            var product = _productApplication.GetDetails(id);
             ViewData["ProductTypes"] = new SelectList(_productTypeApplication.GetList(), "Id", "Title");
             ViewData["ProductBrands"] = new SelectList(_productBrandApplication.GetList(), "Id", "Title");
             ViewData["ProductModels"] = new SelectList(_productModelApplication.GetList(), "Id", "Title");
@@ -106,7 +107,7 @@ namespace ServiceHost.Areas.Administrator.Controllers
                 return View(command);
             }
 
-            var result=_productApplication.Edit(command);
+            var result = _productApplication.Edit(command);
             if (!result.IsSuccedded)
             {
                 ViewData["ProductTypes"] = new SelectList(_productTypeApplication.GetList(), "Id", "Title");
@@ -123,7 +124,13 @@ namespace ServiceHost.Areas.Administrator.Controllers
 
         #endregion
 
-
+        #region FilterProductModels
+        public IActionResult FilterModels(long brandId)
+        {
+            ViewData["FilteredProductModels"] = new SelectList(_productModelApplication.GetFilteredModels(brandId), "Id", "Title");
+            return PartialView("productModelSelectList");
+        }
+        #endregion
 
 
     }

@@ -9,6 +9,7 @@ namespace ShopManagement.Application.Contract.ProductModel
         OperationResult Create(CreateProductModel command);
         OperationResult Edit(EditProductModel command);
         EditProductModel GetDetails(long id);
+        List<ProductModelViewModel> GetFilteredModels(long brandId);
         List<ProductModelViewModel> GetList();
     }
 }
