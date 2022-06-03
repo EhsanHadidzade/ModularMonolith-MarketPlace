@@ -21,10 +21,10 @@ namespace ShopManagement.Application.ProductCategoryApplication
         public OperationResult Create(CreateProductUsageType command)
         {
             var operation = new OperationResult();
-            if (_productUsageTypeRepository.IsExist(x => x.Title == command.Title))
+            if (_productUsageTypeRepository.IsExist(x => x.EngTitle == command.EngTitle))
                 return operation.Failed(ApplicationMessage.DuplicatedRecord);
 
-            var productUsageType = new ProductUsageType(command.Title);
+            var productUsageType = new ProductUsageType(command.EngTitle,command.FarsiTitle);
             _productUsageTypeRepository.Create(productUsageType);
             _productUsageTypeRepository.Savechange();
             return operation.Succedded();
@@ -35,13 +35,13 @@ namespace ShopManagement.Application.ProductCategoryApplication
         {
             var operation = new OperationResult();
             var productUsageType = _productUsageTypeRepository.GetById(command.Id);
-            if (_productUsageTypeRepository.IsExist(x => x.Title == command.Title && x.Id != command.Id))
+            if (_productUsageTypeRepository.IsExist(x => x.EngTitle == command.EngTitle && x.Id != command.Id))
                 return operation.Failed(ApplicationMessage.DuplicatedRecord);
 
             if (productUsageType == null)
                 return operation.Failed(ApplicationMessage.RecordNotFound);
 
-            productUsageType.Edit(command.Title);
+            productUsageType.Edit(command.EngTitle,command.FarsiTitle);
             _productUsageTypeRepository.Savechange();
             return operation.Succedded();
         }

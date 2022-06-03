@@ -23,7 +23,8 @@ namespace ShopManagement.Infrastructure.EFCore.Repository
             return _context.ProductTypes.Select(x => new EditProductType
             {
                 Id = x.Id,
-                Title = x.Title
+                EngTitle = x.EngTitle,
+                FarsiTitle = x.FarsiTitle,
             }).FirstOrDefault(x => x.Id == id);
         }
 
@@ -32,7 +33,8 @@ namespace ShopManagement.Infrastructure.EFCore.Repository
             return _context.ProductTypes.Select(x => new ProductTypeViewModel
             {
                 Id = x.Id,
-                Title = x.Title
+                EngTitle = x.EngTitle,
+                FarsiTitle=x.FarsiTitle
             }).ToList();
         }
     }

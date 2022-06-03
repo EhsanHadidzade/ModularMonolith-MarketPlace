@@ -21,10 +21,10 @@ namespace ShopManagement.Application.ProductCategoryApplication
         public OperationResult Create(CreateProductBrand command)
         {
             var operation = new OperationResult();
-            if (_productBrandRepository.IsExist(x => x.Title == command.Title))
+            if (_productBrandRepository.IsExist(x => x.EngTitle == command.EngTitle))
                 return operation.Failed(ApplicationMessage.DuplicatedRecord);
 
-            var productBrand = new ProductBrand(command.Title);
+            var productBrand = new ProductBrand(command.EngTitle,command.FarsiTitle);
             _productBrandRepository.Create(productBrand);
             _productBrandRepository.Savechange();
             return operation.Succedded();
@@ -35,13 +35,16 @@ namespace ShopManagement.Application.ProductCategoryApplication
         {
             var operation = new OperationResult();
             var productBrand = _productBrandRepository.GetById(command.Id);
-            if (_productBrandRepository.IsExist(x => x.Title == command.Title && x.Id != command.Id))
+            if (_productBrandRepository.IsExist(x => x.EngTitle == command.EngTitle && x.Id != command.Id))
+                return operation.Failed(ApplicationMessage.DuplicatedRecord);
+
+            if (_productBrandRepository.IsExist(x => x.FarsiTitle == command.FarsiTitle && x.Id != command.Id))
                 return operation.Failed(ApplicationMessage.DuplicatedRecord);
 
             if (productBrand == null)
                 return operation.Failed(ApplicationMessage.RecordNotFound);
 
-            productBrand.Edit(command.Title);
+            productBrand.Edit(command.EngTitle,command.FarsiTitle);
             _productBrandRepository.Savechange();
             return operation.Succedded();
         }

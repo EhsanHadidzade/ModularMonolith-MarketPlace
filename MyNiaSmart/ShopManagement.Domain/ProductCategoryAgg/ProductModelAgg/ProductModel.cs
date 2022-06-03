@@ -13,7 +13,8 @@ namespace ShopManagement.Domain.ProductCategoryAgg.ProductModelAgg
     {
         #region Properties
 
-        public string Title { get; private set; }
+        public string EngTitle { get; private set; }
+        public string FarsiTitle { get; private set; }
         #endregion
 
         #region Relations
@@ -22,16 +23,18 @@ namespace ShopManagement.Domain.ProductCategoryAgg.ProductModelAgg
         public List<Product> Products { get; set; }
 
         #endregion
-        public ProductModel(string title,long productBrandId)
+        public ProductModel(string engTitle,string farsiTitle,long productBrandId)
         {
-            Title = title;
+            EngTitle = engTitle;
+            FarsiTitle = farsiTitle;
             ProductBrandId = productBrandId;
             Products = new List<Product>();
         }
-        public void Edit(string title, long productBrandId)
+        public void Edit(string engTitle,string farsiTitle, long productBrandId)
         {
+            EngTitle = engTitle;
+            FarsiTitle=farsiTitle;
             ProductBrandId = productBrandId;
-            Title = title;
         }
 
 

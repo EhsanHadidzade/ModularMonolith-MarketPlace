@@ -81,17 +81,17 @@ namespace AccountManagement.Application.Wallet
             _personalWalletOperationRepository.Savechange();
 
             #region ToDo Sending Sms With Verification Code then we will change active code
-            //string[] p = { "paymentamount", "type", "personreciver", "fulldateandtime", "dynamiccode" };
-            //string[] v = {$"{ command.Amount.ToString()} تومان", "کارت شخصی", DateTime.Now.ToFarsiFull(), walletOperation.VerifyCode };
+            string[] p = { "paymentamount", "type", "personreciver", "fulldateandtime", "dynamiccode" };
+            string[] v = { $"{ command.Amount.ToString()} تومان", "کارت شخصی",receiverFullName, DateTime.Now.ToFarsiFull(), walletOperation.VerifyCode };
 
-            //string pValue = "";
-            //string vValue = "";
-            //for (int i = 0; i < p.Length; i++)
-            //{
-            //    pValue = pValue + "p" + (i + 1) + "=" + p[i] + "&";
-            //    vValue = vValue + "v" + (i + 1) + "=" + v[i] + "&";
-            //}
-            //SendPattern.SendSms("rhnx93pt0h2iw2x", userMobile, pValue, vValue);
+            string pValue = "";
+            string vValue = "";
+            for (int i = 0; i < p.Length; i++)
+            {
+                pValue = pValue + "p" + (i + 1) + "=" + p[i] + "&";
+                vValue = vValue + "v" + (i + 1) + "=" + v[i] + "&";
+            }
+            SendPattern.SendSms("bc6y94aigjbsz0y", userMobile, pValue, vValue);
             #endregion
 
             return operation.Succedded();

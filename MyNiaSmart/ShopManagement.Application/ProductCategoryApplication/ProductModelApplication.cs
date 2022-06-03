@@ -22,10 +22,10 @@ namespace ShopManagement.Application.ProductCategoryApplication
         public OperationResult Create(CreateProductModel command)
         {
             var operation = new OperationResult();
-            if (_productModelRepository.IsExist(x => x.Title == command.Title))
+            if (_productModelRepository.IsExist(x => x.EngTitle == command.EngTitle))
                 return operation.Failed(ApplicationMessage.DuplicatedRecord);
 
-            var productModel = new ProductModel(command.Title, command.ProductBrandId);
+            var productModel = new ProductModel(command.EngTitle,command.FarsiTitle, command.ProductBrandId);
             _productModelRepository.Create(productModel);
             _productModelRepository.Savechange();
             return operation.Succedded();
@@ -36,13 +36,13 @@ namespace ShopManagement.Application.ProductCategoryApplication
         {
             var operation = new OperationResult();
             var productModel = _productModelRepository.GetById(command.Id);
-            if (_productModelRepository.IsExist(x => x.Title == command.Title && x.Id != command.Id))
+            if (_productModelRepository.IsExist(x => x.EngTitle == command.EngTitle && x.Id != command.Id))
                 return operation.Failed(ApplicationMessage.DuplicatedRecord);
 
             if (productModel == null)
                 return operation.Failed(ApplicationMessage.RecordNotFound);
 
-            productModel.Edit(command.Title, command.ProductBrandId);
+            productModel.Edit(command.EngTitle,command.FarsiTitle, command.ProductBrandId);
             _productModelRepository.Savechange();
             return operation.Succedded();
         }

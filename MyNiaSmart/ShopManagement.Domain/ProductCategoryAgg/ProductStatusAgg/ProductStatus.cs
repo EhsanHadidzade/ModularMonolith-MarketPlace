@@ -11,7 +11,8 @@ namespace ShopManagement.Domain.ProductCategoryAgg.ProductStatusAgg
     public class ProductStatus : BaseEntity
     {
         #region Propertied
-        public string Title { get; private set; }
+        public string EngTitle { get; private set; }
+        public string FarsiTitle { get; private set; }
         #endregion
 
         #region Relations
@@ -19,14 +20,16 @@ namespace ShopManagement.Domain.ProductCategoryAgg.ProductStatusAgg
         #endregion
 
 
-        public ProductStatus(string title)
+        public ProductStatus(string engTitle,string farsiTitle)
         {
-            Title = title;
+            EngTitle = engTitle;
+            FarsiTitle= farsiTitle;
             Products = new List<Product>();
         }
-        public void Edit(string title)
+        public void Edit(string engTitle,string farsiTitle)
         {
-            Title = title;
+            EngTitle = engTitle;
+            FarsiTitle = farsiTitle;
         }
     }
 }

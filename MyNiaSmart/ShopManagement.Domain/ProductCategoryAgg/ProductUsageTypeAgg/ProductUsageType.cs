@@ -11,21 +11,24 @@ namespace ShopManagement.Domain.ProductCategoryAgg.ProductUsageTypeAgg
     public class ProductUsageType : BaseEntity
     {
         #region Propertied
-        public string Title { get; private set; }
+        public string EngTitle { get; private set; }
+        public string FarsiTitle { get; private set; }
         #endregion
 
         #region Relations
         public List<Product> Products { get; set; }
         #endregion
 
-        public ProductUsageType(string title)
+        public ProductUsageType(string engTitle,string farsiTitle)
         {
-            Title = title;
+            EngTitle = engTitle;
+            FarsiTitle = farsiTitle;
             Products = new List<Product>();
         }
-        public void Edit(string title)
+        public void Edit(string engTitle,string farsiTitle)
         {
-            Title = title;
+            EngTitle = engTitle;
+            FarsiTitle= farsiTitle;
         }
     }
 }

@@ -95,8 +95,13 @@ namespace ShopManagement.Infrastructure.EFCore.Migrations
                     b.Property<DateTime>("CreationDate")
                         .HasColumnType("datetime2");
 
-                    b.Property<string>("Title")
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<string>("EngTitle")
+                        .HasMaxLength(256)
+                        .HasColumnType("nvarchar(256)");
+
+                    b.Property<string>("FarsiTitle")
+                        .HasMaxLength(256)
+                        .HasColumnType("nvarchar(256)");
 
                     b.HasKey("Id");
 
@@ -113,11 +118,14 @@ namespace ShopManagement.Infrastructure.EFCore.Migrations
                     b.Property<DateTime>("CreationDate")
                         .HasColumnType("datetime2");
 
+                    b.Property<string>("EngTitle")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("FarsiTitle")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<long>("ProductBrandId")
                         .HasColumnType("bigint");
-
-                    b.Property<string>("Title")
-                        .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
 
@@ -136,7 +144,10 @@ namespace ShopManagement.Infrastructure.EFCore.Migrations
                     b.Property<DateTime>("CreationDate")
                         .HasColumnType("datetime2");
 
-                    b.Property<string>("Title")
+                    b.Property<string>("EngTitle")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("FarsiTitle")
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
@@ -154,7 +165,10 @@ namespace ShopManagement.Infrastructure.EFCore.Migrations
                     b.Property<DateTime>("CreationDate")
                         .HasColumnType("datetime2");
 
-                    b.Property<string>("Title")
+                    b.Property<string>("EngTitle")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("FarsiTitle")
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
@@ -172,7 +186,10 @@ namespace ShopManagement.Infrastructure.EFCore.Migrations
                     b.Property<DateTime>("CreationDate")
                         .HasColumnType("datetime2");
 
-                    b.Property<string>("Title")
+                    b.Property<string>("EngTitle")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("FarsiTitle")
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");

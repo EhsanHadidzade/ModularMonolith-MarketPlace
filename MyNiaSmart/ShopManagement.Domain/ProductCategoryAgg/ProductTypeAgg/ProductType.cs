@@ -11,21 +11,24 @@ namespace ShopManagement.Domain.ProductCategoryAgg.ProductTypeAgg
     public class ProductType : BaseEntity
     {
         #region Propertied
-        public string Title { get; private set; }
+        public string EngTitle { get; private set; }
+        public string FarsiTitle { get; private set; }
         #endregion
 
         #region Relations
         public List<Product> Products { get; set; }
         #endregion
 
-        public ProductType(string title)
+        public ProductType(string engTitle,string farsiTitle)
         {
-            Title = title;
+            EngTitle = engTitle;
+            FarsiTitle = farsiTitle;
             Products = new List<Product>();
         }
-        public void Edit(string title)
+        public void Edit(string engTitle,string farsiTitle)
         {
-            Title = title;
+            EngTitle = engTitle;
+            FarsiTitle=farsiTitle;
         }
     }
 }

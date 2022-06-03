@@ -14,7 +14,7 @@ namespace ShopManagement.Application.Contract.Product
         public string Title { get; set; }
         public string Description { get; set; }
 
-        [FileExtentionLimitation(new string[] {".png"},ErrorMessage =ValidationMessage.InvalidFileFormat)]
+        //[FileExtentionLimitation(new string[] {".png"},ErrorMessage =ValidationMessage.InvalidFileFormat)]
         public IFormFile Picture { get; set; }
 
         [Required(ErrorMessage = ValidationMessage.IsRequired)]

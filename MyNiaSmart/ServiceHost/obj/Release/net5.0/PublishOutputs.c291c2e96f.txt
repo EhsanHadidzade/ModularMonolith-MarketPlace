@@ -1191,11 +1191,12 @@ C:\Work\Projects\MyNiaSmart\MyNiaSmart\ServiceHost\obj\Release\net5.0\PubTmp\Out
 C:\Work\Projects\MyNiaSmart\MyNiaSmart\ServiceHost\obj\Release\net5.0\PubTmp\Out\wwwroot\MainTheme\images\tab\3.jpg
 C:\Work\Projects\MyNiaSmart\MyNiaSmart\ServiceHost\obj\Release\net5.0\PubTmp\Out\wwwroot\MainTheme\images\tab\4.jpg
 C:\Work\Projects\MyNiaSmart\MyNiaSmart\ServiceHost\obj\Release\net5.0\PubTmp\Out\wwwroot\MainTheme\image\index.html
-C:\Work\Projects\MyNiaSmart\MyNiaSmart\ServiceHost\obj\Release\net5.0\PubTmp\Out\wwwroot\MainTheme\js\cities.dev.js
 C:\Work\Projects\MyNiaSmart\MyNiaSmart\ServiceHost\obj\Release\net5.0\PubTmp\Out\wwwroot\MainTheme\js\custom.min.js
 C:\Work\Projects\MyNiaSmart\MyNiaSmart\ServiceHost\obj\Release\net5.0\PubTmp\Out\wwwroot\MainTheme\js\dashboard\dashboard-1.js
 C:\Work\Projects\MyNiaSmart\MyNiaSmart\ServiceHost\obj\Release\net5.0\PubTmp\Out\wwwroot\MainTheme\js\dashboard\dashboard-2.js
 C:\Work\Projects\MyNiaSmart\MyNiaSmart\ServiceHost\obj\Release\net5.0\PubTmp\Out\wwwroot\MainTheme\js\deznav-init.js
+C:\Work\Projects\MyNiaSmart\MyNiaSmart\ServiceHost\obj\Release\net5.0\PubTmp\Out\wwwroot\MainTheme\js\IranCities\ir-city-select.js
+C:\Work\Projects\MyNiaSmart\MyNiaSmart\ServiceHost\obj\Release\net5.0\PubTmp\Out\wwwroot\MainTheme\js\IranCities\ir-city-select.min.js
 C:\Work\Projects\MyNiaSmart\MyNiaSmart\ServiceHost\obj\Release\net5.0\PubTmp\Out\wwwroot\MainTheme\js\persian-date.min.js
 C:\Work\Projects\MyNiaSmart\MyNiaSmart\ServiceHost\obj\Release\net5.0\PubTmp\Out\wwwroot\MainTheme\js\persian-datepicker.min.js
 C:\Work\Projects\MyNiaSmart\MyNiaSmart\ServiceHost\obj\Release\net5.0\PubTmp\Out\wwwroot\MainTheme\js\plugins-init\bs-daterange-picker-init.js
@@ -1303,19 +1304,18 @@ C:\Work\Projects\MyNiaSmart\MyNiaSmart\ServiceHost\obj\Release\net5.0\PubTmp\Out
 C:\Work\Projects\MyNiaSmart\MyNiaSmart\ServiceHost\obj\Release\net5.0\PubTmp\Out\wwwroot\MainTheme\vendor\toastr\css\toastr.min.css
 C:\Work\Projects\MyNiaSmart\MyNiaSmart\ServiceHost\obj\Release\net5.0\PubTmp\Out\wwwroot\MainTheme\vendor\toastr\js\toastr.min.js
 C:\Work\Projects\MyNiaSmart\MyNiaSmart\ServiceHost\obj\Release\net5.0\PubTmp\Out\wwwroot\MainTheme\vendor\wnumb\wNumb.js
-C:\Work\Projects\MyNiaSmart\MyNiaSmart\ServiceHost\obj\Release\net5.0\PubTmp\Out\wwwroot\UploadedFiles\ProductPictures\عنوان1\2022-04-30-12-08-05profile.png
-C:\Work\Projects\MyNiaSmart\MyNiaSmart\ServiceHost\obj\Release\net5.0\PubTmp\Out\wwwroot\UploadedFiles\ProductPictures\عنوان4\2022-04-30-12-24-09profile.png
-C:\Work\Projects\MyNiaSmart\MyNiaSmart\ServiceHost\obj\Release\net5.0\PubTmp\Out\wwwroot\UploadedFiles\ProductPictures\همکار\2022-04-30-13-11-42profile.png
+C:\Work\Projects\MyNiaSmart\MyNiaSmart\ServiceHost\obj\Release\net5.0\PubTmp\Out\wwwroot\UploadedFiles\ProductPictures\ehsa\2022-06-02-13-46-425.jpg
 C:\Work\Projects\MyNiaSmart\MyNiaSmart\ServiceHost\obj\Release\net5.0\PubTmp\Out\wwwroot\UploadedFiles\UpAccountDocument\رحیم مقدم\2022-05-11-14-10-06پشت کارت ملی4.jpg
 C:\Work\Projects\MyNiaSmart\MyNiaSmart\ServiceHost\obj\Release\net5.0\PubTmp\Out\wwwroot\UploadedFiles\UpAccountDocument\رحیم مقدم\2022-05-11-14-11-57شناسنامه1.jpg
-C:\Work\Projects\MyNiaSmart\MyNiaSmart\ServiceHost\obj\Release\net5.0\PubTmp\Out\wwwroot\UploadedFiles\UserPhoto\2022-05-04-11-00-365.jpg
-C:\Work\Projects\MyNiaSmart\MyNiaSmart\ServiceHost\obj\Release\net5.0\PubTmp\Out\wwwroot\UploadedFiles\UserPhoto\2022-05-04-11-10-58pic1.jpg
+C:\Work\Projects\MyNiaSmart\MyNiaSmart\ServiceHost\obj\Release\net5.0\PubTmp\Out\wwwroot\UploadedFiles\UserPhoto\2022-06-01-15-11-073.jpg
+C:\Work\Projects\MyNiaSmart\MyNiaSmart\ServiceHost\obj\Release\net5.0\PubTmp\Out\wwwroot\UploadedFiles\UserPhoto\2022-06-03-13-05-224.jpg
 C:\Work\Projects\MyNiaSmart\MyNiaSmart\ServiceHost\obj\Release\net5.0\PubTmp\Out\appsettings.Development.json
 C:\Work\Projects\MyNiaSmart\MyNiaSmart\ServiceHost\obj\Release\net5.0\PubTmp\Out\appsettings.json
 C:\Work\Projects\MyNiaSmart\MyNiaSmart\ServiceHost\obj\Release\net5.0\PubTmp\Out\ServiceHost.dll
 C:\Work\Projects\MyNiaSmart\MyNiaSmart\ServiceHost\obj\Release\net5.0\PubTmp\Out\ServiceHost.runtimeconfig.json
 C:\Work\Projects\MyNiaSmart\MyNiaSmart\ServiceHost\obj\Release\net5.0\PubTmp\Out\ServiceHost.pdb
 C:\Work\Projects\MyNiaSmart\MyNiaSmart\ServiceHost\obj\Release\net5.0\PubTmp\Out\Humanizer.dll
+C:\Work\Projects\MyNiaSmart\MyNiaSmart\ServiceHost\obj\Release\net5.0\PubTmp\Out\Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore.dll
 C:\Work\Projects\MyNiaSmart\MyNiaSmart\ServiceHost\obj\Release\net5.0\PubTmp\Out\Microsoft.AspNetCore.Http.Features.dll
 C:\Work\Projects\MyNiaSmart\MyNiaSmart\ServiceHost\obj\Release\net5.0\PubTmp\Out\Microsoft.AspNetCore.Mvc.Razor.Extensions.dll
 C:\Work\Projects\MyNiaSmart\MyNiaSmart\ServiceHost\obj\Release\net5.0\PubTmp\Out\Microsoft.AspNetCore.Mvc.Razor.RuntimeCompilation.dll

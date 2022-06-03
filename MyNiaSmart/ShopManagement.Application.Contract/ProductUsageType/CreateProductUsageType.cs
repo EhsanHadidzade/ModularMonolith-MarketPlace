@@ -7,6 +7,7 @@ namespace ShopManagement.Application.Contract.ProductUsageType
 {
     public class CreateProductUsageType
     {
-        public string Title { get; set; }
+        public string EngTitle { get; set; }
+        public string FarsiTitle { get; set; }
     }
 }

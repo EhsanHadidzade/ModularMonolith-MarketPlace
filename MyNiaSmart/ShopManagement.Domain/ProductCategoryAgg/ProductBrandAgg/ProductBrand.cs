@@ -12,7 +12,8 @@ namespace ShopManagement.Domain.ProductCategoryAgg.ProductBrandAgg
     public class ProductBrand : BaseEntity
     {
         #region Propertied
-        public string Title { get; private set; }
+        public string EngTitle { get; private set; }
+        public string FarsiTitle { get; private set; }
         #endregion
 
         #region Relations
@@ -21,14 +22,16 @@ namespace ShopManagement.Domain.ProductCategoryAgg.ProductBrandAgg
         #endregion
 
 
-        public ProductBrand(string title)
+        public ProductBrand(string engTitle,string farsiTitle)
         {
-            Title = title;
+            EngTitle = engTitle;
+            FarsiTitle = farsiTitle;
             Products = new List<Product>();
         }
-        public void Edit(string title)
+        public void Edit(string engTitle, string farsiTitle)
         {
-            Title = title;
+            EngTitle = engTitle;
+            FarsiTitle=farsiTitle;
         }
     }
 }

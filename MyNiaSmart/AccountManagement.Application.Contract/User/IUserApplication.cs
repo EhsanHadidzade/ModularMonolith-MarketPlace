@@ -16,6 +16,9 @@ namespace AccountManagement.Application.Contract.User
         //To check if a user is AdminOrNot
         bool IsUserAdmin(long userId);
 
+        //to use for auto fill upAccountRequest Form
+        UserViewModel GetSomeInfoByUserId(long userId);
+
 
     }
 }

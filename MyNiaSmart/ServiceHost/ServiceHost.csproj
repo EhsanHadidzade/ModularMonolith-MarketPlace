@@ -26,6 +26,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <PackageReference Include="Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore" Version="5.0.17" />
     <PackageReference Include="Microsoft.AspNetCore.Mvc.Razor.RuntimeCompilation" Version="5.0.16" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="5.0.17">
       <PrivateAssets>all</PrivateAssets>
@@ -48,7 +49,6 @@
     <Folder Include="Areas\Administrator\Data\" />
     <Folder Include="Areas\Administrator\Models\" />
     <Folder Include="wwwroot\UploadedFiles\" />
-    <Folder Include="wwwroot\UploadedFiles\UserPhoto\" />
   </ItemGroup>
 
   <ItemGroup>
@@ -899,6 +899,8 @@
     <None Include="bin\Release\net5.0\zh-Hant\Microsoft.CodeAnalysis.resources.dll" />
     <None Include="bin\Release\net5.0\zh-Hant\Microsoft.CodeAnalysis.Workspaces.resources.dll" />
     <None Include="wwwroot\js\site.js" />
+    <None Include="wwwroot\MainTheme\js\IranCities\ir-city-select.js" />
+    <None Include="wwwroot\MainTheme\js\IranCities\ir-city-select.min.js" />
   </ItemGroup>
 
 </Project>

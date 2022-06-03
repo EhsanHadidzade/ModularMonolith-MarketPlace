@@ -72,8 +72,8 @@ namespace AccountManagement.Application
             if (user == null)
                 return operation.Failed(ApplicationMessage.RecordNotFound);
 
-            if (_userRepository.IsExist(x => x.MobileNumber == command.MobileNumber && x.Id != command.Id))
-                return operation.Failed(ApplicationMessage.DuplicatedRecord);
+            //if (_userRepository.IsExist(x => x.MobileNumber == command.MobileNumber && x.Id != command.Id))
+            //    return operation.Failed(ApplicationMessage.DuplicatedRecord);
 
             var birthday = DateTime.MinValue;
             if (command.Birthday != null)
@@ -84,9 +84,8 @@ namespace AccountManagement.Application
 
             var picturePath = _fileUploader.Upload(command.ProfilePhoto, "UserPhoto");
 
-            user.Edit(command.FullName, command.MobileNumber
-                , command.Capital, command.City, command.Address, command.NationalCode
-                , birthday, picturePath, command.IntroductorFullname, command.IntroductorMobileNumber, command.Grade, command.Experience);
+            user.Edit(command.FullName, command.Capital, command.City, command.Address, command.NationalCode
+                , birthday, picturePath, command.IntroductorFullname, command.IntroductorMobileNumber);
             _userRepository.Savechange();
             return operation.Succedded();
         }
@@ -223,6 +222,11 @@ namespace AccountManagement.Application
         public bool IsUserAdmin(long userId)
         {
            return _userRepository.IsUserAdmin(userId);
+        }
+
+        public UserViewModel GetSomeInfoByUserId(long userId)
+        {
+            return _userRepository.GetSomeInfoByUserId(userId);
         }
     }
 }

@@ -21,10 +21,10 @@ namespace ShopManagement.Application.ProductCategoryApplication
         public OperationResult Create(CreateProductStatus command)
         {
             var operation = new OperationResult();
-            if (_productStatusRepository.IsExist(x => x.Title == command.Title))
+            if (_productStatusRepository.IsExist(x => x.EngTitle == command.EngTitle))
                 return operation.Failed(ApplicationMessage.DuplicatedRecord);
 
-            var productStatus = new ProductStatus(command.Title);
+            var productStatus = new ProductStatus(command.EngTitle,command.FarsiTitle);
             _productStatusRepository.Create(productStatus);
             _productStatusRepository.Savechange();
             return operation.Succedded();
@@ -35,13 +35,13 @@ namespace ShopManagement.Application.ProductCategoryApplication
         {
             var operation = new OperationResult();
             var productStatus = _productStatusRepository.GetById(command.Id);
-            if (_productStatusRepository.IsExist(x => x.Title == command.Title && x.Id != command.Id))
+            if (_productStatusRepository.IsExist(x => x.EngTitle == command.EngTitle && x.Id != command.Id))
                 return operation.Failed(ApplicationMessage.DuplicatedRecord);
 
             if (productStatus == null)
                 return operation.Failed(ApplicationMessage.RecordNotFound);
 
-            productStatus.Edit(command.Title);
+            productStatus.Edit(command.EngTitle,command.FarsiTitle);
             _productStatusRepository.Savechange();
             return operation.Succedded();
         }

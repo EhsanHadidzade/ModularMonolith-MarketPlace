@@ -16,6 +16,9 @@ namespace ShopManagement.Infrastructure.EFCore.Mapping.ProductCategoryMapping
             builder.ToTable("ProductBrands");
             builder.HasKey(x => x.Id);
 
+            builder.Property(x => x.EngTitle).HasMaxLength(256);
+            builder.Property(x => x.FarsiTitle).HasMaxLength(256);
+
             builder.HasMany(x => x.Products).WithOne(x => x.ProductBrand).HasForeignKey(x => x.ProductBrandId);
             builder.HasMany(x=>x.ProductModels).WithOne(x=>x.ProductBrand).HasForeignKey(x => x.ProductBrandId);
         }

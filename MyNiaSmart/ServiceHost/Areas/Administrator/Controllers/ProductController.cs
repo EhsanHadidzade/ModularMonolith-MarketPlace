@@ -44,11 +44,11 @@ namespace ServiceHost.Areas.Administrator.Controllers
         public IActionResult Create()
         {
             
-            ViewData["ProductTypes"] = new SelectList(_productTypeApplication.GetList(), "Id", "Title");
-            ViewData["ProductBrands"] = new SelectList(_productBrandApplication.GetList(), "Id", "Title");
-            ViewData["ProductModels"] = new SelectList(_productModelApplication.GetList(), "Id", "Title");
-            ViewData["ProductUsageTypes"] = new SelectList(_productUsageTypeApplication.GetList(), "Id", "Title");
-            ViewData["ProductStatuses"] = new SelectList(_productStatusApplication.GetList(), "Id", "Title");
+            ViewData["ProductTypes"] = new SelectList(_productTypeApplication.GetList(), "Id", "EngTitle");
+            ViewData["ProductBrands"] = new SelectList(_productBrandApplication.GetList(), "Id", "EngTitle");
+            ViewData["ProductModels"] = new SelectList(_productModelApplication.GetList(), "Id", "EngTitle");
+            ViewData["ProductUsageTypes"] = new SelectList(_productUsageTypeApplication.GetList(), "Id", "EngTitle");
+            ViewData["ProductStatuses"] = new SelectList(_productStatusApplication.GetList(), "Id", "EngTitle");
             return View();
         }
 
@@ -57,22 +57,22 @@ namespace ServiceHost.Areas.Administrator.Controllers
         {
             if (!ModelState.IsValid)
             {
-                ViewData["ProductTypes"] = new SelectList(_productTypeApplication.GetList(), "Id", "Title");
-                ViewData["ProductBrands"] = new SelectList(_productBrandApplication.GetList(), "Id", "Title");
-                ViewData["ProductModels"] = new SelectList(_productModelApplication.GetList(), "Id", "Title");
-                ViewData["ProductUsageTypes"] = new SelectList(_productUsageTypeApplication.GetList(), "Id", "Title");
-                ViewData["ProductStatuses"] = new SelectList(_productStatusApplication.GetList(), "Id", "Title");
+                ViewData["ProductTypes"] = new SelectList(_productTypeApplication.GetList(), "Id", "EngTitle");
+                ViewData["ProductBrands"] = new SelectList(_productBrandApplication.GetList(), "Id", "EngTitle");
+                ViewData["ProductModels"] = new SelectList(_productModelApplication.GetList(), "Id", "EngTitle");
+                ViewData["ProductUsageTypes"] = new SelectList(_productUsageTypeApplication.GetList(), "Id", "EngTitle");
+                ViewData["ProductStatuses"] = new SelectList(_productStatusApplication.GetList(), "Id", "EngTitle");
                 return View(command);
             }
 
             var result = _productApplication.Create(command);
             if (!result.IsSuccedded)
             {
-                ViewData["ProductTypes"] = new SelectList(_productTypeApplication.GetList(), "Id", "Title");
-                ViewData["ProductBrands"] = new SelectList(_productBrandApplication.GetList(), "Id", "Title");
-                ViewData["ProductModels"] = new SelectList(_productModelApplication.GetList(), "Id", "Title");
-                ViewData["ProductUsageTypes"] = new SelectList(_productUsageTypeApplication.GetList(), "Id", "Title");
-                ViewData["ProductStatuses"] = new SelectList(_productStatusApplication.GetList(), "Id", "Title");
+                ViewData["ProductTypes"] = new SelectList(_productTypeApplication.GetList(), "Id", "EngTitle");
+                ViewData["ProductBrands"] = new SelectList(_productBrandApplication.GetList(), "Id", "EngTitle");
+                ViewData["ProductModels"] = new SelectList(_productModelApplication.GetList(), "Id", "EngTitle");
+                ViewData["ProductUsageTypes"] = new SelectList(_productUsageTypeApplication.GetList(), "Id", "EngTitle");
+                ViewData["ProductStatuses"] = new SelectList(_productStatusApplication.GetList(), "Id", "EngTitle");
                 ViewData["Message"] = result.Message;
                 return View(command);
             }
@@ -86,11 +86,11 @@ namespace ServiceHost.Areas.Administrator.Controllers
         public IActionResult Edit(long id)
         {
             var product = _productApplication.GetDetails(id);
-            ViewData["ProductTypes"] = new SelectList(_productTypeApplication.GetList(), "Id", "Title");
-            ViewData["ProductBrands"] = new SelectList(_productBrandApplication.GetList(), "Id", "Title");
-            ViewData["ProductModels"] = new SelectList(_productModelApplication.GetList(), "Id", "Title");
-            ViewData["ProductUsageTypes"] = new SelectList(_productUsageTypeApplication.GetList(), "Id", "Title");
-            ViewData["ProductStatuses"] = new SelectList(_productStatusApplication.GetList(), "Id", "Title");
+            ViewData["ProductTypes"] = new SelectList(_productTypeApplication.GetList(), "Id", "EngTitle");
+            ViewData["ProductBrands"] = new SelectList(_productBrandApplication.GetList(), "Id", "EngTitle");
+            ViewData["ProductModels"] = new SelectList(_productModelApplication.GetList(), "Id", "EngTitle");
+            ViewData["ProductUsageTypes"] = new SelectList(_productUsageTypeApplication.GetList(), "Id", "EngTitle");
+            ViewData["ProductStatuses"] = new SelectList(_productStatusApplication.GetList(), "Id", "EngTitle");
             return View(product);
         }
 
@@ -99,22 +99,22 @@ namespace ServiceHost.Areas.Administrator.Controllers
         {
             if (!ModelState.IsValid)
             {
-                ViewData["ProductTypes"] = new SelectList(_productTypeApplication.GetList(), "Id", "Title");
-                ViewData["ProductBrands"] = new SelectList(_productBrandApplication.GetList(), "Id", "Title");
-                ViewData["ProductModels"] = new SelectList(_productModelApplication.GetList(), "Id", "Title");
-                ViewData["ProductUsageTypes"] = new SelectList(_productUsageTypeApplication.GetList(), "Id", "Title");
-                ViewData["ProductStatuses"] = new SelectList(_productStatusApplication.GetList(), "Id", "Title");
+                ViewData["ProductTypes"] = new SelectList(_productTypeApplication.GetList(), "Id", "EngTitle");
+                ViewData["ProductBrands"] = new SelectList(_productBrandApplication.GetList(), "Id", "EngTitle");
+                ViewData["ProductModels"] = new SelectList(_productModelApplication.GetList(), "Id", "EngTitle");
+                ViewData["ProductUsageTypes"] = new SelectList(_productUsageTypeApplication.GetList(), "Id", "EngTitle");
+                ViewData["ProductStatuses"] = new SelectList(_productStatusApplication.GetList(), "Id", "EngTitle");
                 return View(command);
             }
 
             var result = _productApplication.Edit(command);
             if (!result.IsSuccedded)
             {
-                ViewData["ProductTypes"] = new SelectList(_productTypeApplication.GetList(), "Id", "Title");
-                ViewData["ProductBrands"] = new SelectList(_productBrandApplication.GetList(), "Id", "Title");
-                ViewData["ProductModels"] = new SelectList(_productModelApplication.GetList(), "Id", "Title");
-                ViewData["ProductUsageTypes"] = new SelectList(_productUsageTypeApplication.GetList(), "Id", "Title");
-                ViewData["ProductStatuses"] = new SelectList(_productStatusApplication.GetList(), "Id", "Title");
+                ViewData["ProductTypes"] = new SelectList(_productTypeApplication.GetList(), "Id", "EngTitle");
+                ViewData["ProductBrands"] = new SelectList(_productBrandApplication.GetList(), "Id", "EngTitle");
+                ViewData["ProductModels"] = new SelectList(_productModelApplication.GetList(), "Id", "EngTitle");
+                ViewData["ProductUsageTypes"] = new SelectList(_productUsageTypeApplication.GetList(), "Id", "EngTitle");
+                ViewData["ProductStatuses"] = new SelectList(_productStatusApplication.GetList(), "Id", "EngTitle");
                 ViewData["Message"] = result.Message;
                 return View(command);
             }
@@ -127,7 +127,7 @@ namespace ServiceHost.Areas.Administrator.Controllers
         #region FilterProductModels
         public IActionResult FilterModels(long brandId)
         {
-            ViewData["FilteredProductModels"] = new SelectList(_productModelApplication.GetFilteredModels(brandId), "Id", "Title");
+            ViewData["FilteredProductModels"] = new SelectList(_productModelApplication.GetFilteredModels(brandId), "Id", "EngTitle");
             return PartialView("productModelSelectList");
         }
         #endregion

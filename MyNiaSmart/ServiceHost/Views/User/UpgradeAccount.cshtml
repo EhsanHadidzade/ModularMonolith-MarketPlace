@@ -1,6 +1,12 @@
 ﻿@model AccountManagement.Application.Contract.UpAccountRequest.CreateUpAccountRequest
+@using AccountManagement.Application.Contract.User
+@using _0_Framework.Contract
+@inject IUserApplication _userApplication
+@inject IAuthHelper _authHelper
 @{
     ViewData["Title"] = "ارتقاء حساب کاربری";
+    var userId = _authHelper.CurrentAccountInfo().Id;
+    var userInfo = _userApplication.GetSomeInfoByUserId(userId);
 }
 
 
@@ -47,7 +53,7 @@
                                 <div class="col-lg-6 mb-2">
                                     <div class="form-group">
                                         <label class="text-label">نام و نام خانوادگی</label>
-                                        <input type="text" asp-for="PI_FUllName" class="form-control" placeholder="نام و نام خانوادگی">
+                                        <input type="text" asp-for="PI_FUllName" value="@userInfo.FullName" class="form-control">
                                     </div>
                                 </div>
                                 <div class="col-lg-6 mb-2">
@@ -70,27 +76,28 @@
                                 </div>
                                 <div class="col-lg-6 mb-2">
                                     <div class="form-group">
-                                        <label class="text-label"> استان</label>
-                                        <input type="text" asp-for="PI_Capital" class="form-control" id="inputGroupPrepend2" aria-describedby="inputGroupPrepend2">
+                                        <div class="ir-select">
+                                            <label class="text-label"> استان</label>
+                                            <select class="ir-province form-control" asp-for="PI_Capital"></select>
+
+                                            <label class="text-label"> شهر</label>
+                                            <select class="ir-city form-control" asp-for="PI_City"></select>
+
+                                        </div>
                                     </div>
                                 </div>
-                                <div class="col-lg-6 mb-2">
-                                    <div class="form-group">
-                                        <label class="text-label">شهر</label>
-                                        <input type="text" asp-for="PI_City" class="form-control" placeholder="">
-                                    </div>
-                                </div>
+                                <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
                                 <div class="col-lg-6 mb-2">
                                     <div class="form-group">
                                         <label class="text-label">تاریخ عضویت</label>
-                                        <input type="text" asp-for="PI_RegistrationDate" class="form-control persianDateInput">
+                                        <input type="text" asp-for="PI_RegistrationDate" value="@userInfo.CreationDate" class="form-control persianDateInput">
                                     </div>
                                     <br />
                                 </div>
                                 <div class="col-lg-6 mb-2">
                                     <div class="form-group">
                                         <label class="text-label">تاریخ تولد</label>
-                                        <input type="text" asp-for="PI_BirthdayDate" class="form-control persianDateInput">
+                                        <input type="text" asp-for="PI_BirthdayDate" value="--/--/--" class="form-control persianDateInput">
                                     </div>
                                     <br />
                                 </div>
@@ -298,12 +305,12 @@
                             <div class="row">
                                 <div class="col-12">
                                     <div class="skip-email text-center">
-                                        @*<p>یا اگر می خواهید این مرحله را کاملاً رد کنید و بعداً آن را تنظیم کنید</p>*@
+                                        <p>یا اگر می خواهید این مرحله را کاملاً رد کنید و بعداً آن را تنظیم کنید</p>
                                         <input type="submit" class="btn btn-primary" value="ایجاد" />
                                     </div>
                                 </div>
                             </div>
-                            @*  <div class="actions clearfix">
+                              <div class="actions clearfix">
                                 <ul role="menu" aria-label="صفحه ساز">
                                 <li class="" aria-disabled="false">
                                 <a href="#previous" role="menuitem">قبلی</a>
@@ -315,7 +322,7 @@
                                 <a href="#finish" role="menuitem">پایان22</a>
                                 </li>
                                 </ul>
-                                </div>*@
+                                </div>
                         </section>
                     </div>
                 </form>
@@ -331,6 +338,7 @@
 <script src="/lib/jquery/dist/jquery.min.js"></script>
 
 @section Scripts{
+<script src="~/MainTheme/js/IranCities/ir-city-select.js"></script>
 <!--Scripts-->
 <script src="/MainTheme/vendor/jquery-steps/build/jquery.steps.min.js"></script>
 <script src="/MainTheme/vendor/jquery-validation/jquery.validate.min.js"></script>
@@ -384,7 +392,6 @@
     $('.persianDateInput').persianDatepicker({
         format: 'YYYY/MM/DD',
         autoClose: true,
-        initialValueType:false,
         initialValueType: "persian"
     });
 

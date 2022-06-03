@@ -7,7 +7,8 @@ namespace ShopManagement.Application.Contract.ProductStatus
 {
     public class CreateProductStatus
     {
-        public string Title { get; set; }
+        public string EngTitle { get; set; }
+        public string FarsiTitle { get; set; }
 
     }
 }

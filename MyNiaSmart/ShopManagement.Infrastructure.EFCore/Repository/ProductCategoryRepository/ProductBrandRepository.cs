@@ -23,7 +23,8 @@ namespace ShopManagement.Infrastructure.EFCore.Repository.ProductCategoryReposit
             return _context.ProductBrands.Select(x => new EditProductBrand
             {
                 Id = x.Id,
-                Title = x.Title
+                EngTitle = x.EngTitle,
+                FarsiTitle = x.FarsiTitle,
             }).FirstOrDefault(x => x.Id == id);
         }
 
@@ -32,7 +33,8 @@ namespace ShopManagement.Infrastructure.EFCore.Repository.ProductCategoryReposit
             return _context.ProductBrands.Select(x => new ProductBrandViewModel
             {
                 Id = x.Id,
-                Title = x.Title
+                FarsiTitle = x.FarsiTitle,
+                EngTitle = x.EngTitle
             }).ToList();
         }
     }

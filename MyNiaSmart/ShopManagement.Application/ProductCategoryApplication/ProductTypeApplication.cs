@@ -21,10 +21,10 @@ namespace ShopManagement.Application.ProductCategoryApplication
         public OperationResult Create(CreateProductType command)
         {
             var operation = new OperationResult();
-            if (_productTypeRepository.IsExist(x => x.Title == command.Title))
+            if (_productTypeRepository.IsExist(x => x.EngTitle == command.EngTitle))
                 return operation.Failed(ApplicationMessage.DuplicatedRecord);
 
-            var productType = new ProductType(command.Title);
+            var productType = new ProductType(command.EngTitle,command.FarsiTitle);
             _productTypeRepository.Create(productType);
             _productTypeRepository.Savechange();
             return operation.Succedded();
@@ -35,13 +35,13 @@ namespace ShopManagement.Application.ProductCategoryApplication
         {
             var operation = new OperationResult();
             var productType = _productTypeRepository.GetById(command.Id);
-            if (_productTypeRepository.IsExist(x => x.Title == command.Title && x.Id != command.Id))
+            if (_productTypeRepository.IsExist(x => x.EngTitle == command.EngTitle && x.Id != command.Id))
                 return operation.Failed(ApplicationMessage.DuplicatedRecord);
 
             if (productType == null)
                 return operation.Failed(ApplicationMessage.RecordNotFound);
 
-            productType.Edit(command.Title);
+            productType.Edit(command.EngTitle,command.FarsiTitle);
             _productTypeRepository.Savechange();
             return operation.Succedded();
         }

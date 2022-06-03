@@ -64,7 +64,7 @@ namespace ServiceHost.Areas.Administrator.Controllers
         #region ProductModel
         public IActionResult _ProductModelCreate()
         {
-            ViewData["ProductBrands"] = new SelectList(_productBrandApplication.GetList(), "Id", "Title");
+            ViewData["ProductBrands"] = new SelectList(_productBrandApplication.GetList(), "Id", "EngTitle");
             return PartialView();
         }
 
@@ -76,7 +76,7 @@ namespace ServiceHost.Areas.Administrator.Controllers
         }
         public IActionResult _ProductModelEdit(long id)
         {
-            ViewData["ProductBrands"] = new SelectList(_productBrandApplication.GetList(), "Id", "Title");
+            ViewData["ProductBrands"] = new SelectList(_productBrandApplication.GetList(), "Id", "EngTitle");
             var productModel = _productModelApplication.GetDetails(id);
             return PartialView(productModel);
         }

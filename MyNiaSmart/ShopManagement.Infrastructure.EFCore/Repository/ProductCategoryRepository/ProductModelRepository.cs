@@ -25,7 +25,8 @@ namespace ShopManagement.Infrastructure.EFCore.Repository
             return _context.ProductModels.Select(x => new EditProductModel
             {
                 Id = x.Id,
-                Title = x.Title,
+                EngTitle = x.EngTitle,
+                FarsiTitle = x.FarsiTitle,
                 ProductBrandId = x.ProductBrandId
             }).FirstOrDefault(x => x.Id == id);
         }
@@ -36,9 +37,10 @@ namespace ShopManagement.Infrastructure.EFCore.Repository
                 .Select(x => new ProductModelViewModel
                 {
                     Id = x.Id,
-                    Title = x.Title,
+                    EngTitle = x.EngTitle,
+                    FarsiTitle=x.FarsiTitle,
                     ProductBrandId = x.ProductBrandId,
-                    ProductBrandTitle = x.ProductBrand.Title
+                    ProductBrandTitle = x.ProductBrand.EngTitle
                 });
 
             if (brandId > 0)
@@ -55,9 +57,10 @@ namespace ShopManagement.Infrastructure.EFCore.Repository
                 .Select(x => new ProductModelViewModel
                 {
                     Id = x.Id,
-                    Title = x.Title,
+                    EngTitle = x.EngTitle,
+                    FarsiTitle=x.FarsiTitle,
                     ProductBrandId = x.ProductBrandId,
-                    ProductBrandTitle = x.ProductBrand.Title
+                    ProductBrandTitle = x.ProductBrand.EngTitle
                 }).ToList();
         }
     }

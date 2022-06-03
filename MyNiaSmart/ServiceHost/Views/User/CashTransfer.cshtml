@@ -11,7 +11,7 @@
                     <form method="post" action="/user/CashTransfer">
                         <div class="form-group">
                             <label>شماره کارت مقصد</label>
-                            <input type="number" asp-for="DestinationCardNumber" class="form-control input-default " placeholder="شماره کارت">
+                            <input type="tel" inputmode="numeric" asp-for="DestinationCardNumber" class="form-control input-default " placeholder="شماره کارت">
                             <span class="text-danger" asp-validation-for="DestinationCardNumber"></span>
                         </div>
                         <div class="form-group">

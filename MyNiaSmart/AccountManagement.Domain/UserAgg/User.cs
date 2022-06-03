@@ -90,13 +90,12 @@ namespace AccountManagement.Domain.UserAgg
             UserPersonalities = new List<UserPersonality>();
         }
 
-        public void Edit(string fullName, string mobileNumber, string capital
+        public void Edit(string fullName, string capital
             , string city, string address, string nationalCode
             , DateTime? birthday, string profilePhoto, string introductorFullname
-            , string introductorMobileNumber,int grade,long experience)
+            , string introductorMobileNumber)
         {
             FullName = fullName;
-            MobileNumber = mobileNumber;
             Capital = capital;
             City = city;
             Address = address;
@@ -108,9 +107,6 @@ namespace AccountManagement.Domain.UserAgg
 
             IntroductorFullname = introductorFullname;
             IntroductorMobileNumber = introductorMobileNumber;
-
-            Grade=grade;
-            Experience=experience;
           
         }
 
