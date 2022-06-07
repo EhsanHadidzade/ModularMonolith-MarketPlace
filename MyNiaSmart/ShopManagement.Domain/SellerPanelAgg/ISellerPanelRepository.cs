@@ -13,11 +13,14 @@ namespace ShopManagement.Domain.SellerPanelAgg
         EditSellerPanel GetDetails(long id);
         List<SellerPanelViewModel> GetList();
 
-        //ToDisable Button In UserPanel For Creation SellerPanel
+        //ToDisable Button In UserPanel For Creation SellerPanelRequest
         bool HasUserRequestedForSellerPanel(long userId);
 
-        //to SHow Or Hide SellerPanel for creating their product and see Chartreports
+        //to Show Or Hide SellerPanelButton in clientSide for creating their product and see Chartreports
         bool HasUserSellerPanelConfirmedByAdmin(long userId);
+
+        //To Get sellerPanel id to use when new product is adding by seller i their panel
+        long GetSellerPanelIdByUserId(long userId);
 
     }
 }

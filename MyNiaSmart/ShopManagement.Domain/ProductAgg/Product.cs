@@ -23,6 +23,7 @@ namespace ShopManagement.Domain.ProductAgg
         public int ProductWeight { get; private set; }
         public string Dimensions { get; private set; }
         public string CountryMadeIn { get; private set; }
+        public string Slug { get; private set; }
 
         //Fk
         public long ProductBrandId { get; private set; }
@@ -46,7 +47,7 @@ namespace ShopManagement.Domain.ProductAgg
 
         public Product(string title, string descriotion, string picture,
             string partNumber, int productWeight, string dimensions,
-            string countryMadeIn, long productBrandId, long productModelId,
+            string countryMadeIn,string slug, long productBrandId, long productModelId,
             long productStatusId, long productTypeId, long productUsageTypeId)
         {
             Title = title;
@@ -59,6 +60,7 @@ namespace ShopManagement.Domain.ProductAgg
             ProductWeight = productWeight;
             Dimensions = dimensions;
             CountryMadeIn = countryMadeIn;
+            Slug= slug;
             ProductBrandId = productBrandId;
             ProductModelId = productModelId;
             ProductStatusId = productStatusId;
@@ -71,7 +73,7 @@ namespace ShopManagement.Domain.ProductAgg
 
         public void Edit(string title, string descriotion, string picture,
            string partNumber, int productWeight, string dimensions,
-           string countryMadeIn, long productBrandId, long productModelId,
+           string countryMadeIn,string slug, long productBrandId, long productModelId,
            long productStatusId, long productTypeId, long productUsageTypeId)
         {
             Title = title;
@@ -84,6 +86,7 @@ namespace ShopManagement.Domain.ProductAgg
             ProductWeight = productWeight;
             Dimensions = dimensions;
             CountryMadeIn = countryMadeIn;
+            Slug=slug;
             ProductBrandId = productBrandId;
             ProductModelId = productModelId;
             ProductStatusId = productStatusId;

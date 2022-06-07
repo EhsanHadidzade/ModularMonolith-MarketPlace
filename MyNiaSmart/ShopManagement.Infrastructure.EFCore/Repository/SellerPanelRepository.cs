@@ -64,6 +64,12 @@ namespace ShopManagement.Infrastructure.EFCore.Repository
             }).OrderByDescending(x=>x.Id).ToList();
         }
 
+        public long GetSellerPanelIdByUserId(long userId)
+        {
+            var sellerPanel = _shopContext.SellerPanels.Select(x => new { x.Id, x.UserId }).FirstOrDefault(x => x.UserId == userId);
+            return sellerPanel.Id;
+        }
+
         public bool HasUserRequestedForSellerPanel(long userId)
         {
             return _shopContext.SellerPanels.Any(x => x.UserId == userId);

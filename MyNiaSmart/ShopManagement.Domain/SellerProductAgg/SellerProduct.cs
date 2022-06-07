@@ -27,6 +27,7 @@ namespace ShopManagement.Domain.SellerProductAgg
         public int WarrantyTypeId { get; private set; }
         public int WarrantyAmount { get; private set; }
         #endregion
+
         public bool isConfirmedByAdmin { get; private set; }
 
         //relations

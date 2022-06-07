@@ -14,40 +14,53 @@ namespace ShopManagement.Infrastructure.EFCore.Repository
     {
         private readonly ShopContext _context;
 
-        public ProductRepository(ShopContext context):base(context)
+        public ProductRepository(ShopContext context) : base(context)
         {
             _context = context;
         }
 
         public EditProduct GetDetails(long id)
         {
-           return _context.Products.Select(x=>new EditProduct 
-           {
-               Id=x.Id,
-               ProductBrandId=x.ProductBrandId,
-               ProductModelId=x.ProductModelId,
-               ProductStatusId=x.ProductStatusId,
-               ProductTypeId=x.ProductTypeId,
-               ProductUsageTypeId=x.ProductUsageTypeId,
-               Title=x.Title,
-               Description=x.Descriotion,
-               PartNumber=x.PartNumber,
-               CountryMadeIn=x.CountryMadeIn,
-               Dimensions=x.Dimensions,
-               ProductWeight=x.ProductWeight
-           }).FirstOrDefault(x=>x.Id == id);   
+            return _context.Products.Select(x => new EditProduct
+            {
+                Id = x.Id,
+                ProductBrandId = x.ProductBrandId,
+                ProductModelId = x.ProductModelId,
+                ProductStatusId = x.ProductStatusId,
+                ProductTypeId = x.ProductTypeId,
+                ProductUsageTypeId = x.ProductUsageTypeId,
+                Title = x.Title,
+                Description = x.Descriotion,
+                PartNumber = x.PartNumber,
+                CountryMadeIn = x.CountryMadeIn,
+                Dimensions = x.Dimensions,
+                ProductWeight = x.ProductWeight,
+                Slug = x.Slug,
+                PictureUrl = x.Picture
+            }).FirstOrDefault(x => x.Id == id);
         }
 
         public List<ProductViewModel> GetList()
         {
-            return _context.Products.Select(x=>new ProductViewModel
+            return _context.Products.Select(x => new ProductViewModel
             {
                 Id = x.Id,
-                Picture=x.Picture,
-                Title=x.Title,
-                PartNumber=x.PartNumber,
-                CreationDate=x.CreationDate.ToFarsi()
+                Picture = x.Picture,
+                Title = x.Title,
+                PartNumber = x.PartNumber,
+                CreationDate = x.CreationDate.ToFarsi(),
+                Slug = x.Slug,
             }).ToList();
+        }
+
+        public ProductViewModel GetTitleAndIdById(long id)
+        {
+            var product =_context.Products.Select(x=>new ProductViewModel
+            {
+                Id=x.Id,
+                Title=x.Title
+            }).FirstOrDefault(x=>x.Id==id);
+            return product;
         }
     }
 }

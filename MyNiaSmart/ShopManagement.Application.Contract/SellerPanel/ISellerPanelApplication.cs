@@ -5,10 +5,15 @@ namespace ShopManagement.Application.Contract.SellerPanel
 {
     public interface ISellerPanelApplication
     {
-        OperationResult Create(CreateSellerPanel command);
+
+        //AdminSide
+        List<SellerPanelViewModel> GetList();
         EditSellerPanel GetDetails(long id);
         void ConfirmByAdmin(long sellerPanelId);
         void CancelByAdmin(long sellerPanelId);
+
+        //ClientSide
+        OperationResult Create(CreateSellerPanel command);
 
         //ToDisable Button In UserPanel For Creation SellerPanel
         bool HasUserRequestedForSellerPanel(long userId);
@@ -16,6 +21,9 @@ namespace ShopManagement.Application.Contract.SellerPanel
         //to SHow Or Hide SellerPanel for creating their product and see Chartreports
         bool HasUserSellerPanelConfirmedByAdmin(long userId);
 
-        List<SellerPanelViewModel> GetList();
+        //To Get sellerPanel id to use when new product is adding by seller i their panel
+        long GetSellerPanelIdByUserId(long userId);
+
+
     }
 }

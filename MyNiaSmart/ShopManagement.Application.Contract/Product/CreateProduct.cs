@@ -16,12 +16,14 @@ namespace ShopManagement.Application.Contract.Product
 
         //[FileExtentionLimitation(new string[] {".png"},ErrorMessage =ValidationMessage.InvalidFileFormat)]
         public IFormFile Picture { get; set; }
+        public string PictureUrl { get; set; }
 
         [Required(ErrorMessage = ValidationMessage.IsRequired)]
         public string PartNumber { get;  set; }
         public int ProductWeight { get;  set; }
         public string Dimensions { get;  set; }
         public string CountryMadeIn { get;  set; }
+        public string Slug { get; set; }
 
         //selectedCategories
         [Range(1,long.MaxValue,ErrorMessage =ValidationMessage.IsRequired)]

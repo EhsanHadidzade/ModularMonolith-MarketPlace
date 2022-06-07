@@ -55,7 +55,7 @@
                             </div>
                             <div class="form-group col-md-6">
                                 <label>عنوان محصول</label>
-                                <input type="text" asp-for="Title" class="form-control" placeholder="عنوان محصول">
+                                <input type="text" asp-for="Title" class="form-control" placeholder="عنوان محصول" onchange="makeSlug('Title', 'Slug')">
                                 <span class="text-danger" asp-validation-for="Title">
                                 </span>
                             </div>
@@ -82,12 +82,18 @@
                                 <input type="file" asp-for="Picture" class="form-control Upload" placeholder="">
                                 <span class="text-danger" asp-validation-for="Picture">
                                 </span>
-                                <img src="/UploadedFiles/@Model.Picture" width="150" class="Picture" id="Picture" />
+                                <img src="/UploadedFiles/@Model.PictureUrl" width="150" class="Picture" id="Picture" />
                             </div>
                             <div class="form-group col-md-6">
                                 <label> کشور تولید کننده</label>
                                 <input type="text" asp-for="CountryMadeIn" class="form-control" placeholder="کشور">
                                 <span class="text-danger" asp-validation-for="CountryMadeIn">
+                                </span>
+                            </div>
+                            <div class="form-group col-md-6">
+                                <label>اسلاگ</label>
+                                <input type="text" class="form-control" asp-for="Slug">
+                                <span class="text-danger" asp-validation-for="Slug">
                                 </span>
                             </div>
                             <div class="col-xl-12 col-xxl-12">

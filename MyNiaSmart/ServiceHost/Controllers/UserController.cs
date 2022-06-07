@@ -25,6 +25,11 @@ namespace ServiceHost.Controllers
     [Authorize]
     public class UserController : Controller
     {
+        [TempData]
+        public static string message { get; set; }
+        public static string withdrawResult { get; set; }
+        public static string transferResult { get; set; }
+
         private readonly IUserQuery _userQuery;
         private readonly IAuthHelper _authHelper;
         private readonly IUserApplication _userApplication;
@@ -65,17 +70,17 @@ namespace ServiceHost.Controllers
         }
 
         #region for users To Edit profile details in their profile
-        public IActionResult UserProfile(string message)
+        public IActionResult UserProfile()
         {
-            if(!string.IsNullOrWhiteSpace(message))
-                ViewData["message"]=message;
+            if (!string.IsNullOrWhiteSpace(message))
+                ViewData["message"] = message;
 
             long userId = _authHelper.CurrentAccountInfo().Id;
             var userInfo = _userQuery.GetUserInfo(userId);
             var EditUser = _userApplication.GetDetails(userId);
             //var RoleTypesWithRoles = _roleTypeApplication.GetList();
             var PersonalityTypesWithPersonalities = _personalityTypeApplication.GetList();
-            var model = new Tuple<UserInfoQueryModel, EditUser,List<PersonalityTypeViewModel>>(userInfo, EditUser, PersonalityTypesWithPersonalities);
+            var model = new Tuple<UserInfoQueryModel, EditUser, List<PersonalityTypeViewModel>>(userInfo, EditUser, PersonalityTypesWithPersonalities);
             return View(model);
         }
 
@@ -83,7 +88,8 @@ namespace ServiceHost.Controllers
         public IActionResult _UserProfileEdit(EditUser command)
         {
             var result = _userApplication.Edit(command);
-            return RedirectToAction("userProfile", new {message=result.Message});
+            UserController.message = result.Message;
+            return RedirectToAction("userProfile");
         }
 
         [HttpPost]
@@ -96,7 +102,8 @@ namespace ServiceHost.Controllers
                 SelectedPersonalityIds = PersonalityList
             };
             var result = _UserCooperationRequestApplication.CreateUserCoopeartionRequest(command);
-            return RedirectToAction("userProfile", new {message=result.Message});
+            UserController.message = result.Message;
+            return RedirectToAction("userProfile");
 
         }
         #endregion
@@ -117,8 +124,8 @@ namespace ServiceHost.Controllers
                 ViewData["UpRequestResult"] = result.Message;
                 return View(command);
             }
-            //ViewData["UpRequestResult"] = result.Message;
-            return RedirectToAction("UserProfile", new {message=result.Message});
+            UserController.message = result.Message;
+            return RedirectToAction("UserProfile");
         }
         #endregion
 
@@ -152,10 +159,10 @@ namespace ServiceHost.Controllers
         #endregion
 
         #region Personal wallets
-        public IActionResult Wallet(string TransferResult, string withdrawResult)
+        public IActionResult Wallet()
         {
-            if (!string.IsNullOrWhiteSpace(TransferResult))
-                ViewData["operationResult"] = TransferResult;
+            if (!string.IsNullOrWhiteSpace(transferResult))
+                ViewData["operationResult"] = transferResult;
 
             if (!string.IsNullOrWhiteSpace(withdrawResult))
                 ViewData["operationResult"] = withdrawResult;
@@ -243,7 +250,8 @@ namespace ServiceHost.Controllers
             }
 
             _personalWalletApplication.ChangeBalanceOfSenderAndReceiver(command);
-            return RedirectToAction("wallet", new { TransferResult = result.Message });
+            UserController.transferResult = result.Message;
+            return RedirectToAction("wallet");
         }
         #endregion
 
@@ -264,7 +272,8 @@ namespace ServiceHost.Controllers
                 return View(command);
             }
             var result = _personalWalletOperationApplication.WithdrawPersonalWallet(command);
-            return RedirectToAction("Wallet", new { withdrawResult = result.Message });
+            UserController.withdrawResult = result.Message;
+            return RedirectToAction("Wallet");
         }
         #endregion
 
@@ -279,8 +288,9 @@ namespace ServiceHost.Controllers
         public IActionResult CreateSellerPanel(CreateSellerPanel command)
         {
             command.UserId = _authHelper.CurrentAccountInfo().Id;
-            var result=_sellerPanelApplication.Create(command);
-            return RedirectToAction("UserProfile", new { message = result.Message });
+            var result = _sellerPanelApplication.Create(command);
+            UserController.message = result.Message;
+            return RedirectToAction("UserProfile");
         }
         #endregion
 

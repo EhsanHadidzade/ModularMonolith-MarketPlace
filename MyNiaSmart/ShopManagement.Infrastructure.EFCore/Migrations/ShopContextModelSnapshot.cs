@@ -66,9 +66,13 @@ namespace ShopManagement.Infrastructure.EFCore.Migrations
                     b.Property<int>("ProductWeight")
                         .HasColumnType("int");
 
+                    b.Property<string>("Slug")
+                        .HasMaxLength(500)
+                        .HasColumnType("nvarchar(500)");
+
                     b.Property<string>("Title")
-                        .HasMaxLength(256)
-                        .HasColumnType("nvarchar(256)");
+                        .HasMaxLength(500)
+                        .HasColumnType("nvarchar(500)");
 
                     b.HasKey("Id");
 

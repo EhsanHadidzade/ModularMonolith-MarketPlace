@@ -1,4 +1,5 @@
-﻿using _0_Framework.Utilities;
+﻿using _0_Framework.Application;
+using _0_Framework.Utilities;
 using _01_Framework.Application;
 using ShopManagement.Application.Contract.Product;
 using ShopManagement.Domain.ProductAgg;
@@ -28,9 +29,10 @@ namespace ShopManagement.Application
                 return operation.Failed(ApplicationMessage.DuplicatedRecord);
 
             var picturePath = _fileUploader.Upload(command.Picture,$"ProductPictures//{command.Title}");
+            var slug = command.Slug.Slugify();
 
             var product = new Product(command.Title, command.Description, picturePath,
-                command.PartNumber, command.ProductWeight,command.Dimensions,command.CountryMadeIn,
+                command.PartNumber, command.ProductWeight,command.Dimensions,command.CountryMadeIn, slug,
                 command.ProductBrandId, command.ProductModelId, command.ProductStatusId, command.ProductTypeId,
                 command.ProductUsageTypeId);
 
@@ -51,9 +53,9 @@ namespace ShopManagement.Application
                 return operation.Failed(ApplicationMessage.RecordNotFound);
 
             var picturePath = _fileUploader.Upload(command.Picture, $"ProductPictures//{command.Title}");
-
+            var slug = command.Slug.Slugify();
             product.Edit(command.Title, command.Description, picturePath,
-                command.PartNumber, command.ProductWeight, command.Dimensions, command.CountryMadeIn,
+                command.PartNumber, command.ProductWeight, command.Dimensions, command.CountryMadeIn,slug,
                 command.ProductBrandId, command.ProductModelId, command.ProductStatusId, command.ProductTypeId,
                 command.ProductUsageTypeId);
 
@@ -70,6 +72,11 @@ namespace ShopManagement.Application
         public List<ProductViewModel> GetList()
         {
             return _productRepository.GetList();
+        }
+
+        public ProductViewModel GetTitleAndIdById(long id)
+        {
+            return _productRepository.GetTitleAndIdById(id);
         }
     }
 }

@@ -1,0 +1,90 @@
+﻿@model List<ShopManagement.Application.Contract.Product.ProductViewModel>
+
+
+<!-- Custom Stylesheet -->
+<link href="/AdminTheme/vendor/datatables/css/jquery.dataTables.min.css" rel="stylesheet">
+<link href="/AdminTheme/vendor/bootstrap-select/dist/css/bootstrap-select.min.css" rel="stylesheet">
+
+
+<div class="row">
+    <div class="col-12">
+        <div class="card">
+            <div class="card-header">
+                <h4 class="card-title">لیست  محصولات سازمان</h4>
+            </div>
+            <div class="card-body">
+                <div class="table-responsive">
+                    <table id="example3" class="display" style="min-width: 845px">
+                        <thead>
+                            <tr>
+                                <th>تصویر محصول</th>
+                                <th>عنوان محصول</th>
+                                <th> پارت نامبر</th>
+                                <th>عملیات</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var item in Model)
+                            {
+                                <tr>
+                                    <td>
+                                        <img src="/UploadedFiles/@item.Picture" class="rounded-circle" width="35">
+                                    </td>
+                                    <td>@item.Title</td>
+                                    <td>@item.PartNumber</td>
+                                    <td>
+                                        <div class="d-flex">
+                                            <button @*href="/SellerPanel/AddProductToSellerPanel/@item.Slug"*@ onclick="addproduct(@item.Id)" class="btn btn-primary shadow btn-xs sharp mr-1"><i class="fa fa-plus"></i></button>
+                                        </div>
+                                    </td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!--Datatable JavaScript-->
+<script src="/AdminTheme/vendor/datatables/js/jquery.dataTables.min.js"></script>
+<script src="/AdminTheme/js/plugins-init/datatables.init.js"></script>
+
+
+<script>
+    function addproduct(productid){
+        debugger
+        $.ajax({
+            url:"/sellerpanel/addproduct",
+            data:{id:productid},
+            dataType:'json',
+            success:function(result){
+                $("#ProductTitle").val(result.Title);
+                $("#ProductId").val(result.Id);
+                $("#MainModal").modal("hide");
+            }
+        })
+    }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

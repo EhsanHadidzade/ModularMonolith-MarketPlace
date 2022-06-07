@@ -662,7 +662,7 @@
     <!-- Apex Chart -->
     <script src="~/Maintheme/vendor/apexchart/apexchart.js"></script>
 
-   
+
 
     <!-- Vectormap -->
     <!-- Chart piety plugin files -->
@@ -682,13 +682,22 @@
     <script src="~/Maintheme/js/persian-date.min.js"></script>
     <script src="~/Maintheme/js/persian-datepicker.min.js"></script>
 
+    <!--Editor-->
+    <script src="https://cdn.tiny.cloud/1/03bywyfc22f080o11wndvso5su892zkphj49li728tkw9f3f/tinymce/5/tinymce.min.js" referrerpolicy="origin"></script>
+    <script>
+        tinymce.init({
+          selector: '#BodyContent',
+          plugins: 'advlist autolink lists link image charmap preview anchor pagebreak',
+          toolbar_mode: 'floating',
+          directionality : 'rtl'
+        });
+    </script>
 
-
-    @RenderSection("Scripts",false)
-     <!--validatations-->
+    <!--validatations-->
     <script src="~/lib/jquery-validation/dist/jquery.validate.min.js"></script>
     <script src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.min.js"></script>
     <script src="~/Maintheme/js/site.js"></script>
+    @RenderSection("Scripts",false)
 </body>
 
 </html>

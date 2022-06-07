@@ -1,4 +1,5 @@
 ﻿using _0_Framework.Domain;
+using ShopManagement.Application.Contract.SellerProduct;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,6 +10,8 @@ namespace ShopManagement.Domain.SellerProductAgg
 {
     public interface ISelleProductRepository:IRepository<long,SellerProduct>
     {
-        
+        EditSellerProduct GetDetails(long sellerProductId);
+        List<SellerProductViewModel> GetList();
+ 
     }
 }

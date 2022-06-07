@@ -11,7 +11,8 @@ namespace ShopManagement.Infrastructure.EFCore.Mapping
             builder.ToTable("Products");
             builder.HasKey(x => x.Id);
 
-            builder.Property(x => x.Title).HasMaxLength(256);
+            builder.Property(x => x.Title).HasMaxLength(500);
+            builder.Property(x => x.Slug).HasMaxLength(500);
             builder.Property(x => x.Descriotion);
             builder.Property(x => x.Picture).HasMaxLength(256);
             builder.Property(x => x.CountryMadeIn).HasMaxLength(100);

@@ -54,7 +54,7 @@ namespace ShopManagement.Application
             _sellerPanelRepository.Create(sellerPanel);
             _sellerPanelRepository.Savechange();
 
-            return operation.Succedded("درخواست شما با موفقیت ارسال و در حال بررسی میباشد. نتیجه آن را  پنل کاربریتان قابل مشاهده خواهد بود  ");
+            return operation.Succedded("درخواست شما با موفقیت ارسال و در حال بررسی میباشد. نتیجه آن در پنل کاربریتان قابل مشاهده خواهد بود  ");
         }
 
         public EditSellerPanel GetDetails(long id)
@@ -65,6 +65,11 @@ namespace ShopManagement.Application
         public List<SellerPanelViewModel> GetList()
         {
             return _sellerPanelRepository.GetList();
+        }
+
+        public long GetSellerPanelIdByUserId(long userId)
+        {
+            return _sellerPanelRepository.GetSellerPanelIdByUserId(userId);
         }
 
         public bool HasUserRequestedForSellerPanel(long userId)
