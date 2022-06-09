@@ -1305,10 +1305,10 @@ C:\Work\Projects\MyNiaSmart\MyNiaSmart\ServiceHost\obj\Release\net5.0\PubTmp\Out
 C:\Work\Projects\MyNiaSmart\MyNiaSmart\ServiceHost\obj\Release\net5.0\PubTmp\Out\wwwroot\MainTheme\vendor\toastr\js\toastr.min.js
 C:\Work\Projects\MyNiaSmart\MyNiaSmart\ServiceHost\obj\Release\net5.0\PubTmp\Out\wwwroot\MainTheme\vendor\wnumb\wNumb.js
 C:\Work\Projects\MyNiaSmart\MyNiaSmart\ServiceHost\obj\Release\net5.0\PubTmp\Out\wwwroot\UploadedFiles\ProductPictures\ehsa\2022-06-02-13-46-425.jpg
+C:\Work\Projects\MyNiaSmart\MyNiaSmart\ServiceHost\obj\Release\net5.0\PubTmp\Out\wwwroot\UploadedFiles\ProductPictures\خودپرداز وینکور دیواری ۲۱۵۰ یو‌اس‌بی ریفر - Wincor nixdorf 2150 XeUSB Referbuished\2022-06-09-10-09-39وینکور-2150.jpg
 C:\Work\Projects\MyNiaSmart\MyNiaSmart\ServiceHost\obj\Release\net5.0\PubTmp\Out\wwwroot\UploadedFiles\UpAccountDocument\رحیم مقدم\2022-05-11-14-10-06پشت کارت ملی4.jpg
 C:\Work\Projects\MyNiaSmart\MyNiaSmart\ServiceHost\obj\Release\net5.0\PubTmp\Out\wwwroot\UploadedFiles\UpAccountDocument\رحیم مقدم\2022-05-11-14-11-57شناسنامه1.jpg
 C:\Work\Projects\MyNiaSmart\MyNiaSmart\ServiceHost\obj\Release\net5.0\PubTmp\Out\wwwroot\UploadedFiles\UserPhoto\2022-06-01-15-11-073.jpg
-C:\Work\Projects\MyNiaSmart\MyNiaSmart\ServiceHost\obj\Release\net5.0\PubTmp\Out\wwwroot\UploadedFiles\UserPhoto\2022-06-03-13-05-224.jpg
 C:\Work\Projects\MyNiaSmart\MyNiaSmart\ServiceHost\obj\Release\net5.0\PubTmp\Out\appsettings.Development.json
 C:\Work\Projects\MyNiaSmart\MyNiaSmart\ServiceHost\obj\Release\net5.0\PubTmp\Out\appsettings.json
 C:\Work\Projects\MyNiaSmart\MyNiaSmart\ServiceHost\obj\Release\net5.0\PubTmp\Out\ServiceHost.dll

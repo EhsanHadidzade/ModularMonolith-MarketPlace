@@ -1,0 +1,148 @@
+﻿@model ShopManagement.Application.Contract.SellerProduct.EditSellerProduct
+@{
+    ViewData["Title"] = "جزئیات محصول فروشنده";
+}
+    <link href="~/AdminTheme/vendor/sweetalert2/dist/sweetalert2.min.css" rel="stylesheet">
+
+
+<div class="row">
+    <div class="col-xl-12 col-lg-12">
+        <div class="card">
+            <div class="card-header">
+                <h4 class="card-title">مشاهده جزئیات محصول</h4>
+            </div>
+            <div class="card-body">
+                <div class="basic-form">
+                        <div class="form-row">
+                            <div class="form-group col-md-12">
+                                <label>عنوان محصول</label>
+                                <input type="text" class="form-control" asp-for="ProductTitle" placeholder="">
+                                <span class="text-danger" asp-validation-for="ProductTitle"></span>
+                            </div>
+                            <input type="hidden" asp-for="ProductId" />
+                            <input type="hidden" asp-for="Id" />
+                            <input type="hidden" asp-for="SellerPanelId" />
+                     
+                            <div class="form-group col-md-12">
+                                <label>قیمت</label>
+                                <input type="number" class="form-control" asp-for="Price" onkeypress="return onlyNumberKey(event)" placeholder="بر حسب تومان">
+                                <span class="text-danger" asp-validation-for="Price">
+                                </span>
+                            </div>
+                            <div class="form-group col-md-6">
+                                <label>مدت زمان تحویل توی شهر</label>
+                                <input type="number" class="form-control" asp-for="DeliveryDurationForCity" onkeypress="return onlyNumberKey(event)" placeholder="بر حسب ساعت">
+                                <span class="text-danger" asp-validation-for="DeliveryDurationForCity">
+                                </span>
+                            </div>
+                            <div class="form-group col-md-6">
+                                <label>مدت زمان تحویل توی استان</label>
+                                <input type="number" class="form-control" asp-for="DeliveryDurationForCapital" onkeypress="return onlyNumberKey(event)" placeholder="بر حسب ساعت">
+                                <span class="text-danger" asp-validation-for="DeliveryDurationForCapital">
+                                </span>
+                            </div>
+                            <div class="form-group col-md-6">
+                                <label>مدت زمان تحویل به سایر نقاط</label>
+                                <input type="number" class="form-control" asp-for="DeliveryDurationForOther" onkeypress="return onlyNumberKey(event)" placeholder="بر حسب ساعت">
+                                <span class="text-danger" asp-validation-for="DeliveryDurationForOther">
+                                </span>
+                            </div>
+                            <div class="form-group col-md-6">
+                                <label>انتخاب گروه خریداران</label>
+                                <select class="form-control" asp-for="BuyersCategory">
+                                    <option value="0">انتخاب کنید</option>
+                                    <option value="1"> خریداران عادی</option>
+                                    <option value="2"> تعمیر کننده ها</option>
+                                    <option value="3"> هر دو</option>
+                                </select>
+                                <span class="text-danger" asp-validation-for="BuyersCategory">
+                                </span>
+                            </div>
+                            <div class="form-group col-md-6">
+                                <label>انتخاب نوع گارانتی محصول=</label>
+                                <select class="form-control" asp-for="WarrantyTypeId">
+                                    <option value="0">انتخاب کنید</option>
+                                    <option value="1"> ساعت</option>
+                                    <option value="2"> روز</option>
+                                    <option value="3"> ماه</option>
+                                    <option value="4"> سال</option>
+                                </select>
+                                <span class="text-danger" asp-validation-for="WarrantyTypeId">
+                                </span>
+                            </div>
+                            <div class="form-group col-md-6">
+                                <label>مقدار گارانتی</label>
+                                <input type="number" class="form-control" asp-for="WarrantyAmount" onkeypress="return onlyNumberKey(event)">
+                                <span class="text-danger" asp-validation-for="WarrantyAmount">
+                                </span>
+                            </div>
+                            <div class="form-group col-md-6" style="padding:20px">
+                                <div class="custom-control custom-switch custom-control-inline mb-1">
+                                    <input type="checkbox" class="custom-control-input" id="customSwitch1" asp-for="CanMarketerSee">
+                                    <label class="custom-control-label mr-1" for="customSwitch1">
+                                    </label>
+                                    <span>من مایلم بازار یاب ها محصولات من را مشاهده کنند</span>
+                                </div>
+                            </div>
+                            @if (Model.CanMarketerSee)
+                            {
+                                <div class="form-group col-md-12" id="MarketerSharePercentt">
+                                    <label>درصدی که متعلق به بازار یاب میباشد</label>
+                                    <input type="number" class="form-control" asp-for="MarketerSharePercent" onkeypress="return onlyNumberKey(event)" placeholder="درصد">
+                                    <span class="text-danger" asp-validation-for="MarketerSharePercent">
+                                    </span>
+                                </div>
+                                <div class="form-group col-md-12" id="MarketerShareAmountt">
+                                    <label>قیمتی از محصول که به بازاریاب تعلق میگیرد</label>
+                                    <input type="number" class="form-control" asp-for="MarketerShareAmount" onkeypress="return onlyNumberKey(event)" placeholder="بر حسب تومان">
+                                    <span class="text-danger" asp-validation-for="MarketerShareAmount">
+                                    </span>
+                                </div>
+                            }
+
+                            <div class="form-group col-md-12" dir="rtl">
+                                <label> توضیحات</label>
+                                <textarea class="form-control" id="BodyContent" rows="30" asp-for="Description">
+
+                                </textarea>
+                                <span class="text-danger" asp-validation-for="Description">
+                                </span>
+                            </div>
+                            <div class="card-content">
+                                <div class="sweetalert mt-5">
+                                    <button class="btn btn-primary btn sweet-success-cancel">شیرین HTML</button>
+                                </div>
+                            </div>
+                            @*<button type="submit" class="btn btn-primary">تایید نهایی محصول</button>*@
+                        </div>
+                    </>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+</script>
+@section Scripts{
+   <script src="~/AdminTheme/vendor/sweetalert2/dist/sweetalert2.min.js"></script>
+    <script>
+  document.querySelector(".sweet-success-cancel").onclick = function () {
+      swal({
+          title: "هشدار!",
+          text: "آیا مایلید محصول مورد نظر با موفقیت به فروشگاه اضافه شود !!",
+          type: "success",
+          showCancelButton: !0,
+          confirmButtonColor: "#DD6B55",
+          confirmButtonText: "بله ، افزوده شود !!",
+          //cancelButtonText: "نه ، آن را لغو کنید !!",
+          closeOnConfirm: !1, closeOnCancel: !1 },
+          function (e) {
+              e ? swal("حذف شده !!", "سلام ، پرونده خیالی شما حذف شده است !!", "success") : swal("لغو شده !!", "سلام ، پرونده خیالی شما امن است !!", "error")
+          }).then(function(){
+              window.location.href="/administrator/sellerproduct/ConfirmSellerProduct/@Model.Id"
+          }) 
+  }
+
+
+    </script>
+}

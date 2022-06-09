@@ -5,12 +5,21 @@ namespace ShopManagement.Application.Contract.Product
 {
     public interface IProductApplication
     {
+        #region AdminSide
         OperationResult Create(CreateProduct command);
         OperationResult Edit(EditProduct command);
         EditProduct GetDetails(long id);
         List<ProductViewModel> GetList();
+        #endregion
 
-        //To get title of a product whem slug is passed . using when seller want to search and add new product to his shop
+        #region ClientSide
+        //To get title of a product when id is passed . using when seller want to search and add new product to his shop
         ProductViewModel GetTitleAndIdById(long id);
+
+        //To get list of all products of admin products and show them to all clients in clientSide with special information coming from sellers
+        List<MainShopProductViewModel> GetListForMainShop();
+        #endregion
+
+
     }
 }

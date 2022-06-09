@@ -10,8 +10,9 @@ namespace ShopManagement.Application.Contract.Product
 {
     public class CreateProduct
     {
-        [Required(ErrorMessage =ValidationMessage.IsRequired)]
-        public string Title { get; set; }
+        [Required(ErrorMessage = ValidationMessage.IsRequired)]
+        public string FarsiTitle { get; set; }
+        public string EngTitle { get; set; }
         public string Description { get; set; }
 
         //[FileExtentionLimitation(new string[] {".png"},ErrorMessage =ValidationMessage.InvalidFileFormat)]

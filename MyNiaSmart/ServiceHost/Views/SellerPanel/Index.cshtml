@@ -18,15 +18,6 @@
     </div>
 </div>
 
-<div class="row page-titles mx-0 ">
-    <div class="col-sm-6 p-md-0">
-        <div class="welcome-text">
-            <h4>سلام، خوش آمدید</h4>
-            <p class="mb-0">پنل فروشندگی</p>
-        </div>
-    </div>
-</div>
-
 @if (ViewData["message"] != null)
 {
     <div class="alert alert-info alert-dismissible fade show">
@@ -42,7 +33,7 @@
 
 <div clas="row">
     <center>
-        <a href="/SellerPanel/AddProductToSellerPanel" class="btn btn-square btn-outline-primary" style="width:1000px">افزودن محصول جدید</a>
+        <a href="/SellerPanel/AddProductToSellerPanel" class="btn btn-square btn-outline-primary" style="width:80%">افزودن محصول جدید</a>
     </center>
 </div>
 <br />
@@ -57,7 +48,7 @@
     {
         <div class="col-xl-4 col-lg-6 col-md-4 col-sm-6">
             <div class="card">
-                <div class="card-body">
+                <div class="card-body" style="border:solid 5px @((sellerProduct.IsConfirmedByAdmin)?"green":"orange")">
                     <div class="new-arrival-product">
                         <div class="new-arrivals-img-contnent">
                             <img class="img-fluid" src="/UploadedFiles/@sellerProduct.PictureUrl" alt="">

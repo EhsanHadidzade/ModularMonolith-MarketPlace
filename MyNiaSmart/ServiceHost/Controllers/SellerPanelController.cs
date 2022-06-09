@@ -26,7 +26,12 @@ namespace ServiceHost.Controllers
 
         public IActionResult Index()
         {
-            var sellerProducts = _sellerProductApplication.GetList();
+            //TO Find Seller PanelId
+            var userId = _authHelper.CurrentAccountInfo().Id;
+            var sellerPanelId = _sellerPanelApplication.GetSellerPanelIdByUserId(userId);
+
+
+            var sellerProducts = _sellerProductApplication.GetListBySellerPanelId(sellerPanelId);
             ViewData["message"] = SellerPanelController.message;
             return View(sellerProducts);
         }

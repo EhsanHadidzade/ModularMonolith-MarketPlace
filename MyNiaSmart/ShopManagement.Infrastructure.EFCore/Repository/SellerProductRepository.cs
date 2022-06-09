@@ -1,4 +1,5 @@
 ﻿using _0_Framework.Infrastructure;
+using _0_Framework.Utilities;
 using Microsoft.EntityFrameworkCore;
 using ShopManagement.Application.Contract.SellerProduct;
 using ShopManagement.Domain.SellerProductAgg;
@@ -26,10 +27,30 @@ namespace ShopManagement.Infrastructure.EFCore.Repository
                 IsConfirmedByAdmin = x.isConfirmedByAdmin,
                 Price = x.Price,
                 ProductId = x.ProductId,
-                ProductTitle = x.Product.Title,
+                ProductTitle = x.Product.FarsiTitle,
                 PictureUrl = x.Product.Picture,
-                SellerPanelStoreName = x.SellerPanel.StoreName
+                SellerPanelStoreName = x.SellerPanel.StoreName,
+                SellerPanelCompanyName = x.SellerPanel.CompanyName,
+                CreationDate = x.CreationDate.ToFarsi()
             }).OrderByDescending(x => x.Id).ToList();
+
+            return products;
+        }
+        public List<SellerProductViewModel> GetListBySellerPanelId(long sellerpanelId)
+        {
+            var products = _shopContext.SellerProducts.Include(x => x.Product).Include(x => x.SellerPanel).Select(x => new SellerProductViewModel
+            {
+                Id = x.Id,
+                IsConfirmedByAdmin = x.isConfirmedByAdmin,
+                SellerPanelId=x.SellerPanelId,
+                Price = x.Price,
+                ProductId = x.ProductId,
+                ProductTitle = x.Product.FarsiTitle,
+                PictureUrl = x.Product.Picture,
+                SellerPanelStoreName = x.SellerPanel.StoreName,
+                SellerPanelCompanyName = x.SellerPanel.CompanyName,
+                CreationDate = x.CreationDate.ToFarsi()
+            }).Where(x=>x.SellerPanelId==sellerpanelId).OrderByDescending(x => x.Id).ToList();
 
             return products;
         }
@@ -49,7 +70,7 @@ namespace ShopManagement.Infrastructure.EFCore.Repository
                 MarketerSharePercent = x.MarketerSharePercent,
                 Price = x.Price,
                 ProductId = x.ProductId,
-                ProductTitle = x.Product.Title,
+                ProductTitle = x.Product.FarsiTitle,
                 SellerPanelId = x.SellerPanelId,
                 WarrantyAmount = x.WarrantyAmount,
                 WarrantyTypeId = x.WarrantyTypeId

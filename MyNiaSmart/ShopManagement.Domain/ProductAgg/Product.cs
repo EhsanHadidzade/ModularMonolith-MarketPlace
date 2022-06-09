@@ -16,7 +16,8 @@ namespace ShopManagement.Domain.ProductAgg
     public class Product : BaseEntity
     {
         #region Properties
-        public string Title { get; private set; }
+        public string FarsiTitle { get; private set; }
+        public string EngTitle { get; private set; }
         public string Descriotion { get; private set; }
         public string Picture { get; private set; }
         public string PartNumber { get; private set; }
@@ -39,18 +40,18 @@ namespace ShopManagement.Domain.ProductAgg
         public ProductStatus ProductStatus { get; set; }
         public ProductType ProductType { get; set; }
         public ProductUsageType ProductUsageType { get; set; }
-
         public List<SellerProduct> SellerProducts{ get; private set; }
         #endregion
 
 
 
-        public Product(string title, string descriotion, string picture,
+        public Product(string farsiTitle, string engTitle, string descriotion, string picture,
             string partNumber, int productWeight, string dimensions,
             string countryMadeIn,string slug, long productBrandId, long productModelId,
             long productStatusId, long productTypeId, long productUsageTypeId)
         {
-            Title = title;
+            FarsiTitle = farsiTitle;
+            EngTitle = engTitle;
             Descriotion = descriotion;
 
             if (!string.IsNullOrWhiteSpace(picture))
@@ -71,12 +72,13 @@ namespace ShopManagement.Domain.ProductAgg
         }
 
 
-        public void Edit(string title, string descriotion, string picture,
+        public void Edit(string farsiTitle,string engTitle, string descriotion, string picture,
            string partNumber, int productWeight, string dimensions,
            string countryMadeIn,string slug, long productBrandId, long productModelId,
            long productStatusId, long productTypeId, long productUsageTypeId)
         {
-            Title = title;
+            FarsiTitle = farsiTitle;
+            EngTitle= engTitle;
             Descriotion = descriotion;
 
             if (!string.IsNullOrWhiteSpace(picture))
@@ -93,9 +95,6 @@ namespace ShopManagement.Domain.ProductAgg
             ProductTypeId = productTypeId;
             ProductUsageTypeId = productUsageTypeId;
         }
-
-
-
 
 
     }

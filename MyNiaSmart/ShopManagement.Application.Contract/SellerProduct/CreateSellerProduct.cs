@@ -47,7 +47,6 @@ namespace ShopManagement.Application.Contract.SellerProduct
         [Required(ErrorMessage = ValidationMessage.IsRequired)]
         public int DeliveryDurationForOther { get;  set; }
 
-        
         public bool CanMarketerSee { get;  set; }
 
         [Range(1, long.MaxValue, ErrorMessage = ValidationMessage.IsRequired)]

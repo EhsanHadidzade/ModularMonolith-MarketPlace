@@ -30,7 +30,7 @@
                                     <td>
                                         <img src="/UploadedFiles/@item.Picture" class="rounded-circle" width="35">
                                     </td>
-                                    <td>@item.Title</td>
+                                    <td>@item.EngTitle</td>
                                     <td>@item.PartNumber</td>
                                     <td>
                                         <div class="d-flex">
@@ -54,13 +54,12 @@
 
 <script>
     function addproduct(productid){
-        debugger
         $.ajax({
             url:"/sellerpanel/addproduct",
             data:{id:productid},
             dataType:'json',
             success:function(result){
-                $("#ProductTitle").val(result.Title);
+                $("#ProductTitle").val(result.FarsiTitle);
                 $("#ProductId").val(result.Id);
                 $("#MainModal").modal("hide");
             }

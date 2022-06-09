@@ -83,12 +83,18 @@ namespace ShopManagement.Application
             return command;
         }
 
-        public void ConfirmAProductByAdmin(long sellerProductId)
+        public OperationResult ConfirmAProductByAdmin(long sellerProductId)
         {
             var product = _selleProductRepository.GetById(sellerProductId);
             product.ConfirmByAdmin();
-            _selleProductRepository.Savechange(); 
+            _selleProductRepository.Savechange();
+            return operation.Succedded("محصول با موفقیت به فروشگاه اصلی افزوده شد");
         }
-      
+
+        public List<SellerProductViewModel> GetListBySellerPanelId(long sellerpanelId)
+        {
+            return _selleProductRepository.GetListBySellerPanelId(sellerpanelId);
+
+        }
     }
 }

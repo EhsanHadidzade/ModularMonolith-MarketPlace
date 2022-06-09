@@ -1,7 +1,24 @@
 ﻿@model ShopManagement.Application.Contract.Product.EditProduct
 <link href="/admintheme/vendor/bootstrap-select/dist/css/bootstrap-select.min.css" rel="stylesheet">
 <link href="/admintheme/css/style.css" rel="stylesheet">
-
+@using ShopManagement.Application.Contract.ProductBrand;
+@using ShopManagement.Application.Contract.ProductModel;
+@using ShopManagement.Application.Contract.ProductStatus;
+@using ShopManagement.Application.Contract.ProductType;
+@using ShopManagement.Application.Contract.ProductUsageType;
+@inject IProductTypeApplication _productTypeApplication
+@inject IProductBrandApplication _productBrandApplication
+@inject IProductModelApplication _productModelApplication
+@inject IProductStatusApplication _productStatusApplication
+@inject IProductUsageTypeApplication _productUsageTypeApplication
+@{
+    ViewData["Title"] = "ویرایش محصول ";
+    ViewData["ProductTypes"] = new SelectList(_productTypeApplication.GetList(), "Id", "EngTitle");
+    ViewData["ProductBrands"] = new SelectList(_productBrandApplication.GetList(), "Id", "EngTitle");
+    ViewData["ProductModels"] = new SelectList(_productModelApplication.GetList(), "Id", "EngTitle");
+    ViewData["ProductUsageTypes"] = new SelectList(_productUsageTypeApplication.GetList(), "Id", "EngTitle");
+    ViewData["ProductStatuses"] = new SelectList(_productStatusApplication.GetList(), "Id", "EngTitle");
+}
 
 <div class="row">
     <div class="col-xl-12 col-lg-12">
@@ -54,17 +71,24 @@
                                 </span>
                             </div>
                             <div class="form-group col-md-6">
-                                <label>عنوان محصول</label>
-                                <input type="text" asp-for="Title" class="form-control" placeholder="عنوان محصول" onchange="makeSlug('Title', 'Slug')">
-                                <span class="text-danger" asp-validation-for="Title">
-                                </span>
-                            </div>
-                            <div class="form-group col-md-6">
                                 <label>پارت نامبر</label>
                                 <input type="text" asp-for="PartNumber" class="form-control" placeholder="">
                                 <span class="text-danger" asp-validation-for="PartNumber">
                                 </span>
                             </div>
+                            <div class="form-group col-md-6">
+                                <label> عنوان محصول (فارسی)</label>
+                                <input type="text" asp-for="FarsiTitle" class="form-control" placeholder="فارسی" onchange="makeSlug('FarsiTitle', 'Slug')">
+                                <span class="text-danger" asp-validation-for="FarsiTitle">
+                                </span>
+                            </div>
+                            <div class="form-group col-md-6">
+                                <label>عنوان محصول(english)</label>
+                                <input type="text" asp-for="EngTitle" class="form-control" placeholder="انگلیسی">
+                                <span class="text-danger" asp-validation-for="EngTitle">
+                                </span>
+                            </div>
+
                             <div class="form-group col-md-6">
                                 <label>ابعاد</label>
                                 <input type="text" asp-for="Dimensions" class="form-control" placeholder="به صورت 00*00*00">
@@ -78,33 +102,33 @@
                                 </span>
                             </div>
                             <div class="form-group col-md-6">
+                                <label>اسلاگ</label>
+                                <input type="text" class="form-control" asp-for="Slug">
+                                <span class="text-danger" asp-validation-for="Slug">
+                                </span>
+                            </div>
+                              <div class="form-group col-md-6">
+                                <label> کشور تولید کننده</label>
+                                <input type="text" asp-for="CountryMadeIn" class="form-control" placeholder="کشور">
+                                <span class="text-danger" asp-validation-for="CountryMadeIn">
+                                </span>
+                            </div>
+                            <div class="form-group col-md-12">
                                 <label>تصویر محصول</label>
                                 <input type="file" asp-for="Picture" class="form-control Upload" placeholder="">
                                 <span class="text-danger" asp-validation-for="Picture">
                                 </span>
                                 <img src="/UploadedFiles/@Model.PictureUrl" width="150" class="Picture" id="Picture" />
                             </div>
-                            <div class="form-group col-md-6">
-                                <label> کشور تولید کننده</label>
-                                <input type="text" asp-for="CountryMadeIn" class="form-control" placeholder="کشور">
-                                <span class="text-danger" asp-validation-for="CountryMadeIn">
+                          
+
+                            <div class="form-group col-md-12" dir="rtl">
+                                <label> توضیحات</label>
+                                <textarea class="form-control" id="BodyContent" rows="30" asp-for="Description">
+
+                                </textarea>
+                                <span class="text-danger" asp-validation-for="Description">
                                 </span>
-                            </div>
-                            <div class="form-group col-md-6">
-                                <label>اسلاگ</label>
-                                <input type="text" class="form-control" asp-for="Slug">
-                                <span class="text-danger" asp-validation-for="Slug">
-                                </span>
-                            </div>
-                            <div class="col-xl-12 col-xxl-12">
-                                <div class="card">
-                                    <div class="card-header">
-                                        <h4 class="card-title">ویرایشگر summernote</h4>
-                                    </div>
-                                    <div class="card-body">
-                                        <div class="summernote"></div>
-                                    </div>
-                                </div>
                             </div>
                             <input type="hidden" asp-for="Id" />
 
@@ -127,6 +151,7 @@
 </div>
 
 
+@section Scripts{
 <script>
     function filterModel() {
                   $.ajax({
@@ -138,4 +163,23 @@
 
                  })
        }
+
+         function readURL(input,id) {
+                      if (input.files && input.files[0]) {
+                          var reader = new FileReader();
+                          reader.onload = function (e) {
+                              $("img"+(".")+id).attr('src', e.target.result);
+                          }
+                          reader.readAsDataURL(input.files[0]);
+                      } else {
+                          alert('select a file to see preview');
+                          $('#previewHolder').attr('src', '');
+                      }
+                  }
+                  $(".Upload").change(function () {
+                      debugger
+                      let id=this.id;
+                      readURL(this,id);
+                  });
 </script>
+}

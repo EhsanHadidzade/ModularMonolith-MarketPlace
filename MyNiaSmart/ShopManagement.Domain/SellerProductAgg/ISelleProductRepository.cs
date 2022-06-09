@@ -11,7 +11,13 @@ namespace ShopManagement.Domain.SellerProductAgg
     public interface ISelleProductRepository:IRepository<long,SellerProduct>
     {
         EditSellerProduct GetDetails(long sellerProductId);
+        
+        //to get list of products to show in seller panel of sellers
+        List<SellerProductViewModel> GetListBySellerPanelId(long sellerpanelId);
+
+        //To Get AllOf them in adminPanel
         List<SellerProductViewModel> GetList();
- 
+
+
     }
 }

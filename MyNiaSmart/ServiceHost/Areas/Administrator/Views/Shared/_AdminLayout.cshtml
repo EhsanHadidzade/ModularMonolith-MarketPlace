@@ -630,15 +630,21 @@
     <!--Persian Date Picker-->
     <script src="~/AdminTheme/js/persian-date.min.js"></script>
     <script src="~/AdminTheme/js/persian-datepicker.min.js"></script>
-    <script src="https://cdn.tiny.cloud/1/03bywyfc22f080o11wndvso5su892zkphj49li728tkw9f3f/tinymce/5/tinymce.min.js" referrerpolicy="origin"></script>
+
+    <!--AppEditor-->
+    <script src="https://cdn.tiny.cloud/1/mv5jggxasqwrpouy53ns2o2ej8olnbbz9olotbomp5dsytwm/tinymce/6/tinymce.min.js" referrerpolicy="origin"></script>
     <script>
         tinymce.init({
           selector: '#BodyContent',
-          plugins: 'advlist autolink lists link image charmap preview anchor pagebreak',
+          plugins: 'a11ychecker advcode casechange export formatpainter image editimage linkchecker autolink lists checklist media mediaembed pageembed permanentpen powerpaste table advtable tableofcontents tinycomments tinymcespellchecker',
+          toolbar: 'a11ycheck addcomment showcomments casechange checklist code export formatpainter image editimage pageembed permanentpen table tableofcontents',
           toolbar_mode: 'floating',
-          directionality : 'rtl'
+          tinycomments_mode: 'embedded',
+          tinycomments_author: 'Author name',
+        directionality : 'rtl'
         });
     </script>
+  
 
     @RenderSection("Scripts",false)
 

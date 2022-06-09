@@ -2,9 +2,10 @@
 {
     public class ProductViewModel
     {
-        public string Picture { get; set; }
         public long Id { get; set; }
-        public string Title { get; set; }
+        public string Picture { get; set; }
+        public string EngTitle { get; set; }
+        public string FarsiTitle { get; set; }
         public string PartNumber { get; set; }
         public string Slug { get; set; }
         public string CreationDate { get; set; }

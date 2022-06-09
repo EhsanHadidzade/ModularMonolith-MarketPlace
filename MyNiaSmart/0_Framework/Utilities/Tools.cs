@@ -101,7 +101,7 @@ namespace _0_Framework.Utilities
             return new DateTime(year, month, day, new PersianCalendar());
         }
 
-        public static string ToMoney(this double myMoney)
+        public static string ToMoney(this long myMoney)
         {
             return myMoney.ToString("N0", CultureInfo.CreateSpecificCulture("fa-ir"));
         }

@@ -1,4 +1,5 @@
 ﻿@model List<ShopManagement.Application.Contract.Product.ProductViewModel>
+
 @{
     ViewData["Title"] = "مدیریت محصولات ";
 }
@@ -55,7 +56,7 @@
                                     <td>
                                         <img src="/UploadedFiles/@item.Picture" class="rounded-circle" width="35">
                                     </td>
-                                    <td>@item.Title</td>
+                                    <td>@item.EngTitle</td>
                                     <td>@item.PartNumber</td>
                                     <td>@item.CreationDate</td>
                                     <td>
@@ -90,4 +91,3 @@
 <!--Datatable JavaScript-->
 <script src="/AdminTheme/vendor/datatables/js/jquery.dataTables.min.js"></script>
 <script src="/AdminTheme/js/plugins-init/datatables.init.js"></script>
- 

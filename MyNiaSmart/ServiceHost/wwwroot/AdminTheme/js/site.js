@@ -126,6 +126,7 @@ function get(url, refereshDiv) {
 
 
 function makeSlug(source, dist) {
+    debugger
     const value = $('#' + source).val();
     $('#' + dist).val(convertToSlug(value));
 }
