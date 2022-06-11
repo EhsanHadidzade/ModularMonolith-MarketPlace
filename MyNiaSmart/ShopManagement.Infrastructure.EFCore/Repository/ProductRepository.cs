@@ -101,5 +101,27 @@ namespace ShopManagement.Infrastructure.EFCore.Repository
             }).FirstOrDefault(x => x.Id == id);
             return product;
         }
+
+        public EditProduct GetDetailsBySlug(string slug)
+        {
+            return _context.Products.Select(x => new EditProduct
+            {
+                Id = x.Id,
+                ProductBrandId = x.ProductBrandId,
+                ProductModelId = x.ProductModelId,
+                ProductStatusId = x.ProductStatusId,
+                ProductTypeId = x.ProductTypeId,
+                ProductUsageTypeId = x.ProductUsageTypeId,
+                FarsiTitle = x.FarsiTitle,
+                EngTitle = x.EngTitle,
+                Description = x.Descriotion,
+                PartNumber = x.PartNumber,
+                CountryMadeIn = x.CountryMadeIn,
+                Dimensions = x.Dimensions,
+                ProductWeight = x.ProductWeight,
+                Slug = x.Slug,
+                PictureUrl = x.Picture
+            }).FirstOrDefault(x => x.Slug == slug);
+        }
     }
 }

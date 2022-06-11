@@ -27,13 +27,13 @@ namespace ShopManagement.Application
         public void CancelByAdmin(long sellerPanelId)
         {
             var sellerPanel=_sellerPanelRepository.GetById(sellerPanelId);
-            sellerPanel.Confirm();
+            sellerPanel.ConfirmByAdmin();
         }
 
         public void ConfirmByAdmin(long sellerPanelId)
         {
             var sellerPanel = _sellerPanelRepository.GetById(sellerPanelId);
-            sellerPanel.Confirm();
+            sellerPanel.ConfirmByAdmin();
             _sellerPanelRepository.Savechange();
         }
 
@@ -67,9 +67,19 @@ namespace ShopManagement.Application
             return _sellerPanelRepository.GetList();
         }
 
+        public List<SellerPanelForMainShopViewModel> GetNormalSellersWhoSellingThisProduct(string slug)
+        {
+            return _sellerPanelRepository.GetNormalSellersWhoSellingThisProduct(slug);
+        }
+
         public long GetSellerPanelIdByUserId(long userId)
         {
             return _sellerPanelRepository.GetSellerPanelIdByUserId(userId);
+        }
+
+        public List<SellerPanelForMainShopViewModel> GetSpecialSellersWhoSellingThisProduct(string slug)
+        {
+            return _sellerPanelRepository.GetSpecialSellersWhoSellingThisProduct(slug);
         }
 
         public bool HasUserRequestedForSellerPanel(long userId)

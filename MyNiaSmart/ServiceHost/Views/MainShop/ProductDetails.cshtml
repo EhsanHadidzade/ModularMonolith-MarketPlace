@@ -1,0 +1,135 @@
+﻿@using ShopManagement.Application.Contract.Product
+@using ShopManagement.Application.Contract.SellerPanel
+@model Tuple<EditProduct, List<SellerPanelForMainShopViewModel>, List<SellerPanelForMainShopViewModel>>
+@{
+    ViewData["Title"] = "جرئیات محصول";
+}
+
+<div class="row page-titles mx-0">
+    <div class="col-sm-6 p-md-0">
+        <div class="welcome-text">
+            <h4>سلام، خوش آمدید</h4>
+            <p class="mb-0">نمایش محصولات</p>
+        </div>
+    </div>
+    <div class="col-sm-6 p-md-0 justify-content-sm-end mt-2 mt-sm-0 d-flex">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="javascript:void(0)">پنل ها </a></li>
+            <li class="breadcrumb-item"><a href="javascript:void(0)">نمایش محصولات </a></li>
+            <li class="breadcrumb-item active"><a href="javascript:void(0)">جرئیات محصول</a></li>
+        </ol>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-lg-12">
+        <div class="card">
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-xl-3 ">
+                        <!-- Tab panes -->
+                        <div class="tab-content">
+                            <div role="tabpanel" class="tab-pane fade show active" id="first">
+                                <img class="img-fluid" src="/UploadedFiles/@Model.Item1.PictureUrl" alt="">
+                            </div>
+                            <div role="tabpanel" class="tab-pane fade" id="second">
+                                <img class="img-fluid" src="/MainTheme/images/product/2.jpg" alt="">
+                            </div>
+                            <div role="tabpanel" class="tab-pane fade" id="third">
+                                <img class="img-fluid" src="/MainTheme/images/product/3.jpg" alt="">
+                            </div>
+                            <div role="tabpanel" class="tab-pane fade" id="for">
+                                <img class="img-fluid" src="/MainTheme/images/product/4.jpg" alt="">
+                            </div>
+                        </div>
+                        <div class="tab-slide-content new-arrival-product mb-4 mb-xl-0">
+                            <!-- Nav tabs -->
+                            <ul class="nav slide-item-list mt-3" role="tablist">
+                                <li role="presentation" class="show">
+                                    <a href="#first" role="tab" data-toggle="tab">
+                                        <img class="img-fluid" src="/UploadedFiles/@Model.Item1.PictureUrl" alt="" width="50">
+                                    </a>
+                                </li>
+                                <li role="presentation">
+                                    <a href="#second" role="tab" data-toggle="tab"><img class="img-fluid" src="/MainTheme/images/tab/2.jpg" alt="" width="50"></a>
+                                </li>
+                                <li role="presentation">
+                                    <a href="#third" role="tab" data-toggle="tab"><img class="img-fluid" src="/MainTheme/images/tab/3.jpg" alt="" width="50"></a>
+                                </li>
+                                <li role="presentation">
+                                    <a href="#for" role="tab" data-toggle="tab"><img class="img-fluid" src="/MainTheme/images/tab/4.jpg" alt="" width="50"></a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    <!--Tab slider End-->
+                    <div class="col-xl-9 col-sm-12">
+                        <div class="product-detail-content">
+                            <!--Product details-->
+                            <div class="new-arrival-content pr">
+                                <h4>@Model.Item1.FarsiTitle</h4>
+                                <h5>@Model.Item1.EngTitle</h5>
+                                <div class="star-rating mb-2">
+                                    <ul class="produtct-detail-tag">
+                                        <li><i class="fa fa-star"></i></li>
+                                        <li><i class="fa fa-star"></i></li>
+                                        <li><i class="fa fa-star"></i></li>
+                                        <li><i class="fa fa-star"></i></li>
+                                        <li><i class="fa fa-star"></i></li>
+                                    </ul>
+                                    <span class="review-text">(34 نظر ) / </span><a class="product-review" href="#">نظری دارید؟</a>
+                                </div>
+                                @*<p class="price">39000 تومان</p>*@
+                                <p>
+                                    دسترسی: <span class="item">
+                                        در انبار <i class="fa fa-shopping-basket"></i>
+                                    </span>
+                                </p>
+                                <p>پارت نامبر:<span class="item">@Model.Item1.PartNumber</span> </p>
+                                <p>برند: <span class="item">لی</span></p>
+                                <p>
+                                    برچسب های محصول:
+                                    <span class="badge badge-success light">کیف</span>
+                                    <span class="badge badge-success light">کت</span>
+                                    <span class="badge badge-success light">کفش</span>
+                                    <span class="badge badge-success light">پیراهن</span>
+                                </p>
+                                <p class="text-content">
+                                    @Html.Raw(Model.Item1.Description)
+                                </p>
+                             @*   <div class="filtaring-area my-3">
+                                    <div class="size-filter">
+                                        <h4 class="m-b-15">انتخاب اندازه </h4>
+                                        <ul>
+                                            <li class="btn btn-primary light sharp">x</li>
+                                            <li class="btn btn-primary light sharp">m</li>
+                                            <li class="btn btn-primary light sharp">l</li>
+                                            <li class="btn btn-primary light sharp">xs</li>
+                                            <li class="btn btn-primary light sharp">xl</li>
+                                        </ul>
+                                    </div>
+                                </div>*@
+                                <!--Quantity start-->
+                            @*    <div class="col-2 px-0">
+                                    <input type="number" name="num" class="form-control input-btn input-number" value="1">
+                                </div>*@
+                                <!--Quanatity End-->
+                                <div class="shopping-cart mt-3">
+                                    <a class="btn btn-primary btn-lg" href="#">
+                                        <i class="fa fa-shopping-basket mr-2"></i>افزودن به سبد
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <partial name="_SpecialSellers" model="@Model.Item2" />
+    <partial name="_NormalSellers" model="@Model.Item3" />
+
+</div>
+
+

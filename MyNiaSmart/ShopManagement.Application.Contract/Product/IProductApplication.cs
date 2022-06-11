@@ -18,6 +18,9 @@ namespace ShopManagement.Application.Contract.Product
 
         //To get list of all products of admin products and show them to all clients in clientSide with special information coming from sellers
         List<MainShopProductViewModel> GetListForMainShop();
+
+        //To Get Product Details After Selecting im Main Shop
+        EditProduct GetDetailsBySlug(string slug);
         #endregion
 
 

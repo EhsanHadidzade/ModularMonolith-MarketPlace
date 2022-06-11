@@ -43,6 +43,11 @@ namespace AccountManagement.Infrastructure.EFCore.Repository
             return _context.Users.Select(x => new { x.Id, x.FullName }).FirstOrDefault(x => x.Id == userId).FullName;
         }
 
+        public int GetGradeByUserId(long userId)
+        {
+            return _context.Users.Select(x => new {x.Id, x.Grade}).FirstOrDefault(x => x.Id == userId).Grade;
+        }
+
         public UserViewModel GetSomeInfoByUserId(long userId)
         {
             return _context.Users.Select(x => new UserViewModel
@@ -68,7 +73,7 @@ namespace AccountManagement.Infrastructure.EFCore.Repository
             return _context.Users.Select(x => new { x.IsAdmin, x.Id }).FirstOrDefault(x => x.Id == userId).IsAdmin;
         }
 
-        List<UserViewModel> IUserRepository.GetList()
+       public  List<UserViewModel> GetList()
         {
             return _context.Users.Select(x => new UserViewModel
             {

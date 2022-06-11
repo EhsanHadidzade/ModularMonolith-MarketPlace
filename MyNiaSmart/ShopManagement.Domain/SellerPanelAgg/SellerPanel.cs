@@ -11,7 +11,7 @@ namespace ShopManagement.Domain.SellerPanelAgg
         public string Capital { get; private set; }
         public string City { get; private set; }
 
-        #region Default Fields that will display for creating each product
+        #region Default Fields that will display for creating each productsellerpan
         public int DeliveryDurationForCity { get; private set; }
         public int DeliveryDurationForCapital { get; private set; }
         public int DeliveryDurationForOther { get; private set; }
@@ -25,6 +25,7 @@ namespace ShopManagement.Domain.SellerPanelAgg
 
         public bool IsConfirmedByAdmin { get; private set; }
         public bool IsUserLegal { get; private set; }
+        public bool IsSpecial { get;private set; }
 
         //IllegulUser
         public string StoreName { get; private set; }
@@ -61,18 +62,22 @@ namespace ShopManagement.Domain.SellerPanelAgg
             WarrantyTypeId = warrantyTypeId;
             WarrantyAmount= warrantyAmount;
             IsConfirmedByAdmin = false;
+            IsSpecial=false;
 
             SellerProducts = new List<SellerProduct>();
         }
 
-        public void Confirm()
+        public void ConfirmByAdmin()
         {
             IsConfirmedByAdmin = true;
         }
-        public void Cancel()
+        public void CancelByAdmin()
         {
             IsConfirmedByAdmin = false;
         }
-
+        public void SelectAsSpecial()
+        {
+            IsSpecial = true;
+        }
     }
 }

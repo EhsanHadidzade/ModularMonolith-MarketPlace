@@ -257,6 +257,9 @@ namespace ShopManagement.Infrastructure.EFCore.Migrations
                     b.Property<bool>("IsConfirmedByAdmin")
                         .HasColumnType("bit");
 
+                    b.Property<bool>("IsSpecial")
+                        .HasColumnType("bit");
+
                     b.Property<bool>("IsUserLegal")
                         .HasColumnType("bit");
 

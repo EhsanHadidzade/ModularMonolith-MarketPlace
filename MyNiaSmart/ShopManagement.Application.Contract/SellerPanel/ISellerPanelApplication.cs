@@ -25,5 +25,12 @@ namespace ShopManagement.Application.Contract.SellerPanel
         long GetSellerPanelIdByUserId(long userId);
 
 
+        //To Get All seller panels who are special and are selling specific product of application
+        List<SellerPanelForMainShopViewModel> GetSpecialSellersWhoSellingThisProduct(string slug);
+
+        //To Get All seller panels who are special and are selling specific product of application
+        List<SellerPanelForMainShopViewModel> GetNormalSellersWhoSellingThisProduct(string slug);
+
+
     }
 }

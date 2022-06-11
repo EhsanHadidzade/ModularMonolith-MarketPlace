@@ -88,6 +88,12 @@ namespace ServiceHost
                     name: "default",
                     pattern: "{controller=Home}/{action=Index}/{id?}");
 
+                endpoints.MapControllerRoute(
+                    name: "Shop",
+                    pattern: "{customerName}/{slug}/{sellerPanelId?}");
+
+
+
                 endpoints.MapAreaControllerRoute(
                     name: "Administrator",
                     areaName: "Administrator",

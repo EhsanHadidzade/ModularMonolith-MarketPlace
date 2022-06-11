@@ -22,5 +22,11 @@ namespace ShopManagement.Domain.SellerPanelAgg
         //To Get sellerPanel id to use when new product is adding by seller i their panel
         long GetSellerPanelIdByUserId(long userId);
 
+        //To Get All seller panels who are special and are selling specific product of application
+        List<SellerPanelForMainShopViewModel> GetSpecialSellersWhoSellingThisProduct(string slug);
+
+        //To Get All seller panels who are special and are selling specific product of application
+        List<SellerPanelForMainShopViewModel> GetNormalSellersWhoSellingThisProduct(string slug);
+
     }
 }
