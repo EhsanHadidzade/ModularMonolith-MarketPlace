@@ -6,7 +6,6 @@ namespace ShopManagement.Application.Contract.SellerProduct
     public interface ISellerProductApplication
     {
        
-
         //ClientSide
         OperationResult Create(CreateSellerProduct command);
         OperationResult Edit(EditSellerProduct command);

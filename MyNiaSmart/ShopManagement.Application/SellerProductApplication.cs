@@ -13,11 +13,11 @@ namespace ShopManagement.Application
     public class SellerProductApplication : ISellerProductApplication
     {
         private readonly ISellerPanelRepository _sellerPanelRepository;
-        private readonly ISelleProductRepository _selleProductRepository;
+        private readonly ISellerProductRepository _selleProductRepository;
         private readonly OperationResult operation;
 
         public SellerProductApplication(ISellerPanelRepository sellerPanelRepository,
-            ISelleProductRepository selleProductRepository)
+            ISellerProductRepository selleProductRepository)
         {
             _sellerPanelRepository = sellerPanelRepository;
             _selleProductRepository = selleProductRepository;

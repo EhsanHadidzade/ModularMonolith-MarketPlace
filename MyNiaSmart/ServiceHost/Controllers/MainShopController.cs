@@ -19,7 +19,7 @@ namespace ServiceHost.Controllers
         }
 
         //[Route("{customerName}/{slug}/{sellerPanelId?}")]
-        public IActionResult Index(/*string customerName,long slug, long? sellerPanelId*/)
+        public IActionResult Index()
         {
             var mainShopProducts = _productAapplication.GetListForMainShop();
             return View(mainShopProducts);
@@ -28,13 +28,35 @@ namespace ServiceHost.Controllers
         public IActionResult ProductDetails(string id)
         {
             //id==ProductSlug
-            var productDetails=_productAapplication.GetDetailsBySlug(id);
-            var specialSellers=_sellerPanelApplication.GetSpecialSellersWhoSellingThisProduct(id);
-            var normalSellers = _sellerPanelApplication.GetNormalSellersWhoSellingThisProduct(id);
+            var productDetails = _productAapplication.GetDetailsBySlug(id);
+            var specialSellers = _sellerPanelApplication.GetSpecialSellersWhoSellingThisProduct(id, 0);
+            var normalSellers = _sellerPanelApplication.GetNormalSellersWhoSellingThisProduct(id, 0);
 
             var model = new Tuple<EditProduct, List<SellerPanelForMainShopViewModel>, List<SellerPanelForMainShopViewModel>>(productDetails, specialSellers, normalSellers);
             return View(model);
         }
+
+        //[Route("{ShopName}/{slug}/{sellerPanelId?}")]
+        //[Route("Shop")]
+        [Route("/sellerProduct/{slug}/{ShopName}")]
+        public IActionResult SellerProductDetails(string slug, string ShopName)
+        {
+            return View();
+        }
+
+        #region TO Filter sellers Tables of one product that is in product details view
+        public IActionResult _SpecialSellers(string slug, int filterType)
+        {
+            var filteredSpecialSellers = _sellerPanelApplication.GetSpecialSellersWhoSellingThisProduct(slug, filterType);
+            return PartialView(filteredSpecialSellers);
+        }
+        public IActionResult _NormalSellers(string slug, int filterType)
+        {
+            var filteredSpecialSellers = _sellerPanelApplication.GetNormalSellersWhoSellingThisProduct(slug, filterType);
+            return PartialView(filteredSpecialSellers);
+        }
+        #endregion
+
 
     }
 }

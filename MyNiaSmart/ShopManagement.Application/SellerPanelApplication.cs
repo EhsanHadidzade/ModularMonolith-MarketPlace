@@ -26,7 +26,7 @@ namespace ShopManagement.Application
 
         public void CancelByAdmin(long sellerPanelId)
         {
-            var sellerPanel=_sellerPanelRepository.GetById(sellerPanelId);
+            var sellerPanel = _sellerPanelRepository.GetById(sellerPanelId);
             sellerPanel.ConfirmByAdmin();
         }
 
@@ -40,6 +40,18 @@ namespace ShopManagement.Application
         public OperationResult Create(CreateSellerPanel command)
         {
             var operation = new OperationResult();
+            if (!string.IsNullOrWhiteSpace(command.CompanyName))
+            {
+                if (_sellerPanelRepository.IsExist(x => x.CompanyName == command.CompanyName))
+                    return operation.Failed("این نام قبلا ثبت شده است . از نام دیگری استفاده نمایید");
+            }
+
+            if (!string.IsNullOrWhiteSpace(command.StoreName))
+            {
+                if (_sellerPanelRepository.IsExist(x => x.CompanyName == command.CompanyName))
+                    return operation.Failed("این نام قبلا ثبت شده است . از نام دیگری استفاده نمایید");
+            }
+
             if (_sellerPanelRepository.IsExist(x => x.UserId == command.UserId))
                 return operation.Failed("شما قبلا درخواست برای ایجاد پنل فروشندگی پر کرده اید");
 
@@ -47,10 +59,10 @@ namespace ShopManagement.Application
                 return operation.Failed("کاربر قابل شناسایی نیست. لطفا با حساب کاربری معتبر وارد شوید");
 
             var sellerPanel = new SellerPanel(command.Address, command.SellerMobileNumber,
-                command.BuyersCategory, command.CanMarketerSee,command.IsUserLegal, command.StoreName,
+                command.BuyersCategory, command.CanMarketerSee, command.IsUserLegal, command.StoreName,
                 command.CompanyName, command.CompanyRegistrationCode, command.CompanyEconomicCode,
-                command.UserId,command.Capital,command.City,command.DeliveryDurationForCity,
-                command.DeliveryDurationForCapital,command.DeliveryDurationForOther,command.WarrantyTypeId,command.WarrantyAmount);
+                command.UserId, command.Capital, command.City, command.DeliveryDurationForCity,
+                command.DeliveryDurationForCapital, command.DeliveryDurationForOther, command.WarrantyTypeId, command.WarrantyAmount);
             _sellerPanelRepository.Create(sellerPanel);
             _sellerPanelRepository.Savechange();
 
@@ -67,9 +79,9 @@ namespace ShopManagement.Application
             return _sellerPanelRepository.GetList();
         }
 
-        public List<SellerPanelForMainShopViewModel> GetNormalSellersWhoSellingThisProduct(string slug)
+        public List<SellerPanelForMainShopViewModel> GetNormalSellersWhoSellingThisProduct(string slug, int filterType)
         {
-            return _sellerPanelRepository.GetNormalSellersWhoSellingThisProduct(slug);
+            return _sellerPanelRepository.GetNormalSellersWhoSellingThisProduct(slug, filterType);
         }
 
         public long GetSellerPanelIdByUserId(long userId)
@@ -77,9 +89,9 @@ namespace ShopManagement.Application
             return _sellerPanelRepository.GetSellerPanelIdByUserId(userId);
         }
 
-        public List<SellerPanelForMainShopViewModel> GetSpecialSellersWhoSellingThisProduct(string slug)
+        public List<SellerPanelForMainShopViewModel> GetSpecialSellersWhoSellingThisProduct(string slug, int filterType)
         {
-            return _sellerPanelRepository.GetSpecialSellersWhoSellingThisProduct(slug);
+            return _sellerPanelRepository.GetSpecialSellersWhoSellingThisProduct(slug, filterType);
         }
 
         public bool HasUserRequestedForSellerPanel(long userId)

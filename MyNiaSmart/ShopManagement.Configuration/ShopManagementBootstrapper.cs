@@ -9,6 +9,7 @@ using ShopManagement.Application.Contract.ProductType;
 using ShopManagement.Application.Contract.ProductUsageType;
 using ShopManagement.Application.Contract.SellerPanel;
 using ShopManagement.Application.Contract.SellerProduct;
+using ShopManagement.Application.Contract.SellerProductMedia;
 using ShopManagement.Application.ProductCategoryApplication;
 using ShopManagement.Domain.ProductAgg;
 using ShopManagement.Domain.ProductCategoryAgg.ProductBrandAgg;
@@ -18,6 +19,7 @@ using ShopManagement.Domain.ProductCategoryAgg.ProductTypeAgg;
 using ShopManagement.Domain.ProductCategoryAgg.ProductUsageTypeAgg;
 using ShopManagement.Domain.SellerPanelAgg;
 using ShopManagement.Domain.SellerProductAgg;
+using ShopManagement.Domain.SellerProductMediaAgg;
 using ShopManagement.Infrastructure.EFCore;
 using ShopManagement.Infrastructure.EFCore.Repository;
 using ShopManagement.Infrastructure.EFCore.Repository.ProductCategoryRepository;
@@ -52,8 +54,11 @@ namespace ShopManagement.Configuration
             services.AddTransient<IProductRepository, ProductRepository>();
             services.AddTransient<IProductApplication, ProductApplication>();
 
-            services.AddTransient<ISelleProductRepository, SellerProductRepository>();
+            services.AddTransient<ISellerProductRepository, SellerProductRepository>();
             services.AddTransient<ISellerProductApplication, SellerProductApplication>();
+
+            services.AddTransient<ISellerProductMediaRepository, SellerProductMediaRepository>();
+            services.AddTransient<ISellerProductMediaApplication, SellerProductMediaApplication>();
 
             services.AddTransient<ISellerPanelRepository,SellerPanelRepository>();
             services.AddTransient<ISellerPanelApplication, SellerPanelApplication>();

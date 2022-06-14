@@ -4,6 +4,8 @@ using ShopManagement.Application.Contract.Product;
 using ShopManagement.Application.Contract.SellerPanel;
 using ShopManagement.Application.Contract.SellerProduct;
 using Newtonsoft.Json;
+using ShopManagement.Application.Contract.SellerProductMedia;
+using Microsoft.AspNetCore.Http;
 
 namespace ServiceHost.Controllers
 {
@@ -13,15 +15,18 @@ namespace ServiceHost.Controllers
         private readonly ISellerProductApplication _sellerProductApplication;
         private readonly ISellerPanelApplication _sellerPanelApplication;
         private readonly IProductApplication _productApplication;
+        private readonly ISellerProductMediaApplication _sellerProductMediaApplication;
         private readonly IAuthHelper _authHelper;
 
         public SellerPanelController(ISellerProductApplication sellerProductApplication,
-            ISellerPanelApplication sellerPanelApplication, IAuthHelper authHelper, IProductApplication productApplication)
+            ISellerPanelApplication sellerPanelApplication, IAuthHelper authHelper, IProductApplication productApplication,
+            ISellerProductMediaApplication sellerProductMediaApplication)
         {
             _sellerProductApplication = sellerProductApplication;
             _sellerPanelApplication = sellerPanelApplication;
             _authHelper = authHelper;
             _productApplication = productApplication;
+            _sellerProductMediaApplication = sellerProductMediaApplication;
         }
 
         public IActionResult Index()
@@ -86,14 +91,17 @@ namespace ServiceHost.Controllers
         #endregion
 
 
+        #region To Show List of products of application that seller is going to cooperate to sell them
+
         public IActionResult SearchProduct()
         {
             var products = _productApplication.GetList();
             return PartialView(products);
         }
+        #endregion
 
 
-        #region To select specific Product for create form or edit form
+        #region To select specific Product from SearchProductPartialView  for create form or edit form
 
         public string addproduct(long id)
         {
@@ -104,7 +112,23 @@ namespace ServiceHost.Controllers
         }
         #endregion
 
+        #region To Show The Gallery Of user that need to use for thier products
+        public IActionResult ShowGallery()
+        {
+            var userId = _authHelper.CurrentAccountInfo().Id;
+            var sellerMedias = _sellerProductMediaApplication.GetUserGalleryMediasByUserId(userId);
+            return PartialView(sellerMedias);
+        }
 
+        public string AddMediaToGallery(IFormFile media)
+        {
+            var command=new CreateMediaForSellerGallery() { Media=media};
+            var result = _sellerProductMediaApplication.CreateMediaForGallery(command);
+            var jsonObject=JsonConvert.SerializeObject(result);
+            return jsonObject;
+
+        }
+        #endregion
 
 
     }

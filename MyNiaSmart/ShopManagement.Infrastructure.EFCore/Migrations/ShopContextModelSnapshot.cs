@@ -313,6 +313,9 @@ namespace ShopManagement.Infrastructure.EFCore.Migrations
                     b.Property<string>("Description")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<bool>("IsConfirmedBySeller")
+                        .HasColumnType("bit");
+
                     b.Property<long>("MarketerShareAmount")
                         .HasColumnType("bigint");
 
@@ -344,6 +347,44 @@ namespace ShopManagement.Infrastructure.EFCore.Migrations
                     b.HasIndex("SellerPanelId");
 
                     b.ToTable("SellerProducts");
+                });
+
+            modelBuilder.Entity("ShopManagement.Domain.SellerProductMediaAgg.SellerProductMedia", b =>
+                {
+                    b.Property<long>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("bigint")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<DateTime>("CreationDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<bool>("IsSelectedBySeller")
+                        .HasColumnType("bit");
+
+                    b.Property<string>("MediaAlt")
+                        .HasMaxLength(500)
+                        .HasColumnType("nvarchar(500)");
+
+                    b.Property<string>("MediaTitle")
+                        .HasMaxLength(500)
+                        .HasColumnType("nvarchar(500)");
+
+                    b.Property<string>("MediaURL")
+                        .HasMaxLength(256)
+                        .HasColumnType("nvarchar(256)");
+
+                    b.Property<long>("SellerProductId")
+                        .HasColumnType("bigint");
+
+                    b.Property<long>("UserId")
+                        .HasColumnType("bigint");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("SellerProductId");
+
+                    b.ToTable("SellerProductMedias");
                 });
 
             modelBuilder.Entity("ShopManagement.Domain.ProductAgg.Product", b =>
@@ -419,6 +460,17 @@ namespace ShopManagement.Infrastructure.EFCore.Migrations
                     b.Navigation("SellerPanel");
                 });
 
+            modelBuilder.Entity("ShopManagement.Domain.SellerProductMediaAgg.SellerProductMedia", b =>
+                {
+                    b.HasOne("ShopManagement.Domain.SellerProductAgg.SellerProduct", "SellerProduct")
+                        .WithMany("SellerProductMedias")
+                        .HasForeignKey("SellerProductId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("SellerProduct");
+                });
+
             modelBuilder.Entity("ShopManagement.Domain.ProductAgg.Product", b =>
                 {
                     b.Navigation("SellerProducts");
@@ -454,6 +506,11 @@ namespace ShopManagement.Infrastructure.EFCore.Migrations
             modelBuilder.Entity("ShopManagement.Domain.SellerPanelAgg.SellerPanel", b =>
                 {
                     b.Navigation("SellerProducts");
+                });
+
+            modelBuilder.Entity("ShopManagement.Domain.SellerProductAgg.SellerProduct", b =>
+                {
+                    b.Navigation("SellerProductMedias");
                 });
 #pragma warning restore 612, 618
         }

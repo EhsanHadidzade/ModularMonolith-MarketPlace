@@ -1,5 +1,6 @@
 ﻿using _0_Framework.Infrastructure;
 using _0_Framework.Utilities;
+using Microsoft.EntityFrameworkCore;
 using ShopManagement.Application.Contract.Product;
 using ShopManagement.Domain.ProductAgg;
 using System;
@@ -27,13 +28,13 @@ namespace ShopManagement.Infrastructure.EFCore.Repository
                 FarsiTitle = x.FarsiTitle,
                 EngTitle = x.EngTitle,
                 Picture = x.Picture,
-                Description = x.Descriotion.Substring(0,300),
+                Description = x.Descriotion.Substring(0, 300),
                 PartNumber = x.PartNumber,
                 Slug = x.Slug,
             }).ToList();
 
             var query = _context.SellerProducts.Select(x => new { x.ProductId, x.Price, x.WarrantyTypeId, x.WarrantyAmount, x.isConfirmedByAdmin }).Where(x => x.isConfirmedByAdmin);
-            if (query.Count()==0)
+            if (query.Count() == 0)
             {
                 foreach (var product in mainShopProducts)
                 {
@@ -97,31 +98,36 @@ namespace ShopManagement.Infrastructure.EFCore.Repository
             {
                 Id = x.Id,
                 FarsiTitle = x.FarsiTitle,
-                EngTitle=x.EngTitle,
+                EngTitle = x.EngTitle,
             }).FirstOrDefault(x => x.Id == id);
             return product;
         }
 
         public EditProduct GetDetailsBySlug(string slug)
         {
-            return _context.Products.Select(x => new EditProduct
-            {
-                Id = x.Id,
-                ProductBrandId = x.ProductBrandId,
-                ProductModelId = x.ProductModelId,
-                ProductStatusId = x.ProductStatusId,
-                ProductTypeId = x.ProductTypeId,
-                ProductUsageTypeId = x.ProductUsageTypeId,
-                FarsiTitle = x.FarsiTitle,
-                EngTitle = x.EngTitle,
-                Description = x.Descriotion,
-                PartNumber = x.PartNumber,
-                CountryMadeIn = x.CountryMadeIn,
-                Dimensions = x.Dimensions,
-                ProductWeight = x.ProductWeight,
-                Slug = x.Slug,
-                PictureUrl = x.Picture
-            }).FirstOrDefault(x => x.Slug == slug);
+            return _context.Products.Include(x => x.ProductBrand)
+                .Include(x => x.ProductModel)
+                .Include(x => x.ProductStatus)
+                .Include(x => x.ProductType)
+                .Include(x => x.ProductUsageType)
+                .Select(x => new EditProduct
+                {
+                    Id = x.Id,
+                    ProductBrandTitle = x.ProductBrand.FarsiTitle,
+                    ProductModelTitle = x.ProductModel.FarsiTitle,
+                    ProductStatusTitle = x.ProductStatus.FarsiTitle,
+                    ProductTypeTitle = x.ProductType.FarsiTitle,
+                    ProductUsageTypeTitle = x.ProductUsageType.FarsiTitle,
+                    FarsiTitle = x.FarsiTitle,
+                    EngTitle = x.EngTitle,
+                    Description = x.Descriotion,
+                    PartNumber = x.PartNumber,
+                    CountryMadeIn = x.CountryMadeIn,
+                    Dimensions = x.Dimensions,
+                    ProductWeight = x.ProductWeight,
+                    Slug = x.Slug,
+                    PictureUrl = x.Picture
+                }).FirstOrDefault(x => x.Slug == slug);
         }
     }
 }

@@ -19,14 +19,20 @@ namespace ShopManagement.Domain.SellerPanelAgg
         //to Show Or Hide SellerPanelButton in clientSide for creating their product and see Chartreports
         bool HasUserSellerPanelConfirmedByAdmin(long userId);
 
-        //To Get sellerPanel id to use when new product is adding by seller i their panel
+        //To Get sellerPanel id to use when new product is adding by seller in their panel
         long GetSellerPanelIdByUserId(long userId);
 
         //To Get All seller panels who are special and are selling specific product of application
-        List<SellerPanelForMainShopViewModel> GetSpecialSellersWhoSellingThisProduct(string slug);
+        List<SellerPanelForMainShopViewModel> GetSpecialSellersWhoSellingThisProduct(string slug, int filterType);
 
         //To Get All seller panels who are special and are selling specific product of application
-        List<SellerPanelForMainShopViewModel> GetNormalSellersWhoSellingThisProduct(string slug);
+        List<SellerPanelForMainShopViewModel> GetNormalSellersWhoSellingThisProduct(string slug, int filterType);
+
+        //To GetSellerPanelId By SellerPanel Name . we use this when clicking on the name of sellerPanel
+        //Name in product details view to find details of seller about tat specific product
+        long GetIdByName(string storeName);
+
+        
 
     }
 }

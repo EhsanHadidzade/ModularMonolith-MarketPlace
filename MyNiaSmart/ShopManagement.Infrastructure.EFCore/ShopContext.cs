@@ -7,6 +7,7 @@ using ShopManagement.Domain.ProductCategoryAgg.ProductTypeAgg;
 using ShopManagement.Domain.ProductCategoryAgg.ProductUsageTypeAgg;
 using ShopManagement.Domain.SellerPanelAgg;
 using ShopManagement.Domain.SellerProductAgg;
+using ShopManagement.Domain.SellerProductMediaAgg;
 using ShopManagement.Infrastructure.EFCore.Mapping;
 
 namespace ShopManagement.Infrastructure.EFCore
@@ -21,6 +22,7 @@ namespace ShopManagement.Infrastructure.EFCore
         public DbSet<Product> Products{ get; set; }
         public DbSet<SellerPanel> SellerPanels { get; set; }
         public DbSet<SellerProduct> SellerProducts{ get; set; }
+        public DbSet<SellerProductMedia> SellerProductMedias{ get; set; }
 
         public ShopContext(DbContextOptions<ShopContext> options):base(options)
         {

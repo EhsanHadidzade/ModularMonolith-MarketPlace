@@ -1,5 +1,6 @@
 ﻿@using ShopManagement.Application.Contract.Product
 @using ShopManagement.Application.Contract.SellerPanel
+@using _0_Framework.Utilities
 @model Tuple<EditProduct, List<SellerPanelForMainShopViewModel>, List<SellerPanelForMainShopViewModel>>
 @{
     ViewData["Title"] = "جرئیات محصول";
@@ -20,8 +21,11 @@
         </ol>
     </div>
 </div>
+<input type="hidden" value="@Model.Item1.Slug" id="FilterSlug" />
 
 <div class="row">
+
+
     <div class="col-lg-12">
         <div class="card">
             <div class="card-body">
@@ -97,22 +101,22 @@
                                 <p class="text-content">
                                     @Html.Raw(Model.Item1.Description)
                                 </p>
-                             @*   <div class="filtaring-area my-3">
+                                @*   <div class="filtaring-area my-3">
                                     <div class="size-filter">
-                                        <h4 class="m-b-15">انتخاب اندازه </h4>
-                                        <ul>
-                                            <li class="btn btn-primary light sharp">x</li>
-                                            <li class="btn btn-primary light sharp">m</li>
-                                            <li class="btn btn-primary light sharp">l</li>
-                                            <li class="btn btn-primary light sharp">xs</li>
-                                            <li class="btn btn-primary light sharp">xl</li>
-                                        </ul>
+                                    <h4 class="m-b-15">انتخاب اندازه </h4>
+                                    <ul>
+                                    <li class="btn btn-primary light sharp">x</li>
+                                    <li class="btn btn-primary light sharp">m</li>
+                                    <li class="btn btn-primary light sharp">l</li>
+                                    <li class="btn btn-primary light sharp">xs</li>
+                                    <li class="btn btn-primary light sharp">xl</li>
+                                    </ul>
                                     </div>
-                                </div>*@
+                                    </div>*@
                                 <!--Quantity start-->
-                            @*    <div class="col-2 px-0">
+                                @*    <div class="col-2 px-0">
                                     <input type="number" name="num" class="form-control input-btn input-number" value="1">
-                                </div>*@
+                                    </div>*@
                                 <!--Quanatity End-->
                                 <div class="shopping-cart mt-3">
                                     <a class="btn btn-primary btn-lg" href="#">
@@ -127,9 +131,175 @@
         </div>
     </div>
 
-    <partial name="_SpecialSellers" model="@Model.Item2" />
-    <partial name="_NormalSellers" model="@Model.Item3" />
+
+    <div class="col-lg-12">
+        <div class="card">
+            <div class="card-header">
+                <h4 class="card-title">فروشندگان خاص</h4>
+                <div class="form-group col-md-6">
+                    <label>مرتب سازی بر اساس</label>
+                    <select class="form-control" id="SpecialSeller" onchange="FilterSpecialSellers()">
+                        <option value="0">انتخاب کنید</option>
+                        <option value="1">قیمت</option>
+                        <option value="2"> میزان گارانتی</option>
+                    </select>
+                </div>
+            </div>
+            <div class="card-body" id="SpecSeller">
+                <div class="table-responsive">
+                    <table class="table table-bordered table-responsive-sm">
+                        <thead>
+                            <tr>
+                                <th>نام فروشگاه</th>
+                                <th>میزان رضایت</th>
+                                <th>قیمت فروشنده</th>
+                                <th>میزان گارانتی </th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                @foreach (var item in Model.Item2)
+                                {
+                                    <td>
+                                        @if (!item.IsUserLegal)
+                                        {
+                                            <a onclick="alert("hi")">@item.StoreName</a>
+                                        }
+                                        else
+                                        {
+                                            <a href="/sellerProduct/@Model.Item1.Slug/@item.CompanyName">@item.CompanyName</a>
+                                        }
+                                    </td>
+
+                                    <td>***</td>
+
+                                    <td class="color-primary">@item.SpecificProductPrice تومان</td>
+                                    @if (item.WarrantyTypeId == WarrantyTypeId.Hour)
+                                    {
+                                        <td>@item.WarrantyAmount ساعت</td>
+                                    }
+                                    @if (item.WarrantyTypeId == WarrantyTypeId.Day)
+                                    {
+                                        <td>@item.WarrantyAmount روز</td>
+                                    }
+                                    @if (item.WarrantyTypeId == WarrantyTypeId.Mounth)
+                                    {
+                                        <td>@item.WarrantyAmount ماه</td>
+                                    }
+                                    @if (item.WarrantyTypeId == WarrantyTypeId.Year)
+                                    {
+                                        <td>@item.WarrantyAmount سال</td>
+                                    }
+                                }
+
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-lg-12">
+        <div class="card">
+            <div class="card-header">
+                <h4 class="card-title">فروشنگان عادی</h4>
+                <div class="form-group col-md-6">
+                    <label>مرتب سازی بر اساس</label>
+                    <select class="form-control" id="NormalSeller" onchange="FilterNormalSellers()">
+                        <option value="0">انتخاب کنید</option>
+                        <option value="1">قیمت</option>
+                        <option value="2"> میزان گارانتی</option>
+                    </select>
+                </div>
+            </div>
+            <div class="card-body" id="NormSeller">
+                <div class="table-responsive">
+                    <table class="table table-bordered table-responsive-sm">
+                        <thead>
+                            <tr>
+                                <th>نام فروشگاه</th>
+                                <th>میزان رضایت</th>
+                                <th>قیمت فروشنده</th>
+                                <th>میزان گارانتی </th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                @foreach (var item in Model.Item3)
+                                {
+                                    <td>
+                                        @if (!item.IsUserLegal)
+                                        {
+                                            <a href="">@item.StoreName</a>
+                                        }
+                                        else
+                                        {
+                                            <a href="">@item.CompanyName</a>
+
+                                        }
+                                    </td>
+
+                                    <td>***</td>
+
+                                    <td class="color-primary">@item.SpecificProductPrice تومان</td>
+                                    @if (item.WarrantyTypeId == WarrantyTypeId.Hour)
+                                    {
+                                        <td>@item.WarrantyAmount ساعت</td>
+                                    }
+                                    @if (item.WarrantyTypeId == WarrantyTypeId.Day)
+                                    {
+                                        <td>@item.WarrantyAmount روز</td>
+                                    }
+                                    @if (item.WarrantyTypeId == WarrantyTypeId.Mounth)
+                                    {
+                                        <td>@item.WarrantyAmount ماه</td>
+                                    }
+                                    @if (item.WarrantyTypeId == WarrantyTypeId.Year)
+                                    {
+                                        <td>@item.WarrantyAmount سال</td>
+                                    }
+                                }
+
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+    @*<partial name="_SpecialSellers"  model="@Model.Item2" />*@
+    @*<partial name="_NormalSellers" model="@Model.Item3" />*@
 
 </div>
 
 
+
+<script>
+    function FilterSpecialSellers(){
+        $.ajax({
+            url:"/MainShop/_SpecialSellers",
+            data:{slug:$("#FilterSlug").val(),filterType:$("#SpecialSeller").val()},
+            success:function(result){
+                   $("#SpecSeller").fadeOut(1000,function(){
+                    $(this).html(result)
+                });
+                $("#SpecSeller").fadeIn(500);
+            }
+        })
+    }
+
+     function FilterNormalSellers(){
+        $.ajax({
+            url:"/MainShop/_NormalSellers",
+            data:{slug:$("#FilterSlug").val(),filterType:$("#NormalSeller").val()},
+            success:function(result){
+                $("#NormSeller").fadeOut(1000,function(){
+                    $(this).html(result)
+                });
+                $("#NormSeller").fadeIn(500);
+            }
+        })
+    }
+
+</script>

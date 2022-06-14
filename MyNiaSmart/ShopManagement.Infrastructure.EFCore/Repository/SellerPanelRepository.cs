@@ -66,7 +66,7 @@ namespace ShopManagement.Infrastructure.EFCore.Repository
             }).OrderByDescending(x => x.Id).ToList();
         }
 
-        public List<SellerPanelForMainShopViewModel> GetNormalSellersWhoSellingThisProduct(string slug)
+        public List<SellerPanelForMainShopViewModel> GetNormalSellersWhoSellingThisProduct(string slug, int filterType)
         {
             var product = _shopContext.Products.Select(x => new { x.Id, x.Slug }).FirstOrDefault(x => x.Slug == slug);
             if (product == null)
@@ -97,10 +97,17 @@ namespace ShopManagement.Infrastructure.EFCore.Repository
                 sellerPanel.SellerFullName = _userRepository.GetFullNameByUserId(sellerPanel.UserId);
             }
 
-            return sellerPanelsWhoSellingThis;
+            if (filterType == 1)
+                return sellerPanelsWhoSellingThis.OrderByDescending(x => x.SpecificProductPrice).ToList();
+
+            if (filterType == 2)
+                return sellerPanelsWhoSellingThis.OrderByDescending(x => x.WarrantyTypeId).OrderByDescending(x => x.WarrantyAmount).ToList();
+
+            return sellerPanelsWhoSellingThis.OrderByDescending(x => x.Grade).ToList();
+
         }
 
-        public List<SellerPanelForMainShopViewModel> GetSpecialSellersWhoSellingThisProduct(string slug)
+        public List<SellerPanelForMainShopViewModel> GetSpecialSellersWhoSellingThisProduct(string slug, int filterType)
         {
             var product = _shopContext.Products.Select(x => new { x.Id, x.Slug }).FirstOrDefault(x => x.Slug == slug);
             if (product == null)
@@ -131,7 +138,13 @@ namespace ShopManagement.Infrastructure.EFCore.Repository
                 sellerPanel.SellerFullName = _userRepository.GetFullNameByUserId(sellerPanel.UserId);
             }
 
-            return sellerPanelsWhoSellingThis;
+            if (filterType == 1)
+                return sellerPanelsWhoSellingThis.OrderByDescending(x => x.SpecificProductPrice).ToList();
+
+            if (filterType == 2)
+                return sellerPanelsWhoSellingThis.OrderByDescending(x => x.WarrantyTypeId).OrderByDescending(x => x.WarrantyAmount).ToList();
+
+            return sellerPanelsWhoSellingThis.OrderByDescending(x => x.Grade).ToList();
         }
 
         public long GetSellerPanelIdByUserId(long userId)
@@ -149,6 +162,18 @@ namespace ShopManagement.Infrastructure.EFCore.Repository
         {
             var sellerPanelRequest = _shopContext.SellerPanels.FirstOrDefault(x => x.UserId == userId && x.IsConfirmedByAdmin);
             return sellerPanelRequest != null;
+        }
+
+        public long GetIdByName(string storeName)
+        {
+            var sellerPanel = _shopContext.SellerPanels.Select(x => new
+            {
+                x.Id,
+                x.StoreName,
+                x.CompanyName
+            }).FirstOrDefault(x => x.CompanyName == storeName || x.StoreName == storeName);
+
+            return sellerPanel.Id;
         }
     }
 }

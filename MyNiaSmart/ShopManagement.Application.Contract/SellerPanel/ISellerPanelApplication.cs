@@ -26,10 +26,10 @@ namespace ShopManagement.Application.Contract.SellerPanel
 
 
         //To Get All seller panels who are special and are selling specific product of application
-        List<SellerPanelForMainShopViewModel> GetSpecialSellersWhoSellingThisProduct(string slug);
+        List<SellerPanelForMainShopViewModel> GetSpecialSellersWhoSellingThisProduct(string slug, int filterType);
 
         //To Get All seller panels who are special and are selling specific product of application
-        List<SellerPanelForMainShopViewModel> GetNormalSellersWhoSellingThisProduct(string slug);
+        List<SellerPanelForMainShopViewModel> GetNormalSellersWhoSellingThisProduct(string slug, int filterType);
 
 
     }

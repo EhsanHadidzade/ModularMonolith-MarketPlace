@@ -1,0 +1,60 @@
+﻿@using ShopManagement.Application.Contract.SellerProductMedia
+@model List<SellerGalleryViewModel>
+
+<div class="row">
+    <div class="col-xl-12 col-lg-12">
+        <div class="card">
+            <div class="card-header">
+                <h4 class="card-title">ورودی پرونده سفارشی</h4>
+            </div>
+            <div class="card-body">
+                <div class="basic-form custom_file_input">
+                    <form action="#">
+                        <div class="input-group mb-3">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text">آپلود </span>
+                            </div>
+                            <div class="custom-file">
+                                <input type="file" class="custom-file-input Upload" id="newMedia">
+                                <label class="custom-file-label">انتخاب فایل</label>
+                            </div>
+                        </div>
+                        <img src="~/MainTheme/images/cameraLogo2.jpg" width="150" class="Picture" id="Picture" />
+
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<script>
+    function readURL(input,id) {
+                        if (input.files && input.files[0]) {
+                            var reader = new FileReader();
+                            reader.onload = function (e) {
+                                $("img"+(".")+id).attr('src', e.target.result);
+                            }
+                            reader.readAsDataURL(input.files[0]);
+                        } else {
+                            alert('select a file to see preview');
+                            $('#previewHolder').attr('src', '');
+                        }
+                    }
+
+
+                    $(".Upload").change(function () {
+                        $.ajax({
+                            url:"/sellerpanel/AddMediaToGallery",
+                            enctype:"multipart/form-data",
+                            data:{media:$("#newMedia")},
+                            success:function(result){
+                                alert(result.Message);
+                                  debugger;
+                                   let id=this.id;
+                                   readURL(this,id);
+                            }
+                        })
+                    });
+</script>

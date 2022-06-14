@@ -1,6 +1,7 @@
 ﻿using _0_Framework.Domain;
 using ShopManagement.Domain.ProductAgg;
 using ShopManagement.Domain.SellerPanelAgg;
+using ShopManagement.Domain.SellerProductMediaAgg;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -29,10 +30,12 @@ namespace ShopManagement.Domain.SellerProductAgg
         #endregion
 
         public bool isConfirmedByAdmin { get; private set; }
+        public bool IsConfirmedBySeller { get; private set; }
 
         //relations
         public SellerPanel SellerPanel { get; private set; }
-        public Product Product{ get; private set; }
+        public Product Product { get; private set; }
+        public List<SellerProductMedia> SellerProductMedias { get; private set; }
 
         public SellerProduct(long sellerPanelId, long productId, long price,
             string description, int marketerSharePercent, long marketerShareAmount,
@@ -55,6 +58,9 @@ namespace ShopManagement.Domain.SellerProductAgg
             WarrantyAmount = warrantyAmount;
 
             isConfirmedByAdmin = false;
+            IsConfirmedBySeller = true;
+
+            SellerProductMedias = new List<SellerProductMedia>();
         }
 
         public void Edit(long productId, long price, string description,
@@ -68,18 +74,22 @@ namespace ShopManagement.Domain.SellerProductAgg
             MarketerSharePercent = marketerSharePercent;
             MarketerShareAmount = marketerShareAmount;
 
+            CanMarketerSee = canMarketerSee;
             DeliveryDurationForCity = deliveryDurationForCity;
             DeliveryDurationForCapital = deliveryDurationForCapital;
             DeliveryDurationForOther = deliveryDurationForOther;
-            CanMarketerSee = canMarketerSee;
             BuyersCategory = buyersCategory;
             WarrantyTypeId = warrantyTypeId;
             WarrantyAmount = warrantyAmount;
+            isConfirmedByAdmin = false;
+            IsConfirmedBySeller = true;
         }
 
         public void ConfirmByAdmin()
         {
             isConfirmedByAdmin = true;
         }
+
+        
     }
 }

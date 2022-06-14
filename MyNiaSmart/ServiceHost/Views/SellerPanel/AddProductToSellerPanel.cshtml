@@ -36,7 +36,7 @@
                             <div class="form-group col-md-8">
                                 <label>عنوان محصول</label>
                                 <input type="text" class="form-control" asp-for="ProductTitle" placeholder=" با زدن دکمه رو به رو، میتوانید محصول مورد نظر خود را انتخاب کنید">
-                                <span class="text-danger"  asp-validation-for="ProductTitle"></span>
+                                <span class="text-danger" asp-validation-for="ProductTitle"></span>
                             </div>
                             <input type="hidden" asp-for="ProductId" />
                             <input type="hidden" asp-for="SellerPanelId" />
@@ -97,6 +97,11 @@
                                 <span class="text-danger" asp-validation-for="WarrantyAmount">
                                 </span>
                             </div>
+                            <div class="form-group col-md-12">
+                                <label>مدیریت گالری تصاویر</label>
+                                <br />
+                                <a class=" btn btn-square btn-outline-secondary "  href="#showModal=/sellerpanel/ShowGallery" style="width:30%">باز کردن گالری</a>
+                            </div>
                             <div class="form-group col-md-6" style="padding:20px">
                                 <div class="custom-control custom-switch custom-control-inline mb-1">
                                     <input type="checkbox" class="custom-control-input" id="customSwitch1" asp-for="CanMarketerSee">
@@ -111,7 +116,7 @@
                                 <span class="text-danger" asp-validation-for="MarketerSharePercent">
                                 </span>
                             </div>
-                            <div class="form-group col-md-12"  id="MarketerShareAmountt" style="display:none">
+                            <div class="form-group col-md-12" id="MarketerShareAmountt" style="display:none">
                                 <label>قیمتی از محصول که به بازاریاب تعلق میگیرد</label>
                                 <input type="number" class="form-control" asp-for="MarketerShareAmount" onkeypress="return onlyNumberKey(event)" placeholder="بر حسب تومان">
                                 <span class="text-danger" asp-validation-for="MarketerShareAmount">

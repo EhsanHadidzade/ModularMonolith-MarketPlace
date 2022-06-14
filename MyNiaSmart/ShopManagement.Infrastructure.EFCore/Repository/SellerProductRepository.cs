@@ -11,7 +11,7 @@ using System.Threading.Tasks;
 
 namespace ShopManagement.Infrastructure.EFCore.Repository
 {
-    public class SellerProductRepository:BaseRepository<long,SellerProduct>,ISelleProductRepository
+    public class SellerProductRepository:BaseRepository<long,SellerProduct>,ISellerProductRepository
     {
         private readonly ShopContext _shopContext;
 
@@ -76,7 +76,11 @@ namespace ShopManagement.Infrastructure.EFCore.Repository
                 WarrantyTypeId = x.WarrantyTypeId
             }).FirstOrDefault(x => x.Id == sellerProductId);
         }
-     
-      
+
+        public EditSellerProduct GetDetailsBySellerPanelIdAndProductId(long sellerProductId, long productId)
+        {
+            //To Do Find Exact SellerProduct then use info to show for sellerProductDetailsView
+            throw new NotImplementedException();
+        }
     }
 }
