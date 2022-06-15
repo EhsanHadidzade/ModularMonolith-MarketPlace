@@ -6,12 +6,15 @@ using ShopManagement.Application.Contract.SellerProduct;
 using Newtonsoft.Json;
 using ShopManagement.Application.Contract.SellerProductMedia;
 using Microsoft.AspNetCore.Http;
+using System.Collections.Generic;
+using System;
 
 namespace ServiceHost.Controllers
 {
     public class SellerPanelController : Controller
     {
         public static string message { get; set; }
+        public static List<long> SelectedMedias { set; get; }
         private readonly ISellerProductApplication _sellerProductApplication;
         private readonly ISellerPanelApplication _sellerPanelApplication;
         private readonly IProductApplication _productApplication;
@@ -58,6 +61,7 @@ namespace ServiceHost.Controllers
         [Route("/SellerPanel/AddProductToSellerPanel")]
         public IActionResult AddProductToSellerPanel(CreateSellerProduct command)
         {
+            command.SelectedMediaIds = SelectedMedias;
             if (!ModelState.IsValid)
                 return View(command);
 
@@ -68,7 +72,7 @@ namespace ServiceHost.Controllers
 
         #endregion
 
-      
+
         #region To Edit Specific Product Details
 
         public IActionResult EditProduct(long id)
@@ -80,6 +84,7 @@ namespace ServiceHost.Controllers
         [HttpPost]
         public IActionResult EditProduct(EditSellerProduct command)
         {
+            command.SelectedMediaIds = SelectedMedias;
             if (!ModelState.IsValid)
                 return View(command);
 
@@ -112,20 +117,45 @@ namespace ServiceHost.Controllers
         }
         #endregion
 
+
         #region To Show The Gallery Of user that need to use for thier products
-        public IActionResult ShowGallery()
+        public IActionResult ShowGallery(long id)
         {
+            //id==SellerProductId
             var userId = _authHelper.CurrentAccountInfo().Id;
             var sellerMedias = _sellerProductMediaApplication.GetUserGalleryMediasByUserId(userId);
-            return PartialView(sellerMedias);
+            var selectedMediaIds = _sellerProductMediaApplication.GetSelectedMediaIdsOfSellerProductBySellerProductIdAndUserId(id, userId);
+            var model = new Tuple<List<SellerGalleryViewModel>, List<long>, long>(sellerMedias, selectedMediaIds, id);
+            return PartialView(model);
         }
 
-        public string AddMediaToGallery(IFormFile media)
+        [HttpPost]
+        public string AddMediaToGallery(IFormFile newMedia)
         {
-            var command=new CreateMediaForSellerGallery() { Media=media};
+            var command = new CreateMediaForSellerGallery() { Media = newMedia };
             var result = _sellerProductMediaApplication.CreateMediaForGallery(command);
-            var jsonObject=JsonConvert.SerializeObject(result);
+            if (result.IsSuccedded)
+            {
+                var MediaURL = _sellerProductMediaApplication.GetMediaById(result.Id).MediaURL;
+                result.Message = MediaURL;
+                var jsonResult = JsonConvert.SerializeObject(result);
+                return jsonResult;
+            }
+            var jsonObject = JsonConvert.SerializeObject(result);
             return jsonObject;
+
+
+        }
+        #endregion
+
+
+        #region To Choose the selected Media For specific Product
+        [HttpPost]
+        public string ChooseMedia(List<long> selectedMedia)
+        {
+            SellerPanelController.SelectedMedias = selectedMedia;
+            var jsonResult = JsonConvert.SerializeObject("Done");
+            return jsonResult;
 
         }
         #endregion

@@ -15,13 +15,14 @@ namespace ShopManagement.Domain.SellerProductMediaAgg
 
         //Relations
         public long SellerProductId { get; private set; }
-        public SellerProduct SellerProduct{ get;private set; }
+        //public SellerProduct SellerProduct{ get;private set; }
 
         //Using TO Create seller gallery
         public SellerProductMedia(string mediaURL, long userId)
         {
             MediaURL = mediaURL;
             UserId = userId;
+            SellerProductId = 0;
 
             IsSelectedBySeller=false;
         }

@@ -32,6 +32,9 @@ namespace ShopManagement.Infrastructure.EFCore
             var assembly = typeof(ProductMapping).Assembly;
             modelBuilder.ApplyConfigurationsFromAssembly(assembly);
             base.OnModelCreating(modelBuilder);
+
+            
+           
         }
 
     }

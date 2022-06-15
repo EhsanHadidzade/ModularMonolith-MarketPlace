@@ -382,8 +382,6 @@ namespace ShopManagement.Infrastructure.EFCore.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("SellerProductId");
-
                     b.ToTable("SellerProductMedias");
                 });
 
@@ -460,17 +458,6 @@ namespace ShopManagement.Infrastructure.EFCore.Migrations
                     b.Navigation("SellerPanel");
                 });
 
-            modelBuilder.Entity("ShopManagement.Domain.SellerProductMediaAgg.SellerProductMedia", b =>
-                {
-                    b.HasOne("ShopManagement.Domain.SellerProductAgg.SellerProduct", "SellerProduct")
-                        .WithMany("SellerProductMedias")
-                        .HasForeignKey("SellerProductId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("SellerProduct");
-                });
-
             modelBuilder.Entity("ShopManagement.Domain.ProductAgg.Product", b =>
                 {
                     b.Navigation("SellerProducts");
@@ -506,11 +493,6 @@ namespace ShopManagement.Infrastructure.EFCore.Migrations
             modelBuilder.Entity("ShopManagement.Domain.SellerPanelAgg.SellerPanel", b =>
                 {
                     b.Navigation("SellerProducts");
-                });
-
-            modelBuilder.Entity("ShopManagement.Domain.SellerProductAgg.SellerProduct", b =>
-                {
-                    b.Navigation("SellerProductMedias");
                 });
 #pragma warning restore 612, 618
         }

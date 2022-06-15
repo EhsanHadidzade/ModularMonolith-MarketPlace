@@ -20,7 +20,8 @@ namespace ShopManagement.Infrastructure.EFCore.Mapping
             builder.Property(x=>x.MediaAlt).HasMaxLength(500);
             builder.Property(x=>x.MediaTitle).HasMaxLength(500);
 
-            builder.HasOne(x => x.SellerProduct).WithMany(x => x.SellerProductMedias).HasForeignKey(x => x.SellerProductId);
+            //builder.HasOne(x => x.SellerProduct).WithMany(x => x.SellerProductMedias).HasForeignKey(x => x.SellerProductId);
+            
         }
     }
 }

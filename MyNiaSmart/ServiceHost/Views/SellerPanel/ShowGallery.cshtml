@@ -1,6 +1,16 @@
 ﻿@using ShopManagement.Application.Contract.SellerProductMedia
-@model List<SellerGalleryViewModel>
+@model Tuple<List<SellerGalleryViewModel>,List<long>,long>
+<style>
+    .selectedd {
+        transform: scale(1.2);
+        -ms-transform: scale(1.2); /* IE 9 */
+        -webkit-transform: scale(1.2); /* Safari and Chrome */
+        -o-transform: scale(1.2); /* Opera */
+        -moz-transform: scale(1.2); /* Firefox */
+        border: 2px inset silver;
+    }
 
+</style>
 <div class="row">
     <div class="col-xl-12 col-lg-12">
         <div class="card">
@@ -9,18 +19,22 @@
             </div>
             <div class="card-body">
                 <div class="basic-form custom_file_input">
-                    <form action="#">
-                        <div class="input-group mb-3">
-                            <div class="input-group-prepend">
-                                <span class="input-group-text">آپلود </span>
-                            </div>
-                            <div class="custom-file">
-                                <input type="file" class="custom-file-input Upload" id="newMedia">
-                                <label class="custom-file-label">انتخاب فایل</label>
-                            </div>
-                        </div>
-                        <img src="~/MainTheme/images/cameraLogo2.jpg" width="150" class="Picture" id="Picture" />
+                    <form method="post" action="" class="MyForm">
+                        <div class="form-group col-md-12 gallery">
+                            <label>تصویر محصول</label>
+                            <input type="file" class="form-control Upload" id="newMedia" name="newMedia" multiple>
+                            <div class="main"></div>
+                            @if (Model.Item1.Count > 0)
+                            {
+                                @foreach (var image in Model.Item1)
+                                {
+                                    <img src="~/UploadedFiles/@image.MediaURL" width="150" id="@image.Id" class="@((Model.Item2.Any(x=>x==image.Id)?"selectedd":""))" />
+                                    <input type="hidden" value="@((Model.Item2.Any(x=>x==image.Id)?image.Id:0))" name="selectedMedia" class="@image.Id">
+                                }
+                            }
 
+                        </div>
+                        <button type="submit" onclick="SubMedias" class="btn btn-outline-success">تایید</button>
                     </form>
                 </div>
             </div>
@@ -28,33 +42,87 @@
     </div>
 </div>
 
-
 <script>
-    function readURL(input,id) {
-                        if (input.files && input.files[0]) {
-                            var reader = new FileReader();
-                            reader.onload = function (e) {
-                                $("img"+(".")+id).attr('src', e.target.result);
-                            }
-                            reader.readAsDataURL(input.files[0]);
-                        } else {
-                            alert('select a file to see preview');
-                            $('#previewHolder').attr('src', '');
-                        }
-                    }
+
+    $(function(){
+        var output = $('#output');
+        $('img')
+            //.each(function(i, el){
+            //    $(this).addClass('img' + i); // identtify imgs by index (class="imgN")
+            //})
+            .click(function(){
+                debugger
+                var $img = $(this).toggleClass('selectedd');
+                var selectedMediaId=$(this).attr("id");
+                $("."+selectedMediaId).val(selectedMediaId);
+                if($img.hasClass('selectedd'))
+                {
+                    debugger
+                      output.append($img.clone().removeClass('selectedd'));
+
+                }
+                else
+                {
+                    debugger
+                    output.find('.' + $img[0].className).remove();
+                       var selectedMediaId=$(this).attr("id");
+                       $("input."+selectedMediaId).val(0);
+                }
+            });
+
+    });
 
 
-                    $(".Upload").change(function () {
-                        $.ajax({
-                            url:"/sellerpanel/AddMediaToGallery",
-                            enctype:"multipart/form-data",
-                            data:{media:$("#newMedia")},
-                            success:function(result){
-                                alert(result.Message);
-                                  debugger;
-                                   let id=this.id;
-                                   readURL(this,id);
-                            }
+       $(document).ready(function(){
+        $("form.MyForm").on("submit", function(event){
+            event.preventDefault();
+
+            var formValues= $(this).serialize();
+     debugger
+            $.post("/SellerPanel/ChooseMedia", formValues, function(data){
+                $("#MainModal").modal("hide");
+                //$("#result").html(data);
+            });
+        });
+    });
+                        $(".Upload").change(function(){
+                              var fd = new FormData();
+                         var files = $("#newMedia").get(0).files;
+                         fd.append("newMedia",files[0]);
+                           debugger
+                          $.ajax({
+                              type:"Post",
+                              url:"/sellerpanel/AddMediaToGallery",
+                              data:fd,
+                              processData: false,
+                              contentType: false,
+                              dataType: "json",
+                              success:function(result){
+                                  $(".main").empty();
+                                      debugger
+                                        if(result.IsSuccedded===false){
+                                      debugger
+                                  $(".main").append("<div class='alert alert-danger'><p>نوع فایل باید png و یا jpg باشد </p></div>");
+                                  }
+
+                                  else
+                                  {
+                                      let id=@Model.Item1.Count+1;
+                                  $(".gallery").append("<img src='/UploadedFiles/"+result.Message+"'"+"width='150' id='"+result.Id+"'"+"/>"+ "<input type='hidden' value='0' class='"+result.Id+"'"+" name='selectedMedia'>");
+                                  $(".main").append("<div class='alert alert-success'> <p >موفقیت آمیز بود</p></div>");
+                                    $('img')
+                                    .each(function(i, el){
+                                        $(this).addClass('img' + i); // identtify imgs by index (class="imgN")
+                                         })
+                                  //readURL($("#newMedia").get(0),id);
+                                  }
+
+                                    //debugger
+                                    // let id=this.id;
+                                    // readURL(this,id);
+                              }
+                          })
                         })
-                    });
+
+
 </script>

@@ -59,6 +59,11 @@ namespace ShopManagement.Application.Contract.SellerProduct
         [Range(1, long.MaxValue, ErrorMessage = ValidationMessage.IsRequired)]
         [Required(ErrorMessage = ValidationMessage.IsRequired)]
         public int WarrantyAmount { get;  set; }
+
+
+
+        public List<long> SelectedMediaIds { get; set; }
+
         #endregion
     }
 }

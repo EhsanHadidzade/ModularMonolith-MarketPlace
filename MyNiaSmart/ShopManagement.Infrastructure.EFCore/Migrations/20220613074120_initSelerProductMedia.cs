@@ -35,7 +35,7 @@ namespace ShopManagement.Infrastructure.EFCore.Migrations
                         column: x => x.SellerProductId,
                         principalTable: "SellerProducts",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                        onDelete: ReferentialAction.NoAction);
                 });
 
             migrationBuilder.CreateIndex(

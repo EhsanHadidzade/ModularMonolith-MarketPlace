@@ -13,5 +13,10 @@ namespace ShopManagement.Application.Contract.SellerProductMedia
 
         //TO Get list of images that user created and we want to display them in seller panel in product creation form in its specific modal
         List<SellerGalleryViewModel> GetUserGalleryMediasByUserId(long userId);
+
+        SellerGalleryViewModel GetMediaById(long id);
+
+        //TO Find the medias that are selected for one product of sellerProducts to show in edit form
+        List<long> GetSelectedMediaIdsOfSellerProductBySellerProductIdAndUserId(long sellerProductId, long userId);
     }
 }

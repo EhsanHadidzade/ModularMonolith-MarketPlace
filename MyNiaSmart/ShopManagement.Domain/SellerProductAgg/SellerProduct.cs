@@ -35,7 +35,7 @@ namespace ShopManagement.Domain.SellerProductAgg
         //relations
         public SellerPanel SellerPanel { get; private set; }
         public Product Product { get; private set; }
-        public List<SellerProductMedia> SellerProductMedias { get; private set; }
+        //public List<SellerProductMedia> SellerProductMedias { get; private set; }
 
         public SellerProduct(long sellerPanelId, long productId, long price,
             string description, int marketerSharePercent, long marketerShareAmount,
@@ -60,7 +60,7 @@ namespace ShopManagement.Domain.SellerProductAgg
             isConfirmedByAdmin = false;
             IsConfirmedBySeller = true;
 
-            SellerProductMedias = new List<SellerProductMedia>();
+            //SellerProductMedias = new List<SellerProductMedia>();
         }
 
         public void Edit(long productId, long price, string description,

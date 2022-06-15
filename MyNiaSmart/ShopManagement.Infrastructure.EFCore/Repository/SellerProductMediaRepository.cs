@@ -21,6 +21,16 @@ namespace ShopManagement.Infrastructure.EFCore.Repository
             _authHelper = authHelper;
         }
 
+        public SellerGalleryViewModel GetMediaById(long id)
+        {
+            return _shopContext.SellerProductMedias.Select(x=>new SellerGalleryViewModel 
+            {
+                Id=x.Id,
+                MediaURL=x.MediaURL,
+                UserId=x.UserId,
+            }).FirstOrDefault(x=>x.Id==id);
+        }
+
         public List<SellerGalleryViewModel> GetUserGalleryMediasByUserId(long userId)
         {
             return _shopContext.SellerProductMedias.Select(x => new SellerGalleryViewModel
@@ -31,6 +41,34 @@ namespace ShopManagement.Infrastructure.EFCore.Repository
                 UserId=x.UserId,
                 IsSelectedBySeller = true
             }).Where(x=>x.UserId==userId).ToList();
+        }
+
+        public List<long> GetSelectedMediaIdsOfSellerProductBySellerProductIdAndUserId(long sellerProductId,long userId)
+        {
+            return _shopContext.SellerProductMedias
+                .Where(x => x.UserId == userId && x.SellerProductId == sellerProductId)
+                .Select(x => x.Id)
+                .ToList();
+        }
+        public void SelectMediaByMediaIds(List<long> mediaIds,long sellerProductId)
+        {
+            //var userMediaIds = _shopContext.SellerProductMedias.Where(x=> x.SellerProductId == sellerProductId).Select(x => x.Id).ToList();
+            foreach (var id in mediaIds.Where(x => x > 0))
+            {
+                var media = _shopContext.SellerProductMedias.Find(id);
+                media.Choose(sellerProductId);
+                _shopContext.SaveChanges();
+            }
+        }
+        public void UnSelectMediasByMediaIds(long userId,long sellerProductId)
+        {
+            var userMediaIds = _shopContext.SellerProductMedias.Where(x => x.UserId == userId && x.SellerProductId==sellerProductId).Select(x => x.Id).ToList();
+            foreach (var id in userMediaIds)
+            {
+                var media = _shopContext.SellerProductMedias.Find(id);
+                media.Choose(0);
+                _shopContext.SaveChanges();
+            }
         }
     }
 }

@@ -1,7 +1,9 @@
-﻿using _0_Framework.Utilities;
+﻿using _0_Framework.Contract;
+using _0_Framework.Utilities;
 using ShopManagement.Application.Contract.SellerProduct;
 using ShopManagement.Domain.SellerPanelAgg;
 using ShopManagement.Domain.SellerProductAgg;
+using ShopManagement.Domain.SellerProductMediaAgg;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -14,14 +16,19 @@ namespace ShopManagement.Application
     {
         private readonly ISellerPanelRepository _sellerPanelRepository;
         private readonly ISellerProductRepository _selleProductRepository;
+        private readonly ISellerProductMediaRepository _sellerProductMediaRepository;
+        private readonly IAuthHelper _authHelper;
         private readonly OperationResult operation;
 
         public SellerProductApplication(ISellerPanelRepository sellerPanelRepository,
-            ISellerProductRepository selleProductRepository)
+            ISellerProductRepository selleProductRepository, ISellerProductMediaRepository sellerProductMediaRepository,
+            IAuthHelper authHelper)
         {
             _sellerPanelRepository = sellerPanelRepository;
             _selleProductRepository = selleProductRepository;
             operation = new OperationResult();
+            _sellerProductMediaRepository = sellerProductMediaRepository;
+            _authHelper = authHelper;
         }
 
         public OperationResult Create(CreateSellerProduct command)
@@ -36,12 +43,22 @@ namespace ShopManagement.Application
                 command.WarrantyTypeId, command.WarrantyAmount);
             _selleProductRepository.Create(product);
             _selleProductRepository.Savechange();
+            #region AddMediaFromSellerGallery
+            _sellerProductMediaRepository.SelectMediaByMediaIds(command.SelectedMediaIds,product.Id);
+            //foreach(var mediaId in command.SelectedMediaIds.Where(x => x > 0))
+            //{
+            //    var media=_sellerProductMediaRepository.GetById(mediaId);
+            //    media.Choose(product.Id);
+            //    _sellerProductMediaRepository.Savechange();
+            //}
+            #endregion
             return operation.Succedded("محصول با موفقیت اضافه و در حال بررسی توصط ادمین میباشد. در صورت تایید به فروشگاه اضافه خواهد شد");
 
         }
 
         public OperationResult Edit(EditSellerProduct command)
         {
+            var userId = _authHelper.CurrentAccountInfo().Id;
             var product = _selleProductRepository.GetById(command.Id);
             if(product == null)
                 return operation.Failed(ApplicationMessage.RecordNotFound);
@@ -55,6 +72,11 @@ namespace ShopManagement.Application
                 command.DeliveryDurationForOther, command.CanMarketerSee, command.BuyersCategory,
                 command.WarrantyTypeId, command.WarrantyAmount);
             _selleProductRepository.Savechange();
+            #region EditMediasOf Seller Product
+            //First we un select former nedias , then 
+            _sellerProductMediaRepository.UnSelectMediasByMediaIds(userId,product.Id);
+            _sellerProductMediaRepository.SelectMediaByMediaIds(command.SelectedMediaIds, product.Id);
+            #endregion
             return operation.Succedded();
         }
 
