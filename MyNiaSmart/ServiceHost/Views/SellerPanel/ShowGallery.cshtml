@@ -1,6 +1,12 @@
 ﻿@using ShopManagement.Application.Contract.SellerProductMedia
 @model Tuple<List<SellerGalleryViewModel>,List<long>,long>
 <style>
+    img{
+          border: 1px solid #ddd;
+      border-radius: 4px;
+      padding: 5px;
+      width: 150px;
+    }
     .selectedd {
         transform: scale(1.2);
         -ms-transform: scale(1.2); /* IE 9 */
@@ -34,12 +40,13 @@
                             }
 
                         </div>
-                        <button type="submit" onclick="SubMedias" class="btn btn-outline-success">تایید</button>
+                        <button type="submit"  class="btn btn-outline-success">تایید</button>
                     </form>
                 </div>
             </div>
         </div>
     </div>
+
 </div>
 
 <script>
@@ -51,19 +58,18 @@
             //    $(this).addClass('img' + i); // identtify imgs by index (class="imgN")
             //})
             .click(function(){
-                debugger
+                
                 var $img = $(this).toggleClass('selectedd');
                 var selectedMediaId=$(this).attr("id");
                 $("."+selectedMediaId).val(selectedMediaId);
                 if($img.hasClass('selectedd'))
                 {
-                    debugger
+                    
                       output.append($img.clone().removeClass('selectedd'));
-
                 }
                 else
                 {
-                    debugger
+                    
                     output.find('.' + $img[0].className).remove();
                        var selectedMediaId=$(this).attr("id");
                        $("input."+selectedMediaId).val(0);
@@ -72,24 +78,31 @@
 
     });
 
-
        $(document).ready(function(){
         $("form.MyForm").on("submit", function(event){
             event.preventDefault();
 
             var formValues= $(this).serialize();
-     debugger
-            $.post("/SellerPanel/ChooseMedia", formValues, function(data){
-                $("#MainModal").modal("hide");
-                //$("#result").html(data);
-            });
+         
+              $.post("/SellerPanel/ChooseMedia", formValues, function(data){
+                    $(".ShowMedia").empty();
+                    $(jQuery.parseJSON(data)).each(function() {  
+                          var ID = this.Id;
+                          var MediaURL = this.MediaURL;
+                     $(".ShowMedia").append("<img src='/UploadedFiles/"+MediaURL+"'"+"width='150' />" + 
+                                            "<input type='hidden' value='" + ID + "'" +"name='SelectedMediaIds' id='SelectedMediaIds'>");
+                            
+                       });
+                    $("#MainModal").modal("hide");
+                });
         });
     });
+
                         $(".Upload").change(function(){
                               var fd = new FormData();
                          var files = $("#newMedia").get(0).files;
                          fd.append("newMedia",files[0]);
-                           debugger
+                           
                           $.ajax({
                               type:"Post",
                               url:"/sellerpanel/AddMediaToGallery",
@@ -114,12 +127,8 @@
                                     .each(function(i, el){
                                         $(this).addClass('img' + i); // identtify imgs by index (class="imgN")
                                          })
-                                  //readURL($("#newMedia").get(0),id);
                                   }
-
-                                    //debugger
-                                    // let id=this.id;
-                                    // readURL(this,id);
+                                   
                               }
                           })
                         })

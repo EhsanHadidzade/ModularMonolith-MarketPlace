@@ -35,7 +35,7 @@
                         <div class="form-row">
                             <div class="form-group col-md-8">
                                 <label>عنوان محصول</label>
-                                <input type="text" class="form-control" asp-for="ProductTitle" placeholder=" با زدن دکمه رو به رو، میتوانید محصول مورد نظر خود را انتخاب کنید">
+                                <input type="text" class="form-control" asp-for="ProductTitle" placeholder=" با زدن دکمه رو به رو، میتوانید محصول مورد نظر خود را انتخاب کنید" readonly>
                                 <span class="text-danger" asp-validation-for="ProductTitle"></span>
                             </div>
                             <input type="hidden" asp-for="ProductId" />
@@ -44,6 +44,7 @@
                                 <label>.</label>
                                 <a class=" btn btn-square btn-outline-secondary" href="#showModal=/sellerpanel/SearchProduct" style="width:100%">جستجو محصولات</a>
                             </div>
+
                             <div class="form-group col-md-12">
                                 <label> قیمت بر حسب تومان</label>
                                 <input type="number" class="form-control" asp-for="Price" onkeypress="return onlyNumberKey(event)" onchange="CreateMarketerSharePrice('Price','MarketerSharePercent','MarketerShareAmount')" placeholder="بر حسب تومان">
@@ -100,7 +101,10 @@
                             <div class="form-group col-md-12">
                                 <label>مدیریت گالری تصاویر</label>
                                 <br />
-                                <a class=" btn btn-square btn-outline-secondary "  href="#showModal=/sellerpanel/ShowGallery/0" style="width:30%">باز کردن گالری</a>
+                                <a class=" btn btn-square btn-outline-secondary " href="#showModal=/sellerpanel/ShowGallery/0" style="width:30%">باز کردن گالری</a>
+                            </div>
+                            <div class="form-group col-md-8 ShowMedia">
+                                <label></label>
                             </div>
                             <div class="form-group col-md-6" style="padding:20px">
                                 <div class="custom-control custom-switch custom-control-inline mb-1">
@@ -142,13 +146,13 @@
 @section Scripts{
 <script>
         function CreateMarketerSharePrice(source, percent, marketershare) {
-        debugger
+        
         const value = $('#' + source).val();
         const mypercent = $('#'+ percent).val();
         $('#' + marketershare).val((mypercent / 100) * value);
     }
 
-            debugger
+            
               $(document).ready(function() {
                   $("#customSwitch1").click(function() {
                       if($(this).prop("checked") == true) {

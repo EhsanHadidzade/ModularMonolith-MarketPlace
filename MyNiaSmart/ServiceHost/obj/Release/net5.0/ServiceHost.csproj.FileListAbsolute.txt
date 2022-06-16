@@ -540,3 +540,8 @@ C:\Work\Projects\MyNiaSmart\MyNiaSmart\ServiceHost\obj\Release\net5.0\Razor\View
 C:\Work\Projects\MyNiaSmart\MyNiaSmart\ServiceHost\obj\Release\net5.0\Razor\Areas\Administrator\Views\SellerProduct\Index.cshtml.g.cs
 C:\Work\Projects\MyNiaSmart\MyNiaSmart\ServiceHost\obj\Release\net5.0\Razor\Areas\Administrator\Views\SellerProduct\ShowMoreInfo.cshtml.g.cs
 C:\Work\Projects\MyNiaSmart\MyNiaSmart\ServiceHost\obj\Release\net5.0\Razor\Views\MainShop\Index.cshtml.g.cs
+C:\Work\Projects\MyNiaSmart\MyNiaSmart\ServiceHost\obj\Release\net5.0\Razor\Views\MainShop\ProductDetails.cshtml.g.cs
+C:\Work\Projects\MyNiaSmart\MyNiaSmart\ServiceHost\obj\Release\net5.0\Razor\Views\MainShop\SellerProductDetails.cshtml.g.cs
+C:\Work\Projects\MyNiaSmart\MyNiaSmart\ServiceHost\obj\Release\net5.0\Razor\Views\MainShop\_NormalSellers.cshtml.g.cs
+C:\Work\Projects\MyNiaSmart\MyNiaSmart\ServiceHost\obj\Release\net5.0\Razor\Views\MainShop\_SpecialSellers.cshtml.g.cs
+C:\Work\Projects\MyNiaSmart\MyNiaSmart\ServiceHost\obj\Release\net5.0\Razor\Views\SellerPanel\ShowGallery.cshtml.g.cs

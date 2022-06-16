@@ -1,7 +1,9 @@
-﻿using _0_Framework.Infrastructure;
+﻿using _0_Framework.Contract;
+using _0_Framework.Infrastructure;
 using _0_Framework.Utilities;
 using Microsoft.EntityFrameworkCore;
 using ShopManagement.Application.Contract.SellerProduct;
+using ShopManagement.Application.Contract.SellerProductMedia;
 using ShopManagement.Domain.SellerProductAgg;
 using System;
 using System.Collections.Generic;
@@ -14,10 +16,12 @@ namespace ShopManagement.Infrastructure.EFCore.Repository
     public class SellerProductRepository:BaseRepository<long,SellerProduct>,ISellerProductRepository
     {
         private readonly ShopContext _shopContext;
+        private readonly IAuthHelper _authHelper;
 
-        public SellerProductRepository(ShopContext shopContext):base(shopContext)
+        public SellerProductRepository(ShopContext shopContext, IAuthHelper authHelper) : base(shopContext)
         {
             _shopContext = shopContext;
+            _authHelper = authHelper;
         }
         public List<SellerProductViewModel> GetList()
         {
@@ -57,7 +61,8 @@ namespace ShopManagement.Infrastructure.EFCore.Repository
 
         public EditSellerProduct GetDetails(long sellerProductId)
         {
-            return _shopContext.SellerProducts.Include(x => x.Product).Select(x => new EditSellerProduct
+            var userId = _authHelper.CurrentAccountInfo().Id;
+            var sellerProduct= _shopContext.SellerProducts.Include(x => x.Product).Select(x => new EditSellerProduct
             {
                 Id = x.Id,
                 BuyersCategory = x.BuyersCategory,
@@ -75,6 +80,17 @@ namespace ShopManagement.Infrastructure.EFCore.Repository
                 WarrantyAmount = x.WarrantyAmount,
                 WarrantyTypeId = x.WarrantyTypeId
             }).FirstOrDefault(x => x.Id == sellerProductId);
+
+            sellerProduct.SelectedMedias = _shopContext.SellerProductMedias
+                .Select(x => new SellerGalleryViewModel
+                {
+                    MediaURL = x.MediaURL,
+                    Id = x.Id,
+                    SellerProductId = x.SellerProductId,
+                    UserId=x.UserId
+                }).Where(x => x.SellerProductId == sellerProduct.Id && x.UserId == userId).ToList();
+
+            return sellerProduct;
         }
 
         public EditSellerProduct GetDetailsBySellerPanelIdAndProductId(long sellerProductId, long productId)

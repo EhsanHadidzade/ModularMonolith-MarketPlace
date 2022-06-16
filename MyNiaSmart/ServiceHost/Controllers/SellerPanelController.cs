@@ -8,13 +8,14 @@ using ShopManagement.Application.Contract.SellerProductMedia;
 using Microsoft.AspNetCore.Http;
 using System.Collections.Generic;
 using System;
+using System.Linq;
 
 namespace ServiceHost.Controllers
 {
     public class SellerPanelController : Controller
     {
         public static string message { get; set; }
-        public static List<long> SelectedMedias { set; get; }
+        //public static List<long> SelectedMedias { set; get; }
         private readonly ISellerProductApplication _sellerProductApplication;
         private readonly ISellerPanelApplication _sellerPanelApplication;
         private readonly IProductApplication _productApplication;
@@ -61,7 +62,7 @@ namespace ServiceHost.Controllers
         [Route("/SellerPanel/AddProductToSellerPanel")]
         public IActionResult AddProductToSellerPanel(CreateSellerProduct command)
         {
-            command.SelectedMediaIds = SelectedMedias;
+            //command.SelectedMediaIds = SelectedMedias;
             if (!ModelState.IsValid)
                 return View(command);
 
@@ -84,7 +85,7 @@ namespace ServiceHost.Controllers
         [HttpPost]
         public IActionResult EditProduct(EditSellerProduct command)
         {
-            command.SelectedMediaIds = SelectedMedias;
+            //command.SelectedMediaIds = SelectedMedias;
             if (!ModelState.IsValid)
                 return View(command);
 
@@ -94,7 +95,6 @@ namespace ServiceHost.Controllers
         }
 
         #endregion
-
 
         #region To Show List of products of application that seller is going to cooperate to sell them
 
@@ -146,15 +146,21 @@ namespace ServiceHost.Controllers
 
 
         }
-        #endregion
+        #endregion  
 
 
         #region To Choose the selected Media For specific Product
         [HttpPost]
         public string ChooseMedia(List<long> selectedMedia)
         {
-            SellerPanelController.SelectedMedias = selectedMedia;
-            var jsonResult = JsonConvert.SerializeObject("Done");
+            //SellerPanelController.SelectedMedias = selectedMedia;
+            var SelectedMediaList = new List<SellerGalleryViewModel>();
+            foreach(var id in selectedMedia.Where(x=>x>0))
+            {
+                var media = _sellerProductMediaApplication.GetMediaById(id);
+                SelectedMediaList.Add(media);
+            }
+            var jsonResult = JsonConvert.SerializeObject(SelectedMediaList);
             return jsonResult;
 
         }

@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace ShopManagement.Infrastructure.EFCore.Repository
 {
-    public class SellerProductMediaRepository:BaseRepository<long,SellerProductMedia>,ISellerProductMediaRepository
+    public class SellerProductMediaRepository : BaseRepository<long, SellerProductMedia>, ISellerProductMediaRepository
     {
         private readonly ShopContext _shopContext;
         private readonly IAuthHelper _authHelper;
@@ -23,12 +23,12 @@ namespace ShopManagement.Infrastructure.EFCore.Repository
 
         public SellerGalleryViewModel GetMediaById(long id)
         {
-            return _shopContext.SellerProductMedias.Select(x=>new SellerGalleryViewModel 
+            return _shopContext.SellerProductMedias.Select(x => new SellerGalleryViewModel
             {
-                Id=x.Id,
-                MediaURL=x.MediaURL,
-                UserId=x.UserId,
-            }).FirstOrDefault(x=>x.Id==id);
+                Id = x.Id,
+                MediaURL = x.MediaURL,
+                UserId = x.UserId,
+            }).FirstOrDefault(x => x.Id == id);
         }
 
         public List<SellerGalleryViewModel> GetUserGalleryMediasByUserId(long userId)
@@ -37,32 +37,39 @@ namespace ShopManagement.Infrastructure.EFCore.Repository
             {
                 Id = x.Id,
                 MediaURL = x.MediaURL,
-                SellerProductId=x.SellerProductId,
-                UserId=x.UserId,
+                SellerProductId = x.SellerProductId,
+                UserId = x.UserId,
                 IsSelectedBySeller = true
-            }).Where(x=>x.UserId==userId).ToList();
+            }).Where(x => x.UserId == userId).ToList();
         }
 
-        public List<long> GetSelectedMediaIdsOfSellerProductBySellerProductIdAndUserId(long sellerProductId,long userId)
+        public List<long> GetSelectedMediaIdsOfSellerProductBySellerProductIdAndUserId(long sellerProductId, long userId)
         {
+            if (sellerProductId == 0)
+                return new List<long>();
+
             return _shopContext.SellerProductMedias
                 .Where(x => x.UserId == userId && x.SellerProductId == sellerProductId)
                 .Select(x => x.Id)
                 .ToList();
         }
-        public void SelectMediaByMediaIds(List<long> mediaIds,long sellerProductId)
+        public void SelectMediaByMediaIds(List<long> mediaIds, long sellerProductId)
         {
             //var userMediaIds = _shopContext.SellerProductMedias.Where(x=> x.SellerProductId == sellerProductId).Select(x => x.Id).ToList();
-            foreach (var id in mediaIds.Where(x => x > 0))
+            if (mediaIds.Count > 0)
             {
-                var media = _shopContext.SellerProductMedias.Find(id);
-                media.Choose(sellerProductId);
-                _shopContext.SaveChanges();
+                foreach (var id in mediaIds.Where(x => x > 0))
+                {
+                    var media = _shopContext.SellerProductMedias.Find(id);
+                    media.Choose(sellerProductId);
+                    _shopContext.SaveChanges();
+                }
             }
+
         }
-        public void UnSelectMediasByMediaIds(long userId,long sellerProductId)
+        public void UnSelectMediasByMediaIds(long userId, long sellerProductId)
         {
-            var userMediaIds = _shopContext.SellerProductMedias.Where(x => x.UserId == userId && x.SellerProductId==sellerProductId).Select(x => x.Id).ToList();
+            var userMediaIds = _shopContext.SellerProductMedias.Where(x => x.UserId == userId && x.SellerProductId == sellerProductId).Select(x => x.Id).ToList();
             foreach (var id in userMediaIds)
             {
                 var media = _shopContext.SellerProductMedias.Find(id);
