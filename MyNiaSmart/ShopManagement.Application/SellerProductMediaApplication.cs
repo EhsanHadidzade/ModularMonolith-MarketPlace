@@ -18,10 +18,10 @@ namespace ShopManagement.Application
         private readonly IAuthHelper _authHelper;
         private readonly IFileUploader _fileUploader;
 
-        public SellerProductMediaApplication(ISellerProductMediaRepository sellerProductMediaRepositoryl,
+        public SellerProductMediaApplication(ISellerProductMediaRepository sellerProductMediaRepository,
             IAuthHelper authHelper, IFileUploader fileUploader)
         {
-            _sellerProductMediaRepository = sellerProductMediaRepositoryl;
+            _sellerProductMediaRepository = sellerProductMediaRepository;
             _authHelper = authHelper;
             _fileUploader = fileUploader;
         }
@@ -40,9 +40,26 @@ namespace ShopManagement.Application
                 var sellerProductMedia = new SellerProductMedia(picturePath, userId);
                 _sellerProductMediaRepository.Create(sellerProductMedia);
                 _sellerProductMediaRepository.Savechange();
-                return operation.SucceddedWithId("آپلود موفقیت آمیز بود",sellerProductMedia.Id);
+
+                //To DO :  We should Check if upload file is image or vieo then Select isMediaImage
+                return operation.SucceddedWithId("آپلود موفقیت آمیز بود", sellerProductMedia.Id);
             }
             return operation.Failed("باید png و یا jpg باشد");
+        }
+
+        public OperationResult DeleteSellerMediasByMediaIds(List<long> mediaIds)
+        {
+            var operation = new OperationResult();
+            foreach (var mediaId in mediaIds.Where(x=>x>0))
+            {
+                //TO Remove From Static Files
+                var media = _sellerProductMediaRepository.GetMediaById(mediaId);
+                _fileUploader.RemovePicture(media.MediaURL);
+
+                _sellerProductMediaRepository.RemoveById(mediaId);
+            }
+            _sellerProductMediaRepository.Savechange();
+            return operation.Succedded("حذف با موفقیت انجام شد");
         }
 
         public SellerGalleryViewModel GetMediaById(long id)

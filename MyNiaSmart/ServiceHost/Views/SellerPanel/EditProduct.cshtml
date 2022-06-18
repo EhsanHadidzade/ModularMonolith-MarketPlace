@@ -102,11 +102,14 @@
                             </div>
                             <div class="form-group col-md-8 ShowMedia">
                                 <label></label>
-                                @foreach(var item in Model.SelectedMedias)
+                                @foreach (var item in Model.SelectedMedias)
                                 {
                                     <img src="/UploadedFiles/@item.MediaURL" width="150">
                                     <input type="hidden" value="@item.Id" asp-for="SelectedMediaIds">
                                 }
+                            </div>
+                            <div class="alert alert-info deleteResult">
+                                <!--DisPlay Delete Media Operation-->
                             </div>
                             <div class="form-group col-md-6" style="padding:20px">
                                 <div class="custom-control custom-switch custom-control-inline mb-1">
@@ -147,6 +150,20 @@
 
 @section Scripts{
 <script>
+
+    $(function(){
+        if($("#customSwitch1").prop("checked") == true) {
+                        $("#MarketerSharePercentt").css("display","block");
+                        $("#MarketerShareAmountt").css("display","block");
+                      }
+                      else if($(this).prop("checked") == false) {
+                       $("#MarketerSharePercentt").css("display","none");
+                        $("#MarketerSharePercent").val(0);
+                       $("#MarketerShareAmountt").css("display","none");
+                       $("#MarketerShareAmount").val(0);
+                      }
+    })
+
 
         function CreateMarketerSharePrice(source, percent, marketershare) {
         debugger

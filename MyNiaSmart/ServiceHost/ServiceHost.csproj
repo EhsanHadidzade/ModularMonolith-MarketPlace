@@ -50,6 +50,7 @@
     <Folder Include="Areas\Administrator\Data\" />
     <Folder Include="Areas\Administrator\Models\" />
     <Folder Include="wwwroot\UploadedFiles\" />
+    <Folder Include="wwwroot\UploadedFiles\SellerProductMedias\09394481541\" />
   </ItemGroup>
 
   <ItemGroup>

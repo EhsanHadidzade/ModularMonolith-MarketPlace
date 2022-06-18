@@ -359,6 +359,9 @@ namespace ShopManagement.Infrastructure.EFCore.Migrations
                     b.Property<DateTime>("CreationDate")
                         .HasColumnType("datetime2");
 
+                    b.Property<bool>("IsMediaImage")
+                        .HasColumnType("bit");
+
                     b.Property<bool>("IsSelectedBySeller")
                         .HasColumnType("bit");
 

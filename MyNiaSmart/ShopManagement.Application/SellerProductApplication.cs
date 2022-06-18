@@ -73,7 +73,7 @@ namespace ShopManagement.Application
                 command.WarrantyTypeId, command.WarrantyAmount);
             _selleProductRepository.Savechange();
             #region EditMediasOf Seller Product
-            //First we un select former nedias , then 
+            //First we un select former Medias , then Select New Ones
             _sellerProductMediaRepository.UnSelectMediasByMediaIds(userId,product.Id);
             _sellerProductMediaRepository.SelectMediaByMediaIds(command.SelectedMediaIds, product.Id);
             #endregion

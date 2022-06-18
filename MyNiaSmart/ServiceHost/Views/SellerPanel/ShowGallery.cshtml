@@ -1,19 +1,18 @@
 ﻿@using ShopManagement.Application.Contract.SellerProductMedia
 @model Tuple<List<SellerGalleryViewModel>,List<long>,long>
+
+<link href="~/AdminTheme/vendor/sweetalert2/dist/sweetalert2.min.css" rel="stylesheet">
+
 <style>
-    img{
-          border: 1px solid #ddd;
-      border-radius: 4px;
-      padding: 5px;
-      width: 150px;
+    img {
+        border: 1px solid #ddd;
+        border-radius: 4px;
+        padding: 5px;
+        width: 150px;
     }
+
     .selectedd {
-        transform: scale(1.2);
-        -ms-transform: scale(1.2); /* IE 9 */
-        -webkit-transform: scale(1.2); /* Safari and Chrome */
-        -o-transform: scale(1.2); /* Opera */
-        -moz-transform: scale(1.2); /* Firefox */
-        border: 2px inset silver;
+        border: 5px solid green;
     }
 
 </style>
@@ -35,13 +34,23 @@
                                 @foreach (var image in Model.Item1)
                                 {
                                     <img src="~/UploadedFiles/@image.MediaURL" width="150" id="@image.Id" class="@((Model.Item2.Any(x=>x==image.Id)?"selectedd":""))" />
-                                    <input type="hidden" value="@((Model.Item2.Any(x=>x==image.Id)?image.Id:0))" name="selectedMedia" class="@image.Id">
+                                    <input type="hidden" value="@((Model.Item2.Any(x=>x==image.Id)?image.Id:0))" name="selectedMedia" class="@image.Id" id="mediaId">
                                 }
                             }
 
                         </div>
-                        <button type="submit"  class="btn btn-outline-success">تایید</button>
+                        <button type="submit" class="btn btn-outline-success">تایید</button>
                     </form>
+                    <a onclick="DeleteMedia()" class="btn btn-outline-danger deleteMedia">حذف تصاویر </a>
+
+
+                    <div class="card-content">
+                        <div class="sweetalert mt-5">
+                            <button class="btn btn-primary btn sweet-danger-cancel">حذف تصاویر علامت گذاری </button>
+                        </div>
+                    </div>
+
+
                 </div>
             </div>
         </div>
@@ -50,88 +59,109 @@
 </div>
 
 <script>
+       
 
-    $(function(){
-        var output = $('#output');
-        $('img')
-            //.each(function(i, el){
-            //    $(this).addClass('img' + i); // identtify imgs by index (class="imgN")
-            //})
-            .click(function(){
-                
-                var $img = $(this).toggleClass('selectedd');
-                var selectedMediaId=$(this).attr("id");
-                $("."+selectedMediaId).val(selectedMediaId);
-                if($img.hasClass('selectedd'))
-                {
-                    
-                      output.append($img.clone().removeClass('selectedd'));
-                }
-                else
-                {
-                    
-                    output.find('.' + $img[0].className).remove();
-                       var selectedMediaId=$(this).attr("id");
-                       $("input."+selectedMediaId).val(0);
-                }
-            });
 
-    });
+    function DeleteMedia(){
+        var formValues= $("form.MyForm").serialize();
+        $.ajax({
+            url:"/SellerPanel/DeleteMedia",
+            type:"Post",
+            data:formValues,
+            success:function(result){
+                debugger
+                $(".deleteResult").empty();
+                $(".deleteResult").append("<p>"+"حذف یا موفقیت انجام شد"+"</p>");
+                $("#MainModal").modal("hide");
 
-       $(document).ready(function(){
-        $("form.MyForm").on("submit", function(event){
-            event.preventDefault();
+            }
+        })
+    }
 
-            var formValues= $(this).serialize();
-         
-              $.post("/SellerPanel/ChooseMedia", formValues, function(data){
-                    $(".ShowMedia").empty();
-                    $(jQuery.parseJSON(data)).each(function() {  
-                          var ID = this.Id;
-                          var MediaURL = this.MediaURL;
-                     $(".ShowMedia").append("<img src='/UploadedFiles/"+MediaURL+"'"+"width='150' />" + 
-                                            "<input type='hidden' value='" + ID + "'" +"name='SelectedMediaIds' id='SelectedMediaIds'>");
-                            
-                       });
-                    $("#MainModal").modal("hide");
+
+
+        $(function(){
+            var output = $('#output');
+            $('img')
+                //.each(function(i, el){
+                //    $(this).addClass('img' + i); // identtify imgs by index (class="imgN")
+                //})
+                .click(function(){
+                    $(this).fadeOut(1,function(){$(this).fadeIn(500)});
+                    var $img = $(this).toggleClass('selectedd');
+                    var selectedMediaId=$(this).attr("id");
+                    $("."+selectedMediaId).val(selectedMediaId);
+                    if($img.hasClass('selectedd'))
+                    {
+
+                          output.append($img.clone().removeClass('selectedd'));
+                    }
+                    else
+                    {
+
+                        output.find('.' + $img[0].className).remove();
+                           var selectedMediaId=$(this).attr("id");
+                           $("input."+selectedMediaId).val(0);
+                    }
                 });
+
         });
-    });
 
-                        $(".Upload").change(function(){
-                              var fd = new FormData();
-                         var files = $("#newMedia").get(0).files;
-                         fd.append("newMedia",files[0]);
-                           
-                          $.ajax({
-                              type:"Post",
-                              url:"/sellerpanel/AddMediaToGallery",
-                              data:fd,
-                              processData: false,
-                              contentType: false,
-                              dataType: "json",
-                              success:function(result){
-                                  $(".main").empty();
-                                      debugger
-                                        if(result.IsSuccedded===false){
-                                      debugger
-                                  $(".main").append("<div class='alert alert-danger'><p>نوع فایل باید png و یا jpg باشد </p></div>");
-                                  }
+           $(document).ready(function(){
+            $("form.MyForm").on("submit", function(event){
+                event.preventDefault();
+                debugger
+                var formValues= $(this).serialize();
 
-                                  else
-                                  {
-                                      let id=@Model.Item1.Count+1;
-                                  $(".gallery").append("<img src='/UploadedFiles/"+result.Message+"'"+"width='150' id='"+result.Id+"'"+"/>"+ "<input type='hidden' value='0' class='"+result.Id+"'"+" name='selectedMedia'>");
-                                  $(".main").append("<div class='alert alert-success'> <p >موفقیت آمیز بود</p></div>");
-                                    $('img')
-                                    .each(function(i, el){
-                                        $(this).addClass('img' + i); // identtify imgs by index (class="imgN")
-                                         })
+                  $.post("/SellerPanel/ChooseMedia", formValues, function(data){
+                        $(".ShowMedia").empty();
+                        $(jQuery.parseJSON(data)).each(function() {
+                              var ID = this.Id;
+                              var MediaURL = this.MediaURL;
+                         $(".ShowMedia").append("<img src='/UploadedFiles/"+MediaURL+"'"+"width='150' />" +
+                                                "<input type='hidden' value='" + ID + "'" +"name='SelectedMediaIds' id='SelectedMediaIds'>");
+
+                           });
+                        $("#MainModal").modal("hide");
+                    });
+            });
+        });
+
+                            $(".Upload").change(function(){
+                                  var fd = new FormData();
+                             var files = $("#newMedia").get(0).files;
+                             fd.append("newMedia",files[0]);
+
+                              $.ajax({
+                                  type:"Post",
+                                  url:"/sellerpanel/AddMediaToGallery",
+                                  data:fd,
+                                  processData: false,
+                                  contentType: false,
+                                  dataType: "json",
+                                  success:function(result){
+                                      $(".main").empty();
+                                          debugger
+                                            if(result.IsSuccedded===false){
+                                          debugger
+                                      $(".main").append("<div class='alert alert-danger'><p>نوع فایل باید png و یا jpg باشد </p></div>");
+                                      }
+
+                                      else
+                                      {
+                                          let id=@Model.Item1.Count+1;
+                                          debugger
+                                      $(".gallery").append("<img src='/UploadedFiles/"+result.Message+"'"+"width='150' id='"+result.Id+"'"+"/>"+ "<input type='hidden' value='0' class='"+result.Id+"'"+" name='selectedMedia'>");
+                                      $(".main").append("<div class='alert alert-success'> <p >موفقیت آمیز بود</p></div>");
+                                        $('img')
+                                        .each(function(i, el){
+                                            $(this).addClass('img' + i); // identtify imgs by index (class="imgN")
+                                             })
+                                      }
+
                                   }
-                                   
-                              }
-                          })
-                        })
+                              })
+                            })
 
 
 </script>

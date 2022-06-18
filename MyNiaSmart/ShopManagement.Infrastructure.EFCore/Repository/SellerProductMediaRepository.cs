@@ -21,6 +21,18 @@ namespace ShopManagement.Infrastructure.EFCore.Repository
             _authHelper = authHelper;
         }
 
+        public List<SellerFilesManagerViewModel> GetSellerFilesByUserId(long userId)
+        {
+            //Continuie
+            var Files=_shopContext.SellerProductMedias.Select(x => new SellerFilesManagerViewModel
+            {
+                Id=x.Id,
+                UserId=x.UserId,
+                IsMediaImage=x.IsMediaImage,
+            }).Where(x=>x.UserId==userId).ToList();
+            return Files;
+        }
+
         public SellerGalleryViewModel GetMediaById(long id)
         {
             return _shopContext.SellerProductMedias.Select(x => new SellerGalleryViewModel
@@ -30,7 +42,6 @@ namespace ShopManagement.Infrastructure.EFCore.Repository
                 UserId = x.UserId,
             }).FirstOrDefault(x => x.Id == id);
         }
-
         public List<SellerGalleryViewModel> GetUserGalleryMediasByUserId(long userId)
         {
             return _shopContext.SellerProductMedias.Select(x => new SellerGalleryViewModel
@@ -42,7 +53,6 @@ namespace ShopManagement.Infrastructure.EFCore.Repository
                 IsSelectedBySeller = true
             }).Where(x => x.UserId == userId).ToList();
         }
-
         public List<long> GetSelectedMediaIdsOfSellerProductBySellerProductIdAndUserId(long sellerProductId, long userId)
         {
             if (sellerProductId == 0)
@@ -77,5 +87,7 @@ namespace ShopManagement.Infrastructure.EFCore.Repository
                 _shopContext.SaveChanges();
             }
         }
+
+
     }
 }

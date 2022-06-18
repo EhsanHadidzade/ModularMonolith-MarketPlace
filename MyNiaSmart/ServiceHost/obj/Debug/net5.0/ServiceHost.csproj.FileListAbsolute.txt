@@ -545,3 +545,4 @@ C:\Work\Projects\MyNiaSmart\MyNiaSmart\ServiceHost\obj\Debug\net5.0\Razor\Views\
 C:\Work\Projects\MyNiaSmart\MyNiaSmart\ServiceHost\obj\Debug\net5.0\Razor\Views\MainShop\_SpecialSellers.cshtml.g.cs
 C:\Work\Projects\MyNiaSmart\MyNiaSmart\ServiceHost\obj\Debug\net5.0\Razor\Views\MainShop\SellerProductDetails.cshtml.g.cs
 C:\Work\Projects\MyNiaSmart\MyNiaSmart\ServiceHost\obj\Debug\net5.0\Razor\Views\SellerPanel\ShowGallery.cshtml.g.cs
+C:\Work\Projects\MyNiaSmart\MyNiaSmart\ServiceHost\obj\Debug\net5.0\Razor\Areas\Administrator\Views\SellerProductMedia\Index.cshtml.g.cs

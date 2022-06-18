@@ -7,7 +7,7 @@ using System.Linq.Expressions;
 
 namespace _0_Framework.Infrastructure
 {
-    public class BaseRepository<Tkey, T> : IRepository<Tkey, T> where T:class
+    public class BaseRepository<Tkey, T> : IRepository<Tkey, T> where T : class
     {
         private readonly DbContext _context;
 
@@ -28,9 +28,13 @@ namespace _0_Framework.Infrastructure
 
         public T GetById(Tkey id)
         {
-          return  _context.Find<T>(id);
+            return _context.Find<T>(id);
         }
-
+        public void RemoveById(Tkey id)
+        {
+            var entity = _context.Find<T>(id);
+            _context.Remove(entity);
+        }
 
         public bool IsExist(Expression<Func<T, bool>> expression)
         {

@@ -12,6 +12,7 @@ namespace _0_Framework.Domain
         T GetById(Tkey id);
         List<T> GetAll();
         void Create(T entity);
+        void RemoveById(Tkey id);
         bool IsExist(Expression<Func<T,bool>> expression);
         void Savechange();
 

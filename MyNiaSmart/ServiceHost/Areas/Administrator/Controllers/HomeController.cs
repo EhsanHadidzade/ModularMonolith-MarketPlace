@@ -8,7 +8,6 @@ namespace ServiceHost.Areas.Administrator.Controllers
         [Area("Administrator")]
         [Authorize]
         public IActionResult Index()
-        
         {
             return View();
         }

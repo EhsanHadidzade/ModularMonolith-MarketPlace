@@ -6,6 +6,8 @@ using System.Threading.Tasks;
 
 namespace ShopManagement.Application.Contract.SellerProductMedia
 {
+
+    // To use in seller panel of client Side
     public class SellerGalleryViewModel
     {
         public long Id { get; set; }

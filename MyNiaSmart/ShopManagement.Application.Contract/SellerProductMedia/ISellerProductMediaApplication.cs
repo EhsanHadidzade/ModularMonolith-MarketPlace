@@ -18,5 +18,9 @@ namespace ShopManagement.Application.Contract.SellerProductMedia
 
         //TO Find the medias that are selected for one product of sellerProducts to show in edit form
         List<long> GetSelectedMediaIdsOfSellerProductBySellerProductIdAndUserId(long sellerProductId, long userId);
+
+        //To Remove SelectedMedias From seller Gallery
+        OperationResult DeleteSellerMediasByMediaIds(List<long> mediaIds);
+
     }
 }

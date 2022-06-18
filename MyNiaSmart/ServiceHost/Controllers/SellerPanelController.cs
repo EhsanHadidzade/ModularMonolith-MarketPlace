@@ -150,18 +150,31 @@ namespace ServiceHost.Controllers
 
 
         #region To Choose the selected Media For specific Product
+        // این متد تنها جنبه ی نمایش عکس روی صفحه اصلی فرم افزودن محصول دارد. و در هنگام سابمیت فرم محصول ، تصاویر برای محصول مورد نظر ذخیره خواهد شد
         [HttpPost]
         public string ChooseMedia(List<long> selectedMedia)
         {
             //SellerPanelController.SelectedMedias = selectedMedia;
             var SelectedMediaList = new List<SellerGalleryViewModel>();
-            foreach(var id in selectedMedia.Where(x=>x>0))
+            foreach (var id in selectedMedia.Where(x => x > 0))
             {
                 var media = _sellerProductMediaApplication.GetMediaById(id);
                 SelectedMediaList.Add(media);
             }
             var jsonResult = JsonConvert.SerializeObject(SelectedMediaList);
             return jsonResult;
+
+        }
+        #endregion
+
+        #region To Delete Selected media from Gallery of seller
+        [HttpPost]
+        public string DeleteMedia(List<long> selectedMedia)
+        {
+            var result = _sellerProductMediaApplication.DeleteSellerMediasByMediaIds(selectedMedia);
+            result.Message = "done";
+            var jsonObject = JsonConvert.SerializeObject(result);
+            return jsonObject;
 
         }
         #endregion

@@ -26,6 +26,9 @@ namespace ShopManagement.Domain.SellerProductMediaAgg
         //In Editio of seller product , we use to remove old selected medias 
         void UnSelectMediasByMediaIds(long userId, long sellerProductId);
 
+        //To Get all files of one user that they added in their Gallery
+        List<SellerFilesManagerViewModel> GetSellerFilesByUserId(long userId);
+
 
 
     }
