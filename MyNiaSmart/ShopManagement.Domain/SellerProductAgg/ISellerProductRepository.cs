@@ -11,17 +11,16 @@ namespace ShopManagement.Domain.SellerProductAgg
     public interface ISellerProductRepository:IRepository<long,SellerProduct>
     {
         EditSellerProduct GetDetails(long sellerProductId);
-
-      
         
         //to get list of products to show in seller panel of sellers
         List<SellerProductViewModel> GetListBySellerPanelId(long sellerpanelId);
 
-        //To Get AllOf them in adminPanel
+        //To Get All Of them in adminPanel
         List<SellerProductViewModel> GetList();
 
-        //To Get Details of a product that is selling by one seller . we use this in Main shop prouctDetails View 
-        EditSellerProduct GetDetailsBySellerPanelIdAndProductId(long sellerProductId, long productId);
+        // Find Exact SellerProduct then use info to show for sellerProductDetailsView
+        EditSellerProduct GetDetailsBySellerPanelIdAndProductId(long sellerPaneId, long productId);
+
 
 
     }

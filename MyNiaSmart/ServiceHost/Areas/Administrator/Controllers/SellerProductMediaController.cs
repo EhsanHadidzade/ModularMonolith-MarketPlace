@@ -15,7 +15,15 @@ namespace ServiceHost.Areas.Administrator.Controllers
 
         public IActionResult Index()
         {
-            return View();
+            var usersWithMedias=_sellerProductMediaApplication.GetUsersWithMedias();
+            return View(usersWithMedias);
+        }
+
+        public IActionResult ShowUserMedia(long id)
+        {
+            //id==UserId passed to find their Medias from seller product media table
+            var userMedias = _sellerProductMediaApplication.GetUserGalleryMediasByUserId(id);
+            return PartialView(userMedias);
         }
     }
 }

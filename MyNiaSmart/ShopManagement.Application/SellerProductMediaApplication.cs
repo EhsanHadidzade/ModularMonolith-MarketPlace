@@ -1,6 +1,7 @@
 ﻿using _0_Framework.Contract;
 using _0_Framework.Utilities;
 using _01_Framework.Application;
+using AccountManagement.Domain.UserAgg;
 using ShopManagement.Application.Contract.SellerProductMedia;
 using ShopManagement.Domain.SellerProductMediaAgg;
 using System;
@@ -15,15 +16,41 @@ namespace ShopManagement.Application
     public class SellerProductMediaApplication : ISellerProductMediaApplication
     {
         private readonly ISellerProductMediaRepository _sellerProductMediaRepository;
+        private readonly IUserRepository _userRepository;
         private readonly IAuthHelper _authHelper;
         private readonly IFileUploader _fileUploader;
 
+
         public SellerProductMediaApplication(ISellerProductMediaRepository sellerProductMediaRepository,
-            IAuthHelper authHelper, IFileUploader fileUploader)
+            IAuthHelper authHelper, IFileUploader fileUploader, IUserRepository userRepository)
         {
             _sellerProductMediaRepository = sellerProductMediaRepository;
             _authHelper = authHelper;
             _fileUploader = fileUploader;
+            _userRepository = userRepository;
+        }
+
+        public List<UserWithMediaViewModel> GetUsersWithMedias()
+        {
+            var UsersWithMedias = new List<UserWithMediaViewModel>();
+            var UserIdsWithMedias = _sellerProductMediaRepository.GetUserIdsWithMedias();
+
+            foreach (var userId in UserIdsWithMedias)
+            {
+                var userMobileNumber = _userRepository.GetMobileNumberByUserId(userId);
+                var user = new UserWithMediaViewModel
+                {
+                    UserId = userId,
+                    UserFullName = _userRepository.GetFullNameByUserId(userId),
+                    UserMediaDiskSpace = _fileUploader.GetDiskSpaceByPath($"SellerProductMedias//{userMobileNumber}"),
+                    PictureCount = _sellerProductMediaRepository.GetUserGalleryMediasByUserId(userId).Where(x => x.IsMediaImage).Count(),
+                    VideoCount = _sellerProductMediaRepository.GetUserGalleryMediasByUserId(userId).Where(x => !x.IsMediaImage).Count(),
+
+                };
+                UsersWithMedias.Add(user);
+            }
+
+            return UsersWithMedias;
         }
 
         public OperationResult CreateMediaForGallery(CreateMediaForSellerGallery command)
@@ -50,7 +77,7 @@ namespace ShopManagement.Application
         public OperationResult DeleteSellerMediasByMediaIds(List<long> mediaIds)
         {
             var operation = new OperationResult();
-            foreach (var mediaId in mediaIds.Where(x=>x>0))
+            foreach (var mediaId in mediaIds.Where(x => x > 0))
             {
                 //TO Remove From Static Files
                 var media = _sellerProductMediaRepository.GetMediaById(mediaId);
@@ -75,6 +102,11 @@ namespace ShopManagement.Application
         public List<SellerGalleryViewModel> GetUserGalleryMediasByUserId(long userId)
         {
             return _sellerProductMediaRepository.GetUserGalleryMediasByUserId(userId);
+        }
+
+        public List<SellerGalleryViewModel> GetSellerMediasBySellerProductId(long sellerProductId)
+        {
+            return _sellerProductMediaRepository.GetSellerMediasBySellerProductId(sellerProductId);
         }
     }
 }

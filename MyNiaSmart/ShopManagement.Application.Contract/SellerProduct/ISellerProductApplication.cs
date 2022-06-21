@@ -25,5 +25,8 @@ namespace ShopManagement.Application.Contract.SellerProduct
         //ToConfirm a product by admin in admin panel to show the product in main shop
         OperationResult ConfirmAProductByAdmin(long sellerProductId);
 
+        //To Get Details of a product that is selling by one seller . we use this in Main shop prouctDetails View 
+        SellerProductDetailsToShowViewModel GetDetailsBySellerPanelNameAndProductSlug(string shopName, string productSlug);
+
     }
 }

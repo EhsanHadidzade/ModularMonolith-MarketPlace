@@ -20,5 +20,6 @@ namespace ShopManagement.Application.Contract.Product
         public string PartNumber { get; set; }
         public string Slug { get; set; }
         public string CreationDate { get; set; }
+        public int SellersCount { get; set; }
     }
 }

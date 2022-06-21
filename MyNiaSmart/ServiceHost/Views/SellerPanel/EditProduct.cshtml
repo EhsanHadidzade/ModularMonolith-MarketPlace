@@ -99,13 +99,18 @@
                                 <label>مدیریت گالری تصاویر</label>
                                 <br />
                                 <a class=" btn btn-square btn-outline-secondary " href="#showModal=/sellerpanel/ShowGallery/@Model.Id" style="width:30%">باز کردن گالری</a>
+                                <span class="text-danger" asp-validation-for="SelectedMediaIds">
+                                </span>
                             </div>
                             <div class="form-group col-md-8 ShowMedia">
                                 <label></label>
-                                @foreach (var item in Model.SelectedMedias)
+                                @if (Model.SelectedMedias != null)
                                 {
-                                    <img src="/UploadedFiles/@item.MediaURL" width="150">
-                                    <input type="hidden" value="@item.Id" asp-for="SelectedMediaIds">
+                                    @foreach (var item in Model.SelectedMedias)
+                                    {
+                                        <img src="/UploadedFiles/@item.MediaURL" width="150">
+                                        <input type="hidden" value="@item.Id" asp-for="SelectedMediaIds">
+                                    }
                                 }
                             </div>
                             <div class="alert alert-info deleteResult">

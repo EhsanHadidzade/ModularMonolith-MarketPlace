@@ -6,8 +6,8 @@ namespace ServiceHost.Areas.Administrator.Controllers
     [Area("Administrator")]
     public class SellerPanelRequestController : Controller
     {
+        public static string message { get; set; }
         private readonly ISellerPanelApplication _sellerPanelApplication;
-
         public SellerPanelRequestController(ISellerPanelApplication sellerPanelApplication)
         {
             _sellerPanelApplication = sellerPanelApplication;
@@ -15,6 +15,8 @@ namespace ServiceHost.Areas.Administrator.Controllers
 
         public IActionResult Index()
         {
+            if (!string.IsNullOrWhiteSpace(message))
+                ViewData["Message"] = message;
             var sellerPanelRequest = _sellerPanelApplication.GetList();
             return View(sellerPanelRequest);
         }
@@ -25,11 +27,25 @@ namespace ServiceHost.Areas.Administrator.Controllers
             return PartialView(sellerPanelRequest);
         }
 
-        [HttpPost]
-        public IActionResult Confirm(long sellerpanelid)
+        public IActionResult Confirm(long id)
         {
-            _sellerPanelApplication.ConfirmByAdmin(sellerpanelid);
-            return Redirect("./index");
+            var result = _sellerPanelApplication.ConfirmByAdmin(id);
+            SellerPanelRequestController.message = result.Message;
+            return Redirect("/Administrator/SellerPanelRequest/index");
+        }
+
+        public IActionResult Cancel(long id)
+        {
+            var result = _sellerPanelApplication.CancelByAdmin(id);
+            SellerPanelRequestController.message = result.Message;
+            return Redirect("/Administrator/SellerPanelRequest/index");
+        }
+
+        public IActionResult SelectAsSpecial(long id)
+        {
+            var result = _sellerPanelApplication.SelectAsSpecial(id);
+            SellerPanelRequestController.message = result.Message;
+            return Redirect("/Administrator/SellerPanelRequest/index");
         }
     }
 }

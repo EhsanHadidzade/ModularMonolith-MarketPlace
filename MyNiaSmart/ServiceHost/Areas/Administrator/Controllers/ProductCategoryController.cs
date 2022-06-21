@@ -1,10 +1,10 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
-using ShopManagement.Application.Contract.ProductBrand;
-using ShopManagement.Application.Contract.ProductModel;
-using ShopManagement.Application.Contract.ProductStatus;
-using ShopManagement.Application.Contract.ProductType;
-using ShopManagement.Application.Contract.ProductUsageType;
+using ShopManagement.Application.Contract.ProductCategory.ProductBrand;
+using ShopManagement.Application.Contract.ProductCategory.ProductModel;
+using ShopManagement.Application.Contract.ProductCategory.ProductStatus;
+using ShopManagement.Application.Contract.ProductCategory.ProductType;
+using ShopManagement.Application.Contract.ProductCategory.ProductUsageType;
 
 namespace ServiceHost.Areas.Administrator.Controllers
 {

@@ -18,7 +18,6 @@ namespace ShopManagement.Infrastructure.EFCore.Repository
         private readonly IUserRepository _userRepository;
 
 
-
         public SellerPanelRepository(ShopContext shopcontext, IUserRepository userRepository) : base(shopcontext)
         {
             _shopContext = shopcontext;
@@ -62,7 +61,8 @@ namespace ShopManagement.Infrastructure.EFCore.Repository
                 City = x.City,
                 CompanyName = x.CompanyName,
                 Islegal = x.IsUserLegal,
-                IsConfirmByAdmin = x.IsConfirmedByAdmin
+                IsConfirmByAdmin = x.IsConfirmedByAdmin,
+                IsSpecial=x.IsSpecial
             }).OrderByDescending(x => x.Id).ToList();
         }
 
@@ -174,6 +174,12 @@ namespace ShopManagement.Infrastructure.EFCore.Repository
             }).FirstOrDefault(x => x.CompanyName == storeName || x.StoreName == storeName);
 
             return sellerPanel.Id;
+        }
+
+        public long GetUserIdBySellerPanelId(long sellerPanelId)
+        {
+            var sellerPanel= _shopContext.SellerPanels.Select(x => new { x.Id, x.UserId }).FirstOrDefault(x=>x.Id==sellerPanelId);
+            return sellerPanel.UserId;
         }
     }
 }

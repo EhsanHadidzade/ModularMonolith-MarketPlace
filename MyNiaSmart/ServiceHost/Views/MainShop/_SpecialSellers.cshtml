@@ -1,7 +1,9 @@
 ﻿@using ShopManagement.Application.Contract.SellerPanel
 @using _0_Framework.Utilities
 @model List<SellerPanelForMainShopViewModel>
-
+@{
+    var slug= ViewData["ProductSlug"];
+}
 @*<div class="card-body" id="SpecSeller">
 *@    <div class="table-responsive">
     <table class="table table-bordered table-responsive-sm">
@@ -20,11 +22,11 @@
                     <td>
                         @if (!item.IsUserLegal)
                         {
-                            <a href="">@item.StoreName</a>
+                            <a href="/sellerProduct/@item.StoreName/@slug">@item.StoreName</a>
                         }
                         else
                         {
-                            <a href="">@item.CompanyName</a>
+                            <a href="/sellerProduct/@item.CompanyName/@slug">@item.CompanyName</a>
                         }
                     </td>
 

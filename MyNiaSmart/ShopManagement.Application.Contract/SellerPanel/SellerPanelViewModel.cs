@@ -11,6 +11,7 @@
         public string Capital { get; set; }
         public bool Islegal { get; set; }
         public bool IsConfirmByAdmin { get; set; }
+        public bool IsSpecial { get; set; }
         public string City { get; set; }
     }
 }

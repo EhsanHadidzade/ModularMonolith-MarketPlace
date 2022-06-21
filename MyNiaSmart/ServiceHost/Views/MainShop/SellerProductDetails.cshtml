@@ -1,7 +1,169 @@
-﻿
+﻿@model ShopManagement.Application.Contract.SellerProduct.SellerProductDetailsToShowViewModel
 @{
-    ViewData["Title"] = "SellerProductDetails";
+    ViewData["Title"] = "جرئیات محصول مربوط به فروشنده";
 }
+@using _0_Framework.Utilities
 
-<h1>SellerProductDetails</h1>
+<div class="row page-titles mx-0">
+    <div class="col-sm-6 p-md-0">
+        <div class="welcome-text">
+            <h4>سلام، خوش آمدید</h4>
+            <p class="mb-0">نمایش محصولات</p>
+        </div>
+    </div>
+    <div class="col-sm-6 p-md-0 justify-content-sm-end mt-2 mt-sm-0 d-flex">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="javascript:void(0)"> فروشگاه </a></li>
+            <li class="breadcrumb-item"><a href="javascript:void(0)">فروشگاه اصلی </a></li>
+            <li class="breadcrumb-item "><a href="javascript:void(0)">جرئیات محصول</a></li>
+            <li class="breadcrumb-item active"><a href="javascript:void(0)">جرئیات محصول مربوط به فروشنده</a></li>
+        </ol>
+    </div>
+</div>
 
+<div class="row">
+    <div class="col-lg-12">
+        <div class="card">
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-xl-3 ">
+                        <!-- Tab panes -->
+                        <div class="tab-content">
+                            @foreach (var item in Model.SelectedMedias.Where(x => x.IsMediaImage))
+                            {
+                                <div role="tabpanel" class="display tab-pane fade " id="@item.Id">
+                                    <img class="img-fluid" src="/UploadedFiles/@item.MediaURL" alt="">
+                                </div>
+                            }
+
+                            @*   <div role="tabpanel" class="@Model.Id tab-pane fade show active" id="">
+                                <img class="img-fluid" src="/MainTheme/images/product/2.jpg" alt="">
+                                </div>
+                                <div role="tabpanel" class="tab-pane fade" id="third">
+                                <img class="img-fluid" src="/MainTheme/images/product/3.jpg" alt="">
+                                </div>
+                                <div role="tabpanel" class="tab-pane fade" id="for">
+                                <img class="img-fluid" src="/MainTheme/images/product/4.jpg" alt="">
+                                </div>*@
+                        </div>
+                        <div class="tab-slide-content new-arrival-product mb-4 mb-xl-0">
+                            <!-- Nav tabs -->
+                            <ul class="nav slide-item-list mt-3" role="tablist">
+                                @foreach (var item in Model.SelectedMedias.Where(x => x.IsMediaImage))
+                                {
+                                    <li role="presentation" class="show">
+                                        <a href="#" role="tab" data-toggle="tab">
+                                            <img class="img-fluid" src="/UploadedFiles/@item.MediaURL" alt="" width="50" onclick="toDisplay(@item.Id)" id="@item.Id">
+                                        </a>
+                                    </li>
+                                }
+
+                                @*        <li role="presentation">
+                                    <a href="#ggg" role="tab" data-toggle="tab"><img class="img-fluid" src="/MainTheme/images/tab/2.jpg" alt="" width="50"></a>
+                                    </li>
+                                    <li role="presentation">
+                                    <a href="#third" role="tab" data-toggle="tab"><img class="img-fluid" src="/MainTheme/images/tab/3.jpg" alt="" width="50"></a>
+                                    </li>
+                                    <li role="presentation">
+                                    <a href="#for" role="tab" data-toggle="tab"><img class="img-fluid" src="/MainTheme/images/tab/4.jpg" alt="" width="50"></a>
+                                    </li>*@
+                            </ul>
+                        </div>
+                    </div>
+                    <!--Tab slider End-->
+                    <div class="col-xl-9 col-sm-12">
+                        <div class="product-detail-content">
+                            <!--Product details-->
+                            <div class="new-arrival-content pr">
+                                <h4>@Model.FarsiTitle</h4>
+                                <div class="star-rating mb-2">
+                                    <ul class="produtct-detail-tag">
+                                        <li><i class="fa fa-star"></i></li>
+                                        <li><i class="fa fa-star"></i></li>
+                                        <li><i class="fa fa-star"></i></li>
+                                        <li><i class="fa fa-star"></i></li>
+                                        <li><i class="fa fa-star"></i></li>
+                                    </ul>
+                                    <span class="review-text">(34 نظر ) / </span><a class="product-review" href="#">نظری دارید؟</a>
+                                </div>
+                                <p class="price">@Model.Price تومان</p>
+                                <p>
+                                    دسترسی: <span class="item">
+                                        در انبار <i class="fa fa-shopping-basket"></i>
+                                    </span>
+                                </p>
+                                <p>پارت نامبر:<span class="item">@Model.PartNumber</span> </p>
+                                <p>برند: <span class="item">@Model.ProductBrandTitle</span></p>
+                                <p>مدل: <span class="item">@Model.ProductModelTitle</span></p>
+                                <p>نوع: <span class="item">@Model.ProductTypeTitle</span></p>
+                                <p>وضعیت: <span class="item">@Model.ProductStatusTitle</span></p>
+                                <p>نحوه استفاده: <span class="item">@Model.ProductUsageTypeTitle</span></p>
+                                <p>کشور تولید کننده: <span class="item">@Model.CountryMadeIn</span></p>
+                                <p> ابعاد: <span class="item">@Model.Dimensions</span></p>
+                                <p> وزن(کیلوگرم): <span class="item">@Model.ProductWeight</span></p>
+                                <p>
+                                    میزان گارانتی:
+                                    @if (Model.WarrantyTypeId == WarrantyTypeId.Hour)
+                                    {
+                                        <span class="item">
+                                            @Model.WarrantyAmount ساعت
+                                        </span>
+                                    }
+                                    @if (Model.WarrantyTypeId == WarrantyTypeId.Day)
+                                    {
+                                        <span class="item">
+                                            @Model.WarrantyAmount روز
+                                        </span>
+                                    }
+                                    @if (Model.WarrantyTypeId == WarrantyTypeId.Mounth)
+                                    {
+                                        <span class="item">
+                                            @Model.WarrantyAmount ماه
+                                        </span>
+                                    }
+                                    @if (Model.WarrantyTypeId == WarrantyTypeId.Year)
+                                    {
+                                        <span class="item">
+                                            @Model.WarrantyAmount سال
+                                        </span>
+                                    }
+                                </p>
+                                <p>مدت زمان تحویل توی شهر: <span class="item">@Model.DeliveryDurationForCity ساعت</span></p>
+                                <p>مدت زمان تحویل توی استان: <span class="item">@Model.DeliveryDurationForCapital ساعت</span></p>
+                                <p>مدت زمان تحویل به سایر نقاط: <span class="item">@Model.DeliveryDurationForOther ساعت</span></p>
+
+                                <p>
+                                    برچسب های محصول:
+                                    <span class="badge badge-success light">کیف</span>
+                                    <span class="badge badge-success light">کت</span>
+                                    <span class="badge badge-success light">کفش</span>
+                                    <span class="badge badge-success light">پیراهن</span>
+                                </p>
+                                <p class="text-content">
+                                    @Html.Raw(Model.Description)
+                                </p>
+
+                                <div class="shopping-cart mt-3">
+                                    <a class="btn btn-primary btn-lg" href="#">
+                                        <i class="fa fa-shopping-basket mr-2"></i>افزودن به سبد
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+@section Scripts{
+<script>
+      function toDisplay(id){
+      debugger
+    let src=$("img#"+id).attr('src');
+    $("div.display").removeClass("show active");
+    $("div#"+id).addClass("show active");
+
+      }
+</script>
+    }

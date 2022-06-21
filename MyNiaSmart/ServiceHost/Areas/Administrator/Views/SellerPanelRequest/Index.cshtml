@@ -16,7 +16,16 @@
         </ol>
     </div>
 </div>
-
+@if (ViewData["message"] != null)
+{
+    <div class="col-xl-12 col-xxl-12">
+        <div class="card-body">
+            <div class="alert alert-success solid alert-dismissible fade show">
+                <strong>موفق بود!</strong> @ViewData["message"]
+            </div>
+        </div>
+    </div>
+}
 <div class="row">
     <div class="col-lg-12">
         <div class="card">
@@ -57,31 +66,44 @@
                                     </td>
                                     <td>@item.SellerFullName</td>
                                     <td>
-                                        @if(item.Islegal)
+                                        @if (item.Islegal)
                                         {
                                             <span class="badge badge-primary light">حقوقی </span>
                                         }
                                         else
                                         {
-                                             <span class="badge badge-primary light">حقیقی </span>
+                                            <span class="badge badge-primary light">حقیقی </span>
                                         }
                                     </td>
                                     <td>
-                                        @if(item.IsConfirmByAdmin)
+                                        @if (item.IsConfirmByAdmin)
                                         {
                                             <span class="badge badge-success">تایید توسط ادمین</span>
                                         }
                                         else
                                         {
                                             <span class="badge light badge-warning">نیاز به بررسی</span>
-                                            
+
                                         }
                                     </td>
+                                    <td>
+                                        @if (item.IsSpecial)
+                                        {
+                                            <span class="badge badge-info">فروشنده خاص</span>
+                                        }
+                                        else
+                                        {
+                                            <span class="badge light badge-info">فروشنده عادی</span>
+
+                                        }
+                                    </td>
+
                                     <td>@item.Capital</td>
                                     <td>@item.City</td>
                                     <td>
                                         <div class="d-flex">
                                             <a href="#showmodal=/administrator/SellerPanelRequest/ShowMoreInfo/@item.Id" class="btn btn-primary shadow btn-xs sharp mr-1"><i class="fa fa-pencil"></i></a>
+                                            <a href="/administrator/SellerPanelRequest/SelectAsSpecial/@item.Id" class="btn btn-success shadow btn-xs sharp mr-1"><i class="fa fa-star"></i></a>
                                             <a href="#" class="btn btn-danger shadow btn-xs sharp"><i class="fa fa-trash"></i></a>
                                         </div>
                                     </td>

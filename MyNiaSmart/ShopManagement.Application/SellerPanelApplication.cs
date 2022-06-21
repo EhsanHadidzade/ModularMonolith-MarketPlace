@@ -24,17 +24,55 @@ namespace ShopManagement.Application
             _authHelper = authHelper;
         }
 
-        public void CancelByAdmin(long sellerPanelId)
+        public OperationResult CancelByAdmin(long sellerPanelId)
         {
+            var operation = new OperationResult();
             var sellerPanel = _sellerPanelRepository.GetById(sellerPanelId);
-            sellerPanel.ConfirmByAdmin();
+            if (sellerPanel == null)
+                return operation.Failed(ApplicationMessage.RecordNotFound);
+
+            sellerPanel.CancelByAdmin();
+            _sellerPanelRepository.Savechange();
+            var storeName = "";
+            if (sellerPanel.IsUserLegal)
+                storeName = sellerPanel.CompanyName;
+
+            storeName = sellerPanel.StoreName;
+            return operation.Succedded($"رد درخواست پنل مدیریت مربوط به {storeName} با موفقیت انجام شد");
         }
 
-        public void ConfirmByAdmin(long sellerPanelId)
+        public OperationResult ConfirmByAdmin(long sellerPanelId)
         {
+            var operation = new OperationResult();
             var sellerPanel = _sellerPanelRepository.GetById(sellerPanelId);
+            if (sellerPanel == null)
+                return operation.Failed(ApplicationMessage.RecordNotFound);
+
             sellerPanel.ConfirmByAdmin();
             _sellerPanelRepository.Savechange();
+            var storeName = "";
+            if (sellerPanel.IsUserLegal)
+                storeName = sellerPanel.CompanyName;
+
+            storeName = sellerPanel.StoreName;
+            return operation.Succedded($"تایید درخواست پنل مدیریت مربوط به {storeName} با موفقیت انجام شد");
+
+        }
+        public OperationResult SelectAsSpecial(long sellerPanelId)
+        {
+            var operation = new OperationResult();
+            var sellerPanel = _sellerPanelRepository.GetById(sellerPanelId);
+            if (sellerPanel == null)
+                return operation.Failed(ApplicationMessage.RecordNotFound);
+
+            sellerPanel.SelectAsSpecial();
+            _sellerPanelRepository.Savechange();
+            var storeName = "";
+            if (sellerPanel.IsUserLegal)
+                storeName = sellerPanel.CompanyName;
+
+            storeName = sellerPanel.StoreName;
+            return operation.Succedded($"انتخاب پنل مدیریت مربوط به: {storeName} به عنوان فروشنده خاص با موفقیت انجام شد");
         }
 
         public OperationResult Create(CreateSellerPanel command)
@@ -103,5 +141,7 @@ namespace ShopManagement.Application
         {
             return _sellerPanelRepository.HasUserSellerPanelConfirmedByAdmin(userId);
         }
+
+
     }
 }

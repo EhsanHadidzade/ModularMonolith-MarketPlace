@@ -601,6 +601,10 @@
               "target": "Package",
               "version": "[3.5.2, )"
             },
+            "System.Drawing.Common": {
+              "target": "Package",
+              "version": "[6.0.0, )"
+            },
             "System.ValueTuple": {
               "target": "Package",
               "version": "[4.5.0, )"

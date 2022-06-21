@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using ShopManagement.Application.Contract.Product;
 using ShopManagement.Application.Contract.SellerPanel;
+using ShopManagement.Application.Contract.SellerProduct;
 using System;
 using System.Collections.Generic;
 
@@ -10,21 +11,23 @@ namespace ServiceHost.Controllers
     {
         private readonly IProductApplication _productAapplication;
         private readonly ISellerPanelApplication _sellerPanelApplication;
+        private readonly ISellerProductApplication _sellerProductApplication;
 
         public MainShopController(IProductApplication productApplication,
-            ISellerPanelApplication sellerPanelApplication)
+            ISellerPanelApplication sellerPanelApplication, ISellerProductApplication sellerProductApplication)
         {
             _productAapplication = productApplication;
             _sellerPanelApplication = sellerPanelApplication;
+            _sellerProductApplication = sellerProductApplication;
         }
 
-        //[Route("{customerName}/{slug}/{sellerPanelId?}")]
         public IActionResult Index()
         {
             var mainShopProducts = _productAapplication.GetListForMainShop();
             return View(mainShopProducts);
         }
 
+        #region To Display Product Details Which Admin made
         public IActionResult ProductDetails(string id)
         {
             //id==ProductSlug
@@ -36,23 +39,28 @@ namespace ServiceHost.Controllers
             return View(model);
         }
 
-        //[Route("{ShopName}/{slug}/{sellerPanelId?}")]
-        //[Route("Shop")]
-        [Route("/sellerProduct/{slug}/{ShopName}")]
+        #endregion
+
+        #region To Display Product Details Which Seller Made
+        [Route("/sellerProduct/{ShopName}/{slug}")]
         public IActionResult SellerProductDetails(string slug, string ShopName)
         {
-            return View();
+            var ProductInfo = _sellerProductApplication.GetDetailsBySellerPanelNameAndProductSlug(ShopName, slug);
+            return View(ProductInfo);
         }
+        #endregion
 
         #region TO Filter sellers Tables of one product that is in product details view
         public IActionResult _SpecialSellers(string slug, int filterType)
         {
             var filteredSpecialSellers = _sellerPanelApplication.GetSpecialSellersWhoSellingThisProduct(slug, filterType);
+            ViewData["ProductSlug"] = slug;
             return PartialView(filteredSpecialSellers);
         }
         public IActionResult _NormalSellers(string slug, int filterType)
         {
             var filteredSpecialSellers = _sellerPanelApplication.GetNormalSellersWhoSellingThisProduct(slug, filterType);
+            ViewData["ProductSlug"] = slug;
             return PartialView(filteredSpecialSellers);
         }
         #endregion

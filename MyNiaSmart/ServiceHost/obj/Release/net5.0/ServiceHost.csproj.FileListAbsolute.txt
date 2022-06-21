@@ -545,3 +545,11 @@ C:\Work\Projects\MyNiaSmart\MyNiaSmart\ServiceHost\obj\Release\net5.0\Razor\View
 C:\Work\Projects\MyNiaSmart\MyNiaSmart\ServiceHost\obj\Release\net5.0\Razor\Views\MainShop\_NormalSellers.cshtml.g.cs
 C:\Work\Projects\MyNiaSmart\MyNiaSmart\ServiceHost\obj\Release\net5.0\Razor\Views\MainShop\_SpecialSellers.cshtml.g.cs
 C:\Work\Projects\MyNiaSmart\MyNiaSmart\ServiceHost\obj\Release\net5.0\Razor\Views\SellerPanel\ShowGallery.cshtml.g.cs
+C:\Work\Projects\MyNiaSmart\MyNiaSmart\ServiceHost\bin\Release\net5.0\Microsoft.Win32.SystemEvents.dll
+C:\Work\Projects\MyNiaSmart\MyNiaSmart\ServiceHost\bin\Release\net5.0\System.Drawing.Common.dll
+C:\Work\Projects\MyNiaSmart\MyNiaSmart\ServiceHost\bin\Release\net5.0\runtimes\win\lib\netcoreapp3.1\Microsoft.Win32.SystemEvents.dll
+C:\Work\Projects\MyNiaSmart\MyNiaSmart\ServiceHost\bin\Release\net5.0\runtimes\unix\lib\netcoreapp3.1\System.Drawing.Common.dll
+C:\Work\Projects\MyNiaSmart\MyNiaSmart\ServiceHost\bin\Release\net5.0\runtimes\win\lib\netcoreapp3.1\System.Drawing.Common.dll
+C:\Work\Projects\MyNiaSmart\MyNiaSmart\ServiceHost\obj\Release\net5.0\Razor\Areas\Administrator\Views\SellerProductMedia\Index.cshtml.g.cs
+C:\Work\Projects\MyNiaSmart\MyNiaSmart\ServiceHost\obj\Release\net5.0\Razor\Areas\Administrator\Views\SellerProductMedia\ShowUserMedia.cshtml.g.cs
+C:\Work\Projects\MyNiaSmart\MyNiaSmart\ServiceHost\obj\Release\net5.0\Razor\Areas\Administrator\Views\SellerProduct\ShowSellerProductMedia.cshtml.g.cs

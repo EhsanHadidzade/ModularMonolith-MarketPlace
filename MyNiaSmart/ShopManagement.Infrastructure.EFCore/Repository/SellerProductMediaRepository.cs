@@ -1,5 +1,7 @@
 ﻿using _0_Framework.Contract;
 using _0_Framework.Infrastructure;
+using AccountManagement.Domain.UserAgg;
+using AccountManagement.Infrastructure.EFCore;
 using ShopManagement.Application.Contract.SellerProductMedia;
 using ShopManagement.Domain.SellerProductMediaAgg;
 using System;
@@ -14,24 +16,17 @@ namespace ShopManagement.Infrastructure.EFCore.Repository
     {
         private readonly ShopContext _shopContext;
         private readonly IAuthHelper _authHelper;
+        private readonly IUserRepository _userRepository;
 
-        public SellerProductMediaRepository(ShopContext shopContext, IAuthHelper authHelper) : base(shopContext)
+
+        public SellerProductMediaRepository(ShopContext shopContext, IAuthHelper authHelper
+                                       , IUserRepository userRepository) : base(shopContext)
         {
             _shopContext = shopContext;
             _authHelper = authHelper;
+            _userRepository = userRepository;
         }
 
-        public List<SellerFilesManagerViewModel> GetSellerFilesByUserId(long userId)
-        {
-            //Continuie
-            var Files=_shopContext.SellerProductMedias.Select(x => new SellerFilesManagerViewModel
-            {
-                Id=x.Id,
-                UserId=x.UserId,
-                IsMediaImage=x.IsMediaImage,
-            }).Where(x=>x.UserId==userId).ToList();
-            return Files;
-        }
 
         public SellerGalleryViewModel GetMediaById(long id)
         {
@@ -50,6 +45,7 @@ namespace ShopManagement.Infrastructure.EFCore.Repository
                 MediaURL = x.MediaURL,
                 SellerProductId = x.SellerProductId,
                 UserId = x.UserId,
+                IsMediaImage=x.IsMediaImage,
                 IsSelectedBySeller = true
             }).Where(x => x.UserId == userId).ToList();
         }
@@ -88,6 +84,21 @@ namespace ShopManagement.Infrastructure.EFCore.Repository
             }
         }
 
+        public List<long> GetUserIdsWithMedias()
+        {
+            return _shopContext.SellerProductMedias.Select(x => x.UserId).Distinct().ToList();
+        }
 
+        public List<SellerGalleryViewModel> GetSellerMediasBySellerProductId(long sellerProductId)
+        {
+            return _shopContext.SellerProductMedias.Select(x => new SellerGalleryViewModel
+            {
+                Id = x.Id,
+                SellerProductId = x.SellerProductId,
+                MediaURL = x.MediaURL,
+                IsMediaImage = x.IsMediaImage
+            }).Where(x => x.SellerProductId == sellerProductId).ToList();
+
+        }
     }
 }

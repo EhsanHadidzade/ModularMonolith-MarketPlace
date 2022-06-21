@@ -20,6 +20,7 @@ namespace AccountManagement.Domain.UserAgg
         bool IsUserAdmin(long userId);
 
         string GetFullNameByUserId(long userId);
+        string GetMobileNumberByUserId(long userId);
         int GetGradeByUserId(long userId);
 
      

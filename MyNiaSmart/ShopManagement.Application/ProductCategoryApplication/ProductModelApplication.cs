@@ -1,6 +1,6 @@
 ﻿using _0_Framework.Utilities;
-using ShopManagement.Application.Contract.ProductBrand;
-using ShopManagement.Application.Contract.ProductModel;
+using ShopManagement.Application.Contract.ProductCategory.ProductBrand;
+using ShopManagement.Application.Contract.ProductCategory.ProductModel;
 using ShopManagement.Domain.ProductCategoryAgg.ProductModelAgg;
 using System;
 using System.Collections.Generic;

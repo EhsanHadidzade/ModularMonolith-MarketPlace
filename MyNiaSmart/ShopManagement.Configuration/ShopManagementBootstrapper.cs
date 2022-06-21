@@ -2,11 +2,11 @@
 using Microsoft.Extensions.DependencyInjection;
 using ShopManagement.Application;
 using ShopManagement.Application.Contract.Product;
-using ShopManagement.Application.Contract.ProductBrand;
-using ShopManagement.Application.Contract.ProductModel;
-using ShopManagement.Application.Contract.ProductStatus;
-using ShopManagement.Application.Contract.ProductType;
-using ShopManagement.Application.Contract.ProductUsageType;
+using ShopManagement.Application.Contract.ProductCategory.ProductBrand;
+using ShopManagement.Application.Contract.ProductCategory.ProductModel;
+using ShopManagement.Application.Contract.ProductCategory.ProductStatus;
+using ShopManagement.Application.Contract.ProductCategory.ProductType;
+using ShopManagement.Application.Contract.ProductCategory.ProductUsageType;
 using ShopManagement.Application.Contract.SellerPanel;
 using ShopManagement.Application.Contract.SellerProduct;
 using ShopManagement.Application.Contract.SellerProductMedia;

@@ -1,5 +1,5 @@
 ﻿using _0_Framework.Infrastructure;
-using ShopManagement.Application.Contract.ProductStatus;
+using ShopManagement.Application.Contract.ProductCategory.ProductStatus;
 using ShopManagement.Domain.ProductCategoryAgg.ProductStatusAgg;
 using System;
 using System.Collections.Generic;

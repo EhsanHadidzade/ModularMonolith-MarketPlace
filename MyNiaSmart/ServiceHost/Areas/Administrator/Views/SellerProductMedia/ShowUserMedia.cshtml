@@ -1,0 +1,43 @@
+﻿@model List<ShopManagement.Application.Contract.SellerProductMedia.SellerGalleryViewModel>
+
+
+
+<style>
+    img {
+        border: 1px solid #ddd;
+        border-radius: 4px;
+        padding: 5px;
+        width: 150px;
+    }
+</style>
+
+
+<div class="row">
+    <div class="col-xl-12 col-lg-12">
+        <div class="card">
+            <div class="card-header">
+                @*<h4 class="card-title">ورودی پرونده سفارشی</h4>*@
+            </div>
+            <div class="card-body">
+                <div class="basic-form custom_file_input">
+                    <form method="post" action="" class="MyForm">
+                        <div class="form-group col-md-12 gallery">
+                            <label> محتوای گالری</label>
+                            <div class="main"></div>
+                            @if (Model.Count > 0)
+                            {
+                                @foreach (var media in Model)
+                                {
+                                    <img src="~/UploadedFiles/@media.MediaURL" width="150" />
+                                }
+                            }
+
+                        </div>
+                    </form>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>

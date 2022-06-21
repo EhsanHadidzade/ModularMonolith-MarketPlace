@@ -22,6 +22,9 @@ namespace ShopManagement.Domain.ProductAgg
         //To Get Product Details After Selecting im Main Shop
         EditProduct GetDetailsBySlug(string slug);
 
+        
+        long GetIdBySlug(string slug);
+
 
     }
 }

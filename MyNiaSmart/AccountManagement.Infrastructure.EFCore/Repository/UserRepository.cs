@@ -84,5 +84,10 @@ namespace AccountManagement.Infrastructure.EFCore.Repository
                 CreationDate = x.CreationDate.ToFarsi()
             }).ToList();
         }
+
+        public string GetMobileNumberByUserId(long userId)
+        {
+            return _context.Users.Select(x => new { x.Id, x.MobileNumber }).FirstOrDefault(x => x.Id == userId).MobileNumber;
+        }
     }
 }

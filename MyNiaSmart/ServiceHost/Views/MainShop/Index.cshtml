@@ -4,7 +4,7 @@
     ViewData["Title"] = "نمایش محصولات";
 }
 
-
+<link href="~/MainTheme/css/MainShopProductImages.css" rel="stylesheet" />
 <div class="row page-titles mx-0">
     <div class="col-sm-6 p-md-0">
         <div class="welcome-text">
@@ -14,8 +14,8 @@
     </div>
     <div class="col-sm-6 p-md-0 justify-content-sm-end mt-2 mt-sm-0 d-flex">
         <ol class="breadcrumb">
-            <li class="breadcrumb-item"><a href="javascript:void(0)">پنل ها </a></li>
-            <li class="breadcrumb-item active"><a href="javascript:void(0)">نمایش محصولات </a></li>
+            <li class="breadcrumb-item"><a href="javascript:void(0)"> فروشگاه </a></li>
+            <li class="breadcrumb-item"><a href="/MainShop/index">فروشگاه اصلی </a></li>
         </ol>
     </div>
 </div>
@@ -32,8 +32,19 @@
                         <div class="row m-b-30">
                             <div class="col-md-5 col-xxl-12">
                                 <div class="new-arrival-product mb-4 mb-xxl-4 mb-md-0">
-                                    <div class="new-arrivals-img-contnent">
-                                        <a href="/mainshop/productDetails/@product.Slug"><img class="img-fluid" src="/UploadedFiles/@product.Picture" alt="" title=""></a>
+                                    <ul>
+                                        <li>
+                                            <div class="badge-overlay">
+                                                <span class="top-full badge green">@product.SellersCount فروشنده</span>
+                                            </div>
+                                        </li>
+                                    </ul>
+                                    <div class="product new-arrivals-img-contnent">
+                                        <a href="/mainshop/productDetails/@product.Slug">
+                                            @* <img class="img-fluid" src="/UploadedFiles/@product.Picture" alt="" title="">*@
+                                            <img src="/UploadedFiles/@product.Picture" alt="product07">
+
+                                        </a>
                                     </div>
                                 </div>
                             </div>
@@ -95,6 +106,13 @@
                         <div class="row m-b-30">
                             <div class="col-md-5 col-xxl-12">
                                 <div class="new-arrival-product mb-4 mb-xxl-4 mb-md-0">
+                                    <ul>
+                                        <li>
+                                            <div class="badge-overlay">
+                                                <span class="top-left badge orange">در مرحله فروش نیست</span>
+                                            </div>
+                                        </li>
+                                    </ul>
                                     <div class="new-arrivals-img-contnent">
                                         <img class="img-fluid" src="/UploadedFiles/@product.Picture" alt="">
                                     </div>
@@ -104,30 +122,6 @@
                                 <div class="new-arrival-content position-relative">
                                     <h4>@product.FarsiTitle</h4>
                                     <h6>@product.EngTitle</h6>
-                                    @*<p class="price">از @product.MinValuePrice تومان</p>*@
-                                    <p>
-                                        دسترسی:
-                                        <span class="item text-danger"> در مرحله فروش نیست <i class="fa fa-Cross-circle"></i></span>
-                                    </p>
-                                    @*    <p>ضمانت :
-                                        @if(product.MaxValueWarrantyTypeId==WarrantyTypeId.Hour)
-                                        {
-                                        <span class="item"> تا @product.MaxValueWarrantyAmount ساعت</span>
-                                        }
-                                        @if(product.MaxValueWarrantyTypeId==WarrantyTypeId.Day)
-                                        {
-                                        <span class="item"> تا @product.MaxValueWarrantyAmount روز</span>
-                                        }
-                                        @if(product.MaxValueWarrantyTypeId==WarrantyTypeId.Mounth)
-                                        {
-                                        <span class="item"> تا @product.MaxValueWarrantyAmount ماه</span>
-                                        }
-                                        @if(product.MaxValueWarrantyTypeId==WarrantyTypeId.Year)
-                                        {
-                                        <span class="item"> تا @product.MaxValueWarrantyAmount سال</span>
-                                        }
-
-                                        </p>*@
                                     <p class="text-content">
                                         @Html.Raw(product.Description) ....
                                     </p>

@@ -22,6 +22,7 @@ namespace ShopManagement.Infrastructure.EFCore.Repository
 
         public List<MainShopProductViewModel> GetListForMainShop()
         {
+            //To Get All default product of admin
             var mainShopProducts = _context.Products.Select(x => new MainShopProductViewModel
             {
                 Id = x.Id,
@@ -30,30 +31,43 @@ namespace ShopManagement.Infrastructure.EFCore.Repository
                 Picture = x.Picture,
                 Description = x.Descriotion.Substring(0, 300),
                 PartNumber = x.PartNumber,
-                Slug = x.Slug,
+                Slug = x.Slug
             }).ToList();
+            var mainShopProductsIds = mainShopProducts.Select(x => x.Id).ToList();
 
-            var query = _context.SellerProducts.Select(x => new { x.ProductId, x.Price, x.WarrantyTypeId, x.WarrantyAmount, x.isConfirmedByAdmin }).Where(x => x.isConfirmedByAdmin);
-            if (query.Count() == 0)
-            {
-                foreach (var product in mainShopProducts)
-                {
-                    product.IsSellingBetweenSellers = false;
-                }
-                return mainShopProducts;
+            //to Get all sellerProducts 
+            var SellerProducts = _context.SellerProducts.Select(x => new {
+                x.ProductId,
+                x.Price,
+                x.WarrantyTypeId, 
+                x.WarrantyAmount, 
+                x.isConfirmedByAdmin 
             }
+            ).Where(x => x.isConfirmedByAdmin).ToList();
+            var productIdsWhichAreSelling = SellerProducts.Select(x => x.ProductId).ToList();
 
             foreach (var product in mainShopProducts)
             {
-                var MinPrice = query.Where(x => x.ProductId == product.Id).Select(x => x.Price).Min();
-                var MaxValueWarrantyTypeId = query.Where(x => x.ProductId == product.Id).Select(x => x.WarrantyTypeId).Max();
-                var maxValueWarrantyAmount = query.Where(x => x.ProductId == product.Id && x.WarrantyTypeId == MaxValueWarrantyTypeId).Select(x => x.WarrantyAmount).Max();
-                bool IsSellingBySellers = query.Any(x => x.ProductId == product.Id);
-                product.MinValuePrice = MinPrice.ToMoney();
-                product.MaxValueWarrantyTypeId = MaxValueWarrantyTypeId;
-                product.MaxValueWarrantyAmount = maxValueWarrantyAmount;
-                product.IsSellingBetweenSellers = IsSellingBySellers;
+                //To Check Current Product Is selling or not
+                if (productIdsWhichAreSelling.Any(x => x == product.Id))
+                {
+                    var MinPrice = SellerProducts.Where(x => x.ProductId == product.Id).Select(x => x.Price).ToList().Min();
+                    var MaxValueWarrantyTypeId = SellerProducts.Where(x => x.ProductId == product.Id).Select(x => x.WarrantyTypeId).ToList().Max();
+                    var maxValueWarrantyAmount = SellerProducts.Where(x => x.ProductId == product.Id && x.WarrantyTypeId == MaxValueWarrantyTypeId).Select(x => x.WarrantyAmount).ToList().Max();
+                    var sellersCount = SellerProducts.Where(x => x.ProductId == product.Id).ToList().Count();
+                    product.MinValuePrice = MinPrice.ToMoney();
+                    product.SellersCount = sellersCount;
+                    product.MaxValueWarrantyTypeId = MaxValueWarrantyTypeId;
+                    product.MaxValueWarrantyAmount = maxValueWarrantyAmount;
+                    product.IsSellingBetweenSellers = true;
+                }
+                else
+                {
+                    product.IsSellingBetweenSellers = false;
+                }
             }
+
+
             return mainShopProducts;
         }
 
@@ -128,6 +142,12 @@ namespace ShopManagement.Infrastructure.EFCore.Repository
                     Slug = x.Slug,
                     PictureUrl = x.Picture
                 }).FirstOrDefault(x => x.Slug == slug);
+        }
+
+        public long GetIdBySlug(string slug)
+        {
+            var product = _context.Products.Select(x => new { x.Id, x.Slug }).FirstOrDefault(x => x.Slug == slug);
+            return product.Id;
         }
     }
 }

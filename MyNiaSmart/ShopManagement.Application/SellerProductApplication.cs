@@ -1,6 +1,7 @@
 ﻿using _0_Framework.Contract;
 using _0_Framework.Utilities;
 using ShopManagement.Application.Contract.SellerProduct;
+using ShopManagement.Domain.ProductAgg;
 using ShopManagement.Domain.SellerPanelAgg;
 using ShopManagement.Domain.SellerProductAgg;
 using ShopManagement.Domain.SellerProductMediaAgg;
@@ -17,18 +18,20 @@ namespace ShopManagement.Application
         private readonly ISellerPanelRepository _sellerPanelRepository;
         private readonly ISellerProductRepository _selleProductRepository;
         private readonly ISellerProductMediaRepository _sellerProductMediaRepository;
+        private readonly IProductRepository _productRepository;
         private readonly IAuthHelper _authHelper;
         private readonly OperationResult operation;
 
         public SellerProductApplication(ISellerPanelRepository sellerPanelRepository,
             ISellerProductRepository selleProductRepository, ISellerProductMediaRepository sellerProductMediaRepository,
-            IAuthHelper authHelper)
+            IAuthHelper authHelper, IProductRepository productRepository)
         {
             _sellerPanelRepository = sellerPanelRepository;
             _selleProductRepository = selleProductRepository;
             operation = new OperationResult();
             _sellerProductMediaRepository = sellerProductMediaRepository;
             _authHelper = authHelper;
+            _productRepository = productRepository;
         }
 
         public OperationResult Create(CreateSellerProduct command)
@@ -44,16 +47,10 @@ namespace ShopManagement.Application
             _selleProductRepository.Create(product);
             _selleProductRepository.Savechange();
             #region AddMediaFromSellerGallery
+            if(command.SelectedMediaIds.Count>0)
             _sellerProductMediaRepository.SelectMediaByMediaIds(command.SelectedMediaIds,product.Id);
-            //foreach(var mediaId in command.SelectedMediaIds.Where(x => x > 0))
-            //{
-            //    var media=_sellerProductMediaRepository.GetById(mediaId);
-            //    media.Choose(product.Id);
-            //    _sellerProductMediaRepository.Savechange();
-            //}
             #endregion
             return operation.Succedded("محصول با موفقیت اضافه و در حال بررسی توصط ادمین میباشد. در صورت تایید به فروشگاه اضافه خواهد شد");
-
         }
 
         public OperationResult Edit(EditSellerProduct command)
@@ -117,6 +114,52 @@ namespace ShopManagement.Application
         {
             return _selleProductRepository.GetListBySellerPanelId(sellerpanelId);
 
+        }
+
+        public SellerProductDetailsToShowViewModel GetDetailsBySellerPanelNameAndProductSlug(string shopName, string productSlug)
+        {
+            //Default Details Of Product CreatedByAdministrator
+            var AdminproductDetails = _productRepository.GetDetailsBySlug(productSlug);
+
+
+            var sellerPanelId=_sellerPanelRepository.GetIdByName(shopName);
+            var productId = _productRepository.GetIdBySlug(productSlug);
+
+
+            var sellerProductDetails = _selleProductRepository.GetDetailsBySellerPanelIdAndProductId(sellerPanelId,productId);
+
+
+            var SpecificProductInfo = new SellerProductDetailsToShowViewModel()
+            {
+                Id = sellerProductDetails.Id,
+                //Default Details Of Product CreatedByAdministrator
+                FarsiTitle = AdminproductDetails.FarsiTitle,
+                CountryMadeIn = AdminproductDetails.CountryMadeIn,
+                EngTitle = AdminproductDetails.EngTitle,
+                Dimensions = AdminproductDetails.Dimensions,
+                PartNumber = AdminproductDetails.PartNumber,
+                ProductBrandTitle = AdminproductDetails.ProductBrandTitle,
+                ProductModelTitle = AdminproductDetails.ProductModelTitle,
+                ProductStatusTitle = AdminproductDetails.ProductStatusTitle,
+                ProductTypeTitle = AdminproductDetails.ProductTypeTitle,
+                ProductUsageTypeTitle = AdminproductDetails.ProductUsageTypeTitle,
+                ProductWeight = AdminproductDetails.ProductWeight,
+
+                //Specific Seller Details Of Product Created ByThem in seller Panel
+                BuyersCategory = sellerProductDetails.BuyersCategory,
+                CanMarketerSee = sellerProductDetails.CanMarketerSee,
+                Description = sellerProductDetails.Description,
+                Price = sellerProductDetails.Price,
+                DeliveryDurationForCapital = sellerProductDetails.DeliveryDurationForCapital,
+                DeliveryDurationForCity = sellerProductDetails.DeliveryDurationForCity,
+                DeliveryDurationForOther = sellerProductDetails.DeliveryDurationForOther,
+                MarketerShareAmount = sellerProductDetails.MarketerShareAmount,
+                MarketerSharePercent = sellerProductDetails.MarketerSharePercent,
+                WarrantyAmount = sellerProductDetails.WarrantyAmount,
+                WarrantyTypeId = sellerProductDetails.WarrantyTypeId,
+                SelectedMedias = sellerProductDetails.SelectedMedias,
+            };
+            return SpecificProductInfo;
         }
     }
 }

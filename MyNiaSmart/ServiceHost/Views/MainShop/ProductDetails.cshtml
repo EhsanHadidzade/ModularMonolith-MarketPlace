@@ -15,8 +15,8 @@
     </div>
     <div class="col-sm-6 p-md-0 justify-content-sm-end mt-2 mt-sm-0 d-flex">
         <ol class="breadcrumb">
-            <li class="breadcrumb-item"><a href="javascript:void(0)">پنل ها </a></li>
-            <li class="breadcrumb-item"><a href="javascript:void(0)">نمایش محصولات </a></li>
+            <li class="breadcrumb-item"><a href="javascript:void(0)"> فروشگاه </a></li>
+            <li class="breadcrumb-item"><a href="/MainShop/index">فروشگاه اصلی </a></li>
             <li class="breadcrumb-item active"><a href="javascript:void(0)">جرئیات محصول</a></li>
         </ol>
     </div>
@@ -33,7 +33,7 @@
                     <div class="col-xl-3 ">
                         <!-- Tab panes -->
                         <div class="tab-content">
-                            <div role="tabpanel" class="tab-pane fade show active" id="first">
+                            <div role="tabpanel" class="tab-pane fade show active" id='number:22'>
                                 <img class="img-fluid" src="/UploadedFiles/@Model.Item1.PictureUrl" alt="">
                             </div>
                             <div role="tabpanel" class="tab-pane fade" id="second">
@@ -50,7 +50,7 @@
                             <!-- Nav tabs -->
                             <ul class="nav slide-item-list mt-3" role="tablist">
                                 <li role="presentation" class="show">
-                                    <a href="#first" role="tab" data-toggle="tab">
+                                    <a href='number:22' role="tab" data-toggle="tab">
                                         <img class="img-fluid" src="/UploadedFiles/@Model.Item1.PictureUrl" alt="" width="50">
                                     </a>
                                 </li>
@@ -90,7 +90,14 @@
                                     </span>
                                 </p>
                                 <p>پارت نامبر:<span class="item">@Model.Item1.PartNumber</span> </p>
-                                <p>برند: <span class="item">لی</span></p>
+                                <p>برند: <span class="item">@Model.Item1.ProductBrandTitle</span></p>
+                                <p>مدل: <span class="item">@Model.Item1.ProductModelTitle</span></p>
+                                <p>نوع: <span class="item">@Model.Item1.ProductTypeTitle</span></p>
+                                <p>وضعیت: <span class="item">@Model.Item1.ProductStatusTitle</span></p>
+                                <p>نحوه استفاده: <span class="item">@Model.Item1.ProductUsageTypeTitle</span></p>
+                                <p>کشور تولید کننده: <span class="item">@Model.Item1.CountryMadeIn</span></p>
+                                <p> ابعاد: <span class="item">@Model.Item1.Dimensions</span></p>
+                                <p> وزن(کیلوگرم): <span class="item">@Model.Item1.ProductWeight</span></p>
                                 <p>
                                     برچسب های محصول:
                                     <span class="badge badge-success light">کیف</span>
@@ -131,7 +138,6 @@
         </div>
     </div>
 
-
     <div class="col-lg-12">
         <div class="card">
             <div class="card-header">
@@ -163,11 +169,11 @@
                                     <td>
                                         @if (!item.IsUserLegal)
                                         {
-                                            <a onclick="alert("hi")">@item.StoreName</a>
+                                            <a href="/sellerProduct/@item.StoreName/@Model.Item1.Slug">@item.StoreName</a>
                                         }
                                         else
                                         {
-                                            <a href="/sellerProduct/@Model.Item1.Slug/@item.CompanyName">@item.CompanyName</a>
+                                            <a href="/sellerProduct/@item.CompanyName/@Model.Item1.Slug">@item.CompanyName</a>
                                         }
                                     </td>
 
@@ -231,12 +237,11 @@
                                     <td>
                                         @if (!item.IsUserLegal)
                                         {
-                                            <a href="">@item.StoreName</a>
+                                            <a href="/sellerProduct/@item.StoreName/@Model.Item1.Slug">@item.StoreName</a>
                                         }
                                         else
                                         {
-                                            <a href="">@item.CompanyName</a>
-
+                                            <a href="/sellerProduct/@item.CompanyName/@Model.Item1.Slug">@item.CompanyName</a>
                                         }
                                     </td>
 
@@ -268,11 +273,8 @@
             </div>
         </div>
     </div>
-    @*<partial name="_SpecialSellers"  model="@Model.Item2" />*@
-    @*<partial name="_NormalSellers" model="@Model.Item3" />*@
 
 </div>
-
 
 
 <script>
@@ -281,7 +283,7 @@
             url:"/MainShop/_SpecialSellers",
             data:{slug:$("#FilterSlug").val(),filterType:$("#SpecialSeller").val()},
             success:function(result){
-                   $("#SpecSeller").fadeOut(1000,function(){
+                   $("#SpecSeller").fadeOut(250,function(){
                     $(this).html(result)
                 });
                 $("#SpecSeller").fadeIn(500);
@@ -294,7 +296,7 @@
             url:"/MainShop/_NormalSellers",
             data:{slug:$("#FilterSlug").val(),filterType:$("#NormalSeller").val()},
             success:function(result){
-                $("#NormSeller").fadeOut(1000,function(){
+                $("#NormSeller").fadeOut(250,function(){
                     $(this).html(result)
                 });
                 $("#NormSeller").fadeIn(500);

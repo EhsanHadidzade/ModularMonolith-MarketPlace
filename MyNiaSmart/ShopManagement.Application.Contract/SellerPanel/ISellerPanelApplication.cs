@@ -9,8 +9,9 @@ namespace ShopManagement.Application.Contract.SellerPanel
         //AdminSide
         List<SellerPanelViewModel> GetList();
         EditSellerPanel GetDetails(long id);
-        void ConfirmByAdmin(long sellerPanelId);
-        void CancelByAdmin(long sellerPanelId);
+        OperationResult ConfirmByAdmin(long sellerPanelId);
+        OperationResult CancelByAdmin(long sellerPanelId);
+        OperationResult SelectAsSpecial(long sellerPanelId);
 
         //ClientSide
         OperationResult Create(CreateSellerPanel command);

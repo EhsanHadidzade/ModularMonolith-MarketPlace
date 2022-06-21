@@ -1,11 +1,8 @@
 ﻿using _0_Framework.Infrastructure;
-using ShopManagement.Application.Contract.ProductUsageType;
+using ShopManagement.Application.Contract.ProductCategory.ProductUsageType;
 using ShopManagement.Domain.ProductCategoryAgg.ProductUsageTypeAgg;
-using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace ShopManagement.Infrastructure.EFCore.Repository
 {

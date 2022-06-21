@@ -12,6 +12,7 @@ namespace ShopManagement.Application.Contract.SellerProductMedia
         OperationResult CreateMediaForGallery(CreateMediaForSellerGallery command);
 
         //TO Get list of images that user created and we want to display them in seller panel in product creation form in its specific modal
+        //Also To show list of Medias of one specific user in Admin panel 
         List<SellerGalleryViewModel> GetUserGalleryMediasByUserId(long userId);
 
         SellerGalleryViewModel GetMediaById(long id);
@@ -21,6 +22,13 @@ namespace ShopManagement.Application.Contract.SellerProductMedia
 
         //To Remove SelectedMedias From seller Gallery
         OperationResult DeleteSellerMediasByMediaIds(List<long> mediaIds);
+
+        //To Show List of users which have medias i their gallery 
+        List<UserWithMediaViewModel> GetUsersWithMedias();
+
+
+        //To Display Specific Seller Product Medias in AdminPanel
+        List<SellerGalleryViewModel> GetSellerMediasBySellerProductId(long sellerProductId);
 
     }
 }

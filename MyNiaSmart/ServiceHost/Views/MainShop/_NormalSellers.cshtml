@@ -1,66 +1,60 @@
 ﻿@using ShopManagement.Application.Contract.SellerPanel
 @using _0_Framework.Utilities
 @model List<SellerPanelForMainShopViewModel>
+@{
+    var slug= ViewData["ProductSlug"];
+}
+@*<div class="card-body" id="SpecSeller">
+*@    <div class="table-responsive">
+    <table class="table table-bordered table-responsive-sm">
+        <thead>
+            <tr>
+                <th>نام فروشگاه</th>
+                <th>میزان رضایت</th>
+                <th>قیمت فروشنده</th>
+                <th>میزان گارانتی </th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                @foreach (var item in Model)
+                {
+                    <td>
+                        @if (!item.IsUserLegal)
+                        {
+                            <a href="/sellerProduct/@item.StoreName/@slug">@item.StoreName</a>
+                        }
+                        else
+                        {
+                            <a href="/sellerProduct/@item.CompanyName/@slug">@item.CompanyName</a>
+                        }
+                    </td>
 
-@*<div class="col-lg-12">
-    <div class="card">
-        <div class="card-header">
-            <h4 class="card-title">فروشنگان عادی</h4>
-        </div>
-        <div class="card-body">
-            <div class="table-responsive">
-                <table class="table table-bordered table-responsive-sm">
-                    <thead>
-                        <tr>
-                            <th>نام فروشگاه</th>
-                            <th>میزان رضایت</th>
-                            <th>قیمت فروشنده</th>
-                            <th>میزان گارانتی </th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            @foreach (var item in Model)
-                            {
-                                <td>
-                                    @if (!item.IsUserLegal)
-                                    {
-                                        <a href="">@item.StoreName</a>
-                                    }
-                                    else
-                                    {
-                                        <a href="">@item.CompanyName</a>
+                    <td>***</td>
 
-                                    }
-                                </td>
+                    <td class="color-primary">@item.SpecificProductPrice تومان</td>
+                    @if (item.WarrantyTypeId == WarrantyTypeId.Hour)
+                    {
+                        <td>@item.WarrantyAmount ساعت</td>
+                    }
+                    @if (item.WarrantyTypeId == WarrantyTypeId.Day)
+                    {
+                        <td>@item.WarrantyAmount روز</td>
+                    }
+                    @if (item.WarrantyTypeId == WarrantyTypeId.Mounth)
+                    {
+                        <td>@item.WarrantyAmount ماه</td>
+                    }
+                    @if (item.WarrantyTypeId == WarrantyTypeId.Year)
+                    {
+                        <td>@item.WarrantyAmount سال</td>
+                    }
+                }
 
-                                <td>***</td>
-
-                                <td class="color-primary">@item.SpecificProductPrice تومان</td>
-                                @if (item.WarrantyTypeId == WarrantyTypeId.Hour)
-                                {
-                                    <td>@item.WarrantyAmount ساعت</td>
-                                }
-                                @if (item.WarrantyTypeId == WarrantyTypeId.Day)
-                                {
-                                    <td>@item.WarrantyAmount روز</td>
-                                }
-                                @if (item.WarrantyTypeId == WarrantyTypeId.Mounth)
-                                {
-                                    <td>@item.WarrantyAmount ماه</td>
-                                }
-                                @if (item.WarrantyTypeId == WarrantyTypeId.Year)
-                                {
-                                    <td>@item.WarrantyAmount سال</td>
-                                }
-                            }
-
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
-        </div>
-    </div>
-</div>*@
+            </tr>
+        </tbody>
+    </table>
+</div>
+@*</div>*@
 
 

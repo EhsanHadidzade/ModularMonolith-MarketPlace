@@ -13,6 +13,7 @@ namespace ShopManagement.Application.Contract.SellerProductMedia
         public long Id { get; set; }
         public long UserId { get; set; }
         public string MediaURL { get; set; }
+        public bool IsMediaImage { get; set; }
         public long SellerProductId { get; set; }
         public bool IsSelectedBySeller { get; set; }
     }
