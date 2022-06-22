@@ -1,4 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using ShopManagement.Domain.OrderAgg;
+using ShopManagement.Domain.OrderItemAgg;
 using ShopManagement.Domain.ProductAgg;
 using ShopManagement.Domain.ProductCategoryAgg.ProductBrandAgg;
 using ShopManagement.Domain.ProductCategoryAgg.ProductModelAgg;
@@ -20,9 +22,15 @@ namespace ShopManagement.Infrastructure.EFCore
         public DbSet<ProductType> ProductTypes{ get; set; }
         public DbSet<ProductUsageType> ProductUsageTypes{ get; set; }
         public DbSet<Product> Products{ get; set; }
+
+
         public DbSet<SellerPanel> SellerPanels { get; set; }
         public DbSet<SellerProduct> SellerProducts{ get; set; }
         public DbSet<SellerProductMedia> SellerProductMedias{ get; set; }
+
+
+        public DbSet<Order> Orders { get; set; }
+        public DbSet<OrderItem> OrderItems { get; set; }
 
         public ShopContext(DbContextOptions<ShopContext> options):base(options)
         {

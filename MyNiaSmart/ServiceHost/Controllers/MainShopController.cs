@@ -1,4 +1,7 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using _0_Framework.Contract;
+using Microsoft.AspNetCore.Mvc;
+using Newtonsoft.Json;
+using ShopManagement.Application.Contract.OrderItem;
 using ShopManagement.Application.Contract.Product;
 using ShopManagement.Application.Contract.SellerPanel;
 using ShopManagement.Application.Contract.SellerProduct;
@@ -12,13 +15,18 @@ namespace ServiceHost.Controllers
         private readonly IProductApplication _productAapplication;
         private readonly ISellerPanelApplication _sellerPanelApplication;
         private readonly ISellerProductApplication _sellerProductApplication;
+        private readonly IOrderItemApplication _orderItemApplication;
+        private readonly IAuthHelper _authHelper;
 
         public MainShopController(IProductApplication productApplication,
-            ISellerPanelApplication sellerPanelApplication, ISellerProductApplication sellerProductApplication)
+            ISellerPanelApplication sellerPanelApplication, ISellerProductApplication sellerProductApplication,
+            IOrderItemApplication orderItemApplication, IAuthHelper authHelper)
         {
             _productAapplication = productApplication;
             _sellerPanelApplication = sellerPanelApplication;
             _sellerProductApplication = sellerProductApplication;
+            _orderItemApplication = orderItemApplication;
+            _authHelper = authHelper;
         }
 
         public IActionResult Index()
@@ -63,6 +71,26 @@ namespace ServiceHost.Controllers
             ViewData["ProductSlug"] = slug;
             return PartialView(filteredSpecialSellers);
         }
+        #endregion
+
+        #region To Add SellerProduct To User current open order
+        public IActionResult AddItem(long sellerProductId,long unitPrice)
+        {
+            var userId = _authHelper.CurrentAccountInfo().Id;
+            var command = new CreateOrderItem()
+            {
+                SellerProductId = sellerProductId,
+                UnitPrice = unitPrice,
+                Count = 1
+            };
+            var result=_orderItemApplication.AddOrderItem(command);
+            var orderItems = _orderItemApplication.GetCurrdentOrderItemsByUserId(userId);
+           
+            return PartialView("LeftBarOrderItem",orderItems);
+            //var jsonResult=JsonConvert.SerializeObject(result);
+            //return jsonResult;
+        }
+
         #endregion
 
 

@@ -53,7 +53,7 @@
                                 {
                                     <li role="presentation" class="show">
                                         <a href="#" role="tab" data-toggle="tab">
-                                            <img class="img-fluid" src="/UploadedFiles/@item.MediaURL" alt="" width="50" onclick="toDisplay(@item.Id)" id="@item.Id">
+                                            <img class="img-fluid" src="/UploadedFiles/@item.MediaURL" alt="" width="50" onclick="toDisplayImage(@item.Id)" id="@item.Id">
                                         </a>
                                     </li>
                                 }
@@ -142,9 +142,9 @@
                                 <p class="text-content">
                                     @Html.Raw(Model.Description)
                                 </p>
-
+                                <input type="hidden" value="@Model.Id" class="modelId" />
                                 <div class="shopping-cart mt-3">
-                                    <a class="btn btn-primary btn-lg" href="#">
+                                    <a class="btn btn-primary btn-lg" onclick="ShowLeftBar()" href="#">
                                         <i class="fa fa-shopping-basket mr-2"></i>افزودن به سبد
                                     </a>
                                 </div>
@@ -158,7 +158,27 @@
 </div>
 @section Scripts{
 <script>
-      function toDisplay(id){
+    function ShowLeftBar(){
+        debugger;
+        
+        $.ajax({
+            url:"/MainShop/AddItem",
+            data:{sellerProductId:$(".modelId").val(),unitPrice:$("p.price").val()},
+            dataType:'json',
+            success:function(result){
+
+            }
+        })
+        $.when( $("a#showLeftBar").click() ).done(function() {
+        $("a#showMyOrder").click();
+          });
+        
+    }
+</script>
+
+
+<script>
+      function toDisplayImage(id){
       debugger
     let src=$("img#"+id).attr('src');
     $("div.display").removeClass("show active");

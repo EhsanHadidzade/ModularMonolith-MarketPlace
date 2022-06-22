@@ -130,5 +130,11 @@ namespace ShopManagement.Infrastructure.EFCore.Repository
             return sellerProduct;
 
         }
+
+        public long GetProductIdBySellerProductId(long sellerProductId)
+        {
+            var sellerProduct = _shopContext.SellerProducts.FirstOrDefault(x => x.Id == sellerProductId);
+            return sellerProduct.Id;
+        }
     }
 }

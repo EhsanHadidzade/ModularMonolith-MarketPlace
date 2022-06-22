@@ -1,6 +1,8 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using ShopManagement.Application;
+using ShopManagement.Application.Contract.Order;
+using ShopManagement.Application.Contract.OrderItem;
 using ShopManagement.Application.Contract.Product;
 using ShopManagement.Application.Contract.ProductCategory.ProductBrand;
 using ShopManagement.Application.Contract.ProductCategory.ProductModel;
@@ -11,6 +13,8 @@ using ShopManagement.Application.Contract.SellerPanel;
 using ShopManagement.Application.Contract.SellerProduct;
 using ShopManagement.Application.Contract.SellerProductMedia;
 using ShopManagement.Application.ProductCategoryApplication;
+using ShopManagement.Domain.OrderAgg;
+using ShopManagement.Domain.OrderItemAgg;
 using ShopManagement.Domain.ProductAgg;
 using ShopManagement.Domain.ProductCategoryAgg.ProductBrandAgg;
 using ShopManagement.Domain.ProductCategoryAgg.ProductModelAgg;
@@ -62,6 +66,12 @@ namespace ShopManagement.Configuration
 
             services.AddTransient<ISellerPanelRepository,SellerPanelRepository>();
             services.AddTransient<ISellerPanelApplication, SellerPanelApplication>();
+
+            services.AddTransient<IOrderRepository,OrderRepository>();
+            services.AddTransient<IOrderApplication, OrderApplication>();
+
+            services.AddTransient<IOrderItemRepository, OrderItemRepository>();
+            services.AddTransient<IOrderItemApplication, OrderItemApplication>();
 
             services.AddDbContext<ShopContext>(item => item.UseSqlServer(connectionstring));
         }

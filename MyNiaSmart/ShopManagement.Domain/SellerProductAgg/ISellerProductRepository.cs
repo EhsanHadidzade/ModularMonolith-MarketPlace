@@ -21,6 +21,9 @@ namespace ShopManagement.Domain.SellerProductAgg
         // Find Exact SellerProduct then use info to show for sellerProductDetailsView
         EditSellerProduct GetDetailsBySellerPanelIdAndProductId(long sellerPaneId, long productId);
 
+        //To Find any information about the product that seller is selling . using when we need in buying process and showing list of orderItems
+        long GetProductIdBySellerProductId(long sellerProductId);
+
 
 
     }

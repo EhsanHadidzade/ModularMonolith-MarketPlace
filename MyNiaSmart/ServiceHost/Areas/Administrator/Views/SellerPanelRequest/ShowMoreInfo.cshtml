@@ -111,9 +111,10 @@
                                 </div>
                             }
                             <input type="hidden" asp-for="Id" value="@Model.Id" name="sellerpanelid" />
-                            <button  class="btn btn-success" onclick="window.location.href ='/administrator/sellerpanelRequest/Confirm/@Model.Id'">تایید درخواست مورد نظر</button>
+                            <a  class="btn btn-success" href="/administrator/sellerpanelRequest/Confirm/@Model.Id">تایید درخواست مورد نظر</a>
                             <br />
-                            <button  class="btn btn-danger" onclick="window.location.href ='/administrator/sellerpanelRequest/Cancel/@Model.Id'">رد درخواست مورد نظر</button>
+                            <a  class="btn btn-danger" href="/administrator/sellerpanelRequest/Cancel/@Model.Id">تایید درخواست مورد نظر</a>
+                            
                         </div>
                     </form>
                 </div>

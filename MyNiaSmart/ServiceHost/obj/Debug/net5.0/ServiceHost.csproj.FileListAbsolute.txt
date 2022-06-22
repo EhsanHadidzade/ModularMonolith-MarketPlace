@@ -553,3 +553,4 @@ C:\Work\Projects\MyNiaSmart\MyNiaSmart\ServiceHost\bin\Debug\net5.0\System.Drawi
 C:\Work\Projects\MyNiaSmart\MyNiaSmart\ServiceHost\bin\Debug\net5.0\runtimes\win\lib\netcoreapp3.1\Microsoft.Win32.SystemEvents.dll
 C:\Work\Projects\MyNiaSmart\MyNiaSmart\ServiceHost\bin\Debug\net5.0\runtimes\unix\lib\netcoreapp3.1\System.Drawing.Common.dll
 C:\Work\Projects\MyNiaSmart\MyNiaSmart\ServiceHost\bin\Debug\net5.0\runtimes\win\lib\netcoreapp3.1\System.Drawing.Common.dll
+C:\Work\Projects\MyNiaSmart\MyNiaSmart\ServiceHost\obj\Debug\net5.0\Razor\Views\MainShop\LeftBarOrderItem.cshtml.g.cs
