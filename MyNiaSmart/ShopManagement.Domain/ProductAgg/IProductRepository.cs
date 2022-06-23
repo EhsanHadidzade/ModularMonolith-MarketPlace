@@ -13,8 +13,9 @@ namespace ShopManagement.Domain.ProductAgg
         EditProduct GetDetails(long id);
         List<ProductViewModel> GetList();
 
-        //To get title of a product whem slug is passed . using when seller want to search and add new product to his shop
-        ProductViewModel GetTitleAndIdById(long id);
+        //To get title of a product when slug is passed . using when seller want to search and add new product to his shop
+        //Or want to get info of specific product information to use in current user  order items 
+        ProductViewModel GetInfoById(long id);
 
         //To get list of all products of admin products and show them to all clients in clientSide with special information coming from sellers
         List<MainShopProductViewModel> GetListForMainShop();

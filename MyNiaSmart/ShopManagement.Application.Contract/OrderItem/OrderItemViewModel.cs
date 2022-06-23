@@ -10,7 +10,9 @@ namespace ShopManagement.Application.Contract.OrderItem
     {
         public long SellerProductId { get; set; }
         public string SellerProductTitle { get; set; }
+        public long OrderId { get; set; }
         public long UnitPrice { get; set; }
+        public string PictureURL { get; set; }
         public int Count { get; set; }
     }
 }

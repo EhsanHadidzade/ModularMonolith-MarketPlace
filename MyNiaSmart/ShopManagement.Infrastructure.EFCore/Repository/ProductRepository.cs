@@ -98,7 +98,7 @@ namespace ShopManagement.Infrastructure.EFCore.Repository
             return _context.Products.Select(x => new ProductViewModel
             {
                 Id = x.Id,
-                Picture = x.Picture,
+                PictureURL = x.Picture,
                 EngTitle = x.EngTitle,
                 PartNumber = x.PartNumber,
                 CreationDate = x.CreationDate.ToFarsi(),
@@ -106,13 +106,14 @@ namespace ShopManagement.Infrastructure.EFCore.Repository
             }).ToList();
         }
 
-        public ProductViewModel GetTitleAndIdById(long id)
+        public ProductViewModel GetInfoById(long id)
         {
             var product = _context.Products.Select(x => new ProductViewModel
             {
                 Id = x.Id,
                 FarsiTitle = x.FarsiTitle,
                 EngTitle = x.EngTitle,
+                PictureURL=x.Picture
             }).FirstOrDefault(x => x.Id == id);
             return product;
         }

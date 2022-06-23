@@ -68,7 +68,8 @@
                         <a class="nav-link" data-toggle="tab" href="#notes">یادداشت ها</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" id="showMyOrder" data-toggle="tab" href="#Order">سبد خرید</a>
+                        <a class="nav-link" id="showMyOrder" data-toggle="tab" href="#userOrderItems">سبد خرید</a>
+
                     </li>
                     <li class="nav-item">
                         <a class="nav-link active" data-toggle="tab" href="#chat">چت </a>
@@ -432,8 +433,8 @@
                             </div>
                         </div>
                     </div>
-                    <div class="tab-pane fade" id="Order" role="tabpanel">
-                      <partial name="" />
+                    <div class="tab-pane fade userOrderItems" id="userOrderItems" role="tabpanel">
+                      @await Component.InvokeAsync("LeftBarOrderItem")
                     </div>
                     <div class="tab-pane fade" id="notes">
                         <div class="card mb-sm-3 mb-md-0 note_card">

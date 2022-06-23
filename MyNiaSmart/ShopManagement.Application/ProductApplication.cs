@@ -92,7 +92,7 @@ namespace ShopManagement.Application
 
         public ProductViewModel GetTitleAndIdById(long id)
         {
-            return _productRepository.GetTitleAndIdById(id);
+            return _productRepository.GetInfoById(id);
         }
     }
 }

@@ -50,8 +50,8 @@ namespace ServiceHost.Controllers
             IUpAccountRequestRejectionReasonApplication upAccountRequestRejectionReasonApplication,
             IPersonalWalletApplication personalWalletApplication, IBusinessWalletApplication businessWalletApplication,
             IPersonalWalletOperationApplication personalWalletOperationApplication, IZarinPalFactory zarinPalFactory,
-            IUserCooperationRequestApplication userCooperationRequestApplication, IRoleTypeApplication roleTypeApplication, ISellerPanelApplication sellerPanelApplication,
-            IPersonalityTypeApplication personalityTypeApplication)
+            IUserCooperationRequestApplication userCooperationRequestApplication, IRoleTypeApplication roleTypeApplication,
+            ISellerPanelApplication sellerPanelApplication, IPersonalityTypeApplication personalityTypeApplication)
         {
             _userQuery = userQuery;
             _authHelper = authHelper;
@@ -291,6 +291,13 @@ namespace ServiceHost.Controllers
             var result = _sellerPanelApplication.Create(command);
             UserController.message = result.Message;
             return RedirectToAction("UserProfile");
+        }
+        #endregion
+
+        #region UserOrderManagement
+        public IActionResult Order()
+        {
+            return View();
         }
         #endregion
 

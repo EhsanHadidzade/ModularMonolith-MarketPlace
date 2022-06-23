@@ -20,15 +20,9 @@ namespace ShopManagement.Application
             operation = new OperationResult();
         }
 
-        public OperationResult PlaceNewOrderForUser(long userId)
+        public OrderViewModel GetCurrentOrderWithItemsByOrderId(long orderId)
         {
-            if (_orderRepository.IsExist(x => x.UserId == userId && !x.IsPaid &&!x.IsCanceled))
-                return operation.Failed("فاکتور باز وجود دارد");
-
-            var order = new Order(userId);
-            _orderRepository.Create(order);
-            _orderRepository.Savechange();
-            return operation.Succedded();
+            throw new NotImplementedException();
         }
     }
 }

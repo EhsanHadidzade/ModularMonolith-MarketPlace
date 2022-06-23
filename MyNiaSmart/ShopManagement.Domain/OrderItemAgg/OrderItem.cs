@@ -13,6 +13,10 @@ namespace ShopManagement.Domain.OrderItemAgg
         public long OrderId { get; private set; }
         public Order Order { get; private set; }
 
+        public OrderItem()
+        {
+
+        }
         public OrderItem(long sellerProductId, int count, long unitPrice, long orderId)
         {
             SellerProductId = sellerProductId;

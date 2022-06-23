@@ -25,7 +25,7 @@ namespace ShopManagement.Application
         private readonly ISellerProductRepository _sellerProductRepository;
 
         public OrderItemApplication(IOrderRepository orderRepository, IOrderItemRepository orderItemRepository,
-            IAuthHelper authHelper, IOrderApplication orderApplication, IProductRepository productRepository, 
+            IAuthHelper authHelper, IOrderApplication orderApplication, IProductRepository productRepository,
             ISellerProductRepository sellerProductRepository)
         {
             _orderRepository = orderRepository;
@@ -41,8 +41,9 @@ namespace ShopManagement.Application
         {
             var userId = _authHelper.CurrentAccountInfo().Id;
             var currentOrder = _orderRepository.GetCurrentOrderByUserId(userId);
+            var orderItem = new OrderItem();
 
-            if(currentOrder!=null)
+            if (currentOrder != null)
             {
                 if (_orderItemRepository.IsExist(x => x.SellerProductId == command.SellerProductId && x.OrderId == currentOrder.Id))
                 {
@@ -50,18 +51,18 @@ namespace ShopManagement.Application
 
                 }
 
-                var orderItem = new OrderItem(command.SellerProductId,command.Count, command.UnitPrice, currentOrder.Id);
+                orderItem = new OrderItem(command.SellerProductId, command.Count, command.UnitPrice, currentOrder.Id);
                 currentOrder.AddItem(orderItem);
                 _orderRepository.Savechange();
-                return operation.Succedded("محصول به سبد شما اضافه شد، برای مدیدریت بهتر روی آن کلیک کنید");
+                return operation.Succedded("محصول به سبد شما اضافه شد، برای مدیریت بهتر روی آن کلیک کنید");
             }
 
             currentOrder = new Order(userId);
             _orderRepository.Create(currentOrder);
             _orderRepository.Savechange();
 
-            var orderItem2 = new OrderItem(command.SellerProductId, command.Count, command.UnitPrice, currentOrder.Id);
-            currentOrder.AddItem(orderItem2);
+            orderItem = new OrderItem(command.SellerProductId, command.Count, command.UnitPrice, currentOrder.Id);
+            currentOrder.AddItem(orderItem);
             _orderRepository.Savechange();
             return operation.Succedded("محصول به سبد شما اضافه شد، برای مدیریت بهتر روی آن کلیک کنید");
 
@@ -70,26 +71,32 @@ namespace ShopManagement.Application
         public List<OrderItemViewModel> GetCurrdentOrderItemsByUserId(long userId)
         {
             var currentOrder = _orderRepository.GetCurrentOrderByUserId(userId);
+            if (currentOrder == null)
+                return new List<OrderItemViewModel>();
+
             var orderItems = currentOrder.OrderItems;
             return ProjectOrderItems(orderItems);
-         
+
         }
 
-        private  List<OrderItemViewModel> ProjectOrderItems(List<OrderItem> orderItems)
+        private List<OrderItemViewModel> ProjectOrderItems(List<OrderItem> orderItems)
         {
-          var projectedOrderItems= orderItems.Select(x => new OrderItemViewModel()
+            var projectedOrderItems = orderItems.Select(x => new OrderItemViewModel()
             {
-               SellerProductId = x.SellerProductId,
-               UnitPrice = x.UnitPrice,
-               Count = x.Count,
+                SellerProductId = x.SellerProductId,
+                UnitPrice = x.UnitPrice,
+                Count = x.Count,
+                OrderId = x.OrderId,
             }).ToList();
-            foreach(var item in projectedOrderItems)
+            foreach (var item in projectedOrderItems)
             {
-               var productId=_sellerProductRepository.GetProductIdBySellerProductId(item.SellerProductId);
-                item.SellerProductTitle=_productRepository.GetTitleAndIdById(productId).FarsiTitle;
+                var productId = _sellerProductRepository.GetProductIdBySellerProductId(item.SellerProductId);
+                var product=_productRepository.GetInfoById(productId);
+                item.SellerProductTitle = product.FarsiTitle;
+                item.PictureURL = product.PictureURL;
             }
 
-            return projectedOrderItems; 
+            return projectedOrderItems;
         }
     }
 }

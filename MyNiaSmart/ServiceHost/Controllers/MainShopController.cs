@@ -85,6 +85,7 @@ namespace ServiceHost.Controllers
             };
             var result=_orderItemApplication.AddOrderItem(command);
             var orderItems = _orderItemApplication.GetCurrdentOrderItemsByUserId(userId);
+            ViewData["AddOrderItemResult"] = result.Message;
            
             return PartialView("LeftBarOrderItem",orderItems);
             //var jsonResult=JsonConvert.SerializeObject(result);

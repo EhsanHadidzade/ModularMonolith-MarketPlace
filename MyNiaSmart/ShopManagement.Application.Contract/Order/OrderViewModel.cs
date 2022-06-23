@@ -9,6 +9,10 @@ namespace ShopManagement.Application.Contract.Order
 {
     public class OrderViewModel
     {
-        public List<OrderItemViewModel> orderItems  { get; set; }
-}
+        public long UserId { get; set; }
+        public long TotalAmount { get; set; }
+        public bool IsCanceled { get; set; }
+        public bool IsPaid { get; set; }
+        public List<OrderItemViewModel> orderItems { get; set; }
+    }
 }

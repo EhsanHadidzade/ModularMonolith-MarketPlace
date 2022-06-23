@@ -12,8 +12,8 @@ namespace ShopManagement.Domain.OrderAgg
     {
         public long UserId { get; private set; }
         public long TotalAmount { get; private set; }
-        public int PaymentMethod { get; private set; }
         public bool IsPaid { get; private set; }
+        public int PaymentMethod { get; private set; }
         public bool IsCanceled { get; private set; }
         public string IssueTrackingNo { get; private set; }
         public long RefId { get; private set; }

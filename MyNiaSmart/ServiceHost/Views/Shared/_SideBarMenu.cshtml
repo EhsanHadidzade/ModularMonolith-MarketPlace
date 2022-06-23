@@ -1,9 +1,11 @@
 ﻿@using _0_Framework.Contract
 @using AccountManagement.Application.Contract.UpAccountRequest
 @using ShopManagement.Application.Contract.SellerPanel
+@using ShopManagement.Application.Contract.OrderItem
 @using AccountManagement.Application.Contract.User
 @inject IUPAccountRequestApplication _upAccountRequestApplication
 @inject ISellerPanelApplication _sellerPanelApplication
+@inject IOrderItemApplication _orderItemApplication
 @inject IAuthHelper _authHelper
 @inject IUserApplication _userApplication
 @{
@@ -11,6 +13,7 @@
     bool hasUserRequestedForUp = _upAccountRequestApplication.HasUserRequestedForUpAccount(userId);
     bool isUserAdmin = _userApplication.IsUserAdmin(userId);
     bool IsSellerPanelConfirmedByAdmin = _sellerPanelApplication.HasUserSellerPanelConfirmedByAdmin(userId);
+    var UserOrderItems = _orderItemApplication.GetCurrdentOrderItemsByUserId(userId);
 }
 
 <link href="~/MainTheme/css/Custom.css" rel="stylesheet" />
@@ -275,7 +278,6 @@
                         </div>
                     </div>
                 </div>
-
                 <ul class="navbar-nav header-right">
                     <li class="nav-item dropdown notification_dropdown">
                         <a class="nav-link bell dz-fullscreen" href="#">
@@ -391,7 +393,24 @@
                     </li>
                     <li class="nav-item right-sidebar">
                         <a class="nav-link bell ai-icon" href="#" id="showLeftBar">
-                            <svg id="icon-menu" viewBox="0 0 24 24" width="24" height="24" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round" class="css-i6dzq1"><path width="7" height="7" d="M3 3 L10 3 L10 10 L3 10 Z" style="stroke-dasharray: 28, 48; stroke-dashoffset: 0;"></path><path width="7" height="7" d="M14 3 L21 3 L21 10 L14 10 Z" style="stroke-dasharray: 28, 48; stroke-dashoffset: 0;"></path><path width="7" height="7" d="M14 14 L21 14 L21 21 L14 21 Z" style="stroke-dasharray: 28, 48; stroke-dashoffset: 0;"></path><path width="7" height="7" d="M3 14 L10 14 L10 21 L3 21 Z" style="stroke-dasharray: 28, 48; stroke-dashoffset: 0;"></path></svg>
+                            @if (UserOrderItems != null)
+                            {
+                                <div class="pulse-css"></div>
+                            }
+                            <svg id="icon-menu" viewBox="0 0 24 24" width="24" height="24" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round" class="css-i6dzq1">
+                                <path width="7" height="7" d="M3 3 L10 3 L10 10 L3 10 Z" style="stroke-dasharray: 28, 48; stroke-dashoffset: 0;">
+
+                                </path>
+                                <path width="7" height="7" d="M14 3 L21 3 L21 10 L14 10 Z" style="stroke-dasharray: 28, 48; stroke-dashoffset: 0;">
+
+                                </path>
+                                <path width="7" height="7" d="M14 14 L21 14 L21 21 L14 21 Z" style="stroke-dasharray: 28, 48; stroke-dashoffset: 0;">
+
+                                </path>
+                                <path width="7" height="7" d="M3 14 L10 14 L10 21 L3 21 Z" style="stroke-dasharray: 28, 48; stroke-dashoffset: 0;">
+
+                                </path>
+                            </svg>
                         </a>
                     </li>
                 </ul>
