@@ -17,8 +17,9 @@ namespace ServiceHost.Controllers
 
         public IActionResult CurrentOrder(long id)
         {
-            var currentOrderItems=_orderApplication.GetCurrentOrderWithItemsByOrderId(id);
-            return View();
+            //id==OrderId Of clicked Items
+            var currentOrderItems=_orderApplication.GetOrderDetailsByOrderId(id);
+            return View(currentOrderItems);
         }
     }
 }

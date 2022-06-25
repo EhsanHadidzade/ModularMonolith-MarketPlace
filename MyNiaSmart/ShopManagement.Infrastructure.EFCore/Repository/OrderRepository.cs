@@ -14,7 +14,7 @@ using System.Threading.Tasks;
 
 namespace ShopManagement.Infrastructure.EFCore.Repository
 {
-    public class OrderRepository:BaseRepository<long,Order>, IOrderRepository
+    public class OrderRepository : BaseRepository<long, Order>, IOrderRepository
     {
         private readonly ShopContext _shopContext;
         private readonly IProductRepository _productRepository;
@@ -30,36 +30,35 @@ namespace ShopManagement.Infrastructure.EFCore.Repository
 
         public bool DoesUserHaveOpenOrder(long userId)
         {
-            return _shopContext.Orders.Any(x => x.UserId == userId && !x.IsPaid &&!x.IsCanceled);
+            return _shopContext.Orders.Any(x => x.UserId == userId && !x.IsPaid && !x.IsCanceled);
         }
 
         public Order GetCurrentOrderByUserId(long userId)
         {
-            return _shopContext.Orders.Include(x=>x.OrderItems).FirstOrDefault(x=>x.UserId == userId &&!x.IsPaid && !x.IsCanceled);
+            return _shopContext.Orders.Include(x => x.OrderItems).FirstOrDefault(x => x.UserId == userId && !x.IsPaid && !x.IsCanceled);
         }
 
-        public OrderViewModel GetOrderDetails(long userId)
+        public OrderViewModel GetOrderDetailsByOrderId(long orderId)
         {
-            return _shopContext.Orders.Include(x => x.OrderItems).Select(x=>new OrderViewModel
+            var order = _shopContext.Orders.Include(x => x.OrderItems).Select(x => new OrderViewModel
             {
-                UserId=x.UserId,
-                TotalAmount=x.TotalAmount,
-                IsPaid=x.IsPaid,
-                IsCanceled=x.IsCanceled,
-                orderItems= ProjectOrderItems(x.OrderItems)
-            }).FirstOrDefault(x => x.UserId == userId && !x.IsPaid && !x.IsCanceled);
+                Id = x.Id,
+                UserId = x.UserId,
+                TotalAmount = x.TotalAmount,
+                IsPaid = x.IsPaid,
+                IsCanceled = x.IsCanceled,
+                //orderItems = ProjectOrderItems(x.OrderItems)
+            }).FirstOrDefault(x => x.Id == orderId);
 
-        }
-
-        private List<OrderItemViewModel> ProjectOrderItems(List<OrderItem> orderItems)
-        {
-            var projectedOrderItems = orderItems.Select(x => new OrderItemViewModel()
+            order.orderItems = _shopContext.OrderItems.Select(x => new OrderItemViewModel()
             {
+                OrderId = x.OrderId,
                 SellerProductId = x.SellerProductId,
                 UnitPrice = x.UnitPrice,
                 Count = x.Count,
-            }).ToList();
-            foreach (var item in projectedOrderItems)
+            }).Where(x => x.OrderId == order.Id).ToList();
+
+            foreach (var item in order.orderItems)
             {
                 var productId = _sellerProductRepository.GetProductIdBySellerProductId(item.SellerProductId);
                 var product = _productRepository.GetInfoById(productId);
@@ -67,7 +66,9 @@ namespace ShopManagement.Infrastructure.EFCore.Repository
                 item.PictureURL = product.PictureURL;
             }
 
-            return projectedOrderItems;
+            return order;
         }
+
+
     }
 }

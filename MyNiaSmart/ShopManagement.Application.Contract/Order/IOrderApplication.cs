@@ -9,6 +9,7 @@ namespace ShopManagement.Application.Contract.Order
 {
     public interface IOrderApplication
     {
-     OrderViewModel GetCurrentOrderWithItemsByOrderId(long orderId);
+        //using to Display current order Details ad items to user in his CurrentOrder View (his current cart) 
+        OrderViewModel GetOrderDetailsByOrderId(long orderId);
     }
 }

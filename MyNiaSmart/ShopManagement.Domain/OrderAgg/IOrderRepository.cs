@@ -16,8 +16,11 @@ namespace ShopManagement.Domain.OrderAgg
         //To Get Order Of User .using in placeing new order
         Order GetCurrentOrderByUserId(long userId);
 
-        //using to Display current order Details ad items to user in his leftBarOrderItem 
-        OrderViewModel GetOrderDetails(long userId);
+        //using to Display current order Details ad items to user in his CurrentOrder View (his current cart) 
+        OrderViewModel GetOrderDetailsByOrderId(long orderId);
+
+
+
 
     }
 }

@@ -51,7 +51,7 @@ namespace AccountManagement.Application
 
             var picturePath = _fileUploader.Upload(command.ProfilePhoto, "UserPhoto");
             var user = new User(command.FullName, command.MobileNumber
-                , command.Capital, command.City, command.Address, command.NationalCode
+              , command.NationalCode
                 , birthday, picturePath, command.IntroductorFullname, command.IntroductorMobileNumber, command.Experience);
             _userRepository.Create(user);
             _userRepository.Savechange();
@@ -84,7 +84,7 @@ namespace AccountManagement.Application
 
             var picturePath = _fileUploader.Upload(command.ProfilePhoto, "UserPhoto");
 
-            user.Edit(command.FullName, command.Capital, command.City, command.Address, command.NationalCode
+            user.Edit(command.FullName, command.NationalCode
                 , birthday, picturePath, command.IntroductorFullname, command.IntroductorMobileNumber);
             _userRepository.Savechange();
             return operation.Succedded();

@@ -20,9 +20,9 @@ namespace ShopManagement.Application
             operation = new OperationResult();
         }
 
-        public OrderViewModel GetCurrentOrderWithItemsByOrderId(long orderId)
+        public OrderViewModel GetOrderDetailsByOrderId(long orderId)
         {
-            throw new NotImplementedException();
+            return _orderRepository.GetOrderDetailsByOrderId(orderId);
         }
     }
 }

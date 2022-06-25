@@ -6,6 +6,7 @@ using AccountManagement.Domain.RoleAgg;
 using AccountManagement.Domain.RoleTypeAgg;
 using AccountManagement.Domain.UpAccountRequestRejectionReasonAgg;
 using AccountManagement.Domain.UPAccountRequestsAgg;
+using AccountManagement.Domain.UserAddressAgg;
 using AccountManagement.Domain.UserAgg;
 using AccountManagement.Domain.UserPersonalityAgg;
 //using AccountManagement.Domain.UserPersonalityRequestAgg;
@@ -29,13 +30,14 @@ namespace AccountManagement.Infrastructure.EFCore
     {
         public DbSet<RoleType> RoleTypes { get; set; }
         public DbSet<Role> Roles { get; set; }
-        public DbSet<UserCooperationRequest> UserCooperationRequests{ get; set; }
-        public DbSet<UserRole> UserRoles{ get; set; }
-        public DbSet<User> Users{ get; set; }
-        public DbSet<UserPersonality> UserPersonalities{ get; set; }
+        public DbSet<UserCooperationRequest> UserCooperationRequests { get; set; }
+        public DbSet<UserRole> UserRoles { get; set; }
+        public DbSet<User> Users { get; set; }
+        public DbSet<UserPersonality> UserPersonalities { get; set; }
         //public DbSet<UserPersonalityRequest> UserPersonalityRequests { get; set; }
         public DbSet<Personality> Personalities { get; set; }
-        public DbSet<PersonalityType> PersonalityTypes{ get; set; }
+        public DbSet<PersonalityType> PersonalityTypes { get; set; }
+        public DbSet<UserAddress> UserAddresses { get; set; }
 
         //AboutUpAccountRequests
         public DbSet<UpAccountRequest> UpAccountRequests { get; set; }
@@ -43,7 +45,7 @@ namespace AccountManagement.Infrastructure.EFCore
         public DbSet<UpAccountRequestRejectionReason> UpAccountRequestRejectionReasons { get; set; }
 
         //AboutUserWallet
-        public DbSet<BusinessWallet> BusinessWallets{ get; set; }
+        public DbSet<BusinessWallet> BusinessWallets { get; set; }
         public DbSet<PersonalWallet> PersonalWallets { get; set; }
         public DbSet<WalletOperationType> WalletOperationTypes { get; set; }
         public DbSet<Personalwalletoperation> Personalwalletoperations { get; set; }
@@ -59,8 +61,8 @@ namespace AccountManagement.Infrastructure.EFCore
             modelBuilder.ApplyConfigurationsFromAssembly(assembly);
             base.OnModelCreating(modelBuilder);
 
-            
+
         }
-       
+
     }
 }

@@ -84,6 +84,8 @@ namespace ServiceHost.Controllers
                 Count = 1
             };
             var result=_orderItemApplication.AddOrderItem(command);
+
+            //result.id==the id of current order that we wil use to display orderItems
             var orderItems = _orderItemApplication.GetCurrdentOrderItemsByUserId(userId);
             ViewData["AddOrderItemResult"] = result.Message;
            

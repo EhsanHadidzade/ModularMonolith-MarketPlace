@@ -13,6 +13,7 @@ using AccountManagement.Application.Contract.RoleType;
 using AccountManagement.Application.Contract.UpAccountRequest;
 using AccountManagement.Application.Contract.UpAccountRequestRejectionReason;
 using AccountManagement.Application.Contract.User;
+using AccountManagement.Application.Contract.UserAddress;
 using AccountManagement.Application.Contract.UserCooperationRequest;
 using AccountManagement.Application.Contract.UserPersonality;
 //using AccountManagement.Application.Contract.UserPersonalityRequest;
@@ -26,6 +27,7 @@ using AccountManagement.Domain.RoleAgg;
 using AccountManagement.Domain.RoleTypeAgg;
 using AccountManagement.Domain.UpAccountRequestRejectionReasonAgg;
 using AccountManagement.Domain.UPAccountRequestsAgg;
+using AccountManagement.Domain.UserAddressAgg;
 using AccountManagement.Domain.UserAgg;
 using AccountManagement.Domain.UserPersonalityAgg;
 //using AccountManagement.Domain.UserPersonalityRequestAgg;
@@ -52,6 +54,10 @@ namespace AccountManagement.Configuration
 
             services.AddTransient<IUserApplication, UserApplication>();
             services.AddTransient<IUserRepository, UserRepository>();
+
+            services.AddTransient<IUserAddressApplication, UserAddressApplication>();
+            services.AddTransient<IUserAddressRepository, UserAddressRepository>();
+
 
             services.AddTransient<IUserRoleApplication, UserRoleApplication>();
             services.AddTransient<IUserRoleRepository, UserRoleRepository>();

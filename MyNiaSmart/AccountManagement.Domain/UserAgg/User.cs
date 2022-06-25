@@ -2,6 +2,7 @@
 using AccountManagement.Domain.CooperationRequestAgg;
 using AccountManagement.Domain.RoleAgg;
 using AccountManagement.Domain.UPAccountRequestsAgg;
+using AccountManagement.Domain.UserAddressAgg;
 using AccountManagement.Domain.UserPersonalityAgg;
 //using AccountManagement.Domain.UserPersonalityRequestAgg;
 using AccountManagement.Domain.UserRoleAgg;
@@ -20,9 +21,9 @@ namespace AccountManagement.Domain.UserAgg
         public string MobileNumber { get; private set; }
 
         //optional 
-        public string Capital { get; private set; }
-        public string City { get; private set; }
-        public string Address { get; private set; }
+        //public string Capital { get; private set; }
+        //public string City { get; private set; }
+        //public string Address { get; private set; }
         public string NationalCode { get; private set; }
         public DateTime? Birthday { get; private set; }
         public string ProfilePhoto { get; private set; }
@@ -52,6 +53,7 @@ namespace AccountManagement.Domain.UserAgg
         public UpAccountRequest UpAccountRequest{ get; private set; }
         public PersonalWallet PersonalWallet{ get; private set; }
         public BusinessWallet BusinessWallet{ get; private set; }
+        public List<UserAddress> UserAddresses{ get; private set; }
         #endregion
 
         public User(string fullName, string mobileNumber)
@@ -63,16 +65,15 @@ namespace AccountManagement.Domain.UserAgg
             Experience = 1;
         }
 
-        public User(string fullName, string mobileNumber, string capital
-            , string city, string address, string nationalCode
+        public User(string fullName, string mobileNumber, string nationalCode
             , DateTime? birthday, string profilePhoto, string introductorFullname
             , string introductorMobileNumber, long experience)
         {
             FullName = fullName;
             MobileNumber = mobileNumber;
-            Capital = capital;
-            City = city;
-            Address = address;
+            //Capital = capital;
+            //City = city;
+            //Address = address;
             NationalCode = nationalCode;
             Birthday = birthday;
             Grade = 1;
@@ -88,17 +89,17 @@ namespace AccountManagement.Domain.UserAgg
 
             UserRoles = new List<UserRole>();
             UserPersonalities = new List<UserPersonality>();
+            UserAddresses = new List<UserAddress>();
         }
 
-        public void Edit(string fullName, string capital
-            , string city, string address, string nationalCode
+        public void Edit(string fullName, string nationalCode
             , DateTime? birthday, string profilePhoto, string introductorFullname
             , string introductorMobileNumber)
         {
             FullName = fullName;
-            Capital = capital;
-            City = city;
-            Address = address;
+            //Capital = capital;
+            //City = city;
+            //Address = address;
             NationalCode = nationalCode;
             Birthday = birthday;
 
@@ -107,7 +108,6 @@ namespace AccountManagement.Domain.UserAgg
 
             IntroductorFullname = introductorFullname;
             IntroductorMobileNumber = introductorMobileNumber;
-          
         }
 
         public void GenerateActiveCode(string activeCode)

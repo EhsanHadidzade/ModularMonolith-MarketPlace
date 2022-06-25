@@ -64,6 +64,7 @@ namespace ShopManagement.Application
             orderItem = new OrderItem(command.SellerProductId, command.Count, command.UnitPrice, currentOrder.Id);
             currentOrder.AddItem(orderItem);
             _orderRepository.Savechange();
+            operation.Id = currentOrder.Id;
             return operation.Succedded("محصول به سبد شما اضافه شد، برای مدیریت بهتر روی آن کلیک کنید");
 
         }
@@ -76,7 +77,6 @@ namespace ShopManagement.Application
 
             var orderItems = currentOrder.OrderItems;
             return ProjectOrderItems(orderItems);
-
         }
 
         private List<OrderItemViewModel> ProjectOrderItems(List<OrderItem> orderItems)
@@ -88,10 +88,11 @@ namespace ShopManagement.Application
                 Count = x.Count,
                 OrderId = x.OrderId,
             }).ToList();
+
             foreach (var item in projectedOrderItems)
             {
                 var productId = _sellerProductRepository.GetProductIdBySellerProductId(item.SellerProductId);
-                var product=_productRepository.GetInfoById(productId);
+                var product = _productRepository.GetInfoById(productId);
                 item.SellerProductTitle = product.FarsiTitle;
                 item.PictureURL = product.PictureURL;
             }

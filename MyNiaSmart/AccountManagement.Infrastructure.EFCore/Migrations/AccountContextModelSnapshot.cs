@@ -331,6 +331,49 @@ namespace AccountManagement.Infrastructure.EFCore.Migrations
                     b.ToTable("UpAccountRequestRejectionReasons");
                 });
 
+            modelBuilder.Entity("AccountManagement.Domain.UserAddressAgg.UserAddress", b =>
+                {
+                    b.Property<long>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("bigint")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("Address")
+                        .HasMaxLength(256)
+                        .HasColumnType("nvarchar(256)");
+
+                    b.Property<string>("Capital")
+                        .HasMaxLength(35)
+                        .HasColumnType("nvarchar(35)");
+
+                    b.Property<string>("City")
+                        .HasMaxLength(35)
+                        .HasColumnType("nvarchar(35)");
+
+                    b.Property<DateTime>("CreationDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("MobileNumber")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("PlaqueNumber")
+                        .HasMaxLength(5)
+                        .HasColumnType("nvarchar(5)");
+
+                    b.Property<string>("PostalCode")
+                        .HasMaxLength(20)
+                        .HasColumnType("nvarchar(20)");
+
+                    b.Property<long>("UserId")
+                        .HasColumnType("bigint");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("UserId");
+
+                    b.ToTable("UserAddresses");
+                });
+
             modelBuilder.Entity("AccountManagement.Domain.UserAgg.User", b =>
                 {
                     b.Property<long>("Id")
@@ -694,6 +737,17 @@ namespace AccountManagement.Infrastructure.EFCore.Migrations
                     b.Navigation("UpAccountRequest");
                 });
 
+            modelBuilder.Entity("AccountManagement.Domain.UserAddressAgg.UserAddress", b =>
+                {
+                    b.HasOne("AccountManagement.Domain.UserAgg.User", "User")
+                        .WithMany("UserAddresses")
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("User");
+                });
+
             modelBuilder.Entity("AccountManagement.Domain.UserPersonalityAgg.UserPersonality", b =>
                 {
                     b.HasOne("AccountManagement.Domain.PersonalityAgg.Personality", "Personality")
@@ -823,6 +877,8 @@ namespace AccountManagement.Infrastructure.EFCore.Migrations
                     b.Navigation("PersonalWallet");
 
                     b.Navigation("UpAccountRequest");
+
+                    b.Navigation("UserAddresses");
 
                     b.Navigation("UserCooperationRequests");
 

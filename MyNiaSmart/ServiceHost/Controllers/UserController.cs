@@ -11,6 +11,7 @@ using AccountManagement.Application.Contract.RoleType;
 using AccountManagement.Application.Contract.UpAccountRequest;
 using AccountManagement.Application.Contract.UpAccountRequestRejectionReason;
 using AccountManagement.Application.Contract.User;
+using AccountManagement.Application.Contract.UserAddress;
 using AccountManagement.Application.Contract.UserCooperationRequest;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
@@ -44,6 +45,7 @@ namespace ServiceHost.Controllers
         private readonly IRoleTypeApplication _roleTypeApplication;
         private readonly ISellerPanelApplication _sellerPanelApplication;
         private readonly IPersonalityTypeApplication _personalityTypeApplication;
+        private readonly IUserAddressApplication _userAddressApplication;
 
         public UserController(IUserQuery userQuery, IAuthHelper authHelper, IUserApplication userApplication,
             IUPAccountRequestApplication upAccountRequestApplication, IRejectionReasonApplication rejectionReasonApplication,
@@ -51,7 +53,8 @@ namespace ServiceHost.Controllers
             IPersonalWalletApplication personalWalletApplication, IBusinessWalletApplication businessWalletApplication,
             IPersonalWalletOperationApplication personalWalletOperationApplication, IZarinPalFactory zarinPalFactory,
             IUserCooperationRequestApplication userCooperationRequestApplication, IRoleTypeApplication roleTypeApplication,
-            ISellerPanelApplication sellerPanelApplication, IPersonalityTypeApplication personalityTypeApplication)
+            ISellerPanelApplication sellerPanelApplication, IPersonalityTypeApplication personalityTypeApplication,
+            IUserAddressApplication userAddressApplication)
         {
             _userQuery = userQuery;
             _authHelper = authHelper;
@@ -67,6 +70,7 @@ namespace ServiceHost.Controllers
             _roleTypeApplication = roleTypeApplication;
             _sellerPanelApplication = sellerPanelApplication;
             _personalityTypeApplication = personalityTypeApplication;
+            _userAddressApplication = userAddressApplication;
         }
 
         #region for users To Edit profile details in their profile
@@ -77,10 +81,11 @@ namespace ServiceHost.Controllers
 
             long userId = _authHelper.CurrentAccountInfo().Id;
             var userInfo = _userQuery.GetUserInfo(userId);
+            var userAddresses = _userAddressApplication.GetListByUserId(userId);
             var EditUser = _userApplication.GetDetails(userId);
             //var RoleTypesWithRoles = _roleTypeApplication.GetList();
             var PersonalityTypesWithPersonalities = _personalityTypeApplication.GetList();
-            var model = new Tuple<UserInfoQueryModel, EditUser, List<PersonalityTypeViewModel>>(userInfo, EditUser, PersonalityTypesWithPersonalities);
+            var model = new Tuple<UserInfoQueryModel, List<UserAddressViewModel>, EditUser, List<PersonalityTypeViewModel>>(userInfo, userAddresses, EditUser, PersonalityTypesWithPersonalities);
             return View(model);
         }
 
@@ -106,6 +111,40 @@ namespace ServiceHost.Controllers
             return RedirectToAction("userProfile");
 
         }
+        #endregion
+
+        #region User Addresses Management
+        public IActionResult CreateAddress()
+        {
+            return PartialView();
+        }
+
+        [HttpPost]
+        public IActionResult CreateAddress(CreateUserAddress command)
+        {
+            long userId = _authHelper.CurrentAccountInfo().Id;
+            command.UserId = userId;
+            var result = _userAddressApplication.Create(command);
+            UserController.message = result.Message;
+            return RedirectToAction("userProfile");
+        }
+
+        public IActionResult EditAddress(long id)
+        {
+            var userAddress = _userAddressApplication.GetDetails(id);
+            return PartialView(userAddress);
+
+        }
+
+        [HttpPost]
+        public IActionResult EditAddress(EditUserAddress command)
+        {
+            var result = _userAddressApplication.Edit(command);
+            UserController.message = result.Message;
+            return RedirectToAction("userProfile");
+        }
+
+
         #endregion
 
         #region CreateUpAccountRequest

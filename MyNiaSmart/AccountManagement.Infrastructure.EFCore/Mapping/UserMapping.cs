@@ -21,9 +21,9 @@ namespace AccountManagement.Infrastructure.EFCore.Mapping
 
             builder.Property(x=>x.FullName).HasMaxLength(100);
             builder.Property(x=>x.MobileNumber).HasMaxLength(100);
-            builder.Property(x=>x.Capital).HasMaxLength(100);
-            builder.Property(x=>x.City).HasMaxLength(100);
-            builder.Property(x=>x.Address).HasMaxLength(256);
+            //builder.Property(x=>x.Capital).HasMaxLength(100);
+            //builder.Property(x=>x.City).HasMaxLength(100);
+            //builder.Property(x=>x.Address).HasMaxLength(256);
             builder.Property(x=>x.NationalCode).HasMaxLength(100);
             builder.Property(x=>x.ProfilePhoto).HasMaxLength(100);
             builder.Property(x=>x.IntroductorFullname).HasMaxLength(100);
@@ -33,6 +33,7 @@ namespace AccountManagement.Infrastructure.EFCore.Mapping
             //Relations
             builder.HasMany(x => x.UserRoles).WithOne(x => x.User).HasForeignKey(x => x.UserId);
             builder.HasMany(x => x.UserCooperationRequests).WithOne(x => x.User).HasForeignKey(x => x.UserId);
+            builder.HasMany(x => x.UserAddresses).WithOne(x => x.User).HasForeignKey(x => x.UserId);
             //builder.HasMany(x => x.UserPersonalityRequests).WithOne(x => x.User).HasForeignKey(x => x.UserId);
             builder.HasOne(x => x.UpAccountRequest).WithOne(x => x.User).HasForeignKey<UpAccountRequest>(x => x.UserId);
             builder.HasOne(x => x.PersonalWallet).WithOne(x => x.User).HasForeignKey<PersonalWallet>(x => x.UserId);

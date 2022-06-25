@@ -1,0 +1,50 @@
+﻿@model List<AccountManagement.Application.Contract.UserAddress.UserAddressViewModel>
+
+<div id="UserAddress" class="tab-pane fade">
+    <div class="pt-3">
+        <div class="settings-form">
+            <h4 class="text-primary">آدرس ها</h4>
+
+            <div class="widget-media">
+                <ul class="timeline">
+                    @foreach (var item in Model)
+                    {
+                        <li>
+                            <div class="timeline-panel">
+                                <div class="media mr-2">
+                                    <img alt="image" width="50" src="/maintheme/images/avatar/4.jpg">
+                                </div>
+                                <div class="media-body">
+                                    <h5 class="mb-1">@item.Address</h5>
+                                    <label class="d-block">استان :@item.Capital -شهر :@item.City </label>
+                                    <label class="d-block">کد پستی :@item.PostalCode  </label>
+                                    <label class="d-block">شماره همراه :@item.MobileNumber </label>
+                                </div>
+                                <div class="dropdown">
+                                    <button type="button" class="btn btn-primary light sharp" data-toggle="dropdown" aria-expanded="false">
+                                        <svg width="18px" height="18px" viewBox="0 0 24 24" version="1.1"><g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd"><rect x="0" y="0" width="24" height="24"></rect><circle fill="#000000" cx="5" cy="12" r="2"></circle><circle fill="#000000" cx="12" cy="12" r="2"></circle><circle fill="#000000" cx="19" cy="12" r="2"></circle></g></svg>
+                                    </button>
+                                    <div class="dropdown-menu" x-placement="bottom-start" style="position: absolute; will-change: transform; top: 0px; left: 0px; transform: translate3d(0px, 33px, 0px);">
+                                        <a class="dropdown-item" href="#showModal=/User/EditAddress/@item.Id">ویرایش</a>
+                                        <a class="dropdown-item" href="#showModal=/User/RemoveAddress/@item.Id">حذف</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </li>
+                    }
+                </ul>
+                <a href="#showModal=/User/CreateAddress" class="btn btn-outline-info">افزودن ادرس جدید</a>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+
+
+
+
+
+
+
+

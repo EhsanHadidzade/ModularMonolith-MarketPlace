@@ -4,9 +4,10 @@
 @using _0_MyNiaSmartQuery.Contract.User
 @using AccountManagement.Application.Contract.UserCooperationRequest
 @using AccountManagement.Application.Contract.User
+@using AccountManagement.Application.Contract.UserAddress
 @using AccountManagement.Application.Contract.PersonalityType
 @using _0_Framework.Contract
-@model Tuple<UserInfoQueryModel,EditUser,List<PersonalityTypeViewModel>>
+@model Tuple<UserInfoQueryModel,List<UserAddressViewModel>,EditUser,List<PersonalityTypeViewModel>>
 @inject IUserCooperationRequestApplication _userCooperationRequestApplication
 @inject IAuthHelper _authHelper
 
@@ -42,6 +43,9 @@
                             <li class="nav-item">
                                 <a href="#about-me" data-toggle="tab" class="nav-link active show">درباره من</a>
                             </li>
+                              <li class="nav-item">
+                                <a href="#UserAddress" data-toggle="tab" class="nav-link ">آدرس ها</a>
+                            </li>
                             <li class="nav-item">
                                 <a href="#profile-settings" data-toggle="tab" class="nav-link">تنظیمات</a>
                             </li>
@@ -51,8 +55,9 @@
                         </ul>
                         <div class="tab-content">
                             <partial name="_UserProfileInfo" model="@Model.Item1" />
-                            <partial name="_UserProfileEdit" model="@Model.Item2" />
-                            <partial name="_UserProfileCooperationRequest" model="@Model.Item3" />
+                            <partial name="_UserProfileAddress" model="@Model.Item2" />
+                            <partial name="_UserProfileEdit" model="@Model.Item3" />
+                            <partial name="_UserProfileCooperationRequest" model="@Model.Item4" />
                         </div>
                     </div>
                 </div>
