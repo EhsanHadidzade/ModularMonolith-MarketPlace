@@ -116,142 +116,148 @@
         </div>
     </div>
 
-    <div class="col-lg-12">
-        <div class="card">
-            <div class="card-header">
-                <h4 class="card-title">فروشندگان خاص</h4>
-                <div class="form-group col-md-6">
-                    <label>مرتب سازی بر اساس</label>
-                    <select class="form-control" id="SpecialSeller" onchange="FilterSpecialSellers()">
-                        <option value="0">انتخاب کنید</option>
-                        <option value="1">قیمت</option>
-                        <option value="2"> میزان گارانتی</option>
-                    </select>
+    @if (Model.Item2.Count > 0)
+    {
+        <div class="col-lg-12">
+            <div class="card">
+                <div class="card-header">
+                    <h4 class="card-title">فروشندگان خاص</h4>
+                    <div class="form-group col-md-6">
+                        <label>مرتب سازی بر اساس</label>
+                        <select class="form-control" id="SpecialSeller" onchange="FilterSpecialSellers()">
+                            <option value="0">انتخاب کنید</option>
+                            <option value="1">قیمت</option>
+                            <option value="2"> میزان گارانتی</option>
+                        </select>
+                    </div>
                 </div>
-            </div>
-            <div class="card-body" id="SpecSeller">
-                <div class="table-responsive">
-                    <table class="table table-bordered table-responsive-sm">
-                        <thead>
-                            <tr>
-                                <th>نام فروشگاه</th>
-                                <th>میزان رضایت</th>
-                                <th>قیمت فروشنده</th>
-                                <th>میزان گارانتی </th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            @foreach (var item in Model.Item2)
-                            {
+                <div class="card-body" id="SpecSeller">
+                    <div class="table-responsive">
+                        <table class="table table-bordered table-responsive-sm">
+                            <thead>
                                 <tr>
-
-                                    <td>
-                                        @if (!item.IsUserLegal)
-                                        {
-                                            <a href="/sellerProduct/@item.StoreName/@Model.Item1.Slug">@item.StoreName</a>
-                                        }
-                                        else
-                                        {
-                                            <a href="/sellerProduct/@item.CompanyName/@Model.Item1.Slug">@item.CompanyName</a>
-                                        }
-                                    </td>
-
-                                    <td>***</td>
-
-                                    <td class="color-primary">@item.SpecificProductPrice تومان</td>
-                                    @if (item.WarrantyTypeId == WarrantyTypeId.Hour)
-                                    {
-                                        <td>@item.WarrantyAmount ساعت</td>
-                                    }
-                                    @if (item.WarrantyTypeId == WarrantyTypeId.Day)
-                                    {
-                                        <td>@item.WarrantyAmount روز</td>
-                                    }
-                                    @if (item.WarrantyTypeId == WarrantyTypeId.Mounth)
-                                    {
-                                        <td>@item.WarrantyAmount ماه</td>
-                                    }
-                                    @if (item.WarrantyTypeId == WarrantyTypeId.Year)
-                                    {
-                                        <td>@item.WarrantyAmount سال</td>
-                                    }
+                                    <th>نام فروشگاه</th>
+                                    <th>میزان رضایت</th>
+                                    <th>قیمت فروشنده</th>
+                                    <th>میزان گارانتی </th>
                                 </tr>
-                            }
-
-                        </tbody>
-                    </table>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <div class="col-lg-12">
-        <div class="card">
-            <div class="card-header">
-                <h4 class="card-title">فروشنگان عادی</h4>
-                <div class="form-group col-md-6">
-                    <label>مرتب سازی بر اساس</label>
-                    <select class="form-control" id="NormalSeller" onchange="FilterNormalSellers()">
-                        <option value="0">انتخاب کنید</option>
-                        <option value="1">قیمت</option>
-                        <option value="2"> میزان گارانتی</option>
-                    </select>
-                </div>
-            </div>
-            <div class="card-body" id="NormSeller">
-                <div class="table-responsive">
-                    <table class="table table-bordered table-responsive-sm">
-                        <thead>
-                            <tr>
-                                <th>نام فروشگاه</th>
-                                <th>میزان رضایت</th>
-                                <th>قیمت فروشنده</th>
-                                <th>میزان گارانتی </th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                @foreach (var item in Model.Item3)
+                            </thead>
+                            <tbody>
+                                @foreach (var item in Model.Item2)
                                 {
-                                    <td>
-                                        @if (!item.IsUserLegal)
-                                        {
-                                            <a href="/sellerProduct/@item.StoreName/@Model.Item1.Slug">@item.StoreName</a>
-                                        }
-                                        else
-                                        {
-                                            <a href="/sellerProduct/@item.CompanyName/@Model.Item1.Slug">@item.CompanyName</a>
-                                        }
-                                    </td>
+                                    <tr>
 
-                                    <td>***</td>
+                                        <td>
+                                            @if (!item.IsUserLegal)
+                                            {
+                                                <a href="/sellerProduct/@item.StoreName/@Model.Item1.Slug">@item.StoreName</a>
+                                            }
+                                            else
+                                            {
+                                                <a href="/sellerProduct/@item.CompanyName/@Model.Item1.Slug">@item.CompanyName</a>
+                                            }
+                                        </td>
 
-                                    <td class="color-primary">@item.SpecificProductPrice تومان</td>
-                                    @if (item.WarrantyTypeId == WarrantyTypeId.Hour)
-                                    {
-                                        <td>@item.WarrantyAmount ساعت</td>
-                                    }
-                                    @if (item.WarrantyTypeId == WarrantyTypeId.Day)
-                                    {
-                                        <td>@item.WarrantyAmount روز</td>
-                                    }
-                                    @if (item.WarrantyTypeId == WarrantyTypeId.Mounth)
-                                    {
-                                        <td>@item.WarrantyAmount ماه</td>
-                                    }
-                                    @if (item.WarrantyTypeId == WarrantyTypeId.Year)
-                                    {
-                                        <td>@item.WarrantyAmount سال</td>
-                                    }
+                                        <td>***</td>
+
+                                        <td class="color-primary">@item.SpecificProductPrice تومان</td>
+                                        @if (item.WarrantyTypeId == WarrantyTypeId.Hour)
+                                        {
+                                            <td>@item.WarrantyAmount ساعت</td>
+                                        }
+                                        @if (item.WarrantyTypeId == WarrantyTypeId.Day)
+                                        {
+                                            <td>@item.WarrantyAmount روز</td>
+                                        }
+                                        @if (item.WarrantyTypeId == WarrantyTypeId.Mounth)
+                                        {
+                                            <td>@item.WarrantyAmount ماه</td>
+                                        }
+                                        @if (item.WarrantyTypeId == WarrantyTypeId.Year)
+                                        {
+                                            <td>@item.WarrantyAmount سال</td>
+                                        }
+                                    </tr>
                                 }
 
-                            </tr>
-                        </tbody>
-                    </table>
+                            </tbody>
+                        </table>
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
+    }
+
+    @if (Model.Item3.Count > 0)
+    {
+        <div class="col-lg-12">
+            <div class="card">
+                <div class="card-header">
+                    <h4 class="card-title">فروشنگان عادی</h4>
+                    <div class="form-group col-md-6">
+                        <label>مرتب سازی بر اساس</label>
+                        <select class="form-control" id="NormalSeller" onchange="FilterNormalSellers()">
+                            <option value="0">انتخاب کنید</option>
+                            <option value="1">قیمت</option>
+                            <option value="2"> میزان گارانتی</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="card-body" id="NormSeller">
+                    <div class="table-responsive">
+                        <table class="table table-bordered table-responsive-sm">
+                            <thead>
+                                <tr>
+                                    <th>نام فروشگاه</th>
+                                    <th>میزان رضایت</th>
+                                    <th>قیمت فروشنده</th>
+                                    <th>میزان گارانتی </th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    @foreach (var item in Model.Item3)
+                                    {
+                                        <td>
+                                            @if (!item.IsUserLegal)
+                                            {
+                                                <a href="/sellerProduct/@item.StoreName/@Model.Item1.Slug">@item.StoreName</a>
+                                            }
+                                            else
+                                            {
+                                                <a href="/sellerProduct/@item.CompanyName/@Model.Item1.Slug">@item.CompanyName</a>
+                                            }
+                                        </td>
+
+                                        <td>***</td>
+
+                                        <td class="color-primary">@item.SpecificProductPrice تومان</td>
+                                        @if (item.WarrantyTypeId == WarrantyTypeId.Hour)
+                                        {
+                                            <td>@item.WarrantyAmount ساعت</td>
+                                        }
+                                        @if (item.WarrantyTypeId == WarrantyTypeId.Day)
+                                        {
+                                            <td>@item.WarrantyAmount روز</td>
+                                        }
+                                        @if (item.WarrantyTypeId == WarrantyTypeId.Mounth)
+                                        {
+                                            <td>@item.WarrantyAmount ماه</td>
+                                        }
+                                        @if (item.WarrantyTypeId == WarrantyTypeId.Year)
+                                        {
+                                            <td>@item.WarrantyAmount سال</td>
+                                        }
+                                    }
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    }
 
 </div>
 

@@ -11,5 +11,9 @@ namespace ShopManagement.Application.Contract.Order
     {
         //using to Display current order Details ad items to user in his CurrentOrder View (his current cart) 
         OrderViewModel GetOrderDetailsByOrderId(long orderId);
+
+        //TO get Amount of order total Amount when user is changing order Items
+        long GetTotalAmountById(long orderId);
+
     }
 }

@@ -28,5 +28,8 @@ namespace ShopManagement.Application.Contract.SellerProduct
         //To Get Details of a product that is selling by one seller . we use this in Main shop prouctDetails View 
         SellerProductDetailsToShowViewModel GetDetailsBySellerPanelNameAndProductSlug(string shopName, string productSlug);
 
+        //To Get Price Of a specific Seller Pruct
+        long GetPriceById(long sellerProductId);
+
     }
 }

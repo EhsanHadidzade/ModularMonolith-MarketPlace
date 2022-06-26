@@ -434,7 +434,7 @@
                         </div>
                     </div>
                     <div class="tab-pane fade userOrderItems" id="userOrderItems" role="tabpanel">
-                      @await Component.InvokeAsync("LeftBarOrderItem")
+                        @await Component.InvokeAsync("LeftBarOrderItem")
                     </div>
                     <div class="tab-pane fade" id="notes">
                         <div class="card mb-sm-3 mb-md-0 note_card">
@@ -543,11 +543,11 @@
                             <svg id="icon-table" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-server"><rect x="2" y="2" width="20" height="8" rx="2" ry="2"></rect><rect x="2" y="14" width="20" height="8" rx="2" ry="2"></rect><line x1="6" y1="6" x2="6" y2="6"></line><line x1="6" y1="18" x2="6" y2="18"></line></svg>
                         </a>
                     </li>
-                   @* <li class="nav-item">
+                    @* <li class="nav-item">
                         <a class="nav-link" data-toggle="tab" href="#extra">
-                            <svg id="icon-pages" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-grid"><rect x="3" y="3" width="7" height="7"></rect><rect x="14" y="3" width="7" height="7"></rect><rect x="14" y="14" width="7" height="7"></rect><rect x="3" y="14" width="7" height="7"></rect></svg>
+                        <svg id="icon-pages" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-grid"><rect x="3" y="3" width="7" height="7"></rect><rect x="14" y="3" width="7" height="7"></rect><rect x="14" y="14" width="7" height="7"></rect><rect x="3" y="14" width="7" height="7"></rect></svg>
                         </a>
-                    </li>*@
+                        </li>*@
                 </ul>
             </div>
             <a href="/Account/LogOut" class="logout-btn"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-log-out"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"></path><polyline points="16 17 21 12 16 7"></polyline><line x1="21" y1="12" x2="9" y2="12"></line></svg></a>
@@ -599,14 +599,15 @@
         Scripts
     ***********************************-->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-    <script src="/lib/jquery/dist/jquery.min.js"></script>
 
+    <script src="/lib/jquery/dist/jquery.min.js"></script>
     <!-- Required vendors -->
     <script src="~/Maintheme/vendor/global/global.min.js"></script>
     <script src="~/Maintheme/vendor/bootstrap-select/dist/js/bootstrap-select.min.js"></script>
     <script src="~/Maintheme/vendor/chart.js/Chart.bundle.min.js"></script>
     <script src="~/Maintheme/js/custom.min.js"></script>
     <script src="~/Maintheme/js/deznav-init.js"></script>
+
     <!-- Apex Chart -->
     <script src="~/Maintheme/vendor/apexchart/apexchart.js"></script>
 
@@ -631,26 +632,27 @@
     <script src="~/Maintheme/js/persian-datepicker.min.js"></script>
 
     <!--AppEditor-->
-   @* <script src="https://cdn.tiny.cloud/1/mv5jggxasqwrpouy53ns2o2ej8olnbbz9olotbomp5dsytwm/tinymce/6/tinymce.min.js" referrerpolicy="origin"></script>
-    <script>
+    @* <script src="https://cdn.tiny.cloud/1/mv5jggxasqwrpouy53ns2o2ej8olnbbz9olotbomp5dsytwm/tinymce/6/tinymce.min.js" referrerpolicy="origin"></script>
+        <script>
         tinymce.init({
-          selector: '#BodyContent',
-          plugins: 'a11ychecker advcode casechange export formatpainter image editimage linkchecker autolink lists checklist media mediaembed pageembed permanentpen powerpaste table advtable tableofcontents tinycomments tinymcespellchecker',
-          toolbar: 'a11ycheck addcomment showcomments casechange checklist code export formatpainter image editimage pageembed permanentpen table tableofcontents',
-          toolbar_mode: 'floating',
-          tinycomments_mode: 'embedded',
-          tinycomments_author: 'Author name',
-          directionality : 'rtl',
-          file_picker_types: 'file image media'
-       
+        selector: '#BodyContent',
+        plugins: 'a11ychecker advcode casechange export formatpainter image editimage linkchecker autolink lists checklist media mediaembed pageembed permanentpen powerpaste table advtable tableofcontents tinycomments tinymcespellchecker',
+        toolbar: 'a11ycheck addcomment showcomments casechange checklist code export formatpainter image editimage pageembed permanentpen table tableofcontents',
+        toolbar_mode: 'floating',
+        tinycomments_mode: 'embedded',
+        tinycomments_author: 'Author name',
+        directionality : 'rtl',
+        file_picker_types: 'file image media'
+
         });
-    </script>*@
+        </script>*@
 
     <!--validatations-->
     <script src="~/lib/jquery-validation/dist/jquery.validate.min.js"></script>
     <script src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.min.js"></script>
 
     <script src="~/Maintheme/js/site.js"></script>
+
     <script src="~/MainTheme/js/IranCities/ir-city-select.js"></script>
 
     @RenderSection("Scripts",false)

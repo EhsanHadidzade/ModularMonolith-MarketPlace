@@ -11,6 +11,7 @@ namespace ShopManagement.Domain.OrderAgg
     public class Order : BaseEntity
     {
         public long UserId { get; private set; }
+        public long UserAddressId { get;private set; }
         public long TotalAmount { get; private set; }
         public bool IsPaid { get; private set; }
         public int PaymentMethod { get; private set; }
@@ -30,16 +31,22 @@ namespace ShopManagement.Domain.OrderAgg
             OrderItems = new List<OrderItem>();
         }
 
-        public Order(long userId, long totalAmount, int paymentMethod)
+        public Order(long userAddressId, long totalAmount) 
         {
-            UserId = userId;
             TotalAmount = totalAmount;
-            PaymentMethod = paymentMethod;
-            IsPaid = false;
-            IsCanceled = false;
-            RefId = 0;
-            OrderItems = new List<OrderItem>();
+            UserAddressId = userAddressId;
         }
+
+        //public Order(long userId, long totalAmount, int paymentMethod)
+        //{
+        //    UserId = userId;
+        //    TotalAmount = totalAmount;
+        //    PaymentMethod = paymentMethod;
+        //    IsPaid = false;
+        //    IsCanceled = false;
+        //    RefId = 0;
+        //    OrderItems = new List<OrderItem>();
+        //}
 
         //After A Succeed Payment For Order , we call this method 
         public void PaymentSucceeded(long refId)
@@ -63,6 +70,16 @@ namespace ShopManagement.Domain.OrderAgg
         public void AddItem(OrderItem item)
         {
             OrderItems.Add(item);
+        }
+
+        //Using While Adding new seller Product to current order
+        public void IncreaseTotalAmount(long amount)
+        {
+            TotalAmount = TotalAmount + amount;
+        }
+        public void UpdateTotalAmount(long totalAmount)
+        {
+            TotalAmount = totalAmount;
         }
     }
 }

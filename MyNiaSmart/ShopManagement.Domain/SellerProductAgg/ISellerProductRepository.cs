@@ -24,6 +24,9 @@ namespace ShopManagement.Domain.SellerProductAgg
         //To Find any information about the product that seller is selling . using when we need in buying process and showing list of orderItems
         long GetProductIdBySellerProductId(long sellerProductId);
 
+        //to use in order Item Updating while changing item Count By Client
+        long GetSellerPriceBySellerproductId(long sellerProductId);
+
 
 
     }

@@ -24,5 +24,10 @@ namespace ShopManagement.Application
         {
             return _orderRepository.GetOrderDetailsByOrderId(orderId);
         }
+
+        public long GetTotalAmountById(long orderId)
+        {
+            return _orderRepository.GetTotalAmountById(orderId);
+        }
     }
 }

@@ -9,10 +9,11 @@ namespace ShopManagement.Application.Contract.Order
 {
     public class CreateOrder
     {
-        public long UserId { get;  set; }
-        public long TotalAmount { get;  set; }
-        public int PaymentMethod { get;  set; }
+        public long UserId { get; set; }
+        public long UserAddressId { get; set; }
+        public long TotalAmount { get; set; }
+        public int PaymentMethod { get; set; }
 
-        public List<CreateOrderItem> OrderItems { get;  set; }
+        public List<CreateOrderItem> OrderItems { get; set; }
     }
 }

@@ -8,6 +8,7 @@ namespace ShopManagement.Application.Contract.OrderItem
 {
     public class OrderItemViewModel
     {
+        public long Id { get; set; }
         public long SellerProductId { get; set; }
         public string SellerProductTitle { get; set; }
         public long OrderId { get; set; }

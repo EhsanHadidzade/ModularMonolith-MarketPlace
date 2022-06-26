@@ -13,24 +13,24 @@ namespace AccountManagement.Infrastructure.EFCore.Repository
     {
         private readonly AccountContext _context;
 
-        public UserAddressRepository(AccountContext context):base(context)
+        public UserAddressRepository(AccountContext context) : base(context)
         {
             _context = context;
         }
 
         public EditUserAddress GetDetails(long id)
         {
-            return _context.UserAddresses.Select(x=>new EditUserAddress
+            return _context.UserAddresses.Select(x => new EditUserAddress
             {
-                Id=x.Id,
-                Address=x.Address,
-                Capital=x.Capital,
-                City=x.City,
-                MobileNumber=x.MobileNumber,
-                PlaqueNumber=x.PlaqueNumber,
-                PostalCode=x.PostalCode,
-                UserId=x.UserId
-            }).FirstOrDefault(x=>x.Id==id);
+                Id = x.Id,
+                Address = x.Address,
+                Capital = x.Capital,
+                City = x.City,
+                MobileNumber = x.MobileNumber,
+                PlaqueNumber = x.PlaqueNumber,
+                PostalCode = x.PostalCode,
+                UserId = x.UserId
+            }).FirstOrDefault(x => x.Id == id);
         }
 
         public List<UserAddressViewModel> GetListByUserId(long userId)
@@ -42,9 +42,9 @@ namespace AccountManagement.Infrastructure.EFCore.Repository
                 Capital = x.Capital,
                 City = x.City,
                 MobileNumber = x.MobileNumber,
-                PostalCode=x.PostalCode,
+                PostalCode = x.PostalCode,
                 UserId = x.UserId
-            }).Where(x=>x.UserId==userId).ToList();
+            }).Where(x => x.UserId == userId).ToList();
         }
     }
 }

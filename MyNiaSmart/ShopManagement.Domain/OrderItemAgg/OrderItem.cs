@@ -24,5 +24,10 @@ namespace ShopManagement.Domain.OrderItemAgg
             UnitPrice = unitPrice;
             OrderId = orderId;
         }
+        public void Update(int count, long unitPrice)
+        {
+            Count = count;
+            UnitPrice = unitPrice;
+        }
     }
 }

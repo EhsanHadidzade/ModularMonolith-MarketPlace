@@ -53,6 +53,7 @@ namespace ShopManagement.Application
 
                 orderItem = new OrderItem(command.SellerProductId, command.Count, command.UnitPrice, currentOrder.Id);
                 currentOrder.AddItem(orderItem);
+                currentOrder.IncreaseTotalAmount(orderItem.UnitPrice);
                 _orderRepository.Savechange();
                 return operation.Succedded("محصول به سبد شما اضافه شد، برای مدیریت بهتر روی آن کلیک کنید");
             }
@@ -63,6 +64,7 @@ namespace ShopManagement.Application
 
             orderItem = new OrderItem(command.SellerProductId, command.Count, command.UnitPrice, currentOrder.Id);
             currentOrder.AddItem(orderItem);
+            currentOrder.IncreaseTotalAmount(orderItem.UnitPrice);
             _orderRepository.Savechange();
             operation.Id = currentOrder.Id;
             return operation.Succedded("محصول به سبد شما اضافه شد، برای مدیریت بهتر روی آن کلیک کنید");
@@ -98,6 +100,29 @@ namespace ShopManagement.Application
             }
 
             return projectedOrderItems;
+        }
+
+        public long UpdateByIdAndCount(long orderItemId, int count)
+        {
+            var orderItem = _orderItemRepository.GetById(orderItemId);
+
+            //To Find Exact Price Of Seller
+            var productPrice = _sellerProductRepository.GetSellerPriceBySellerproductId(orderItem.SellerProductId);
+
+            orderItem.Update(count, count * productPrice);
+            _orderItemRepository.Savechange();
+
+            var specificOrder = _orderRepository.GetOrderDetailsByOrderId(orderItem.OrderId);
+            var orderTotalAmount = specificOrder.orderItems.Select(x => x.UnitPrice).ToList().Sum();
+
+            var order = _orderRepository.GetById(orderItem.OrderId);
+            order.UpdateTotalAmount(orderTotalAmount);
+            _orderRepository.Savechange();
+
+            return order.Id;
+
+
+
         }
     }
 }

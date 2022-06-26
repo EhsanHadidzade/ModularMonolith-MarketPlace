@@ -52,6 +52,7 @@ namespace ShopManagement.Infrastructure.EFCore.Repository
 
             order.orderItems = _shopContext.OrderItems.Select(x => new OrderItemViewModel()
             {
+                Id = x.Id,
                 OrderId = x.OrderId,
                 SellerProductId = x.SellerProductId,
                 UnitPrice = x.UnitPrice,
@@ -69,6 +70,10 @@ namespace ShopManagement.Infrastructure.EFCore.Repository
             return order;
         }
 
-
+        public long GetTotalAmountById(long orderId)
+        {
+            var order = _shopContext.Orders.Select(x => new { x.Id, x.TotalAmount }).FirstOrDefault(x => x.Id == orderId);
+            return order.TotalAmount;
+        }
     }
 }

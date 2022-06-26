@@ -48,6 +48,9 @@ namespace ShopManagement.Infrastructure.EFCore.Migrations
                     b.Property<long>("TotalAmount")
                         .HasColumnType("bigint");
 
+                    b.Property<long>("UserAddressId")
+                        .HasColumnType("bigint");
+
                     b.Property<long>("UserId")
                         .HasColumnType("bigint");
 

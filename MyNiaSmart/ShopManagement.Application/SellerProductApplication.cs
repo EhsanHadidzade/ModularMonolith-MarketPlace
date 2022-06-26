@@ -161,5 +161,10 @@ namespace ShopManagement.Application
             };
             return SpecificProductInfo;
         }
+
+        public long GetPriceById(long sellerProductId)
+        {
+            return _selleProductRepository.GetSellerPriceBySellerproductId(sellerProductId);
+        }
     }
 }
