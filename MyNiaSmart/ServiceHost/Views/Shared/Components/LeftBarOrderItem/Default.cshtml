@@ -33,9 +33,9 @@
                                 <div class="img_cont primary">
                                     <img src="/UploadedFiles/@item.PictureURL" class="rounded-lg mr-1" width="24" alt="">
                                 </div>
-                                <div class="">
-                                  <h6>@item.SellerProductTitle (تعداد : @item.Count)</h6>
-                                    <p> قیمت : @item.UnitPrice تومان</p>
+                                <div class="LeftBarOrderInfo">
+                                  <h6>@item.SellerProductTitle (تعداد : <partial class="@item.Id">@item.Count</partial>)</h6>
+                                    <p> قیمت : <strong class="@item.Id">@item.UnitPrice</strong> تومان</p>
                                 </div>
                             </div>
                         </a>

@@ -5,7 +5,11 @@
 @{
     ViewData["Title"] = "سبد خرید";
 }
-
+<style>
+    html.busy {
+        cursor: wait !important;
+    }
+</style>
 <div class="row page-titles mx-0">
     <div class="col-sm-6 p-md-0">
         <div class="welcome-text">
@@ -56,14 +60,6 @@
                             </li>
                         </ul>
 
-                        <form>
-                            <div class="input-group">
-                                <input type="text" class="form-control" placeholder="کد تبلیغاتی">
-                                <div class="input-group-append">
-                                    <button type="submit" class="btn btn-primary">از گرو در اوردن</button>
-                                </div>
-                            </div>
-                        </form>
                     </div>
                     <div class="col-md-6 order-md-1">
                         <h4 class="mb-3">آدرس قبض</h4>
@@ -79,23 +75,22 @@
 
                             </div>
                             <div class="row">
-                                <div class="col-md-9">
-                                    <div class="mb-3">
-                                        <label for="address">آدرس</label>
-                                        <input type="text" class="form-control" id="UserAddressText" placeholder=" لطفا با دکمه رو به رو ادرس مورد نظر خود را انتخاب کنید" readonly>
-                                        <div class="invalid-feedback">
-                                            لطفا آدرس حمل و نقل خود را وارد کنید
-                                        </div>
+                                <div class="col-9 pt-3 pb-3 border-right">
+                                    <label for="address">آدرس</label>
+                                    <input type="text" class="form-control" id="UserAddressText" placeholder=" لطفا با دکمه رو به رو ادرس مورد نظر خود را انتخاب کنید" readonly>
+                                    <div class="invalid-feedback">
+                                        لطفا آدرس حمل و نقل خود را وارد کنید
                                     </div>
                                 </div>
-                                <div class="col-md-3">
+                                <div class="col-3 pt-3 pb-3">
                                     <label></label>
-                                    <a class="btn btn-success" href="#showModal=/Order/SearchUserAddress" style="width:100%">انتخاب آدرس </a>
+                                    <a class="btn btn-outline-success mt-3 px-5" href="#showModal=/Order/SearchUserAddress" >انتخاب آدرس </a>
                                 </div>
                                 <input type="hidden" id="UserAddressId" />
 
                             </div>
-                            <button class="btn btn-primary btn-lg btn-block" type="submit">ادامه و خرید</button>
+                            <button class="btn btn-primary btn-lg btn-block" type="submit">پرداخت از طریق درگاه انلاین</button>
+                            <a href="#showModal=/Order/PayOrderByPersonalWallet/@Model.Id" class="btn btn-primary btn-lg btn-block">خرید از طریق کیف پول</a>
                         </form>
                     </div>
                 </div>
@@ -104,7 +99,6 @@
     </div>
 </div>
 
-
 @section Scripts{
 <script>
     function CalculateTotal(id){
@@ -112,21 +106,19 @@
             url:"/Order/UpdateOrder",
             type:'json',
             data:{count:$("input."+id).val(),orderItemId:id},
+            beforeSend:function(){
+                $("html").addClass("busy");
+            },
             success:function(result){
                    debugger
+                $("html").removeClass("busy");
                    $("#total").text(result);
                   let oldPrice= $("input#"+id).val();
                   $("partial."+id).text(oldPrice*$("input."+id).val());
+                  $("div.LeftBarOrderInfo partial."+id).text($("input."+id).val());
+                  $("div.LeftBarOrderInfo p strong."+id).text(oldPrice*$("input."+id).val());
             }
-
         })
-
-
-
-
-
-
-
     }
 </script>
 <script src="~/MainTheme/vendor/highlightjs/highlight.pack.min.js"></script>

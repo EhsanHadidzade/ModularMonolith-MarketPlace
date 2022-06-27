@@ -127,5 +127,11 @@ namespace AccountManagement.Infrastructure.EFCore.Repository
         {
             return _context.PersonalWallets.Select(x => new { x.CardNumber, x.OwnerFullName }).FirstOrDefault(x => x.CardNumber == cardNumber).OwnerFullName;
         }
+
+        public long GetBalanceByUserId(long userId)
+        {
+            var wallet = _context.PersonalWallets.Select(x => new { x.UserId, x.WalletBalance }).FirstOrDefault(x => x.UserId == userId);
+            return wallet.WalletBalance;
+        }
     }
 }

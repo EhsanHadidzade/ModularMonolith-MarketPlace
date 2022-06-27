@@ -16,6 +16,7 @@ using AccountManagement.Application.Contract.UserCooperationRequest;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
+using ShopManagement.Application.Contract.Order;
 using ShopManagement.Application.Contract.SellerPanel;
 using System;
 using System.Collections.Generic;
@@ -46,6 +47,7 @@ namespace ServiceHost.Controllers
         private readonly ISellerPanelApplication _sellerPanelApplication;
         private readonly IPersonalityTypeApplication _personalityTypeApplication;
         private readonly IUserAddressApplication _userAddressApplication;
+        private readonly IOrderApplication _orderApplication;
 
         public UserController(IUserQuery userQuery, IAuthHelper authHelper, IUserApplication userApplication,
             IUPAccountRequestApplication upAccountRequestApplication, IRejectionReasonApplication rejectionReasonApplication,
@@ -54,7 +56,7 @@ namespace ServiceHost.Controllers
             IPersonalWalletOperationApplication personalWalletOperationApplication, IZarinPalFactory zarinPalFactory,
             IUserCooperationRequestApplication userCooperationRequestApplication, IRoleTypeApplication roleTypeApplication,
             ISellerPanelApplication sellerPanelApplication, IPersonalityTypeApplication personalityTypeApplication,
-            IUserAddressApplication userAddressApplication)
+            IUserAddressApplication userAddressApplication, IOrderApplication orderApplication)
         {
             _userQuery = userQuery;
             _authHelper = authHelper;
@@ -71,6 +73,7 @@ namespace ServiceHost.Controllers
             _sellerPanelApplication = sellerPanelApplication;
             _personalityTypeApplication = personalityTypeApplication;
             _userAddressApplication = userAddressApplication;
+            _orderApplication = orderApplication;
         }
 
         #region for users To Edit profile details in their profile
@@ -333,10 +336,16 @@ namespace ServiceHost.Controllers
         }
         #endregion
 
-        #region UserOrderManagement
-        public IActionResult Order()
+        #region UserOrderManageMent
+        public IActionResult Orders()
         {
-            return View();
+            var userId=_authHelper.CurrentAccountInfo().Id;
+
+            var currentOrder = _orderApplication.GetUserCurrentOrdersByUserId(userId);
+            var recievedOrder = _orderApplication.GetUserRecievedOrdersByUserId(userId);
+            var canceledOrder=_orderApplication.GetUserCanceledOrdersByUserId(userId);
+            var model=new Tuple<List<OrderViewModel>, List<OrderViewModel>, List<OrderViewModel>>(currentOrder, recievedOrder, canceledOrder);  
+            return View(model);
         }
         #endregion
 

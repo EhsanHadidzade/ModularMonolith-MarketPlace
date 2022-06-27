@@ -377,15 +377,23 @@
                             </div>
                         </a>
                         <div class="dropdown-menu dropdown-menu-right">
-                            <a href="app-profile.html" class="dropdown-item ai-icon">
+                            <a href="/user/userprofile" class="dropdown-item ai-icon">
                                 <svg id="icon-user1" xmlns="http://www.w3.org/2000/svg" class="text-primary" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2" style="stroke-dasharray: 25, 45; stroke-dashoffset: 0;"></path><path d="M8,7A4,4 0,1,1 16,7A4,4 0,1,1 8,7" style="stroke-dasharray: 26, 46; stroke-dashoffset: 0;"></path></svg>
                                 <span class="ml-2">پروفایل </span>
                             </a>
-                            <a href="email-inbox.html" class="dropdown-item ai-icon">
-                                <svg id="icon-inbox" xmlns="http://www.w3.org/2000/svg" class="text-success" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z" style="stroke-dasharray: 69, 89; stroke-dashoffset: 0;"></path><path d="M22,6L12,13L2,6" style="stroke-dasharray: 25, 45; stroke-dashoffset: 0;"></path></svg>
-                                <span class="ml-2">صندوق ورودی </span>
+                            <a href="/user/orders" class="dropdown-item ai-icon">
+                                <svg id="icon-user1" xmlns="http://www.w3.org/2000/svg" class="text-primary" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2" style="stroke-dasharray: 25, 45; stroke-dashoffset: 0;"></path><path d="M8,7A4,4 0,1,1 16,7A4,4 0,1,1 8,7" style="stroke-dasharray: 26, 46; stroke-dashoffset: 0;"></path></svg>
+                                <span class="ml-2">سفارش ها </span>
                             </a>
-                            <a href="page-login.html" class="dropdown-item ai-icon">
+                            <a href="/User/wallet" class="dropdown-item ai-icon">
+                                <svg id="icon-inbox" xmlns="http://www.w3.org/2000/svg" class="text-success" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z" style="stroke-dasharray: 69, 89; stroke-dashoffset: 0;"></path><path d="M22,6L12,13L2,6" style="stroke-dasharray: 25, 45; stroke-dashoffset: 0;"></path></svg>
+                                <span class="ml-2">کیف پول </span>
+                            </a>
+                            <a href="/User/UpgradeAccount" class="dropdown-item ai-icon">
+                                <svg id="icon-inbox" xmlns="http://www.w3.org/2000/svg" class="text-success" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z" style="stroke-dasharray: 69, 89; stroke-dashoffset: 0;"></path><path d="M22,6L12,13L2,6" style="stroke-dasharray: 25, 45; stroke-dashoffset: 0;"></path></svg>
+                                <span class="ml-2">ارتقا حساب کاربری </span>
+                            </a>
+                            <a href="/Account/LogOut" class="dropdown-item ai-icon">
                                 <svg id="icon-logout" xmlns="http://www.w3.org/2000/svg" class="text-danger" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4" style="stroke-dasharray: 29, 49; stroke-dashoffset: 0;"></path><path d="M16,17L21,12L16,7" style="stroke-dasharray: 15, 35; stroke-dashoffset: 0;"></path><path d="M21,12L9,12" style="stroke-dasharray: 12, 32; stroke-dashoffset: 0;"></path></svg>
                                 <span class="ml-2">خروج </span>
                             </a>
@@ -393,7 +401,7 @@
                     </li>
                     <li class="nav-item right-sidebar">
                         <a class="nav-link bell ai-icon" href="#" id="showLeftBar">
-                            @if (UserOrderItems.Count>0)
+                            @if (UserOrderItems.Count > 0)
                             {
                                 <div class="pulse-css"></div>
                             }
@@ -421,3 +429,5 @@
 <!--**********************************
     Header end ti-comment-alt
 ***********************************-->
+
+

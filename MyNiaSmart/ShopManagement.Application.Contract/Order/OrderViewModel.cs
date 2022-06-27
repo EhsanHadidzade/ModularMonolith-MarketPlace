@@ -13,6 +13,9 @@ namespace ShopManagement.Application.Contract.Order
         public long UserId { get; set; }
         public long TotalAmount { get; set; }
         public bool IsCanceled { get; set; }
+        public string PaymentDate { get; set; }
+        public bool IsRevievedByUser { get; set; }
+        public string IssueTrackingNo { get; set; }
         public bool IsPaid { get; set; }
         public List<OrderItemViewModel> orderItems { get; set; }
     }

@@ -18,6 +18,9 @@ namespace AccountManagement.Application.Contract.PersonalWallet
         //creating wallet operation for them and also create wallet chart for them
         void ChangeBalanceOfSenderAndReceiver(TransferToAnotherWallet command);
 
+        //using when user want to pay specific order with his wallet
+        long GetBalanceByUserId(long userId);
+
 
 
     }

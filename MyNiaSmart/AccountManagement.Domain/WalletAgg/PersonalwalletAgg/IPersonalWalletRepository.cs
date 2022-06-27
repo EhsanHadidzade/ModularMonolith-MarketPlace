@@ -21,6 +21,10 @@ namespace AccountManagement.Domain.WalletAgg.PersonalwalletAgg
 
         long CalculatePersonalWalletBalance(long personalWalletId);
         long GetBalanceByPersonalWalletId(long personalWalletId);
+
+        //using when user want to pay specific order with his wallet
+        long GetBalanceByUserId(long userId);
+
         PersonalWalletViewModel GetWalletByUserId(long userId);
         PersonalWalletViewModel GetWalletByCardNumber(string cardNumber);
     }

@@ -24,6 +24,17 @@ namespace ShopManagement.Domain.OrderAgg
 
 
 
+        //To Find List Of current user Orders in his profile
+        List<OrderViewModel> GetUserCurrentOrdersByUserId(long userId);
+
+        //To Find List Of  user RecievedOrders in his profile
+        List<OrderViewModel> GetUserRecievedOrdersByUserId(long userId);
+
+        //To Find List Of  user Canceled Orders in his profile
+        List<OrderViewModel> GetUserCanceledOrdersByUserId(long userId);
+
+
+
 
     }
 }

@@ -85,6 +85,7 @@ namespace ShopManagement.Application
         {
             var projectedOrderItems = orderItems.Select(x => new OrderItemViewModel()
             {
+                Id=x.Id,
                 SellerProductId = x.SellerProductId,
                 UnitPrice = x.UnitPrice,
                 Count = x.Count,

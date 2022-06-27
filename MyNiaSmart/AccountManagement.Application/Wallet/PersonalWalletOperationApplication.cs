@@ -30,6 +30,11 @@ namespace AccountManagement.Application.Wallet
         }
 
 
+        public OperationResult PayOrder(long amount)
+        {
+            throw new NotImplementedException();
+        }
+
 
         public long ChargePersonalWallet(ChargePersonalWallet command)
         {
@@ -118,5 +123,7 @@ namespace AccountManagement.Application.Wallet
         {
             return _personalWalletOperationRepository.GetAllOperationsByWalletId(personalWalletId);
         }
+
+    
     }
 }

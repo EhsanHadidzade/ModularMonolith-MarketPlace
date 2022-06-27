@@ -72,5 +72,10 @@ namespace AccountManagement.Application.Wallet
         {
             return _personalWalletRepository.GetBalanceByPersonalWalletId(personalWalletId);
         }
+
+        public long GetBalanceByUserId(long userId)
+        {
+            return _personalWalletRepository.GetBalanceByUserId(userId);
+        }
     }
 }

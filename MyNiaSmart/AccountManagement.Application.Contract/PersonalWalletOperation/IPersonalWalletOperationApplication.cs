@@ -29,9 +29,14 @@ namespace AccountManagement.Application.Contract.PersonalWalletOperation
 
         //to set status of an specific withdraw request
         void SetWithdrawRequestStatus(SetPersonalWalletOperationWithdrawRequestStatus command);
-      
 
-      
+
+        #region For Pay order by wallet
+        OperationResult PayOrder(long amount);
+        #endregion
+
+
+
 
 
 

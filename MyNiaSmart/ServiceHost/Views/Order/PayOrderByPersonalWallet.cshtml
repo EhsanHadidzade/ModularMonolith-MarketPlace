@@ -1,0 +1,43 @@
+﻿@model ShopManagement.Application.Contract.Order.OrderViewModel
+
+<div class="row">
+    <div class="col-xl-12 col-lg-12 col-sm-12">
+        <div class="card">
+            <form method="post" action="/Order/PayOrderByPersonalWallet">
+                <div class="card-header border-0 pb-0">
+                    <h2 class="card-title">پرداخت از طریق کیف پول شخصی</h2>
+                </div>
+                <div class="card-body pb-0">
+                    <ul class="list-group list-group-flush">
+                        <li class="list-group-item d-flex px-0 justify-content-between">
+                            <strong>موجودی کیف پول</strong>
+                            <span class="mb-0">@ViewData["PersonalWalletBalance"]</span>
+                        </li>
+                        <li class="list-group-item d-flex px-0 justify-content-between">
+                            <strong>مبلغ قابل پرداحت</strong>
+                            <span  class="mb-0">@Model.TotalAmount</span>
+                        </li>
+                    </ul>
+                </div>
+                <input type="hidden" value="@Model.Id" asp-for="Id"/>
+                <input type="hidden" value="@Model.TotalAmount" asp-for="TotalAmount" />
+                @if (ViewData["NotAllowPay"] != null)
+                {
+                    <div class="card-body pb-0">
+                        <strong class="text-danger"> موجودی شما کافی نیست .</strong>
+                        <strong>برای شارژ کیف پول کلیک کنید</strong>
+                        <a href="/" class="btn btn-dark btn-lg btn-block">شارژ کیف پول شخصی</a>
+                    </div>
+
+                }
+                <div class="card-footer pt-0 pb-0 text-center">
+                    <div class="row">
+                        <div class="col-12 pt-3 pb-3 border-right">
+                            <button class="btn btn-success btn-lg btn-block" type="submit" @((ViewData["NotAllowPay"]!=null)?"Disabled":"")>پرداخت از طریق کیف پول شخصی</button>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

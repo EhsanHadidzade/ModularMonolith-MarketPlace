@@ -11,11 +11,15 @@ namespace ShopManagement.Domain.OrderAgg
     public class Order : BaseEntity
     {
         public long UserId { get; private set; }
-        public long UserAddressId { get;private set; }
+        public long UserAddressId { get; private set; }
         public long TotalAmount { get; private set; }
         public bool IsPaid { get; private set; }
-        public int PaymentMethod { get; private set; }
+        public bool IsRecievedByUser { get; private set; }
+        public DateTime ReceiptDate { get;private set; }
+        public DateTime PaymentDate { get;private set; }
+        public DateTime CancelDate { get;private set; }
         public bool IsCanceled { get; private set; }
+        public int PaymentMethod { get; private set; }
         public string IssueTrackingNo { get; private set; }
         public long RefId { get; private set; }
 
@@ -27,11 +31,12 @@ namespace ShopManagement.Domain.OrderAgg
             UserId = userId;
             IsPaid = false;
             IsCanceled = false;
+            IsRecievedByUser = false;
             RefId = 0;
             OrderItems = new List<OrderItem>();
         }
 
-        public Order(long userAddressId, long totalAmount) 
+        public Order(long userAddressId, long totalAmount)
         {
             TotalAmount = totalAmount;
             UserAddressId = userAddressId;
@@ -49,22 +54,32 @@ namespace ShopManagement.Domain.OrderAgg
         //}
 
         //After A Succeed Payment For Order , we call this method 
+      
+
+        public void SetIssueTrackingNo(string number)
+        {
+            IssueTrackingNo = number;
+        }
+
+
+        public void SetAsCanceled()
+        {
+            CancelDate = DateTime.Now;
+            IsCanceled = true;
+        }
         public void PaymentSucceeded(long refId)
         {
+            PaymentDate = DateTime.Now;
             IsPaid = true;
 
             if (refId != 0)
                 RefId = refId;
         }
 
-        public void Cancel()
+        public void SetAsRecieved()
         {
-            IsCanceled = true;
-        }
-
-        public void SetIssueTrackingNo(string number)
-        {
-            IssueTrackingNo = number;
+            ReceiptDate = DateTime.Now;
+            IsRecievedByUser = true;
         }
 
         public void AddItem(OrderItem item)
@@ -81,5 +96,6 @@ namespace ShopManagement.Domain.OrderAgg
         {
             TotalAmount = totalAmount;
         }
+
     }
 }

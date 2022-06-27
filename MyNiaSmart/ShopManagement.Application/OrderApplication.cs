@@ -29,5 +29,20 @@ namespace ShopManagement.Application
         {
             return _orderRepository.GetTotalAmountById(orderId);
         }
+
+        public List<OrderViewModel> GetUserCanceledOrdersByUserId(long userId)
+        {
+            return _orderRepository.GetUserCanceledOrdersByUserId(userId);
+        }
+
+        public List<OrderViewModel> GetUserCurrentOrdersByUserId(long userId)
+        {
+            return _orderRepository.GetUserCurrentOrdersByUserId(userId);
+        }
+
+        public List<OrderViewModel> GetUserRecievedOrdersByUserId(long userId)
+        {
+            return _orderRepository.GetUserRecievedOrdersByUserId(userId);
+        }
     }
 }

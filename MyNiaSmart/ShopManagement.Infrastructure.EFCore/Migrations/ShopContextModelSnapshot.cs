@@ -26,6 +26,9 @@ namespace ShopManagement.Infrastructure.EFCore.Migrations
                         .HasColumnType("bigint")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
+                    b.Property<DateTime>("CancelDate")
+                        .HasColumnType("datetime2");
+
                     b.Property<DateTime>("CreationDate")
                         .HasColumnType("datetime2");
 
@@ -35,12 +38,21 @@ namespace ShopManagement.Infrastructure.EFCore.Migrations
                     b.Property<bool>("IsPaid")
                         .HasColumnType("bit");
 
+                    b.Property<bool>("IsRecievedByUser")
+                        .HasColumnType("bit");
+
                     b.Property<string>("IssueTrackingNo")
                         .HasMaxLength(12)
                         .HasColumnType("nvarchar(12)");
 
+                    b.Property<DateTime>("PaymentDate")
+                        .HasColumnType("datetime2");
+
                     b.Property<int>("PaymentMethod")
                         .HasColumnType("int");
+
+                    b.Property<DateTime>("ReceiptDate")
+                        .HasColumnType("datetime2");
 
                     b.Property<long>("RefId")
                         .HasColumnType("bigint");
