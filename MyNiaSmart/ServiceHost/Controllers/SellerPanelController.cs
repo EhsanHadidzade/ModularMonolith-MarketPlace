@@ -9,6 +9,8 @@ using Microsoft.AspNetCore.Http;
 using System.Collections.Generic;
 using System;
 using System.Linq;
+using ShopManagement.Application.Contract.Order;
+using ShopManagement.Application.Contract.OrderItem;
 
 namespace ServiceHost.Controllers
 {
@@ -20,17 +22,22 @@ namespace ServiceHost.Controllers
         private readonly ISellerPanelApplication _sellerPanelApplication;
         private readonly IProductApplication _productApplication;
         private readonly ISellerProductMediaApplication _sellerProductMediaApplication;
+        private readonly IOrderApplication _orderApplication;
+        private readonly IOrderItemApplication _orderItemApplication;
         private readonly IAuthHelper _authHelper;
 
         public SellerPanelController(ISellerProductApplication sellerProductApplication,
             ISellerPanelApplication sellerPanelApplication, IAuthHelper authHelper, IProductApplication productApplication,
-            ISellerProductMediaApplication sellerProductMediaApplication)
+            ISellerProductMediaApplication sellerProductMediaApplication, IOrderApplication orderApplication,
+            IOrderItemApplication orderItemApplication)
         {
             _sellerProductApplication = sellerProductApplication;
             _sellerPanelApplication = sellerPanelApplication;
             _authHelper = authHelper;
             _productApplication = productApplication;
             _sellerProductMediaApplication = sellerProductMediaApplication;
+            _orderApplication = orderApplication;
+            _orderItemApplication = orderItemApplication;
         }
 
         public IActionResult Index()
@@ -73,7 +80,6 @@ namespace ServiceHost.Controllers
 
         #endregion
 
-
         #region To Edit Specific Product Details
 
         public IActionResult EditProduct(long id)
@@ -105,7 +111,6 @@ namespace ServiceHost.Controllers
         }
         #endregion
 
-
         #region To select specific Product from SearchProductPartialView  for create form or edit form
 
         public string addproduct(long id)
@@ -116,7 +121,6 @@ namespace ServiceHost.Controllers
             return jsonObject;
         }
         #endregion
-
 
         #region To Show The Gallery Of user that need to use for thier products
         public IActionResult ShowGallery(long id)
@@ -148,7 +152,6 @@ namespace ServiceHost.Controllers
         }
         #endregion  
 
-
         #region To Choose the selected Media For specific Product
         // این متد تنها جنبه ی نمایش عکس روی صفحه اصلی فرم افزودن محصول دارد. و در هنگام سابمیت فرم محصول ، تصاویر برای محصول مورد نظر ذخیره خواهد شد
         [HttpPost]
@@ -176,6 +179,24 @@ namespace ServiceHost.Controllers
             var jsonObject = JsonConvert.SerializeObject(result);
             return jsonObject;
 
+        }
+        #endregion
+
+        #region 
+        public IActionResult UserOrderManagement()
+        {
+            var userId = _authHelper.CurrentAccountInfo().Id;
+            var orders = _orderApplication.GetCustomerOrdersInSellerPanelBySellerUserId(userId);
+            return View(orders);
+        }
+
+        public IActionResult UserOrderItemsManagement(long id)
+        {
+            //id==order id passed to find orderItems
+            var userId = _authHelper.CurrentAccountInfo().Id;
+            var sellerPanelId=_sellerPanelApplication.GetSellerPanelIdByUserId(userId);
+            var orderItems=_orderItemApplication.GetListWhichRelatedToSellerByOrderIdAndSellerPanelId(id,sellerPanelId);
+            return PartialView(orderItems);
         }
         #endregion
 

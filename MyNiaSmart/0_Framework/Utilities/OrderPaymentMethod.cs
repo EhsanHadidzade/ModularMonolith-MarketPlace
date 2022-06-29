@@ -9,5 +9,6 @@ namespace _0_Framework.Utilities
     public class OrderPaymentMethod
     {
         public const int OnlineGateWay = 1;
+        public const int PersonalWallet = 2;
     }
 }

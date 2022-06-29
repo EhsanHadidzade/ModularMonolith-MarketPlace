@@ -41,16 +41,8 @@
                         </div>
                         <button type="submit" class="btn btn-outline-success">تایید</button>
                     </form>
-                    <a onclick="DeleteMedia()" class="btn btn-outline-danger deleteMedia">حذف تصاویر </a>
-
-
-                    <div class="card-content">
-                        <div class="sweetalert mt-5">
-                            <button class="btn btn-primary btn sweet-danger-cancel">حذف تصاویر علامت گذاری </button>
-                        </div>
-                    </div>
-
-
+                    <br />
+                    <button onclick="DeleteMedia()" class="btn btn-outline-danger deleteMedia">حذف تصاویر </button>
                 </div>
             </div>
         </div>
@@ -68,7 +60,7 @@
             success:function(result){
                 debugger
                 $(".deleteResult").empty();
-                $(".deleteResult").append("<p>"+"حذف یا موفقیت انجام شد"+"</p>");
+                $(".deleteResult").append("<div class='alert alert-info'>"+"<p>"+"حذف یا موفقیت انجام شد"+"</p>"+"</div>");
                 $("#MainModal").modal("hide");
             }
         })

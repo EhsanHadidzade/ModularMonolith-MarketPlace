@@ -142,5 +142,10 @@ namespace ShopManagement.Infrastructure.EFCore.Repository
             var sellerProduct = _shopContext.SellerProducts.Select(x => new { x.Id, x.Price }).FirstOrDefault(x => x.Id == sellerProductId);
             return sellerProduct.Price;
         }
+
+        public List<long> GetIdsBySellerPanelId(long sellerPanelId)
+        {
+            return _shopContext.SellerProducts.Where(x => x.SellerPanelId == sellerPanelId).Select(x => x.Id).ToList();
+        }
     }
 }

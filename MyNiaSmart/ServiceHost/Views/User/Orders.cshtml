@@ -31,55 +31,47 @@
                 <div class="default-tab">
                     <ul class="nav nav-tabs" role="tablist">
                         <li class="nav-item">
-                            <a class="nav-link active" data-toggle="tab" href="#currentOrders"><i class="la la-home mr-2"></i>جاری</a>
+                            <a class="nav-link active" data-toggle="tab" href="#currentOrders">
+                                <i class="la la-home mr-2"></i>جاری
+                                @if (Model.Item1.Count > 0)
+                                {
+                                    <span class="badge badge-info badge-pill">@Model.Item1.Count</span>
+                                }
+                            </a>
+
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" data-toggle="tab" href="#paidOrders"><i class="la la-user mr-2"></i>تحویل داده شده</a>
+                            <a class="nav-link" data-toggle="tab" href="#RecievedOrders">
+                                <i class="la la-user mr-2"></i>تحویل داده شده
+                                @if (Model.Item2.Count > 0)
+                                {
+                                    <span class="badge badge-info badge-pill">@Model.Item2.Count</span>
+                                }
+                            </a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" data-toggle="tab" href="#canceledOrders"><i class="la la-phone mr-2"></i> کنسل شده </a>
+                            <a class="nav-link" data-toggle="tab" href="#canceledOrders">
+                                <i class="la la-phone mr-2"></i> کنسل شده
+                                @if (Model.Item3.Count > 0)
+                                {
+                                    <span class="badge badge-info badge-pill">@Model.Item3.Count</span>
+                                }
+                            </a>
                         </li>
-                    @*    <li class="nav-item">
+                        @*    <li class="nav-item">
                             <a class="nav-link active" data-toggle="tab" href="#message"><i class="la la-envelope mr-2"></i> مرجوع شده</a>
-                        </li>*@
+                            </li>*@
                     </ul>
                     <div class="tab-content">
                         <div class="tab-pane fade active show" id="currentOrders" role="tabpanel">
-                           <partial name="_CurrentOrders" model="@Model.Item1" />
+                            <partial name="_CurrentOrders" model="@Model.Item1"/>
                         </div>
-                        <div class="tab-pane fade" id="paidOrders">
-                            <div class="pt-4">
-                                <h4>تحویل داده شده</h4>
-                                <p>
-                                    لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک است. چاپگرها و متون بلکه روزنامه و مجله در ستون و سطرآنچنان که لازم است و برای شرایط فعلی تکنولوژی مورد نیاز و کاربردهای متنوع با هدف بهبود ابزارهای کاربردی می باشد..
-                                </p>
-                                <p>
-                                    لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک است. چاپگرها و متون بلکه روزنامه و مجله در ستون و سطرآنچنان که لازم است و برای شرایط فعلی تکنولوژی مورد نیاز و کاربردهای متنوع با هدف بهبود ابزارهای کاربردی می باشد..
-                                </p>
-                            </div>
+                        <div class="tab-pane fade" id="RecievedOrders">
+                            <partial name="_RecievedOrders" model="@Model.Item2"/>
                         </div>
                         <div class="tab-pane fade" id="canceledOrders">
-                            <div class="pt-4">
-                                <h4>کنسل شده</h4>
-                                <p>
-                                    لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک است. چاپگرها و متون بلکه روزنامه و مجله در ستون و سطرآنچنان که لازم است و برای شرایط فعلی تکنولوژی مورد نیاز و کاربردهای متنوع با هدف بهبود ابزارهای کاربردی می باشد.
-                                </p>
-                                <p>
-                                    لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک است. چاپگرها و متون بلکه روزنامه و مجله در ستون و سطرآنچنان که لازم است و برای شرایط فعلی تکنولوژی مورد نیاز و کاربردهای متنوع با هدف بهبود ابزارهای کاربردی می باشد.
-                                </p>
-                            </div>
+                            <partial name="_CanceledOrders" model="@Model.Item3"/>
                         </div>
-                      @*  <div class="tab-pane fade " id="message">
-                            <div class="pt-4">
-                                <h4>این عنوان پیام است</h4>
-                                <p>
-                                    لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک است. چاپگرها و متون بلکه روزنامه و مجله در ستون و سطرآنچنان که لازم است و برای شرایط فعلی تکنولوژی مورد نیاز و کاربردهای متنوع با هدف بهبود ابزارهای کاربردی می باشد..
-                                </p>
-                                <p>
-                                    لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک است. چاپگرها و متون بلکه روزنامه و مجله در ستون و سطرآنچنان که لازم است و برای شرایط فعلی تکنولوژی مورد نیاز و کاربردهای متنوع با هدف بهبود ابزارهای کاربردی می باشد..
-                                </p>
-                            </div>
-                        </div>*@
                     </div>
                 </div>
             </div>

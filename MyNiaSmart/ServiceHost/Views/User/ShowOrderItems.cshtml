@@ -1,0 +1,43 @@
+﻿@model List<ShopManagement.Application.Contract.OrderItem.OrderItemViewModel>
+
+
+
+<div class="row">
+    <div class="col-lg-12">
+        <div class="card">
+            <div class="card-header">
+                <h4 class="card-title">جرِئیات سفارش</h4>
+            </div>
+            <div class="card-body">
+                <div class="table-responsive">
+                    <table class="table table-responsive-md">
+                        <thead>
+                            <tr>
+                                <th><strong>تصویر محصول</strong></th>
+                                <th><strong> نام محصول</strong></th>
+                                <th><strong> نام فروشگاه</strong></th>
+                                <th><strong>تعداد </strong></th>
+                                <th><strong>قیمت کل </strong></th>
+                                <th></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var item in Model)
+                            {
+                                <tr>
+                                    <td class="sorting_1">
+                                        <img class="rounded-circle" width="35" src="/UploadedFiles/@item.PictureURL" alt="">
+                                    </td>
+                                    <td>@item.SellerProductTitle</td>
+                                    <td>@item.SellerShopName</td>
+                                    <td>@item.Count</td>
+                                    <td>@item.UnitPrice تومان</td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

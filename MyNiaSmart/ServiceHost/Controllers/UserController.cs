@@ -17,6 +17,7 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
 using ShopManagement.Application.Contract.Order;
+using ShopManagement.Application.Contract.OrderItem;
 using ShopManagement.Application.Contract.SellerPanel;
 using System;
 using System.Collections.Generic;
@@ -48,6 +49,7 @@ namespace ServiceHost.Controllers
         private readonly IPersonalityTypeApplication _personalityTypeApplication;
         private readonly IUserAddressApplication _userAddressApplication;
         private readonly IOrderApplication _orderApplication;
+        private readonly IOrderItemApplication _orderItemApplication;
 
         public UserController(IUserQuery userQuery, IAuthHelper authHelper, IUserApplication userApplication,
             IUPAccountRequestApplication upAccountRequestApplication, IRejectionReasonApplication rejectionReasonApplication,
@@ -56,7 +58,7 @@ namespace ServiceHost.Controllers
             IPersonalWalletOperationApplication personalWalletOperationApplication, IZarinPalFactory zarinPalFactory,
             IUserCooperationRequestApplication userCooperationRequestApplication, IRoleTypeApplication roleTypeApplication,
             ISellerPanelApplication sellerPanelApplication, IPersonalityTypeApplication personalityTypeApplication,
-            IUserAddressApplication userAddressApplication, IOrderApplication orderApplication)
+            IUserAddressApplication userAddressApplication, IOrderApplication orderApplication, IOrderItemApplication orderItemApplication)
         {
             _userQuery = userQuery;
             _authHelper = authHelper;
@@ -74,6 +76,7 @@ namespace ServiceHost.Controllers
             _personalityTypeApplication = personalityTypeApplication;
             _userAddressApplication = userAddressApplication;
             _orderApplication = orderApplication;
+            _orderItemApplication = orderItemApplication;
         }
 
         #region for users To Edit profile details in their profile
@@ -346,6 +349,14 @@ namespace ServiceHost.Controllers
             var canceledOrder=_orderApplication.GetUserCanceledOrdersByUserId(userId);
             var model=new Tuple<List<OrderViewModel>, List<OrderViewModel>, List<OrderViewModel>>(currentOrder, recievedOrder, canceledOrder);  
             return View(model);
+        }
+
+        public IActionResult ShowOrderItems(long id)
+        {
+            //id==Order Id Passed
+
+            var orderItems=_orderItemApplication.GetListByOrderId(id);
+            return PartialView(orderItems);
         }
         #endregion
 

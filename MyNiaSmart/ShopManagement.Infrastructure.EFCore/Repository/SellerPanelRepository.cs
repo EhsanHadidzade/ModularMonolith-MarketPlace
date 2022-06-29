@@ -62,7 +62,7 @@ namespace ShopManagement.Infrastructure.EFCore.Repository
                 CompanyName = x.CompanyName,
                 Islegal = x.IsUserLegal,
                 IsConfirmByAdmin = x.IsConfirmedByAdmin,
-                IsSpecial=x.IsSpecial
+                IsSpecial = x.IsSpecial
             }).OrderByDescending(x => x.Id).ToList();
         }
 
@@ -178,8 +178,19 @@ namespace ShopManagement.Infrastructure.EFCore.Repository
 
         public long GetUserIdBySellerPanelId(long sellerPanelId)
         {
-            var sellerPanel= _shopContext.SellerPanels.Select(x => new { x.Id, x.UserId }).FirstOrDefault(x=>x.Id==sellerPanelId);
+            var sellerPanel = _shopContext.SellerPanels.Select(x => new { x.Id, x.UserId }).FirstOrDefault(x => x.Id == sellerPanelId);
             return sellerPanel.UserId;
+        }
+
+        public string GetShopNameBySellerProductId(long sellerProductId)
+        {
+            var sellerPanelId = _shopContext.SellerProducts.Select(x => new { x.Id, x.SellerPanelId }).FirstOrDefault(x => x.Id == sellerProductId).SellerPanelId;
+
+            var sellerPanel = _shopContext.SellerPanels.Select(x => new { x.IsUserLegal, x.CompanyName, x.StoreName, x.Id }).FirstOrDefault(x => x.Id == sellerPanelId);
+            if (sellerPanel.IsUserLegal)
+                return sellerPanel.CompanyName;
+
+            return sellerPanel.StoreName;
         }
     }
 }

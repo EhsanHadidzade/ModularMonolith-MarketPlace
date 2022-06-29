@@ -14,31 +14,27 @@
                                 <th class="align-middle">کد رهگیری</th>
                                 <th class="align-middle pr-7">تاریخ پرداخت </th>
                                 <th class="align-middle" style="min-width: 12.5rem;"> مبلغ</th>
-                                <th class="no-sort">مشاهده </th>
+                                <th class="no-sort">مشاهده جرئیات </th>
                             </tr>
                         </thead>
                         <tbody id="orders">
                             @foreach (var order in Model)
                             {
                                 <tr class="btn-reveal-trigger">
-
                                     <td class="py-2">
                                         <a href="#">
-                                            <strong>#181</strong>
-                                        </a> توسط  <strong>راکی آنتونی</strong><br><a href="mailto:ricky@example.com">ricky@example.com</a>
+                                            <strong>#@order.IssueTrackingNo</strong>
+                                        </a>
                                     </td>
-                                    <td class="py-2">1399/8/9</td>
+                                    <td class="py-2">@order.PaymentDate</td>
                                     <td class="py-2">
-                                        ایران، ارومیه، شاهین دژ خیابان دانش کوچه 5
-                                        <p class="mb-0 text-500">از طریق نرخ مسطح</p>
+                                        @order.TotalAmount تومان
                                     </td>
                                     <td class="py-2 text-right">
-                                        <span class="badge badge-success">تکمیل شده<span class="ml-1 fa fa-check"></span></span>
+                                        <a href="#showModal=/User/ShowOrderItems/@order.Id" class="btn btn-outline-success">کلیک کنید</a>
                                     </td>
                                 </tr>
                             }
-
-
                         </tbody>
                     </table>
                 </div>

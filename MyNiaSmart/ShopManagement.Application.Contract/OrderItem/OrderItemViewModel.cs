@@ -11,6 +11,7 @@ namespace ShopManagement.Application.Contract.OrderItem
         public long Id { get; set; }
         public long SellerProductId { get; set; }
         public string SellerProductTitle { get; set; }
+        public string SellerShopName { get; set; }
         public long OrderId { get; set; }
         public long UnitPrice { get; set; }
         public string PictureURL { get; set; }

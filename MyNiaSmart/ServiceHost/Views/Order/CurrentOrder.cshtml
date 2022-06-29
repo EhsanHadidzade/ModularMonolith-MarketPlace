@@ -33,12 +33,12 @@
                     <div class="col-md-6 order-md-2 mb-4">
                         <h4 class="d-flex justify-content-between align-items-center mb-3">
                             <span class="text-muted">سبد خرید شما</span>
-                            <span class="badge badge-primary badge-pill">@Model.orderItems.Count</span>
+                            @*<span class="badge badge-primary badge-pill">@Model.orderItems.Count</span>*@
                         </h4>
                         <ul class="list-group mb-3">
                             @foreach (var item in Model.orderItems)
                             {
-                                <li class="list-group-item d-flex justify-content-between lh-condensed">
+                                <li class="list-group-item d-flex justify-content-between lh-condensed @item.Id" >
                                     <div>
                                         <h6 class="my-0">نام محصول</h6>
                                         <small class="text-muted">@item.SellerProductTitle</small>
@@ -51,8 +51,6 @@
                                     <span id="@item.Id" class="text-muted"><partial id="unitPrice" class="@item.Id">@item.UnitPrice</partial> تومان</span>
                                 </li>
                             }
-
-
 
                             <li class="list-group-item d-flex justify-content-between">
                                 <span>مجموع(تومان)</span>
@@ -110,6 +108,15 @@
                 $("html").addClass("busy");
             },
             success:function(result){
+                debugger
+                if($("input."+id).val()==0)
+                {
+                    $("li."+id).remove();
+                }
+                if(result==0)
+                {
+                    $("a#showLeftBar div.pulse-css").remove();
+                }
                    debugger
                 $("html").removeClass("busy");
                    $("#total").text(result);
@@ -122,6 +129,5 @@
     }
 </script>
 <script src="~/MainTheme/vendor/highlightjs/highlight.pack.min.js"></script>
-
 
 }

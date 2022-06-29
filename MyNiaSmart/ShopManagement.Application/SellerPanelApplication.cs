@@ -86,7 +86,7 @@ namespace ShopManagement.Application
 
             if (!string.IsNullOrWhiteSpace(command.StoreName))
             {
-                if (_sellerPanelRepository.IsExist(x => x.CompanyName == command.CompanyName))
+                if (_sellerPanelRepository.IsExist(x => x.StoreName == command.StoreName))
                     return operation.Failed("این نام قبلا ثبت شده است . از نام دیگری استفاده نمایید");
             }
 

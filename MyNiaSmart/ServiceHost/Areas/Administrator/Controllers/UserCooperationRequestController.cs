@@ -58,5 +58,11 @@ namespace ServiceHost.Areas.Administrator.Controllers
 
 
         }
+
+
+        public IActionResult ShowConfirmedUserPersonalities(long id)
+        {
+            return View();
+        }
     }
 }

@@ -16,6 +16,10 @@ namespace ShopManagement.Application.Contract.Order
         long GetTotalAmountById(long orderId);
 
 
+        //To Show List Of All Orders With All Items In AdminPanel
+        List<OrderViewModel> GetList();
+
+
 
         //To Find List Of current user Orders in his profile
         List<OrderViewModel> GetUserCurrentOrdersByUserId(long userId);
@@ -25,6 +29,12 @@ namespace ShopManagement.Application.Contract.Order
 
         //To Find List Of  user Canceled Orders in his profile
         List<OrderViewModel> GetUserCanceledOrdersByUserId(long userId);
+
+        #region using in seller panel to manage Orders of clients
+
+        //To Find List Of orders in seller panel
+        List<OrderViewModel> GetCustomerOrdersInSellerPanelBySellerUserId(long userId);
+        #endregion
 
 
 

@@ -35,6 +35,10 @@ namespace ShopManagement.Domain.SellerPanelAgg
         //Name in product details view to find Details of seller about that specific product
         long GetIdByName(string storeName);
 
+
+        //To Find The Name Of SellerShop with their product id(sellerProductId)
+        string GetShopNameBySellerProductId(long sellerProductId);
+
         
 
     }

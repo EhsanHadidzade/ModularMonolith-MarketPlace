@@ -106,12 +106,19 @@ namespace ShopManagement.Application
         public long UpdateByIdAndCount(long orderItemId, int count)
         {
             var orderItem = _orderItemRepository.GetById(orderItemId);
+            if(count==0)
+            {
+                _orderItemRepository.RemoveById(orderItemId);
+                _orderItemRepository.Savechange();
+            }
+            else
+            {
+                //To Find Exact Price Of Seller
+                var productPrice = _sellerProductRepository.GetSellerPriceBySellerproductId(orderItem.SellerProductId);
 
-            //To Find Exact Price Of Seller
-            var productPrice = _sellerProductRepository.GetSellerPriceBySellerproductId(orderItem.SellerProductId);
-
-            orderItem.Update(count, count * productPrice);
-            _orderItemRepository.Savechange();
+                orderItem.Update(count, count * productPrice);
+                _orderItemRepository.Savechange();
+            }
 
             var specificOrder = _orderRepository.GetOrderDetailsByOrderId(orderItem.OrderId);
             var orderTotalAmount = specificOrder.orderItems.Select(x => x.UnitPrice).ToList().Sum();
@@ -124,6 +131,16 @@ namespace ShopManagement.Application
 
 
 
+        }
+
+        public List<OrderItemViewModel> GetListByOrderId(long orderId)
+        {
+            return _orderItemRepository.GetListByOrderId(orderId);
+        }
+
+        public List<OrderItemViewModel> GetListWhichRelatedToSellerByOrderIdAndSellerPanelId(long orderId, long sellerPanelId)
+        {
+            return _orderItemRepository.GetListWhichRelatedToSellerByOrderIdAndSellerPanelId(orderId, sellerPanelId);
         }
     }
 }

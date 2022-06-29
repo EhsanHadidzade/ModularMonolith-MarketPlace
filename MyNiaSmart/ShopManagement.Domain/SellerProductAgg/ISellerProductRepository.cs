@@ -27,6 +27,9 @@ namespace ShopManagement.Domain.SellerProductAgg
         //to use in order Item Updating while changing item Count By Client
         long GetSellerPriceBySellerproductId(long sellerProductId);
 
+        //using when we are making  list of orders for a specific seller in his panel
+        List<long> GetIdsBySellerPanelId(long sellerPanelId);
+
 
 
     }

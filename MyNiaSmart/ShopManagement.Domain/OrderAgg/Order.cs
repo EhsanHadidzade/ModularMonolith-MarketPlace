@@ -13,6 +13,7 @@ namespace ShopManagement.Domain.OrderAgg
         public long UserId { get; private set; }
         public long UserAddressId { get; private set; }
         public long TotalAmount { get; private set; }
+        //public long PayAmount { get;private set; }
         public bool IsPaid { get; private set; }
         public bool IsRecievedByUser { get; private set; }
         public DateTime ReceiptDate { get;private set; }
@@ -60,7 +61,6 @@ namespace ShopManagement.Domain.OrderAgg
         {
             IssueTrackingNo = number;
         }
-
 
         public void SetAsCanceled()
         {

@@ -11,12 +11,17 @@ namespace ShopManagement.Application.Contract.Order
     {
         public long Id { get; set; }
         public long UserId { get; set; }
+        public string RecieverFullName { get; set; }
         public long TotalAmount { get; set; }
         public bool IsCanceled { get; set; }
         public string PaymentDate { get; set; }
+        public string ReceiptDate { get; set; }
+        public string CancelDate { get; set; }
         public bool IsRevievedByUser { get; set; }
         public string IssueTrackingNo { get; set; }
         public bool IsPaid { get; set; }
+        public long RefId { get; set; }
+        public int PaymentMethod { get; set; }
         public List<OrderItemViewModel> orderItems { get; set; }
     }
 }

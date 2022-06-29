@@ -20,6 +20,16 @@ namespace ShopManagement.Application
             operation = new OperationResult();
         }
 
+        public List<OrderViewModel> GetCustomerOrdersInSellerPanelBySellerUserId(long userId)
+        {
+            return _orderRepository.GetCustomerOrdersInSellerPanelBySellerUserId(userId);
+        }
+
+        public List<OrderViewModel> GetList()
+        {
+            return _orderRepository.GetList();
+        }
+
         public OrderViewModel GetOrderDetailsByOrderId(long orderId)
         {
             return _orderRepository.GetOrderDetailsByOrderId(orderId);

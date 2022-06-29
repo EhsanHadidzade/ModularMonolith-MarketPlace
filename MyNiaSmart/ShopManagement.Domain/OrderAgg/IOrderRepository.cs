@@ -22,8 +22,7 @@ namespace ShopManagement.Domain.OrderAgg
         //TO get Amount of order total Amount when user is changing order Items
         long GetTotalAmountById(long orderId);
 
-
-
+        #region User personal Profile 
         //To Find List Of current user Orders in his profile
         List<OrderViewModel> GetUserCurrentOrdersByUserId(long userId);
 
@@ -32,6 +31,16 @@ namespace ShopManagement.Domain.OrderAgg
 
         //To Find List Of  user Canceled Orders in his profile
         List<OrderViewModel> GetUserCanceledOrdersByUserId(long userId);
+        #endregion
+
+        #region Seller User Orders Management
+        //To Find List Of orders in seller panel
+        List<OrderViewModel> GetCustomerOrdersInSellerPanelBySellerUserId(long userId);
+
+        #endregion
+
+        //To Show List Of All Orders With All Items In AdminPanel
+        List<OrderViewModel> GetList();
 
 
 
