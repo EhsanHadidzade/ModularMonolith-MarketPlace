@@ -10,6 +10,7 @@ using ShopManagement.Domain.ProductCategoryAgg.ProductUsageTypeAgg;
 using ShopManagement.Domain.SellerPanelAgg;
 using ShopManagement.Domain.SellerProductAgg;
 using ShopManagement.Domain.SellerProductMediaAgg;
+using ShopManagement.Domain.TransitionAgg;
 using ShopManagement.Infrastructure.EFCore.Mapping;
 
 namespace ShopManagement.Infrastructure.EFCore
@@ -31,6 +32,8 @@ namespace ShopManagement.Infrastructure.EFCore
 
         public DbSet<Order> Orders { get; set; }
         public DbSet<OrderItem> OrderItems { get; set; }
+
+        public DbSet<Transition> Transitions{ get; set; }
 
         public ShopContext(DbContextOptions<ShopContext> options):base(options)
         {

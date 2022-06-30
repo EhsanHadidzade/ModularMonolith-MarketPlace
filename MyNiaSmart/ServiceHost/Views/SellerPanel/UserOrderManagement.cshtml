@@ -43,6 +43,7 @@
                                 <th>خریدار</th>
                                 @*<th>مبلغ پرداختی </th>*@
                                 <th> نحوه پرداخت </th>
+                                <th> نحوه ارسال </th>
                                 <th>شماره پیگیری </th>
                                 <th>شناسه خرید</th>
                                 <th>تاریخ خرید</th>
@@ -70,7 +71,18 @@
                                                 <p class="text-info"> کیف پول شخصی</p>
                                             }
                                         </td>
-                                        <td> @item.IssueTrackingNo</td>
+                                        <td>
+                                            @if (item.IsTransitionPartByPart)
+                                            {
+                                                <p class="text-info">ارسال ریز فاکتور سه صورت تکی باید توسط شما انجام شود</p>
+                                            }
+                                            else
+                                            {
+                                                <p class="text-info">ارسال ریز فاکتور به صورت تجمعی با هماهنگی مدیر انجام میشود.</p>
+                                                <b class="text-info"> منتظر تماس مدیریت باشید</b>
+                                            }
+                                        </td>
+                                        <td>@item.IssueTrackingNo</td>
                                         <td>@item.RefId</td>
                                         <td>@item.PaymentDate</td>
                                         <td>
@@ -86,7 +98,7 @@
                                             {
                                                 <span class="badge light badge-success"> دریافت شده توسط مشتری</span>
                                             }
-                                              @if (item.IsCanceled)
+                                            @if (item.IsCanceled)
                                             {
                                                 <span class="badge light badge-danger">دریافت شده توسط مشتری</span>
                                             }

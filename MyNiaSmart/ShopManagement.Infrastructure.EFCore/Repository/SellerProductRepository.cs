@@ -133,7 +133,7 @@ namespace ShopManagement.Infrastructure.EFCore.Repository
 
         public long GetProductIdBySellerProductId(long sellerProductId)
         {
-            var sellerProduct = _shopContext.SellerProducts.FirstOrDefault(x => x.Id == sellerProductId);
+            var sellerProduct = _shopContext.SellerProducts.Select(x => new { x.Id, x.ProductId }).FirstOrDefault(x => x.Id == sellerProductId);
             return sellerProduct.ProductId;
         }
 
@@ -146,6 +146,20 @@ namespace ShopManagement.Infrastructure.EFCore.Repository
         public List<long> GetIdsBySellerPanelId(long sellerPanelId)
         {
             return _shopContext.SellerProducts.Where(x => x.SellerPanelId == sellerPanelId).Select(x => x.Id).ToList();
+        }
+
+        public SellerProductViewModel GetSomeInfoById(long sellerProductId)
+        {
+            return _shopContext.SellerProducts.Select(x => new SellerProductViewModel
+            {
+                Id = x.Id,
+                Price=x.Price,
+                ProductId = x.ProductId,
+                DeliveryDurationForCity = x.DeliveryDurationForCity,
+                DeliveryDurationForCapital = x.DeliveryDurationForCapital,
+                DeliveryDurationForOther = x.DeliveryDurationForOther
+
+            }).FirstOrDefault(x => x.Id == sellerProductId);
         }
     }
 }

@@ -1,5 +1,6 @@
 ﻿using _0_Framework.Domain;
 using ShopManagement.Domain.SellerProductAgg;
+using ShopManagement.Domain.TransitionAgg;
 using System.Collections.Generic;
 
 namespace ShopManagement.Domain.SellerPanelAgg
@@ -38,6 +39,7 @@ namespace ShopManagement.Domain.SellerPanelAgg
         //relations
         public long UserId { get; private set; }
         public List<SellerProduct> SellerProducts{ get; private set; }
+        public List<Transition> Transitions{ get; private set; }
 
         public SellerPanel(string address, string sellerMobileNumber, int buyersCategory, bool canMarketerSee,
             bool isUserLegal, string storeName, string companyName, string companyRegistrationCode, string companyEconomicCode,
@@ -65,6 +67,7 @@ namespace ShopManagement.Domain.SellerPanelAgg
             IsSpecial=false;
 
             SellerProducts = new List<SellerProduct>();
+            Transitions = new List<Transition>();
         }
 
         public void ConfirmByAdmin()

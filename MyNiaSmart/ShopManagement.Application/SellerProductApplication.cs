@@ -47,8 +47,8 @@ namespace ShopManagement.Application
             _selleProductRepository.Create(product);
             _selleProductRepository.Savechange();
             #region AddMediaFromSellerGallery
-            if(command.SelectedMediaIds.Count>0)
-            _sellerProductMediaRepository.SelectMediaByMediaIds(command.SelectedMediaIds,product.Id);
+            if (command.SelectedMediaIds.Count > 0)
+                _sellerProductMediaRepository.SelectMediaByMediaIds(command.SelectedMediaIds, product.Id);
             #endregion
             return operation.Succedded("محصول با موفقیت اضافه و در حال بررسی توصط ادمین میباشد. در صورت تایید به فروشگاه اضافه خواهد شد");
         }
@@ -57,10 +57,10 @@ namespace ShopManagement.Application
         {
             var userId = _authHelper.CurrentAccountInfo().Id;
             var product = _selleProductRepository.GetById(command.Id);
-            if(product == null)
+            if (product == null)
                 return operation.Failed(ApplicationMessage.RecordNotFound);
 
-            if (_selleProductRepository.IsExist(x => x.SellerPanelId == command.SellerPanelId && x.ProductId == command.ProductId && x.Id!=command.Id))
+            if (_selleProductRepository.IsExist(x => x.SellerPanelId == command.SellerPanelId && x.ProductId == command.ProductId && x.Id != command.Id))
                 return operation.Failed($" محصول ({command.ProductTitle}) قبلا به فروشگاه شما اضافه شده و امکان افزودن مجدد آن وجود ندارد");
 
             product.Edit(command.ProductId, command.Price,
@@ -71,7 +71,7 @@ namespace ShopManagement.Application
             _selleProductRepository.Savechange();
             #region EditMediasOf Seller Product
             //First we un select former Medias , then Select New Ones
-            _sellerProductMediaRepository.UnSelectMediasByMediaIds(userId,product.Id);
+            _sellerProductMediaRepository.UnSelectMediasByMediaIds(userId, product.Id);
             _sellerProductMediaRepository.SelectMediaByMediaIds(command.SelectedMediaIds, product.Id);
             #endregion
             return operation.Succedded();
@@ -120,13 +120,10 @@ namespace ShopManagement.Application
         {
             //Default Details Of Product CreatedByAdministrator
             var AdminproductDetails = _productRepository.GetDetailsBySlug(productSlug);
+            var sellerPanel = _sellerPanelRepository.GetByName(shopName);
 
 
-            var sellerPanelId=_sellerPanelRepository.GetIdByName(shopName);
-            var productId = _productRepository.GetIdBySlug(productSlug);
-
-
-            var sellerProductDetails = _selleProductRepository.GetDetailsBySellerPanelIdAndProductId(sellerPanelId,productId);
+            var sellerProductDetails = _selleProductRepository.GetDetailsBySellerPanelIdAndProductId(sellerPanel.Id, AdminproductDetails.Id);
 
 
             var SpecificProductInfo = new SellerProductDetailsToShowViewModel()
@@ -158,7 +155,18 @@ namespace ShopManagement.Application
                 WarrantyAmount = sellerProductDetails.WarrantyAmount,
                 WarrantyTypeId = sellerProductDetails.WarrantyTypeId,
                 SelectedMedias = sellerProductDetails.SelectedMedias,
+
+                //Specific SellerPanelDetails That is cooperating for selling this product
+                IsUserLegal =sellerPanel.IsUserLegal,
+                SellerPanelCity = sellerPanel.City,
+                SellerPanelCapital=sellerPanel.Capital,
+                SellerPanelPhoneNumber=sellerPanel.SellerMobileNumber
             };
+            if (SpecificProductInfo.IsUserLegal)
+                SpecificProductInfo.SellerName = sellerPanel.CompanyName;
+
+            SpecificProductInfo.SellerName = sellerPanel.StoreName;
+
             return SpecificProductInfo;
         }
 

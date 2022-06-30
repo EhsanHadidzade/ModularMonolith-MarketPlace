@@ -12,6 +12,11 @@ namespace ShopManagement.Application.Contract.OrderItem
         public long SellerProductId { get; set; }
         public string SellerProductTitle { get; set; }
         public string SellerShopName { get; set; }
+        public string SellerCapital { get; set; }
+        public string SellerCity { get; set; }
+        public int SellerDeliveryDurationForCity { get; set; }
+        public int SellerDeliveryDurationForCapital { get; set; }
+        public int SellerDeliveryDurationForOther { get; set; }
         public long OrderId { get; set; }
         public long UnitPrice { get; set; }
         public string PictureURL { get; set; }

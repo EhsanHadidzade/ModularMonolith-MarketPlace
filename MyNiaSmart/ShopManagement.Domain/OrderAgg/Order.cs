@@ -16,13 +16,16 @@ namespace ShopManagement.Domain.OrderAgg
         //public long PayAmount { get;private set; }
         public bool IsPaid { get; private set; }
         public bool IsRecievedByUser { get; private set; }
+        public bool IsCanceled { get; private set; }
         public DateTime ReceiptDate { get;private set; }
         public DateTime PaymentDate { get;private set; }
         public DateTime CancelDate { get;private set; }
-        public bool IsCanceled { get; private set; }
         public int PaymentMethod { get; private set; }
         public string IssueTrackingNo { get; private set; }
         public long RefId { get; private set; }
+
+        //ارسال تکی 
+        public bool IsTransitionPartByPart { get;private set; }
 
         //relations
         public List<OrderItem> OrderItems { get; private set; }

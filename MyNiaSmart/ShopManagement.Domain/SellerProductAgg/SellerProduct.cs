@@ -16,8 +16,8 @@ namespace ShopManagement.Domain.SellerProductAgg
         public long ProductId { get; private set; }
         public long Price { get; private set; }
         public string Description { get;private set; }
-        public int MarketerSharePercent { get; set; }
-        public long MarketerShareAmount { get; set; }
+        public int MarketerSharePercent { get;private set; }
+        public long MarketerShareAmount { get;private set; }
 
         #region Default Values that are filled in sellerPanelRequest
         public int DeliveryDurationForCity { get; private set; }

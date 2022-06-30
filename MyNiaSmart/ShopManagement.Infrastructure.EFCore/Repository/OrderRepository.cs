@@ -47,6 +47,7 @@ namespace ShopManagement.Infrastructure.EFCore.Repository
                 UserId = x.UserId,
                 TotalAmount = x.TotalAmount,
                 IsPaid = x.IsPaid,
+                IsTransitionPartByPart=x.IsTransitionPartByPart,
                 IsRevievedByUser = x.IsRecievedByUser,
                 IsCanceled = x.IsCanceled,
                 IssueTrackingNo = x.IssueTrackingNo,
@@ -102,6 +103,7 @@ namespace ShopManagement.Infrastructure.EFCore.Repository
                             Id = x.Id,
                             UserId = x.UserId,
                             TotalAmount = x.TotalAmount,
+                            IsTransitionPartByPart = x.IsTransitionPartByPart,
                             IsPaid = x.IsPaid,
                             IsRevievedByUser = x.IsRecievedByUser,
                             IsCanceled = x.IsCanceled,
@@ -116,35 +118,7 @@ namespace ShopManagement.Infrastructure.EFCore.Repository
                     }
                 }
             }
-            //var AllOrders = _shopContext.Orders.Include(x => x.OrderItems).Select(x => new OrderViewModel
-            //{
-            //    Id = x.Id,
-            //    UserId = x.UserId,
-            //    TotalAmount = x.TotalAmount,
-            //    IsPaid = x.IsPaid,
-            //    IsRevievedByUser = x.IsRecievedByUser,
-            //    IsCanceled = x.IsCanceled,
-            //    IssueTrackingNo = x.IssueTrackingNo,
-            //    PaymentMethod = x.PaymentMethod,
-            //    RefId = x.RefId,
-            //    PaymentDate = x.PaymentDate.ToFarsi(),
-            //    orderItems= ProjectOrderItems(x.OrderItems)
-            //}).ToList();
-
-            //foreach (var id in sellerProductIds)
-            //{
-            //    foreach (var order in AllOrders)
-            //    {
-            //        foreach (var item in order.orderItems)
-            //        {
-            //            if (item.SellerProductId == id)
-            //            {
-            //                orders.Add(order);
-            //            }
-            //         }
-            //    }
-            //}
-
+         
             foreach (var item in orders)
             {
                 item.RecieverFullName = _userRepository.GetFullNameByUserId(item.UserId);
@@ -173,9 +147,21 @@ namespace ShopManagement.Infrastructure.EFCore.Repository
             foreach (var item in order.orderItems)
             {
                 var productId = _sellerProductRepository.GetProductIdBySellerProductId(item.SellerProductId);
+
                 var product = _productRepository.GetInfoById(productId);
+                var sellerPanel=_sellerPanelRepository.GetBySellerProductId(item.SellerProductId);
+                var sellerProduct = _sellerProductRepository.GetById(item.SellerProductId);
+
                 item.SellerProductTitle = product.FarsiTitle;
                 item.PictureURL = product.PictureURL;
+
+                item.SellerShopName = _sellerPanelRepository.GetShopNameBySellerProductId(item.SellerProductId);
+                item.SellerCity=sellerPanel.City;
+                item.SellerCapital=sellerPanel.Capital;
+
+                item.SellerDeliveryDurationForCity=sellerProduct.DeliveryDurationForCity;
+                item.SellerDeliveryDurationForCapital=sellerProduct.DeliveryDurationForCapital;
+                item.SellerDeliveryDurationForOther=sellerProduct.DeliveryDurationForOther;
             }
 
             return order;

@@ -164,16 +164,10 @@ namespace ShopManagement.Infrastructure.EFCore.Repository
             return sellerPanelRequest != null;
         }
 
-        public long GetIdByName(string storeName)
+        public SellerPanel GetByName(string storeName)
         {
-            var sellerPanel = _shopContext.SellerPanels.Select(x => new
-            {
-                x.Id,
-                x.StoreName,
-                x.CompanyName
-            }).FirstOrDefault(x => x.CompanyName == storeName || x.StoreName == storeName);
+            return _shopContext.SellerPanels.FirstOrDefault(x => x.CompanyName == storeName || x.StoreName == storeName);
 
-            return sellerPanel.Id;
         }
 
         public long GetUserIdBySellerPanelId(long sellerPanelId)
@@ -187,10 +181,13 @@ namespace ShopManagement.Infrastructure.EFCore.Repository
             var sellerPanelId = _shopContext.SellerProducts.Select(x => new { x.Id, x.SellerPanelId }).FirstOrDefault(x => x.Id == sellerProductId).SellerPanelId;
 
             var sellerPanel = _shopContext.SellerPanels.Select(x => new { x.IsUserLegal, x.CompanyName, x.StoreName, x.Id }).FirstOrDefault(x => x.Id == sellerPanelId);
-            if (sellerPanel.IsUserLegal)
-                return sellerPanel.CompanyName;
+            return sellerPanel.IsUserLegal ? sellerPanel.CompanyName : sellerPanel.StoreName;
+        }
 
-            return sellerPanel.StoreName;
+        public SellerPanel GetBySellerProductId(long sellerProductId)
+        {
+            var sellerPanleId = _shopContext.SellerProducts.Select(x => new {x.Id,x.SellerPanelId}).FirstOrDefault(x=>x.Id==sellerProductId).SellerPanelId;
+            return _shopContext.SellerPanels.FirstOrDefault(x => x.Id == sellerPanleId);
         }
     }
 }

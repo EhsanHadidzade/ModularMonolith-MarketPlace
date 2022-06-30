@@ -1,5 +1,6 @@
 ﻿using _0_Framework.Domain;
 using ShopManagement.Domain.OrderAgg;
+using ShopManagement.Domain.TransitionAgg;
 
 namespace ShopManagement.Domain.OrderItemAgg
 {
@@ -12,6 +13,9 @@ namespace ShopManagement.Domain.OrderItemAgg
         //relations
         public long OrderId { get; private set; }
         public Order Order { get; private set; }
+
+        public long TransitionId { get;private set; }
+        //public Transition Transition{ get;private set; }
 
         public OrderItem()
         {
@@ -28,6 +32,10 @@ namespace ShopManagement.Domain.OrderItemAgg
         {
             Count = count;
             UnitPrice = unitPrice;
+        }
+        public void TransitedBy(long transitionId)
+        {
+            TransitionId = transitionId;
         }
     }
 }

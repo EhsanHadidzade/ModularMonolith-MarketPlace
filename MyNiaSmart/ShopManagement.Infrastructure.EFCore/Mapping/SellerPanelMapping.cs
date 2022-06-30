@@ -27,6 +27,8 @@ namespace ShopManagement.Infrastructure.EFCore.Mapping
             builder.Property(x=>x.City).HasMaxLength(100);
 
             builder.HasMany(x => x.SellerProducts).WithOne(x => x.SellerPanel).HasForeignKey(x => x.SellerPanelId);
+            builder.HasMany(x => x.Transitions).WithOne(x => x.SellerPanel).HasForeignKey(x => x.SellerPanelId);
+            
 
         }
     }

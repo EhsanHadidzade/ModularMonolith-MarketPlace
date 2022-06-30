@@ -27,6 +27,9 @@ namespace ShopManagement.Domain.SellerProductAgg
         //to use in order Item Updating while changing item Count By Client
         long GetSellerPriceBySellerproductId(long sellerProductId);
 
+        //To Find DeliveryDuration TO Use when we want to display order items of specific order for seller panel and admin and other places
+        SellerProductViewModel GetSomeInfoById(long sellerProductId);
+
         //using when we are making  list of orders for a specific seller in his panel
         List<long> GetIdsBySellerPanelId(long sellerPanelId);
 

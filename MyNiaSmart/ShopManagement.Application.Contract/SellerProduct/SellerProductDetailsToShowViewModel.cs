@@ -38,6 +38,13 @@ namespace ShopManagement.Application.Contract.SellerProduct
         public int WarrantyTypeId { get; set; }
         public int WarrantyAmount { get; set; }
 
+
+        public bool IsUserLegal  { get; set; }
+        public string SellerName { get; set; }
+        public string SellerPanelCapital { get; set; }
+        public string SellerPanelCity { get; set; }
+        public string SellerPanelPhoneNumber { get; set; }
+
         public List<SellerGalleryViewModel> SelectedMedias { get; set; }
 
     }

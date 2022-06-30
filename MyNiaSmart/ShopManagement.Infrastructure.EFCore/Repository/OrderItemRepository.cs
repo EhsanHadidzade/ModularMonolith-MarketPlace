@@ -72,11 +72,15 @@ namespace ShopManagement.Infrastructure.EFCore.Repository
 
             foreach (var item in orderItems)
             {
-                var productId = _sellerProductRepository.GetProductIdBySellerProductId(item.SellerProductId);
-                var product = _productRepository.GetInfoById(productId);
+                var sellerProduct = _sellerProductRepository.GetSomeInfoById(item.SellerProductId);
+                //var productId = _sellerProductRepository.GetProductIdBySellerProductId(item.SellerProductId);
+                var product = _productRepository.GetInfoById(sellerProduct.ProductId);
                 item.SellerProductTitle = product.FarsiTitle;
                 item.PictureURL = product.PictureURL;
                 item.SellerShopName = _sellerPanelRepository.GetShopNameBySellerProductId(item.SellerProductId);
+                item.SellerDeliveryDurationForCity=sellerProduct.DeliveryDurationForCity;
+                item.SellerDeliveryDurationForCapital=sellerProduct.DeliveryDurationForCapital;
+                item.SellerDeliveryDurationForOther=sellerProduct.DeliveryDurationForOther;
             }
 
             return orderItems;
