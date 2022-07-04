@@ -1310,10 +1310,8 @@ C:\Work\Projects\MyNiaSmart\MyNiaSmart\ServiceHost\obj\Release\net5.0\PubTmp\Out
 C:\Work\Projects\MyNiaSmart\MyNiaSmart\ServiceHost\obj\Release\net5.0\PubTmp\Out\wwwroot\UploadedFiles\ProductPictures\خودپرداز ان سی ار دیواری 2050 یو‌اس‌بی ریفر\2022-06-21-11-34-384.jpg
 C:\Work\Projects\MyNiaSmart\MyNiaSmart\ServiceHost\obj\Release\net5.0\PubTmp\Out\wwwroot\UploadedFiles\ProductPictures\خودپرداز وینکور دیواری ۲۱۵۰ یو‌اس‌بی ریفر - Wincor nixdorf 2150 XeUSB Referbuished\2022-06-09-10-09-39وینکور-2150.jpg
 C:\Work\Projects\MyNiaSmart\MyNiaSmart\ServiceHost\obj\Release\net5.0\PubTmp\Out\wwwroot\UploadedFiles\ProductPictures\دستگاه کارت خوان فروشگاه\2022-06-20-13-37-42R.png
+C:\Work\Projects\MyNiaSmart\MyNiaSmart\ServiceHost\obj\Release\net5.0\PubTmp\Out\wwwroot\UploadedFiles\SellerProductMedias\09044287775\2022-06-29-14-19-491.jpg
 C:\Work\Projects\MyNiaSmart\MyNiaSmart\ServiceHost\obj\Release\net5.0\PubTmp\Out\wwwroot\UploadedFiles\SellerProductMedias\09394481541\2022-06-20-13-58-061.jpg
-C:\Work\Projects\MyNiaSmart\MyNiaSmart\ServiceHost\obj\Release\net5.0\PubTmp\Out\wwwroot\UploadedFiles\SellerProductMedias\09394481541\2022-06-20-13-58-113.jpg
-C:\Work\Projects\MyNiaSmart\MyNiaSmart\ServiceHost\obj\Release\net5.0\PubTmp\Out\wwwroot\UploadedFiles\SellerProductMedias\09394481541\2022-06-20-13-58-144.jpg
-C:\Work\Projects\MyNiaSmart\MyNiaSmart\ServiceHost\obj\Release\net5.0\PubTmp\Out\wwwroot\UploadedFiles\SellerProductMedias\09394481541\2022-06-20-13-58-162.jpg
 C:\Work\Projects\MyNiaSmart\MyNiaSmart\ServiceHost\obj\Release\net5.0\PubTmp\Out\wwwroot\UploadedFiles\SellerProductMedias\09397038887\2022-06-21-09-28-453.jpg
 C:\Work\Projects\MyNiaSmart\MyNiaSmart\ServiceHost\obj\Release\net5.0\PubTmp\Out\wwwroot\UploadedFiles\SellerProductMedias\09397038887\2022-06-21-09-28-484.jpg
 C:\Work\Projects\MyNiaSmart\MyNiaSmart\ServiceHost\obj\Release\net5.0\PubTmp\Out\wwwroot\UploadedFiles\SellerProductMedias\09397038887\2022-06-21-09-28-502.jpg
@@ -1321,6 +1319,7 @@ C:\Work\Projects\MyNiaSmart\MyNiaSmart\ServiceHost\obj\Release\net5.0\PubTmp\Out
 C:\Work\Projects\MyNiaSmart\MyNiaSmart\ServiceHost\obj\Release\net5.0\PubTmp\Out\wwwroot\UploadedFiles\UpAccountDocument\رحیم مقدم\2022-05-11-14-10-06پشت کارت ملی4.jpg
 C:\Work\Projects\MyNiaSmart\MyNiaSmart\ServiceHost\obj\Release\net5.0\PubTmp\Out\wwwroot\UploadedFiles\UpAccountDocument\رحیم مقدم\2022-05-11-14-11-57شناسنامه1.jpg
 C:\Work\Projects\MyNiaSmart\MyNiaSmart\ServiceHost\obj\Release\net5.0\PubTmp\Out\wwwroot\UploadedFiles\UserPhoto\2022-06-01-15-11-073.jpg
+C:\Work\Projects\MyNiaSmart\MyNiaSmart\ServiceHost\obj\Release\net5.0\PubTmp\Out\wwwroot\UploadedFiles\UserPhoto\2022-06-29-13-49-214.jpg
 C:\Work\Projects\MyNiaSmart\MyNiaSmart\ServiceHost\obj\Release\net5.0\PubTmp\Out\appsettings.Development.json
 C:\Work\Projects\MyNiaSmart\MyNiaSmart\ServiceHost\obj\Release\net5.0\PubTmp\Out\appsettings.json
 C:\Work\Projects\MyNiaSmart\MyNiaSmart\ServiceHost\obj\Release\net5.0\PubTmp\Out\ServiceHost.dll

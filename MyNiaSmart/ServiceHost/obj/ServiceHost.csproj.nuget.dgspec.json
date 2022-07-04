@@ -662,6 +662,9 @@
             "projectReferences": {
               "C:\\Work\\Projects\\MyNiaSmart\\MyNiaSmart\\0_Framework\\0_Framework.csproj": {
                 "projectPath": "C:\\Work\\Projects\\MyNiaSmart\\MyNiaSmart\\0_Framework\\0_Framework.csproj"
+              },
+              "C:\\Work\\Projects\\MyNiaSmart\\MyNiaSmart\\AccountManagement.Application.Contract\\AccountManagement.Application.Contract.csproj": {
+                "projectPath": "C:\\Work\\Projects\\MyNiaSmart\\MyNiaSmart\\AccountManagement.Application.Contract\\AccountManagement.Application.Contract.csproj"
               }
             }
           }

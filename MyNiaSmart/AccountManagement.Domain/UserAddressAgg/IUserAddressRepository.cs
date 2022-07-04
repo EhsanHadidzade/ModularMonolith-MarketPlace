@@ -12,5 +12,7 @@ namespace AccountManagement.Domain.UserAddressAgg
     {
         EditUserAddress GetDetails(long id);
         List<UserAddressViewModel> GetListByUserId(long userId);
+
+
     }
 }

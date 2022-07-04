@@ -8,7 +8,8 @@
     ".NETCoreApp,Version=v5.0": {
       "ShopManagement.Application.Contract/1.0.0": {
         "dependencies": {
-          "0_Framework": "1.0.0"
+          "0_Framework": "1.0.0",
+          "AccountManagement.Application.Contract": "1.0.0"
         },
         "runtime": {
           "ShopManagement.Application.Contract.dll": {}
@@ -1119,6 +1120,14 @@
         "runtime": {
           "0_Framework.dll": {}
         }
+      },
+      "AccountManagement.Application.Contract/1.0.0": {
+        "dependencies": {
+          "0_Framework": "1.0.0"
+        },
+        "runtime": {
+          "AccountManagement.Application.Contract.dll": {}
+        }
       }
     }
   },
@@ -1976,6 +1985,11 @@
       "hashPath": "system.valuetuple.4.5.0.nupkg.sha512"
     },
     "0_Framework/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "AccountManagement.Application.Contract/1.0.0": {
       "type": "project",
       "serviceable": false,
       "sha512": ""

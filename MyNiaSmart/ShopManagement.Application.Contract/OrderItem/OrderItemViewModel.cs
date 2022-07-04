@@ -10,6 +10,8 @@ namespace ShopManagement.Application.Contract.OrderItem
     {
         public long Id { get; set; }
         public long SellerProductId { get; set; }
+        public long TransitionId { get; set; }
+        public string TransitionTrackingNumber { get; set; }
         public string SellerProductTitle { get; set; }
         public string SellerShopName { get; set; }
         public string SellerCapital { get; set; }

@@ -1,0 +1,34 @@
+﻿@model AccountManagement.Application.Contract.UserAddress.UserAddressViewModel
+
+
+<div class="row">
+    <div class="col-xl-12">
+        <div class="card">
+            <div class="card-body">
+                <div class="profile-news">
+                    <h5 class="text-primary d-inline">آدرس انتخاب شده توسط کاربر برای ارسال محصول</h5>
+                    @if (Model != null)
+                    {
+                        <div class="media pt-3 pb-3">
+                            <div class="media-body">
+                                <h5 class="m-b-5"> استان :@Model.Capital - شهر : @Model.City</h5>
+                                <strong class="mb-0"> آدرس  : @Model.Address</strong>
+                                <p>شماره همراه : @Model.MobileNumber</p>
+                                <p>کد پستی  : @Model.PostalCode</p>
+                            </div>
+                        </div>
+
+                    }
+                    else
+                    {
+                        <div class="alert alert-info">
+                            ادرسی انتخاب نشده
+                        </div>
+                    }
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>

@@ -24,6 +24,15 @@ namespace ShopManagement.Application.Contract.OrderItem
         //To Get List Of Items Of Specific Order in seller panel To find items of specific order which are related to sellerProducts
         List<OrderItemViewModel> GetListWhichRelatedToSellerByOrderIdAndSellerPanelId(long orderId, long sellerPanelId);
 
+        //To Send OrderItems By Seller And Creating transition 
+        OperationResult SendOrderItemsBySellerWithIds(List<long> ToSendOrderItems);
+
+        //To Send OrderItems By Administrator And Creating new transition
+        OperationResult SendOrderItemsByAdminWithIds(List<long> ToSendOrderItems);
+
+        //To Find How much Time is need to send Some OrderItems With a transition by seller . using while creating new transiton in sellerPanel to send items
+        int GetDeliveryDurationForItemsBuyerByOrderItemIds(List<long> orderItemIds);
+
 
 
     }

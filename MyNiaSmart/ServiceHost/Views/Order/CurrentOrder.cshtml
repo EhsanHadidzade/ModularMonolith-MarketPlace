@@ -1,4 +1,5 @@
 ﻿@using ShopManagement.Application.Contract.SellerProduct
+@using _0_Framework.Utilities
 @inject ISellerProductApplication _sellerProductApplication
 @model ShopManagement.Application.Contract.Order.OrderViewModel
 
@@ -61,20 +62,20 @@
                                                         <p>استان :@item.SellerCapital</p>
                                                         <p>شهر :@item.SellerCity</p>
                                                     </td>
-                                                     <td>
+                                                    <td>
                                                         <p>زمان ارسال توی شهر :@item.SellerDeliveryDurationForCity ساعت</p>
                                                         <p>زمان ارسال توی استان :@item.SellerDeliveryDurationForCapital ساعت</p>
                                                         <p>زمان ارسال به سایر نقاط :@item.SellerDeliveryDurationForOther ساعت</p>
                                                     </td>
                                                     <td>
-                                                        <span id="@item.Id" class="text-muted"><partial id="unitPrice" class="@item.Id">@item.UnitPrice</partial> تومان</span>
+                                                        <span id="@item.Id" class="text-muted"><partial id="unitPrice" class="@item.Id">@item.UnitPrice.ToMoney()</partial> تومان</span>
                                                     </td>
                                                 </tr>
                                             }
                                         </tbody>
                                     </table>
                                     <span>مجموع(تومان)</span>
-                                    <strong> <partial id="total">@Model.TotalAmount</partial> تومان</strong>
+                                    <strong> <partial id="total">@Model.TotalAmount.ToMoney()</partial> تومان</strong>
                                 </div>
                             </div>
                         </div>
@@ -85,7 +86,7 @@
                             <div class="row">
                                 <div class="col-md-12 mb-3">
                                     <div class="custom-control custom-switch custom-control-inline mb-1">
-                                        <input type="checkbox" class="custom-control-input" checked="" id="customSwitch1">
+                                        <input type="checkbox" asp-for="IsTransitionPartByPart" class="custom-control-input" id="customSwitch1">
                                         <label class="custom-control-label mr-1" for="customSwitch1">
                                         </label>
                                         <span id="PartByPart">ارسال به صورت تکی</span>
@@ -105,9 +106,16 @@
                                     <label></label>
                                     <a class="btn btn-outline-success mt-3 px-5" href="#showModal=/Order/SearchUserAddress">انتخاب آدرس </a>
                                 </div>
-                                <input type="hidden" id="UserAddressId" />
+                                <input name="UserAddressId" type="hidden" id="UserAddressId" />
 
                             </div>
+                            <div class="row">
+                            <strong>مدت زمان ارسال: </strong>
+                            <p id="deliveryDuration">
+
+                            </p>
+                            </div>
+                            <input type="hidden" name="Id" value="@Model.Id" />
                             <button class="btn btn-primary btn-lg btn-block" type="submit">پرداخت از طریق درگاه انلاین</button>
                             <a href="#showModal=/Order/PayOrderByPersonalWallet/@Model.Id" class="btn btn-primary btn-lg btn-block">خرید از طریق کیف پول</a>
                         </form>

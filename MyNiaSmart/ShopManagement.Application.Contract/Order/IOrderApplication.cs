@@ -1,4 +1,5 @@
 ﻿using _0_Framework.Utilities;
+using AccountManagement.Application.Contract.UserAddress;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -30,10 +31,18 @@ namespace ShopManagement.Application.Contract.Order
         //To Find List Of  user Canceled Orders in his profile
         List<OrderViewModel> GetUserCanceledOrdersByUserId(long userId);
 
+
+        OperationResult PayOrderUsingOnlineGateWay(GetOrderInfoToPay command);
+
+
+
         #region using in seller panel to manage Orders of clients
 
         //To Find List Of orders in seller panel
         List<OrderViewModel> GetCustomerOrdersInSellerPanelBySellerUserId(long userId);
+
+        //Using To Display User Address In OrderList For Admin Panel TO Show Seller Where To Send Product
+        UserAddressViewModel GetUserAddressById(long orderId);
         #endregion
 
 

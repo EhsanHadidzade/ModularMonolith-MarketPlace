@@ -4,6 +4,7 @@ using ShopManagement.Domain.OrderItemAgg;
 using ShopManagement.Domain.ProductAgg;
 using ShopManagement.Domain.SellerPanelAgg;
 using ShopManagement.Domain.SellerProductAgg;
+using ShopManagement.Domain.TransitionAgg;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -15,17 +16,20 @@ namespace ShopManagement.Infrastructure.EFCore.Repository
     public class OrderItemRepository : BaseRepository<long, OrderItem>, IOrderItemRepository
     {
         private readonly ShopContext _shopContext;
-        private readonly ISellerProductRepository _sellerProductRepository;
-        private readonly ISellerPanelRepository _sellerPanelRepository;
         private readonly IProductRepository _productRepository;
+        private readonly ITransitionRepository _transitionRepository;
+        private readonly ISellerPanelRepository _sellerPanelRepository;
+        private readonly ISellerProductRepository _sellerProductRepository;
 
         public OrderItemRepository(ShopContext shopContext, ISellerProductRepository sellerProductRepository,
-            IProductRepository productRepository, ISellerPanelRepository sellerPanelRepository) : base(shopContext)
+            IProductRepository productRepository, ISellerPanelRepository sellerPanelRepository,
+            ITransitionRepository transitionRepository) : base(shopContext)
         {
             _shopContext = shopContext;
             _sellerProductRepository = sellerProductRepository;
             _productRepository = productRepository;
             _sellerPanelRepository = sellerPanelRepository;
+            _transitionRepository = transitionRepository;
         }
 
         public List<OrderItemViewModel> GetListByOrderId(long orderId)
@@ -36,7 +40,8 @@ namespace ShopManagement.Infrastructure.EFCore.Repository
                 OrderId = x.OrderId,
                 SellerProductId = x.SellerProductId,
                 UnitPrice = x.UnitPrice,
-                Count = x.Count
+                Count = x.Count,
+                TransitionId=x.TransitionId
             }).Where(x => x.OrderId == orderId).ToList();
 
             foreach (var item in orderItems)
@@ -46,6 +51,8 @@ namespace ShopManagement.Infrastructure.EFCore.Repository
                 item.SellerProductTitle = product.FarsiTitle;
                 item.PictureURL = product.PictureURL;
                 item.SellerShopName = _sellerPanelRepository.GetShopNameBySellerProductId(item.SellerProductId);
+
+                item.TransitionTrackingNumber=_transitionRepository.GetTrackingNumberById(item.TransitionId);
             }
 
             return orderItems;
@@ -63,7 +70,8 @@ namespace ShopManagement.Infrastructure.EFCore.Repository
                     OrderId = x.OrderId,
                     SellerProductId = x.SellerProductId,
                     UnitPrice = x.UnitPrice,
-                    Count = x.Count
+                    Count = x.Count,
+                    TransitionId=x.TransitionId
                 }).FirstOrDefault(x => x.OrderId == orderId && x.SellerProductId == id);
 
                 if (orderItem != null)
@@ -77,10 +85,13 @@ namespace ShopManagement.Infrastructure.EFCore.Repository
                 var product = _productRepository.GetInfoById(sellerProduct.ProductId);
                 item.SellerProductTitle = product.FarsiTitle;
                 item.PictureURL = product.PictureURL;
+
                 item.SellerShopName = _sellerPanelRepository.GetShopNameBySellerProductId(item.SellerProductId);
                 item.SellerDeliveryDurationForCity=sellerProduct.DeliveryDurationForCity;
                 item.SellerDeliveryDurationForCapital=sellerProduct.DeliveryDurationForCapital;
                 item.SellerDeliveryDurationForOther=sellerProduct.DeliveryDurationForOther;
+
+                item.TransitionTrackingNumber = _transitionRepository.GetTrackingNumberById(item.TransitionId);
             }
 
             return orderItems;

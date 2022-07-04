@@ -570,3 +570,5 @@ C:\Work\Projects\MyNiaSmart\MyNiaSmart\ServiceHost\obj\Debug\net5.0\Razor\Views\
 C:\Work\Projects\MyNiaSmart\MyNiaSmart\ServiceHost\obj\Debug\net5.0\Razor\Views\SellerPanel\UserOrderItemsManagement.cshtml.g.cs
 C:\Work\Projects\MyNiaSmart\MyNiaSmart\ServiceHost\obj\Debug\net5.0\Razor\Areas\Administrator\Views\UserOrder\Index.cshtml.g.cs
 C:\Work\Projects\MyNiaSmart\MyNiaSmart\ServiceHost\obj\Debug\net5.0\Razor\Areas\Administrator\Views\UserOrder\ShowOrderItems.cshtml.g.cs
+C:\Work\Projects\MyNiaSmart\MyNiaSmart\ServiceHost\obj\Debug\net5.0\Razor\Views\SellerPanel\DisplayUserAddressToSendProduct.cshtml.g.cs
+C:\Work\Projects\MyNiaSmart\MyNiaSmart\ServiceHost\obj\Debug\net5.0\Razor\Areas\Administrator\Views\UserOrder\DisplayUserAddressToSendProduct.cshtml.g.cs

@@ -24,6 +24,7 @@ using ShopManagement.Domain.ProductCategoryAgg.ProductUsageTypeAgg;
 using ShopManagement.Domain.SellerPanelAgg;
 using ShopManagement.Domain.SellerProductAgg;
 using ShopManagement.Domain.SellerProductMediaAgg;
+using ShopManagement.Domain.TransitionAgg;
 using ShopManagement.Infrastructure.EFCore;
 using ShopManagement.Infrastructure.EFCore.Repository;
 using ShopManagement.Infrastructure.EFCore.Repository.ProductCategoryRepository;
@@ -72,6 +73,8 @@ namespace ShopManagement.Configuration
 
             services.AddTransient<IOrderItemRepository, OrderItemRepository>();
             services.AddTransient<IOrderItemApplication, OrderItemApplication>();
+
+            services.AddTransient<ITransitionRepository, TransitionRepository>();
 
             services.AddDbContext<ShopContext>(item => item.UseSqlServer(connectionstring));
         }

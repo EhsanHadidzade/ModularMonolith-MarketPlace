@@ -14,12 +14,18 @@ namespace ShopManagement.Domain.OrderAgg
         public long UserAddressId { get; private set; }
         public long TotalAmount { get; private set; }
         //public long PayAmount { get;private set; }
+
         public bool IsPaid { get; private set; }
+        public DateTime PaymentDate { get; private set; }
+
         public bool IsRecievedByUser { get; private set; }
+        public DateTime ReceiptDate { get; private set; }
+
         public bool IsCanceled { get; private set; }
-        public DateTime ReceiptDate { get;private set; }
-        public DateTime PaymentDate { get;private set; }
-        public DateTime CancelDate { get;private set; }
+        public DateTime CancelDate { get; private set; }
+
+        public bool IsDelivered { get;private set; }
+        public DateTime DeliveryDate { get;private set; }
         public int PaymentMethod { get; private set; }
         public string IssueTrackingNo { get; private set; }
         public long RefId { get; private set; }
@@ -35,6 +41,7 @@ namespace ShopManagement.Domain.OrderAgg
             UserId = userId;
             IsPaid = false;
             IsCanceled = false;
+            IsDelivered = false;
             IsRecievedByUser = false;
             RefId = 0;
             OrderItems = new List<OrderItem>();
@@ -57,9 +64,14 @@ namespace ShopManagement.Domain.OrderAgg
         //    OrderItems = new List<OrderItem>();
         //}
 
-        //After A Succeed Payment For Order , we call this method 
-      
+        public void PrepareToPay(long userAddressId, bool isTransitionPartByPart,int paymentMethod)
+        {
+            UserAddressId=userAddressId;
+            IsTransitionPartByPart = isTransitionPartByPart;
+            PaymentMethod=paymentMethod;
+        }
 
+        //After A Succeed Payment For Order , we call this method 
         public void SetIssueTrackingNo(string number)
         {
             IssueTrackingNo = number;
@@ -83,6 +95,11 @@ namespace ShopManagement.Domain.OrderAgg
         {
             ReceiptDate = DateTime.Now;
             IsRecievedByUser = true;
+        }
+        public void SetAsDelivered()
+        {
+            DeliveryDate=DateTime.Now;
+            IsDelivered=true;
         }
 
         public void AddItem(OrderItem item)

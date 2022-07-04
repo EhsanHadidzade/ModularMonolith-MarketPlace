@@ -30,6 +30,7 @@ namespace ServiceHost.Controllers
         {
             //id==OrderId Of clicked Items
             var currentOrderItems = _orderApplication.GetOrderDetailsByOrderId(id);
+            //ViewData["DeliveryDuration"]=
             return View(currentOrderItems);
         }
 
@@ -44,7 +45,17 @@ namespace ServiceHost.Controllers
         }
         #endregion
 
-        #region Pay Order With using Wallet PayMent method
+        #region To find and select specific address for order
+        public string SelectAddress(long id)
+        {
+            //id==UserAddressId
+            var address = _userAddressApplication.GetDetails(id);
+            var jsonresult = JsonConvert.SerializeObject(address);
+            return jsonresult;
+        }
+        #endregion
+
+        #region Pay Order With using Wallet Payment method
 
         public IActionResult PayOrderByPersonalWallet(long id)
         {
@@ -71,6 +82,16 @@ namespace ServiceHost.Controllers
 
         #endregion
 
+        #region Pay Order using online gateway 
+        [HttpPost]
+        public IActionResult PayOrder(GetOrderInfoToPay command)
+        {
+            _orderApplication.PayOrderUsingOnlineGateWay(command);
+
+            return Redirect("/User/Orders");
+        }
+        #endregion
+
         #region To Update order of user while changing the count of orderItems
 
         public long UpdateOrder(long orderItemId, int count)
@@ -83,14 +104,6 @@ namespace ServiceHost.Controllers
 
         #endregion
 
-        #region To find and select specific address for order
-        public string SelectAddress(long id)
-        {
-            //id==UserAddressId
-            var address = _userAddressApplication.GetDetails(id);
-            var jsonresult = JsonConvert.SerializeObject(address);
-            return jsonresult;
-        }
-        #endregion
+        
     }
 }

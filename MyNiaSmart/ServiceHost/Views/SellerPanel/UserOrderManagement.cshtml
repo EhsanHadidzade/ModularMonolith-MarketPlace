@@ -26,7 +26,16 @@
         </ol>
     </div>
 </div>
-
+@if (ViewData["message"] != null)
+{
+    <div class="col-xl-12 col-xxl-12">
+        <div class="card-body">
+            <div class="alert alert-success solid alert-dismissible fade show">
+                <strong>موفق بود!</strong> @ViewData["message"]
+            </div>
+        </div>
+    </div>
+}
 
 <div class="row">
     <div class="col-12">
@@ -74,7 +83,7 @@
                                         <td>
                                             @if (item.IsTransitionPartByPart)
                                             {
-                                                <p class="text-info">ارسال ریز فاکتور سه صورت تکی باید توسط شما انجام شود</p>
+                                                <p class="text-info">ارسال ریز فاکتور به صورت تکی باید توسط شما انجام شود</p>
                                             }
                                             else
                                             {
@@ -86,25 +95,31 @@
                                         <td>@item.RefId</td>
                                         <td>@item.PaymentDate</td>
                                         <td>
-                                            @if (!item.IsPaid && !item.IsCanceled && !item.IsRevievedByUser)
+                                            @if (!item.IsPaid && !item.IsCanceled && !item.IsRevievedByUser && !item.IsDelivered)
                                             {
                                                 <span class="badge light badge-warning"> سفارش باز مشتری هنوز پرداخت نشده</span>
                                             }
-                                            @if (item.IsPaid && !item.IsCanceled && !item.IsRevievedByUser)
+                                            @if (item.IsPaid && !item.IsCanceled && !item.IsRevievedByUser && !item.IsDelivered && !item.IsDelivered && !item.orderItems.Any(x => x.TransitionId != 0))
                                             {
                                                 <span class="badge light badge-info"> پرداخت شده و باید ارسال شود</span>
                                             }
-                                            @if (item.IsPaid && !item.IsCanceled && item.IsRevievedByUser)
+                                            @if (item.IsPaid && !item.IsCanceled && !item.IsRevievedByUser && !item.IsDelivered && !item.IsDelivered && item.orderItems.Any(x => x.TransitionId != 0))
+                                            {
+                                                <span class="badge light badge-warning"> ارسال شده</span>
+                                            }
+                                            @if (item.IsPaid && !item.IsCanceled && item.IsRevievedByUser && item.IsDelivered)
                                             {
                                                 <span class="badge light badge-success"> دریافت شده توسط مشتری</span>
                                             }
                                             @if (item.IsCanceled)
                                             {
-                                                <span class="badge light badge-danger">دریافت شده توسط مشتری</span>
+                                                <span class="badge light badge-danger">کنسل شده</span>
                                             }
+                                            @*<span class="badge light badge-danger"> وضعیت مشخص نیست</span>*@
                                         </td>
                                         <td>
                                             <a href="#showModal=/SellerPanel/UserOrderItemsManagement/@item.Id" class="btn btn-primary">مشاهده جزئیات</a>
+                                            <a href="#showModal=/SellerPanel/DisplayUserAddressToSendProduct/@item.Id" class="btn btn-info">آدرس</a>
                                             <a href="/SellerPanel/CancelOrder" class="btn btn-danger"> کنسل کردن</a>
                                         </td>
                                     </tr>

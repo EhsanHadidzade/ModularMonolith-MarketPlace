@@ -16,10 +16,12 @@ namespace ShopManagement.Application.Contract.Order
         public bool IsCanceled { get; set; }
         public bool IsPaid { get; set; }
         public bool IsRevievedByUser { get; set; }
+        public bool IsDelivered { get; set; }
         public bool IsTransitionPartByPart { get; set; }
         public string PaymentDate { get; set; }
         public string ReceiptDate { get; set; }
         public string CancelDate { get; set; }
+        public string DeliveryDate { get; set; }
         public string IssueTrackingNo { get; set; }
         public long RefId { get; set; }
         public int PaymentMethod { get; set; }

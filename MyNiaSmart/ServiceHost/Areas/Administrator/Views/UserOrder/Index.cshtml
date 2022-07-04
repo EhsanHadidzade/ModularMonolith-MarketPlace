@@ -45,11 +45,10 @@
                                 <th> نحوه پرداخت </th>
                                 <th> نحوه ارسال </th>
                                 <th>شماره پیگیری </th>
-                                <th>شناسه خرید</th>
+                                <th>شناسه پرداخت</th>
                                 <th>تاریخ خرید</th>
                                 <th>وضعیت</th>
                                 <th>عملیات</th>
-
                             </tr>
                         </thead>
                         <tbody>
@@ -74,36 +73,48 @@
                                         <td>
                                             @if (item.IsTransitionPartByPart)
                                             {
-                                                <p class="text-info">ارسال ریز فاکتور به صورت تکی باید توسطفروشنده ها انجام شوند</p>
+                                                <p class="text-info">ارسال ریز فاکتور به صورت تکی باید توسط فروشنده ها انجام شوند</p>
                                             }
                                             else
                                             {
                                                 <p class="text-info">ارسال ریز فاکتور باید به صورت تجمعی با هماهنگی مدیر انجام میشود.</p>
                                             }
                                         </td>
-                                        <td> @item.IssueTrackingNo</td>
+                                        <td>@item.IssueTrackingNo</td>
                                         <td>@item.RefId</td>
                                         <td>@item.PaymentDate</td>
                                         <td>
-                                            @if (!item.IsPaid && !item.IsCanceled && !item.IsRevievedByUser)
+                                            @if (!item.IsPaid && !item.IsDelivered && !item.IsCanceled && !item.IsRevievedByUser)
                                             {
                                                 <span class="badge light badge-warning"> سفارش باز مشتری هنوز پرداخت نشده</span>
                                             }
-                                            @if (item.IsPaid && !item.IsCanceled && !item.IsRevievedByUser)
+                                            @if (item.IsPaid && !item.IsDelivered && !item.IsCanceled && !item.IsRevievedByUser)
                                             {
                                                 <span class="badge light badge-info"> پرداخت شده و باید ارسال شود</span>
+                                                <p class="text-success">(تاریخ پرداخت : @item.PaymentDate)</p>
+
                                             }
-                                            @if (item.IsPaid && !item.IsCanceled && item.IsRevievedByUser)
+                                            @if (item.IsPaid && item.IsDelivered && !item.IsCanceled && !item.IsRevievedByUser)
                                             {
-                                                <span class="badge light badge-success"> دریافت شده توسط مشتری</span>
+                                                <span class="badge light badge-info"> تمامی آیتم ها ارسال شده اند </span>
+                                                <p class="text-info">(تاریخ آخرین ارسال : @item.DeliveryDate)</p>
+                                            }
+                                            @if (item.IsPaid && item.IsDelivered && !item.IsCanceled && item.IsRevievedByUser)
+                                            {
+                                                <span class="badge light badge-success"> دریافت شده توسط مشتری </span>
+                                                <p class="text-success">(تاریخ دریافت : @item.DeliveryDate)</p>
+
                                             }
                                             @if (item.IsCanceled)
                                             {
-                                                <span class="badge light badge-danger">دریافت شده توسط مشتری</span>
+                                                <span class="badge light badge-danger">سفارش کنسل شده</span>
+                                                <p class="text-danger">(تاریخ کنسلی : @item.DeliveryDate)</p>
                                             }
+                                           
                                         </td>
                                         <td>
                                             <a href="#showModal=/Administrator/UserOrder/ShowOrderItems/@item.Id" class="btn btn-primary">مشاهده جزئیات</a>
+                                            <a href="#showModal=/Administrator/UserOrder/DisplayUserAddressToSendProduct/@item.Id" class="btn btn-info"> آدرس</a>
                                             <a href="/SellerPanel/CancelOrder" class="btn btn-danger"> کنسل کردن</a>
                                         </td>
                                     </tr>

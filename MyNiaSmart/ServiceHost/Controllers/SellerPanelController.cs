@@ -182,9 +182,12 @@ namespace ServiceHost.Controllers
         }
         #endregion
 
-        #region 
+        #region To manage orders which are including items that are related to seller
         public IActionResult UserOrderManagement()
         {
+            if (SellerPanelController.message != null)
+                ViewData["message"] = message;
+
             var userId = _authHelper.CurrentAccountInfo().Id;
             var orders = _orderApplication.GetCustomerOrdersInSellerPanelBySellerUserId(userId);
             return View(orders);
@@ -197,6 +200,30 @@ namespace ServiceHost.Controllers
             var sellerPanelId=_sellerPanelApplication.GetSellerPanelIdByUserId(userId);
             var orderItems=_orderItemApplication.GetListWhichRelatedToSellerByOrderIdAndSellerPanelId(id,sellerPanelId);
             return PartialView(orderItems);
+        }
+
+        //To Create New Transition For Specific Items
+        [HttpPost]
+        public IActionResult SendItemsBySeller(List<long> OrderItemIdsOwnedBySeller)
+        {
+            if (OrderItemIdsOwnedBySeller.Count == 0)
+            {
+                SellerPanelController.message = "موردی یافت نشد";
+                return Redirect("/SellerPanel/UserOrderManagement");
+            }
+
+            var result=_orderItemApplication.SendOrderItemsBySellerWithIds(OrderItemIdsOwnedBySeller);
+            SellerPanelController.message=result.Message;
+            return Redirect("/SellerPanel/UserOrderManagement");
+        }
+
+        //TO Display Specific Address That user choosed To Receive product
+        public IActionResult DisplayUserAddressToSendProduct(long id)
+        {
+            //id==Order Id Passed To Find Address
+
+            var userAddress = _orderApplication.GetUserAddressById(id);
+            return PartialView(userAddress);
         }
         #endregion
 

@@ -558,5 +558,15 @@ C:\Work\Projects\MyNiaSmart\MyNiaSmart\ServiceHost\obj\Release\net5.0\Razor\View
 C:\Work\Projects\MyNiaSmart\MyNiaSmart\ServiceHost\obj\Release\net5.0\Razor\Views\Shared\Components\LeftBarOrderItem\Default.cshtml.g.cs
 C:\Work\Projects\MyNiaSmart\MyNiaSmart\ServiceHost\obj\Release\net5.0\Razor\Views\User\CreateAddress.cshtml.g.cs
 C:\Work\Projects\MyNiaSmart\MyNiaSmart\ServiceHost\obj\Release\net5.0\Razor\Views\User\EditAddress.cshtml.g.cs
-C:\Work\Projects\MyNiaSmart\MyNiaSmart\ServiceHost\obj\Release\net5.0\Razor\Views\User\Order.cshtml.g.cs
 C:\Work\Projects\MyNiaSmart\MyNiaSmart\ServiceHost\obj\Release\net5.0\Razor\Views\User\_UserProfileAddress.cshtml.g.cs
+C:\Work\Projects\MyNiaSmart\MyNiaSmart\ServiceHost\obj\Release\net5.0\Razor\Areas\Administrator\Views\UserOrder\Index.cshtml.g.cs
+C:\Work\Projects\MyNiaSmart\MyNiaSmart\ServiceHost\obj\Release\net5.0\Razor\Areas\Administrator\Views\UserOrder\ShowOrderItems.cshtml.g.cs
+C:\Work\Projects\MyNiaSmart\MyNiaSmart\ServiceHost\obj\Release\net5.0\Razor\Views\Order\PayOrderByPersonalWallet.cshtml.g.cs
+C:\Work\Projects\MyNiaSmart\MyNiaSmart\ServiceHost\obj\Release\net5.0\Razor\Views\Order\SearchUserAddress.cshtml.g.cs
+C:\Work\Projects\MyNiaSmart\MyNiaSmart\ServiceHost\obj\Release\net5.0\Razor\Views\SellerPanel\UserOrderItemsManagement.cshtml.g.cs
+C:\Work\Projects\MyNiaSmart\MyNiaSmart\ServiceHost\obj\Release\net5.0\Razor\Views\SellerPanel\UserOrderManagement.cshtml.g.cs
+C:\Work\Projects\MyNiaSmart\MyNiaSmart\ServiceHost\obj\Release\net5.0\Razor\Views\User\Orders.cshtml.g.cs
+C:\Work\Projects\MyNiaSmart\MyNiaSmart\ServiceHost\obj\Release\net5.0\Razor\Views\User\ShowOrderItems.cshtml.g.cs
+C:\Work\Projects\MyNiaSmart\MyNiaSmart\ServiceHost\obj\Release\net5.0\Razor\Views\User\_CanceledOrders.cshtml.g.cs
+C:\Work\Projects\MyNiaSmart\MyNiaSmart\ServiceHost\obj\Release\net5.0\Razor\Views\User\_CurrentOrders.cshtml.g.cs
+C:\Work\Projects\MyNiaSmart\MyNiaSmart\ServiceHost\obj\Release\net5.0\Razor\Views\User\_RecievedOrders.cshtml.g.cs

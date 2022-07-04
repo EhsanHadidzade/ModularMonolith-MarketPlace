@@ -1,12 +1,14 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using ShopManagement.Application.Contract.Order;
 using ShopManagement.Application.Contract.OrderItem;
+using System.Collections.Generic;
 
 namespace ServiceHost.Areas.Administrator.Controllers
 {
     [Area("Administrator")]
     public class UserOrderController : Controller
     {
+        public static string message { get; set; }
         private readonly IOrderApplication _orderApplication;
         private readonly IOrderItemApplication _orderItemApplication;
 
@@ -26,9 +28,25 @@ namespace ServiceHost.Areas.Administrator.Controllers
         public IActionResult ShowOrderItems(long id)
         {
             //id==Order Id Passed
-
             var orderItems = _orderItemApplication.GetListByOrderId(id);
             return PartialView(orderItems);
+        }
+
+        public IActionResult DisplayUserAddressToSendProduct(long id)
+        {
+            //id==Order Id Passed To Find Address
+            var userAddress = _orderApplication.GetUserAddressById(id);
+            return PartialView(userAddress);
+        }
+
+        public IActionResult SendItems(List<long> itemIdsToSend)
+        {
+            if (itemIdsToSend.Count == 0)
+            {
+                UserOrderController.message = "موردی یافت نشد";
+                return Redirect("/Administrator/UserOrder/Index");
+            }
+
         }
     }
 }

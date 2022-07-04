@@ -2469,7 +2469,8 @@
         "type": "project",
         "framework": ".NETCoreApp,Version=v5.0",
         "dependencies": {
-          "0_Framework": "1.0.0"
+          "0_Framework": "1.0.0",
+          "AccountManagement.Application.Contract": "1.0.0"
         },
         "compile": {
           "bin/placeholder/ShopManagement.Application.Contract.dll": {}

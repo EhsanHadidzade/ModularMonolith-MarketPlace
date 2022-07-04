@@ -10,6 +10,8 @@ namespace AccountManagement.Application.Contract.UserAddress
         EditUserAddress GetDetails(long id);
         OperationResult Edit(EditUserAddress command);
         OperationResult Remove(long userAddressId);
+
+
         
 
     }

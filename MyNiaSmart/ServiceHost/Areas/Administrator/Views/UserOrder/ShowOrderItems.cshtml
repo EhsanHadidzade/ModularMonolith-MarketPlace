@@ -10,6 +10,7 @@
             </div>
             <div class="card-body">
                 <div class="table-responsive">
+                    <form method="Post" action="/Administrator/UserOrder/"
                     <table class="table table-responsive-md">
                         <thead>
                             <tr>
@@ -18,6 +19,7 @@
                                 <th><strong> نام فروشگاه</strong></th>
                                 <th><strong>تعداد </strong></th>
                                 <th><strong>قیمت کل </strong></th>
+                                <th><strong> وضعیت </strong></th>
                                 <th></th>
                             </tr>
                         </thead>
@@ -32,7 +34,17 @@
                                     <td>@item.SellerShopName</td>
                                     <td>@item.Count</td>
                                     <td>@item.UnitPrice تومان</td>
-                                 
+                                    <td>
+                                        @if (item.TransitionTrackingNumber != "")
+                                        {
+                                            <p class="text-success">ارسال شده(@item.TransitionTrackingNumber)</p>
+                                        }
+                                        else
+                                        {
+                                            <p class="text-warning">هنوز ارسال نشده</p>
+                                        }
+                                    </td>
+
                                 </tr>
                             }
                         </tbody>

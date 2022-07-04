@@ -18,6 +18,18 @@ namespace AccountManagement.Infrastructure.EFCore.Repository
             _context = context;
         }
 
+        public UserAddressViewModel GetUserAddressById(long orderId)
+        {
+            return _context.UserAddresses.Select(x => new UserAddressViewModel
+            {
+                Id = x.Id,
+                Address = x.Address,
+                City = x.City,
+                Capital = x.Capital,
+                MobileNumber = x.MobileNumber
+            }).FirstOrDefault(x => x.Id == orderId);
+        }
+
         public EditUserAddress GetDetails(long id)
         {
             return _context.UserAddresses.Select(x => new EditUserAddress

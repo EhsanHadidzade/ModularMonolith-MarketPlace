@@ -32,7 +32,13 @@ namespace ShopManagement.Infrastructure.EFCore.Migrations
                     b.Property<DateTime>("CreationDate")
                         .HasColumnType("datetime2");
 
+                    b.Property<DateTime>("DeliveryDate")
+                        .HasColumnType("datetime2");
+
                     b.Property<bool>("IsCanceled")
+                        .HasColumnType("bit");
+
+                    b.Property<bool>("IsDelivered")
                         .HasColumnType("bit");
 
                     b.Property<bool>("IsPaid")
