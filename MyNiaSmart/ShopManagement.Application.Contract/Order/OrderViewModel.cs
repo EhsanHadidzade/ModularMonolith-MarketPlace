@@ -25,6 +25,7 @@ namespace ShopManagement.Application.Contract.Order
         public string IssueTrackingNo { get; set; }
         public long RefId { get; set; }
         public int PaymentMethod { get; set; }
+        public int TotalDeliveryDuration { get; set; }
         public List<OrderItemViewModel> orderItems { get; set; }
     }
 }

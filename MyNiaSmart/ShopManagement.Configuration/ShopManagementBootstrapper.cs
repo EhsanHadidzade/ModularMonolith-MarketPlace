@@ -12,6 +12,7 @@ using ShopManagement.Application.Contract.ProductCategory.ProductUsageType;
 using ShopManagement.Application.Contract.SellerPanel;
 using ShopManagement.Application.Contract.SellerProduct;
 using ShopManagement.Application.Contract.SellerProductMedia;
+using ShopManagement.Application.Contract.Transition;
 using ShopManagement.Application.ProductCategoryApplication;
 using ShopManagement.Domain.OrderAgg;
 using ShopManagement.Domain.OrderItemAgg;
@@ -75,6 +76,7 @@ namespace ShopManagement.Configuration
             services.AddTransient<IOrderItemApplication, OrderItemApplication>();
 
             services.AddTransient<ITransitionRepository, TransitionRepository>();
+            services.AddTransient<ITransitionApplication, TransitionApplication>();
 
             services.AddDbContext<ShopContext>(item => item.UseSqlServer(connectionstring));
         }

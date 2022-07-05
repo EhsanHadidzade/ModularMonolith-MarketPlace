@@ -13,7 +13,7 @@ namespace ShopManagement.Domain.TransitionAgg
     {
         public string TrackingNumber { get; private set; }
         public int Duration { get; private set; }
-
+        public bool IsFinished { get;private set; }
 
         //relations
         public long SellerPanelId { get; private set; }
@@ -26,7 +26,11 @@ namespace ShopManagement.Domain.TransitionAgg
             SellerPanelId = sellerPanelId;
             TrackingNumber = trackingNumber;
             Duration = duration;
-            //OrderItems = new List<OrderItem>();
+            IsFinished=false;
+        }
+        public void SetAsDone()
+        {
+            IsFinished = true;
         }
        
     }

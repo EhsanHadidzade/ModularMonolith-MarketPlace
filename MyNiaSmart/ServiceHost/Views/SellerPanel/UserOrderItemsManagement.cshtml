@@ -18,7 +18,9 @@
                                 <th><strong> نام محصول</strong></th>
                                 <th><strong> نام فروشگاه</strong></th>
                                 <th><strong>تعداد </strong></th>
+                                <th><strong>قیمت فروشنده </strong></th>
                                 <th><strong>قیمت کل </strong></th>
+                                <th><strong> مدت زمان ارسال پس از تاریخ خرید </strong></th>
                                 <th><strong> وضعیت </strong></th>
                                 <th></th>
                             </tr>
@@ -33,9 +35,19 @@
                                     <td>@item.SellerProductTitle</td>
                                     <td>@item.SellerShopName</td>
                                     <td>@item.Count</td>
+                                    <td>@item.SellerProductPrice.ToMoney()</td>
                                     <td>@item.UnitPrice.ToMoney() تومان</td>
+                                    <td>@if(item.CalculatedDeliveryduration!=0)
+                                        {
+                                            <p>@item.CalculatedDeliveryduration ساعت</p>
+                                        }
+                                        else
+                                        {
+                                            <p>نا مشخص</p>
+                                        }
+                                    </td>
                                     <td>
-                                        @if (item.TransitionTrackingNumber != "")
+                                        @if (item.TransitionTrackingNumber != null)
                                         {
                                             <p class="text-success"> ارسال شده( کد رهگیری ارسال @item.TransitionTrackingNumber)</p>
                                         }

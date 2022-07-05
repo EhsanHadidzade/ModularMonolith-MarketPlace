@@ -23,5 +23,7 @@ namespace ShopManagement.Application.Contract.OrderItem
         public long UnitPrice { get; set; }
         public string PictureURL { get; set; }
         public int Count { get; set; }
+        public int CalculatedDeliveryduration { get; set; }
+        public long SellerProductPrice { get; set; }
     }
 }

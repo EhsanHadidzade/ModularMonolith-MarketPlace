@@ -12,11 +12,11 @@ namespace ServiceHost.Controllers
 {
     public class MainShopController : Controller
     {
+        private readonly IAuthHelper _authHelper;
         private readonly IProductApplication _productAapplication;
+        private readonly IOrderItemApplication _orderItemApplication;
         private readonly ISellerPanelApplication _sellerPanelApplication;
         private readonly ISellerProductApplication _sellerProductApplication;
-        private readonly IOrderItemApplication _orderItemApplication;
-        private readonly IAuthHelper _authHelper;
 
         public MainShopController(IProductApplication productApplication,
             ISellerPanelApplication sellerPanelApplication, ISellerProductApplication sellerProductApplication,
@@ -95,7 +95,6 @@ namespace ServiceHost.Controllers
         }
 
         #endregion
-
 
     }
 }

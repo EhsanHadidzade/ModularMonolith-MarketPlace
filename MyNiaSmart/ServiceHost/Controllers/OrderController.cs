@@ -86,8 +86,14 @@ namespace ServiceHost.Controllers
         [HttpPost]
         public IActionResult PayOrder(GetOrderInfoToPay command)
         {
-            _orderApplication.PayOrderUsingOnlineGateWay(command);
+            if (command.UserAddressId == 0)
+            {
+                ViewData["NoAddressError"] = true;
+                var currentOrderItems = _orderApplication.GetOrderDetailsByOrderId(command.Id);
+                return View("CurrentOrder", currentOrderItems);
+            }
 
+            _orderApplication.PayOrderUsingOnlineGateWay(command);
             return Redirect("/User/Orders");
         }
         #endregion

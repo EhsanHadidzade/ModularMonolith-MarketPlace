@@ -162,14 +162,12 @@ namespace ShopManagement.Infrastructure.EFCore.Repository
                 order.orderItems = list;
             }
 
-
             foreach (var item in orders)
             {
                 item.RecieverFullName = _userRepository.GetFullNameByUserId(item.UserId);
             }
 
-            return orders;
-
+            return orders.OrderByDescending(x=>x.Id).ToList();
         }
 
         public OrderViewModel GetOrderDetailsByOrderId(long orderId)
@@ -257,7 +255,8 @@ namespace ShopManagement.Infrastructure.EFCore.Repository
                 IsCanceled = x.IsCanceled,
                 IssueTrackingNo = x.IssueTrackingNo,
                 orderItems = ProjectOrderItems(x.OrderItems)
-            }).Where(x => x.UserId == userId && x.IsPaid && !x.IsCanceled && !x.IsRevievedByUser).OrderByDescending(x => x.Id).ToList();
+            }).Where(x => x.UserId == userId && x.IsPaid && !x.IsCanceled && !x.IsRevievedByUser)
+            .OrderByDescending(x => x.Id).ToList();
             foreach (var order in currentOrders)
             {
                 foreach (var item in order.orderItems)

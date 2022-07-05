@@ -494,6 +494,9 @@ namespace ShopManagement.Infrastructure.EFCore.Migrations
                     b.Property<int>("Duration")
                         .HasColumnType("int");
 
+                    b.Property<bool>("IsFinished")
+                        .HasColumnType("bit");
+
                     b.Property<long>("SellerPanelId")
                         .HasColumnType("bigint");
 

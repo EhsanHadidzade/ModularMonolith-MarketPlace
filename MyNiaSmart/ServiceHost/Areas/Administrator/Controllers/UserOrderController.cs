@@ -39,14 +39,6 @@ namespace ServiceHost.Areas.Administrator.Controllers
             return PartialView(userAddress);
         }
 
-        public IActionResult SendItems(List<long> itemIdsToSend)
-        {
-            if (itemIdsToSend.Count == 0)
-            {
-                UserOrderController.message = "موردی یافت نشد";
-                return Redirect("/Administrator/UserOrder/Index");
-            }
-
-        }
+       
     }
 }

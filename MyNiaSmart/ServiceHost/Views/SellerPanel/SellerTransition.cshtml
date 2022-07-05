@@ -1,0 +1,104 @@
+﻿@model List<ShopManagement.Application.Contract.Transition.TransitionViewModel>
+@{
+    ViewData["Title"] = "مدیریت ارسالی های شما";
+}
+@section header{
+<!-- Datatable -->
+<link href="/MainTheme/vendor/datatables/css/jquery.dataTables.min.css" rel="stylesheet">
+}
+
+<div class="row page-titles mx-0">
+    <div class="col-sm-6 p-md-0">
+        <div class="welcome-text">
+            <h4>
+                سلام، خوش آمدید
+            </h4>
+            <p class="mb-0">پنل فروشندگی</p>
+        </div>
+    </div>
+    <div class="col-sm-6 p-md-0 justify-content-sm-end mt-2 mt-sm-0 d-flex">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="javascript:void(0)">پنل ها </a></li>
+            <li class="breadcrumb-item "><a href="javascript:void(0)">پنل فروشندگی </a></li>
+            <li class="breadcrumb-item active"><a href="javascript:void(0)">مدیریت ارسالی ها</a></li>
+        </ol>
+    </div>
+</div>
+
+@if (ViewData["message"] != null)
+{
+    <div class="col-xl-12 col-xxl-12">
+        <div class="card-body">
+            <div class="alert alert-success solid alert-dismissible fade show">
+                <strong> @ViewData["message"] </strong>
+            </div>
+        </div>
+    </div>
+}
+
+
+<div class="row">
+    <div class="col-12">
+        <div class="card">
+            <div class="card-header">
+                <h4 class="card-title">مدیریت ارسالی ها</h4>
+            </div>
+            <div class="card-body">
+                <div class="table-responsive">
+                    <table id="example4" class="display" style="min-width: 845px">
+                        <thead>
+                            <tr>
+                                <th>کد رهگیری</th>
+                                <th>تاریخ ایجاد</th>
+                                <th> نام دریافت کننده</th>
+                                <th>زمان تعیید شده بر حسب ساعت</th>
+                                <th>وضعیت</th>
+                                <th>  عملیات</th>
+
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @if (Model.Count > 0)
+                            {
+                                foreach (var item in Model)
+                                {
+                                    <tr>
+                                     <td>@item.TrackingNumber</td>
+                                     <td>@item.TransitionDate</td>
+                                     <td>@item.ReceiverFullName</td>
+                                     <td>@item.Duration</td>
+                                     <td>
+                                         @if(item.IsFinished)
+                                            {
+                                                <p class="text-success">
+                                                    با موفقیت به دست خریدار رسید
+                                                </p>
+                                            }
+                                            else
+                                            {
+                                                  <p class="text-warning" > 
+                                                    در راه رسیدن به مقصد
+                                                </p>
+                                            }
+                                        </td>
+                                        <td>
+                                            <a href="#showModal=/SellerPanel/DisplayTransitionOrderItems/@item.Id" class="btn btn-primary">مشاهده جزئیات</a>
+                                            <a href="#showModal=/SellerPanel/SetTransitionFinished/@item.Id" class="btn btn-success">گزارش اتمام ارسال</a>
+                                        </td>
+                                    </tr>
+                                }
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+@section Scripts{
+<!-- Datatable -->
+<script src="/MainTheme/vendor/datatables/js/jquery.dataTables.min.js"></script>
+<script src="/MainTheme/js/plugins-init/datatables.init.js"></script>
+}

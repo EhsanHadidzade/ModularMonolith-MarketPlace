@@ -36,29 +36,28 @@ namespace ServiceHost.Controllers
         private readonly IUserQuery _userQuery;
         private readonly IAuthHelper _authHelper;
         private readonly IUserApplication _userApplication;
-        private readonly IUPAccountRequestApplication _upAccountRequestApplication;
-        private readonly IRejectionReasonApplication _rejectionReasonApplication;
-        private readonly IUpAccountRequestRejectionReasonApplication _upAccountRequestRejectionReasonApplication;
-        private readonly IPersonalWalletApplication _personalWalletApplication;
-        private readonly IBusinessWalletApplication _businessWalletApplication;
-        private readonly IPersonalWalletOperationApplication _personalWalletOperationApplication;
         private readonly IZarinPalFactory _zarinPalFactory;
-        public readonly IUserCooperationRequestApplication _UserCooperationRequestApplication;
-        private readonly IRoleTypeApplication _roleTypeApplication;
-        private readonly ISellerPanelApplication _sellerPanelApplication;
-        private readonly IPersonalityTypeApplication _personalityTypeApplication;
-        private readonly IUserAddressApplication _userAddressApplication;
         private readonly IOrderApplication _orderApplication;
         private readonly IOrderItemApplication _orderItemApplication;
+        private readonly ISellerPanelApplication _sellerPanelApplication;
+        private readonly IUserAddressApplication _userAddressApplication;
+        private readonly IBusinessWalletApplication _businessWalletApplication;
+        private readonly IPersonalWalletApplication _personalWalletApplication;
+        private readonly IRejectionReasonApplication _rejectionReasonApplication;
+        private readonly IPersonalityTypeApplication _personalityTypeApplication;
+        private readonly IUPAccountRequestApplication _upAccountRequestApplication;
+        public readonly IUserCooperationRequestApplication _UserCooperationRequestApplication;
+        private readonly IPersonalWalletOperationApplication _personalWalletOperationApplication;
+        private readonly IUpAccountRequestRejectionReasonApplication _upAccountRequestRejectionReasonApplication;
 
         public UserController(IUserQuery userQuery, IAuthHelper authHelper, IUserApplication userApplication,
             IUPAccountRequestApplication upAccountRequestApplication, IRejectionReasonApplication rejectionReasonApplication,
             IUpAccountRequestRejectionReasonApplication upAccountRequestRejectionReasonApplication,
             IPersonalWalletApplication personalWalletApplication, IBusinessWalletApplication businessWalletApplication,
             IPersonalWalletOperationApplication personalWalletOperationApplication, IZarinPalFactory zarinPalFactory,
-            IUserCooperationRequestApplication userCooperationRequestApplication, IRoleTypeApplication roleTypeApplication,
-            ISellerPanelApplication sellerPanelApplication, IPersonalityTypeApplication personalityTypeApplication,
-            IUserAddressApplication userAddressApplication, IOrderApplication orderApplication, IOrderItemApplication orderItemApplication)
+            IUserCooperationRequestApplication userCooperationRequestApplication, ISellerPanelApplication sellerPanelApplication,
+            IPersonalityTypeApplication personalityTypeApplication, IUserAddressApplication userAddressApplication,
+            IOrderApplication orderApplication, IOrderItemApplication orderItemApplication)
         {
             _userQuery = userQuery;
             _authHelper = authHelper;
@@ -71,7 +70,6 @@ namespace ServiceHost.Controllers
             _personalWalletOperationApplication = personalWalletOperationApplication;
             _zarinPalFactory = zarinPalFactory;
             _UserCooperationRequestApplication = userCooperationRequestApplication;
-            _roleTypeApplication = roleTypeApplication;
             _sellerPanelApplication = sellerPanelApplication;
             _personalityTypeApplication = personalityTypeApplication;
             _userAddressApplication = userAddressApplication;
@@ -342,12 +340,12 @@ namespace ServiceHost.Controllers
         #region UserOrderManageMent
         public IActionResult Orders()
         {
-            var userId=_authHelper.CurrentAccountInfo().Id;
+            var userId = _authHelper.CurrentAccountInfo().Id;
 
             var currentOrder = _orderApplication.GetUserCurrentOrdersByUserId(userId);
             var recievedOrder = _orderApplication.GetUserRecievedOrdersByUserId(userId);
-            var canceledOrder=_orderApplication.GetUserCanceledOrdersByUserId(userId);
-            var model=new Tuple<List<OrderViewModel>, List<OrderViewModel>, List<OrderViewModel>>(currentOrder, recievedOrder, canceledOrder);  
+            var canceledOrder = _orderApplication.GetUserCanceledOrdersByUserId(userId);
+            var model = new Tuple<List<OrderViewModel>, List<OrderViewModel>, List<OrderViewModel>>(currentOrder, recievedOrder, canceledOrder);
             return View(model);
         }
 
@@ -355,7 +353,7 @@ namespace ServiceHost.Controllers
         {
             //id==Order Id Passed
 
-            var orderItems=_orderItemApplication.GetListByOrderId(id);
+            var orderItems = _orderItemApplication.GetListByOrderId(id);
             return PartialView(orderItems);
         }
         #endregion

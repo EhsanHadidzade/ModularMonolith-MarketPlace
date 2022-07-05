@@ -95,26 +95,31 @@
                                 </div>
                             </div>
                             <div class="row">
-                                <div class="col-9 pt-3 pb-3 border-right">
+                                <div class="col-md-9 pt-3 pb-3 border-right">
                                     <label for="address">آدرس</label>
-                                    <input type="text" class="form-control" id="UserAddressText" placeholder=" لطفا با دکمه رو به رو ادرس مورد نظر خود را انتخاب کنید" readonly>
+                                    <input type="text" class="form-control" id="UserAddressText" placeholder=" با زدن دکمه روبه رو،آدرس خود را انتخاب نمایید" readonly>
                                     <div class="invalid-feedback">
                                         لطفا آدرس حمل و نقل خود را وارد کنید
                                     </div>
                                 </div>
-                                <div class="col-3 pt-3 pb-3">
+                                <div class="col-md-3 pt-3 pb-3">
                                     <label></label>
                                     <a class="btn btn-outline-success mt-3 px-5" href="#showModal=/Order/SearchUserAddress">انتخاب آدرس </a>
                                 </div>
                                 <input name="UserAddressId" type="hidden" id="UserAddressId" />
 
                             </div>
-                            <div class="row">
-                            <strong>مدت زمان ارسال: </strong>
-                            <p id="deliveryDuration">
-
-                            </p>
-                            </div>
+                            @if(ViewData["NoAddressError"]!=null)
+                            {
+                                <div class="row">
+                                    <div class="alert alert-danger">
+                                        <p class="text-danger">
+                                            از انتخاب آدرس مورد نظر خود، اطمینان حاصل کنید
+                                        </p>
+                                    </div>
+                                </div>
+                            }
+                         
                             <input type="hidden" name="Id" value="@Model.Id" />
                             <button class="btn btn-primary btn-lg btn-block" type="submit">پرداخت از طریق درگاه انلاین</button>
                             <a href="#showModal=/Order/PayOrderByPersonalWallet/@Model.Id" class="btn btn-primary btn-lg btn-block">خرید از طریق کیف پول</a>

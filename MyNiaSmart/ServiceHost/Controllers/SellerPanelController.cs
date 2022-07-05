@@ -11,6 +11,7 @@ using System;
 using System.Linq;
 using ShopManagement.Application.Contract.Order;
 using ShopManagement.Application.Contract.OrderItem;
+using ShopManagement.Application.Contract.Transition;
 
 namespace ServiceHost.Controllers
 {
@@ -18,18 +19,19 @@ namespace ServiceHost.Controllers
     {
         public static string message { get; set; }
         //public static List<long> SelectedMedias { set; get; }
-        private readonly ISellerProductApplication _sellerProductApplication;
-        private readonly ISellerPanelApplication _sellerPanelApplication;
-        private readonly IProductApplication _productApplication;
-        private readonly ISellerProductMediaApplication _sellerProductMediaApplication;
-        private readonly IOrderApplication _orderApplication;
-        private readonly IOrderItemApplication _orderItemApplication;
         private readonly IAuthHelper _authHelper;
+        private readonly IOrderApplication _orderApplication;
+        private readonly IProductApplication _productApplication;
+        private readonly IOrderItemApplication _orderItemApplication;
+        private readonly ITransitionApplication _transitionApplication;
+        private readonly ISellerPanelApplication _sellerPanelApplication;
+        private readonly ISellerProductApplication _sellerProductApplication;
+        private readonly ISellerProductMediaApplication _sellerProductMediaApplication;
 
         public SellerPanelController(ISellerProductApplication sellerProductApplication,
             ISellerPanelApplication sellerPanelApplication, IAuthHelper authHelper, IProductApplication productApplication,
             ISellerProductMediaApplication sellerProductMediaApplication, IOrderApplication orderApplication,
-            IOrderItemApplication orderItemApplication)
+            IOrderItemApplication orderItemApplication, ITransitionApplication transitionApplication)
         {
             _sellerProductApplication = sellerProductApplication;
             _sellerPanelApplication = sellerPanelApplication;
@@ -38,6 +40,7 @@ namespace ServiceHost.Controllers
             _sellerProductMediaApplication = sellerProductMediaApplication;
             _orderApplication = orderApplication;
             _orderItemApplication = orderItemApplication;
+            _transitionApplication = transitionApplication;
         }
 
         public IActionResult Index()
@@ -224,6 +227,37 @@ namespace ServiceHost.Controllers
 
             var userAddress = _orderApplication.GetUserAddressById(id);
             return PartialView(userAddress);
+        }
+        #endregion
+
+        #region To Manage All Transitions which are operated By Seller
+        public IActionResult SellerTransition()
+        {
+            if (SellerPanelController.message != null)
+                ViewData["message"] = message;
+
+            //TO Find Seller PanelId
+            var userId = _authHelper.CurrentAccountInfo().Id;
+            var sellerPanelId = _sellerPanelApplication.GetSellerPanelIdByUserId(userId);
+
+            var transitions = _transitionApplication.GetListBySellerPanelId(sellerPanelId);
+            return View(transitions);
+        }
+        
+        public IActionResult DisplayTransitionOrderItems(long id)
+        {
+            //id== Transition Id Passed TO Find orderItems
+            var orderItems=_orderItemApplication.GetListByTransitionId(id);
+            return PartialView(orderItems);
+        }
+
+        public IActionResult SetTransitionFinished(long id)
+        {
+            //id== Transition Id Passed TO Find orderItems
+            var result = _transitionApplication.FinishTransitionById(id);
+            SellerPanelController.message = result.Message;
+            return Redirect("/SellerPanel/SellerTransition");
+
         }
         #endregion
 

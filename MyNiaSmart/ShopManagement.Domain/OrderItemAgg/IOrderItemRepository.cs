@@ -15,5 +15,10 @@ namespace ShopManagement.Domain.OrderItemAgg
 
         //To Get List Of Items Of Specific Order in seller panel To find items of specific order which are related to sellerProducts
         List<OrderItemViewModel> GetListWhichRelatedToSellerByOrderIdAndSellerPanelId(long orderId,long sellerPanelId);
+
+        //To See The OrderItems of one transition in section of transitionManagement in sellerPanel 
+        List<OrderItemViewModel> GetListByTransitionId(long transitionId);
+
+
     }
 }

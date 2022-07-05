@@ -83,7 +83,7 @@
                                         <td>
                                             @if (item.IsTransitionPartByPart)
                                             {
-                                                <p class="text-info">ارسال ریز فاکتور به صورت تکی باید توسط شما انجام شود</p>
+                                                <p class="text-info">ارسال ریز فاکتور باید توسط شما انجام شود</p>
                                             }
                                             else
                                             {
@@ -91,7 +91,7 @@
                                                 <b class="text-info"> منتظر تماس مدیریت باشید</b>
                                             }
                                         </td>
-                                        <td>@item.IssueTrackingNo</td>
+                                        <td>#@item.IssueTrackingNo</td>
                                         <td>@item.RefId</td>
                                         <td>@item.PaymentDate</td>
                                         <td>
@@ -99,11 +99,11 @@
                                             {
                                                 <span class="badge light badge-warning"> سفارش باز مشتری هنوز پرداخت نشده</span>
                                             }
-                                            @if (item.IsPaid && !item.IsCanceled && !item.IsRevievedByUser && !item.IsDelivered && !item.IsDelivered && !item.orderItems.Any(x => x.TransitionId != 0))
+                                            @if (item.IsPaid && !item.IsCanceled && !item.IsRevievedByUser && !item.IsDelivered && !item.orderItems.Any(x => x.TransitionId != 0))
                                             {
                                                 <span class="badge light badge-info"> پرداخت شده و باید ارسال شود</span>
                                             }
-                                            @if (item.IsPaid && !item.IsCanceled && !item.IsRevievedByUser && !item.IsDelivered && !item.IsDelivered && item.orderItems.Any(x => x.TransitionId != 0))
+                                            @if (item.IsPaid && !item.IsCanceled && !item.IsRevievedByUser && !item.IsDelivered && item.orderItems.Any(x => x.TransitionId != 0))
                                             {
                                                 <span class="badge light badge-warning"> ارسال شده</span>
                                             }
@@ -115,7 +115,6 @@
                                             {
                                                 <span class="badge light badge-danger">کنسل شده</span>
                                             }
-                                            @*<span class="badge light badge-danger"> وضعیت مشخص نیست</span>*@
                                         </td>
                                         <td>
                                             <a href="#showModal=/SellerPanel/UserOrderItemsManagement/@item.Id" class="btn btn-primary">مشاهده جزئیات</a>

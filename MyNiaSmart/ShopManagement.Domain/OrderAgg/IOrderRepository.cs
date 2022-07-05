@@ -25,7 +25,8 @@ namespace ShopManagement.Domain.OrderAgg
         //TO get Amount of order total Amount when user is changing order Items
         long GetTotalAmountById(long orderId);
 
-        
+        //To Show List Of All Orders With All Items In AdminPanel
+        List<OrderViewModel> GetList();
 
 
 
@@ -44,14 +45,10 @@ namespace ShopManagement.Domain.OrderAgg
         //To Find List Of orders in seller panel
         List<OrderViewModel> GetCustomerOrdersInSellerPanelBySellerUserId(long userId);
 
-        //Using To Display User Address In OrderList For Admin Panel TO Show Seller Where To Send Product
+        //Using To Display User Address In OrderList For AdminAnd Seller Panel TO Show Seller Where To Send Product
         UserAddressViewModel GetUserAddressById(long orderId);
 
         #endregion
-
-        //To Show List Of All Orders With All Items In AdminPanel
-        List<OrderViewModel> GetList();
-
 
 
 

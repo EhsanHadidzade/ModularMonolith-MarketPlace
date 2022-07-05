@@ -41,8 +41,37 @@ namespace ShopManagement.Infrastructure.EFCore.Repository
                 SellerProductId = x.SellerProductId,
                 UnitPrice = x.UnitPrice,
                 Count = x.Count,
-                TransitionId=x.TransitionId
+                TransitionId = x.TransitionId
             }).Where(x => x.OrderId == orderId).ToList();
+
+            foreach (var item in orderItems)
+            {
+                var productId = _sellerProductRepository.GetProductIdBySellerProductId(item.SellerProductId);
+                var product = _productRepository.GetInfoById(productId);
+                var transition=_transitionRepository.GetById(item.TransitionId);
+                item.SellerProductTitle = product.FarsiTitle;
+                item.PictureURL = product.PictureURL;
+                item.SellerShopName = _sellerPanelRepository.GetShopNameBySellerProductId(item.SellerProductId);
+
+                if (transition != null)
+                {
+                    item.TransitionTrackingNumber = transition?.TrackingNumber;
+                    item.CalculatedDeliveryduration = transition.Duration;
+                }
+            }
+            return orderItems;
+        }
+        public List<OrderItemViewModel> GetListByTransitionId(long transitionId)
+        {
+            var orderItems = _shopContext.OrderItems.Select(x => new OrderItemViewModel
+            {
+                Id = x.Id,
+                OrderId = x.OrderId,
+                SellerProductId = x.SellerProductId,
+                UnitPrice = x.UnitPrice,
+                Count = x.Count,
+                TransitionId = x.TransitionId
+            }).Where(x => x.TransitionId == transitionId).ToList();
 
             foreach (var item in orderItems)
             {
@@ -52,10 +81,11 @@ namespace ShopManagement.Infrastructure.EFCore.Repository
                 item.PictureURL = product.PictureURL;
                 item.SellerShopName = _sellerPanelRepository.GetShopNameBySellerProductId(item.SellerProductId);
 
-                item.TransitionTrackingNumber=_transitionRepository.GetTrackingNumberById(item.TransitionId);
+                item.TransitionTrackingNumber = _transitionRepository.GetTrackingNumberById(item.TransitionId);
             }
 
             return orderItems;
+
         }
 
         public List<OrderItemViewModel> GetListWhichRelatedToSellerByOrderIdAndSellerPanelId(long orderId, long sellerPanelId)
@@ -71,7 +101,7 @@ namespace ShopManagement.Infrastructure.EFCore.Repository
                     SellerProductId = x.SellerProductId,
                     UnitPrice = x.UnitPrice,
                     Count = x.Count,
-                    TransitionId=x.TransitionId
+                    TransitionId = x.TransitionId
                 }).FirstOrDefault(x => x.OrderId == orderId && x.SellerProductId == id);
 
                 if (orderItem != null)
@@ -80,18 +110,27 @@ namespace ShopManagement.Infrastructure.EFCore.Repository
 
             foreach (var item in orderItems)
             {
+                //arrange
                 var sellerProduct = _sellerProductRepository.GetSomeInfoById(item.SellerProductId);
-                //var productId = _sellerProductRepository.GetProductIdBySellerProductId(item.SellerProductId);
                 var product = _productRepository.GetInfoById(sellerProduct.ProductId);
+                var transition = _transitionRepository.GetById(item.TransitionId);
+
+                //act
                 item.SellerProductTitle = product.FarsiTitle;
                 item.PictureURL = product.PictureURL;
-
+                //act
                 item.SellerShopName = _sellerPanelRepository.GetShopNameBySellerProductId(item.SellerProductId);
-                item.SellerDeliveryDurationForCity=sellerProduct.DeliveryDurationForCity;
-                item.SellerDeliveryDurationForCapital=sellerProduct.DeliveryDurationForCapital;
-                item.SellerDeliveryDurationForOther=sellerProduct.DeliveryDurationForOther;
-
-                item.TransitionTrackingNumber = _transitionRepository.GetTrackingNumberById(item.TransitionId);
+                item.SellerDeliveryDurationForCity = sellerProduct.DeliveryDurationForCity;
+                item.SellerDeliveryDurationForCapital = sellerProduct.DeliveryDurationForCapital;
+                item.SellerDeliveryDurationForOther = sellerProduct.DeliveryDurationForOther;
+                item.SellerProductPrice=sellerProduct.Price;
+                //act
+                if (transition != null)
+                {
+                    item.TransitionTrackingNumber = transition.TrackingNumber;
+                    item.CalculatedDeliveryduration = transition.Duration;
+                }
+                
             }
 
             return orderItems;

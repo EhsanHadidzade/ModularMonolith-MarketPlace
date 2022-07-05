@@ -53,17 +53,6 @@ namespace ShopManagement.Domain.OrderAgg
             UserAddressId = userAddressId;
         }
 
-        //public Order(long userId, long totalAmount, int paymentMethod)
-        //{
-        //    UserId = userId;
-        //    TotalAmount = totalAmount;
-        //    PaymentMethod = paymentMethod;
-        //    IsPaid = false;
-        //    IsCanceled = false;
-        //    RefId = 0;
-        //    OrderItems = new List<OrderItem>();
-        //}
-
         public void PrepareToPay(long userAddressId, bool isTransitionPartByPart,int paymentMethod)
         {
             UserAddressId=userAddressId;

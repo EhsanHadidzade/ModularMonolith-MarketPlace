@@ -53,10 +53,7 @@ namespace ShopManagement.Application
             if (currentOrder != null)
             {
                 if (_orderItemRepository.IsExist(x => x.SellerProductId == command.SellerProductId && x.OrderId == currentOrder.Id))
-                {
                     return operation.Failed("محصول در سبد خرید شما موجود میباشد. امکان افزودن دوباره وجود ندارد");
-
-                }
 
                 orderItem = new OrderItem(command.SellerProductId, command.Count, command.UnitPrice, currentOrder.Id);
                 currentOrder.AddItem(orderItem);
@@ -80,7 +77,7 @@ namespace ShopManagement.Application
 
         public OperationResult SendOrderItemsByAdminWithIds(List<long> ToSendOrderItems)
         {
-           throw new NotImplementedException();
+            throw new NotImplementedException();
         }
 
         public OperationResult SendOrderItemsBySellerWithIds(List<long> ToSendOrderItems)
@@ -95,6 +92,7 @@ namespace ShopManagement.Application
             if (deliveryDuration == 0)
                 return operation.Failed("آدرسی برای دریافت کننده محصول یافت نشد");
 
+
             var transition = new Transition(sellerPanelId, trackingNo, deliveryDuration);
             _transitionRepository.Create(transition);
             _transitionRepository.Savechange();
@@ -104,8 +102,11 @@ namespace ShopManagement.Application
                 var orderItem = _orderItemRepository.GetById(id);
 
                 if (orderItem.TransitionId != 0)
+                {
+                    _transitionRepository.RemoveById(transition.Id);
+                    _transitionRepository.Savechange();
                     return operation.Failed("این ریز فاکتور ارسال شده و دارای کد ارسال میباشد");
-
+                }
                 orderItem.TransitedBy(transition.Id);
                 _orderItemRepository.Savechange();
 
@@ -232,6 +233,9 @@ namespace ShopManagement.Application
             return _orderItemRepository.GetListWhichRelatedToSellerByOrderIdAndSellerPanelId(orderId, sellerPanelId);
         }
 
-
+        public List<OrderItemViewModel> GetListByTransitionId(long transitionId)
+        {
+            return _orderItemRepository.GetListByTransitionId(transitionId);
+        }
     }
 }
