@@ -55,7 +55,6 @@ namespace ShopManagement.Application.Contract.SellerPanel
         public string StoreName { get;  set; }
 
 
-
         //legalUser
         [Required(ErrorMessage = ValidationMessage.IsRequired)]
         public string CompanyName { get;  set; }

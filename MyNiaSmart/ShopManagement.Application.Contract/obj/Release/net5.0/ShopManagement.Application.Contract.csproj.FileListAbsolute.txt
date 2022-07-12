@@ -13,3 +13,5 @@ C:\Work\Projects\MyNiaSmart\MyNiaSmart\ShopManagement.Application.Contract\obj\R
 C:\Work\Projects\MyNiaSmart\MyNiaSmart\ShopManagement.Application.Contract\obj\Release\net5.0\refint\ShopManagement.Application.Contract.dll
 C:\Work\Projects\MyNiaSmart\MyNiaSmart\ShopManagement.Application.Contract\obj\Release\net5.0\ShopManagement.Application.Contract.pdb
 C:\Work\Projects\MyNiaSmart\MyNiaSmart\ShopManagement.Application.Contract\obj\Release\net5.0\ref\ShopManagement.Application.Contract.dll
+C:\Work\Projects\MyNiaSmart\MyNiaSmart\ShopManagement.Application.Contract\bin\Release\net5.0\AccountManagement.Application.Contract.dll
+C:\Work\Projects\MyNiaSmart\MyNiaSmart\ShopManagement.Application.Contract\bin\Release\net5.0\AccountManagement.Application.Contract.pdb

@@ -1141,7 +1141,8 @@
       },
       "ShopManagement.Application.Contract/1.0.0": {
         "dependencies": {
-          "0_Framework": "1.0.0"
+          "0_Framework": "1.0.0",
+          "AccountManagement.Application.Contract": "1.0.0"
         },
         "runtime": {
           "ShopManagement.Application.Contract.dll": {}

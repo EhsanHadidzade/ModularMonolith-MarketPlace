@@ -1,0 +1,17 @@
+C:\Work\Projects\MyNiaSmart\MyNiaSmart\RepairWorkShopManagement.Domain\bin\Debug\net5.0\RepairWorkShopManagement.Domain.deps.json
+C:\Work\Projects\MyNiaSmart\MyNiaSmart\RepairWorkShopManagement.Domain\bin\Debug\net5.0\RepairWorkShopManagement.Domain.dll
+C:\Work\Projects\MyNiaSmart\MyNiaSmart\RepairWorkShopManagement.Domain\bin\Debug\net5.0\RepairWorkShopManagement.Domain.pdb
+C:\Work\Projects\MyNiaSmart\MyNiaSmart\RepairWorkShopManagement.Domain\bin\Debug\net5.0\0_Framework.dll
+C:\Work\Projects\MyNiaSmart\MyNiaSmart\RepairWorkShopManagement.Domain\bin\Debug\net5.0\RepairWorkShopManagement.Application.Contracts.dll
+C:\Work\Projects\MyNiaSmart\MyNiaSmart\RepairWorkShopManagement.Domain\bin\Debug\net5.0\0_Framework.pdb
+C:\Work\Projects\MyNiaSmart\MyNiaSmart\RepairWorkShopManagement.Domain\bin\Debug\net5.0\RepairWorkShopManagement.Application.Contracts.pdb
+C:\Work\Projects\MyNiaSmart\MyNiaSmart\RepairWorkShopManagement.Domain\obj\Debug\net5.0\RepairWorkShopManagement.Domain.csproj.AssemblyReference.cache
+C:\Work\Projects\MyNiaSmart\MyNiaSmart\RepairWorkShopManagement.Domain\obj\Debug\net5.0\RepairWorkShopManagement.Domain.GeneratedMSBuildEditorConfig.editorconfig
+C:\Work\Projects\MyNiaSmart\MyNiaSmart\RepairWorkShopManagement.Domain\obj\Debug\net5.0\RepairWorkShopManagement.Domain.AssemblyInfoInputs.cache
+C:\Work\Projects\MyNiaSmart\MyNiaSmart\RepairWorkShopManagement.Domain\obj\Debug\net5.0\RepairWorkShopManagement.Domain.AssemblyInfo.cs
+C:\Work\Projects\MyNiaSmart\MyNiaSmart\RepairWorkShopManagement.Domain\obj\Debug\net5.0\RepairWorkShopManagement.Domain.csproj.CoreCompileInputs.cache
+C:\Work\Projects\MyNiaSmart\MyNiaSmart\RepairWorkShopManagement.Domain\obj\Debug\net5.0\RepairWorkShopManagement.Domain.csproj.CopyComplete
+C:\Work\Projects\MyNiaSmart\MyNiaSmart\RepairWorkShopManagement.Domain\obj\Debug\net5.0\RepairWorkShopManagement.Domain.dll
+C:\Work\Projects\MyNiaSmart\MyNiaSmart\RepairWorkShopManagement.Domain\obj\Debug\net5.0\refint\RepairWorkShopManagement.Domain.dll
+C:\Work\Projects\MyNiaSmart\MyNiaSmart\RepairWorkShopManagement.Domain\obj\Debug\net5.0\RepairWorkShopManagement.Domain.pdb
+C:\Work\Projects\MyNiaSmart\MyNiaSmart\RepairWorkShopManagement.Domain\obj\Debug\net5.0\ref\RepairWorkShopManagement.Domain.dll

@@ -29,18 +29,18 @@ namespace ShopManagement.Domain.ProductAgg
         //Fk
         public long ProductBrandId { get; private set; }
         public long ProductModelId { get; private set; }
-        public long ProductStatusId { get; private set; }
         public long ProductTypeId { get; private set; }
         public long ProductUsageTypeId { get; private set; }
+        public long ProductStatusId { get; private set; }
         #endregion
 
         #region Relations
         public ProductBrand ProductBrand { get; set; }
         public ProductModel ProductModel { get; set; }
-        public ProductStatus ProductStatus { get; set; }
         public ProductType ProductType { get; set; }
         public ProductUsageType ProductUsageType { get; set; }
         public List<SellerProduct> SellerProducts{ get; private set; }
+        public ProductStatus ProductStatus { get; set; }
         #endregion
 
 
@@ -62,6 +62,8 @@ namespace ShopManagement.Domain.ProductAgg
             Dimensions = dimensions;
             CountryMadeIn = countryMadeIn;
             Slug= slug;
+
+            //FK
             ProductBrandId = productBrandId;
             ProductModelId = productModelId;
             ProductStatusId = productStatusId;
@@ -89,6 +91,8 @@ namespace ShopManagement.Domain.ProductAgg
             Dimensions = dimensions;
             CountryMadeIn = countryMadeIn;
             Slug=slug;
+
+            //FK
             ProductBrandId = productBrandId;
             ProductModelId = productModelId;
             ProductStatusId = productStatusId;

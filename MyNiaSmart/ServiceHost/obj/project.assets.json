@@ -3137,6 +3137,77 @@
           "bin/placeholder/AccountManagement.Infrastructure.EFCore.dll": {}
         }
       },
+      "RepairWorkShopManagement.Application/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v5.0",
+        "dependencies": {
+          "RepairWorkShopManagement.Application.Contracts": "1.0.0",
+          "RepairWorkShopManagement.Domain": "1.0.0"
+        },
+        "compile": {
+          "bin/placeholder/RepairWorkShopManagement.Application.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/RepairWorkShopManagement.Application.dll": {}
+        }
+      },
+      "RepairWorkShopManagement.Application.Contracts/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v5.0",
+        "dependencies": {
+          "0_Framework": "1.0.0"
+        },
+        "compile": {
+          "bin/placeholder/RepairWorkShopManagement.Application.Contracts.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/RepairWorkShopManagement.Application.Contracts.dll": {}
+        }
+      },
+      "RepairWorkShopManagement.Configuration/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v5.0",
+        "dependencies": {
+          "Microsoft.Extensions.DependencyInjection.Abstractions": "5.0.0",
+          "RepairWorkShopManagement.Application": "1.0.0",
+          "RepairWorkShopManagement.Infrastructure.EFCore": "1.0.0"
+        },
+        "compile": {
+          "bin/placeholder/RepairWorkShopManagement.Configuration.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/RepairWorkShopManagement.Configuration.dll": {}
+        }
+      },
+      "RepairWorkShopManagement.Domain/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v5.0",
+        "dependencies": {
+          "0_Framework": "1.0.0",
+          "RepairWorkShopManagement.Application.Contracts": "1.0.0"
+        },
+        "compile": {
+          "bin/placeholder/RepairWorkShopManagement.Domain.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/RepairWorkShopManagement.Domain.dll": {}
+        }
+      },
+      "RepairWorkShopManagement.Infrastructure.EFCore/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v5.0",
+        "dependencies": {
+          "Microsoft.EntityFrameworkCore": "5.0.17",
+          "Microsoft.EntityFrameworkCore.SqlServer": "5.0.17",
+          "RepairWorkShopManagement.Domain": "1.0.0"
+        },
+        "compile": {
+          "bin/placeholder/RepairWorkShopManagement.Infrastructure.EFCore.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/RepairWorkShopManagement.Infrastructure.EFCore.dll": {}
+        }
+      },
       "ShopManagement.Application/1.0.0": {
         "type": "project",
         "framework": ".NETCoreApp,Version=v5.0",
@@ -13716,6 +13787,31 @@
       "path": "../AccountManagement.Infrastructure.EFCore/AccountManagement.Infrastructure.EFCore.csproj",
       "msbuildProject": "../AccountManagement.Infrastructure.EFCore/AccountManagement.Infrastructure.EFCore.csproj"
     },
+    "RepairWorkShopManagement.Application/1.0.0": {
+      "type": "project",
+      "path": "../RepairWorkShopManagement.Application/RepairWorkShopManagement.Application.csproj",
+      "msbuildProject": "../RepairWorkShopManagement.Application/RepairWorkShopManagement.Application.csproj"
+    },
+    "RepairWorkShopManagement.Application.Contracts/1.0.0": {
+      "type": "project",
+      "path": "../RepairWorkShopManagement.Application.Contracts/RepairWorkShopManagement.Application.Contracts.csproj",
+      "msbuildProject": "../RepairWorkShopManagement.Application.Contracts/RepairWorkShopManagement.Application.Contracts.csproj"
+    },
+    "RepairWorkShopManagement.Configuration/1.0.0": {
+      "type": "project",
+      "path": "../RepairWorkShopManagement.Configuration/RepairWorkShopManagement.Configuration.csproj",
+      "msbuildProject": "../RepairWorkShopManagement.Configuration/RepairWorkShopManagement.Configuration.csproj"
+    },
+    "RepairWorkShopManagement.Domain/1.0.0": {
+      "type": "project",
+      "path": "../RepairWorkShopManagement.Domain/RepairWorkShopManagement.Domain.csproj",
+      "msbuildProject": "../RepairWorkShopManagement.Domain/RepairWorkShopManagement.Domain.csproj"
+    },
+    "RepairWorkShopManagement.Infrastructure.EFCore/1.0.0": {
+      "type": "project",
+      "path": "../RepairWorkManagement.Infrastructure/RepairWorkShopManagement.Infrastructure.EFCore.csproj",
+      "msbuildProject": "../RepairWorkManagement.Infrastructure/RepairWorkShopManagement.Infrastructure.EFCore.csproj"
+    },
     "ShopManagement.Application/1.0.0": {
       "type": "project",
       "path": "../ShopManagement.Application/ShopManagement.Application.csproj",
@@ -13754,6 +13850,7 @@
       "Newtonsoft.Json >= 13.0.1",
       "Node.js >= 5.3.0",
       "Npm >= 3.5.2",
+      "RepairWorkShopManagement.Configuration >= 1.0.0",
       "ShopManagement.Configuration >= 1.0.0",
       "System.Drawing.Common >= 6.0.0",
       "System.ValueTuple >= 4.5.0"
@@ -13799,6 +13896,9 @@
             },
             "C:\\Work\\Projects\\MyNiaSmart\\MyNiaSmart\\AccountManagement.Configuration\\AccountManagement.Configuration.csproj": {
               "projectPath": "C:\\Work\\Projects\\MyNiaSmart\\MyNiaSmart\\AccountManagement.Configuration\\AccountManagement.Configuration.csproj"
+            },
+            "C:\\Work\\Projects\\MyNiaSmart\\MyNiaSmart\\RepairWorkShopManagement.Configuration\\RepairWorkShopManagement.Configuration.csproj": {
+              "projectPath": "C:\\Work\\Projects\\MyNiaSmart\\MyNiaSmart\\RepairWorkShopManagement.Configuration\\RepairWorkShopManagement.Configuration.csproj"
             },
             "C:\\Work\\Projects\\MyNiaSmart\\MyNiaSmart\\ShopManagement.Configuration\\ShopManagement.Configuration.csproj": {
               "projectPath": "C:\\Work\\Projects\\MyNiaSmart\\MyNiaSmart\\ShopManagement.Configuration\\ShopManagement.Configuration.csproj"

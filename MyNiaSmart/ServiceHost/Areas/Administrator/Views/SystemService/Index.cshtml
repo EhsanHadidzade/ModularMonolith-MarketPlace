@@ -1,0 +1,68 @@
+﻿@model List<RepairWorkShopManagement.Application.Contracts.SystemService.SystemServiceViewModel>
+@{
+    ViewData["Title"] = "مدیریت سرویس های سامانه";
+}
+
+<div class="row page-titles mx-0">
+    <div class="col-sm-6 p-md-0">
+        <div class="welcome-text">
+            <h4>سلام، خوش آمدید</h4>
+        </div>
+    </div>
+    <div class="col-sm-6 p-md-0 justify-content-sm-end mt-2 mt-sm-0 d-flex">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="/administrator">پنل مدیریت </a></li>
+            <li class="breadcrumb-item active"><a href=""> مدیریت سرویس های سامانه </a></li>
+        </ol>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-12">
+
+        <div class="card">
+
+            <div class="card-header">
+                <h4 class="card-title">لیست  محصولات سازمان</h4>
+            </div>
+
+            <div class="card-body">
+                <button type="button" class="btn btn-rounded btn-info" onclick="window.location.href ='/administrator/SystemService/create'">
+                    <span class="btn-icon-left text-info">
+                        <i class="fa fa-plus color-info"></i>
+                    </span>افزودن
+                </button>
+                <div class="table-responsive">
+                    <table id="example3" class="display" style="min-width: 845px">
+                        <thead>
+                            <tr>
+                                <th>عنوان سرویس</th>
+                                <th> قیمت پایه</th>
+                                <th>سهم سامانه(درصد)</th>
+                                <th>عملیات</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach(var service in Model)
+                            {
+                                <tr>
+                                    <td>@service.EngTitle</td>
+                                    <td>@service.BaseFeePrice تومان</td>
+                                    <td>@service.SystemSharePercent درصد</td>
+                                    <td>
+                                        <div class="d-flex">
+                                            <a href="/administrator/SystemService/Edit/@service.Id" class="btn btn-primary shadow btn-xs sharp mr-1"><i class="fa fa-pencil"></i></a>
+                                            <a href="#" class="btn btn-danger shadow btn-xs sharp"><i class="fa fa-trash"></i></a>
+                                        </div>
+                                    </td>
+                                    
+                                </tr>
+                            }
+
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

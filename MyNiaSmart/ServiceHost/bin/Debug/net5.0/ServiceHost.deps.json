@@ -43,6 +43,7 @@
           "Newtonsoft.Json": "13.0.1",
           "Node.js": "5.3.0",
           "Npm": "3.5.2",
+          "RepairWorkShopManagement.Configuration": "1.0.0",
           "ShopManagement.Configuration": "1.0.0",
           "System.Drawing.Common": "6.0.0",
           "System.ValueTuple": "4.5.0",
@@ -2521,6 +2522,67 @@
         },
         "compile": {
           "AccountManagement.Infrastructure.EFCore.dll": {}
+        }
+      },
+      "RepairWorkShopManagement.Application/1.0.0": {
+        "dependencies": {
+          "RepairWorkShopManagement.Application.Contracts": "1.0.0",
+          "RepairWorkShopManagement.Domain": "1.0.0"
+        },
+        "runtime": {
+          "RepairWorkShopManagement.Application.dll": {}
+        },
+        "compile": {
+          "RepairWorkShopManagement.Application.dll": {}
+        }
+      },
+      "RepairWorkShopManagement.Application.Contracts/1.0.0": {
+        "dependencies": {
+          "0_Framework": "1.0.0"
+        },
+        "runtime": {
+          "RepairWorkShopManagement.Application.Contracts.dll": {}
+        },
+        "compile": {
+          "RepairWorkShopManagement.Application.Contracts.dll": {}
+        }
+      },
+      "RepairWorkShopManagement.Configuration/1.0.0": {
+        "dependencies": {
+          "Microsoft.Extensions.DependencyInjection.Abstractions": "6.0.0",
+          "RepairWorkShopManagement.Application": "1.0.0",
+          "RepairWorkShopManagement.Infrastructure.EFCore": "1.0.0"
+        },
+        "runtime": {
+          "RepairWorkShopManagement.Configuration.dll": {}
+        },
+        "compile": {
+          "RepairWorkShopManagement.Configuration.dll": {}
+        }
+      },
+      "RepairWorkShopManagement.Domain/1.0.0": {
+        "dependencies": {
+          "0_Framework": "1.0.0",
+          "RepairWorkShopManagement.Application.Contracts": "1.0.0"
+        },
+        "runtime": {
+          "RepairWorkShopManagement.Domain.dll": {}
+        },
+        "compile": {
+          "RepairWorkShopManagement.Domain.dll": {}
+        }
+      },
+      "RepairWorkShopManagement.Infrastructure.EFCore/1.0.0": {
+        "dependencies": {
+          "Microsoft.EntityFrameworkCore": "5.0.17",
+          "Microsoft.EntityFrameworkCore.SqlServer": "5.0.17",
+          "RepairWorkShopManagement.Domain": "1.0.0"
+        },
+        "runtime": {
+          "RepairWorkShopManagement.Infrastructure.EFCore.dll": {}
+        },
+        "compile": {
+          "RepairWorkShopManagement.Infrastructure.EFCore.dll": {}
         }
       },
       "ShopManagement.Application/1.0.0": {
@@ -5634,6 +5696,31 @@
       "sha512": ""
     },
     "AccountManagement.Infrastructure.EFCore/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "RepairWorkShopManagement.Application/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "RepairWorkShopManagement.Application.Contracts/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "RepairWorkShopManagement.Configuration/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "RepairWorkShopManagement.Domain/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "RepairWorkShopManagement.Infrastructure.EFCore/1.0.0": {
       "type": "project",
       "serviceable": false,
       "sha512": ""
