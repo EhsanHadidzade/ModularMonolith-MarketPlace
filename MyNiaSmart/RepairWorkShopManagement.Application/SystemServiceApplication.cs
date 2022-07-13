@@ -42,10 +42,10 @@ namespace RepairWorkShopManagement.Application
             if (systemService == null)
                 return operation.Failed(ApplicationMessage.RecordNotFound);
 
-            if (_systemServiceRepository.IsExist(x => x.FarsiTitle == command.FarsiTitle))
+            if (_systemServiceRepository.IsExist(x => x.FarsiTitle == command.FarsiTitle && x.Id!=command.Id))
                 return operation.Failed(ApplicationMessage.DuplicatedRecord);
 
-            if (_systemServiceRepository.IsExist(x => x.EngTitle == command.EngTitle))
+            if (_systemServiceRepository.IsExist(x => x.EngTitle == command.EngTitle && x.Id != command.Id))
                 return operation.Failed(ApplicationMessage.DuplicatedRecord);
 
             systemService.Edit(command.FarsiTitle, command.EngTitle, command.BaseFeePrice,

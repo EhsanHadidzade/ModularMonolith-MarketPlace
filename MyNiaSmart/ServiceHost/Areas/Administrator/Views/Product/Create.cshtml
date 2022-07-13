@@ -1,9 +1,9 @@
 ﻿@model ShopManagement.Application.Contract.Product.CreateProduct
 @using ShopManagement.Application.Contract.ProductCategory.ProductBrand;
 @using ShopManagement.Application.Contract.ProductCategory.ProductModel;
-@using ShopManagement.Application.Contract.ProductCategory.ProductStatus;
 @using ShopManagement.Application.Contract.ProductCategory.ProductType;
 @using ShopManagement.Application.Contract.ProductCategory.ProductUsageType;
+@using ShopManagement.Application.Contract.ProductCategory.ProductStatus;
 @inject IProductTypeApplication _productTypeApplication
 @inject IProductBrandApplication _productBrandApplication
 @inject IProductModelApplication _productModelApplication
@@ -41,7 +41,7 @@
                             </div>
                             <div class="form-group col-md-6">
                                 <label>تعیین برند محصول مورد نظر </label>
-                                <select class="form-control" asp-for=ProductBrandId asp-items="@ViewData["ProductBrands"] as SelectList">
+                                <select class="form-control" asp-for=ProductBrandId onchange="filterModel()" asp-items="@ViewData["ProductBrands"] as SelectList">
                                     <option value="0">انتخاب کنید</option>
                                 </select>
                                 <span class="text-danger" asp-validation-for="ProductBrandId">
@@ -151,6 +151,7 @@
 @section scripts{
 <script>
     function filterModel() {
+        debugger
                 $.ajax({
                    url:"/administrator/product/FilterModels",
                    data:{brandId:$("#ProductBrandId").val()},

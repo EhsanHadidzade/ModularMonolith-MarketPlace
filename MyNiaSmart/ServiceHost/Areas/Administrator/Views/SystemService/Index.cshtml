@@ -1,7 +1,13 @@
 ﻿@model List<RepairWorkShopManagement.Application.Contracts.SystemService.SystemServiceViewModel>
+@using _0_Framework.Utilities
 @{
     ViewData["Title"] = "مدیریت سرویس های سامانه";
 }
+
+<!-- Custom Stylesheet -->
+<link href="/AdminTheme/vendor/datatables/css/jquery.dataTables.min.css" rel="stylesheet">
+<link href="/AdminTheme/vendor/bootstrap-select/dist/css/bootstrap-select.min.css" rel="stylesheet">
+
 
 <div class="row page-titles mx-0">
     <div class="col-sm-6 p-md-0">
@@ -23,11 +29,11 @@
         <div class="card">
 
             <div class="card-header">
-                <h4 class="card-title">لیست  محصولات سازمان</h4>
+                <h4 class="card-title">لیست سرویس های سامانه </h4>
             </div>
 
             <div class="card-body">
-                <button type="button" class="btn btn-rounded btn-info" onclick="window.location.href ='/administrator/SystemService/create'">
+                <button type="button" class="btn btn-rounded btn-info" onclick="window.location.href ='/administrator/SystemService/Create'">
                     <span class="btn-icon-left text-info">
                         <i class="fa fa-plus color-info"></i>
                     </span>افزودن
@@ -43,22 +49,21 @@
                             </tr>
                         </thead>
                         <tbody>
-                            @foreach(var service in Model)
+                            @foreach (var service in Model)
                             {
                                 <tr>
                                     <td>@service.EngTitle</td>
-                                    <td>@service.BaseFeePrice تومان</td>
-                                    <td>@service.SystemSharePercent درصد</td>
+                                    <td>@service.BaseFeePrice.ToMoney() تومان</td>
+                                    <td>@service.SystemSharePercent %</td>
                                     <td>
                                         <div class="d-flex">
                                             <a href="/administrator/SystemService/Edit/@service.Id" class="btn btn-primary shadow btn-xs sharp mr-1"><i class="fa fa-pencil"></i></a>
                                             <a href="#" class="btn btn-danger shadow btn-xs sharp"><i class="fa fa-trash"></i></a>
                                         </div>
                                     </td>
-                                    
+
                                 </tr>
                             }
-
                         </tbody>
                     </table>
                 </div>
@@ -66,3 +71,15 @@
         </div>
     </div>
 </div>
+
+
+<!--Scripts-->
+<script src="~/AdminTheme/vendor/global/global.min.js"></script>
+<script src="~/AdminTheme/vendor/global/global.min.js"></script>
+
+<!--Datatable JavaScript-->
+<script src="/AdminTheme/vendor/datatables/js/jquery.dataTables.min.js"></script>
+<script src="/AdminTheme/js/plugins-init/datatables.init.js"></script>
+
+
+

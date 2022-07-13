@@ -1,5 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using RepairWorkShopManagement.Application.Contracts.SystemService;
+using ShopManagement.Application.Contract.ProductCategory.ProductModel;
 
 namespace ServiceHost.Areas.Administrator.Controllers
 {
@@ -7,10 +9,13 @@ namespace ServiceHost.Areas.Administrator.Controllers
     public class SystemServiceController : Controller
     {
         private readonly ISystemServiceApplication _systemServiceApplication;
+        private readonly IProductModelApplication _productModelApplication;
 
-        public SystemServiceController(ISystemServiceApplication systemServiceApplication)
+        public SystemServiceController(ISystemServiceApplication systemServiceApplication, 
+            IProductModelApplication productModelApplication)
         {
             _systemServiceApplication = systemServiceApplication;
+            _productModelApplication = productModelApplication;
         }
 
         public IActionResult Index()
@@ -25,23 +30,34 @@ namespace ServiceHost.Areas.Administrator.Controllers
         }
 
         [HttpPost]
-         public IActionResult Create(CreateSystemService command)
+        public IActionResult Create(CreateSystemService command)
         {
             var result = _systemServiceApplication.Create(command);
-            return RedirectToAction("./index");
+            return Redirect("/Administrator/SystemService/Index");
         }
 
         public IActionResult Edit(long id)
         {
-            var systemService=_systemServiceApplication.GetDetails(id);
+            var systemService = _systemServiceApplication.GetDetails(id);
             return View(systemService);
         }
 
         [HttpPost]
         public IActionResult Edit(EditSystemService command)
         {
-            var result=_systemServiceApplication.Edit(command);
-            return RedirectToAction("./index");
+            var result = _systemServiceApplication.Edit(command);
+            return Redirect("/Administrator/SystemService/Index");
         }
+
+
+        #region FilterProductModels
+        public IActionResult FilterModels(long brandId)
+        {
+            ViewData["FilteredProductModels"] = new SelectList(_productModelApplication.GetFilteredModels(brandId), "Id", "EngTitle");
+            return PartialView("productModelSelectList");
+        }
+        #endregion
+
+
     }
 }
