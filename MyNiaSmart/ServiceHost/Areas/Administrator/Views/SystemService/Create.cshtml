@@ -57,47 +57,50 @@
                                 <span class="text-danger" asp-validation-for="ProductBrandId">
                                 </span>
                             </div>
-                            <select class="form-control" asp-for=ProductModelId asp-items="@ViewData["ProductModels"] as SelectList">
-                                <option value="0">انتخاب کنید</option>
-                            </select>
-                            <span class="text-danger" asp-validation-for="ProductModelId">
-                            </span>
-                        </div>
-                        <div class="form-group col-md-6">
-                            <label>تعیین نحوه استفاده سرویس مورد نظر </label>
-                            <select class="form-control" asp-for=ProductUsageTypeId asp-items="@ViewData["ProductUsageTypes"] as SelectList">
-                                <option value="0">انتخاب کنید</option>زق
-                            </select>
-                            <span class="text-danger" asp-validation-for="ProductUsageTypeId">
-                            </span>
-                        </div>
-                        <div class="form-group col-md-6">
-                            <label> عنوان سرویس (فارسی)</label>
-                            <input type="text" asp-for="FarsiTitle" class="form-control" placeholder="فارسی">
-                            <span class="text-danger" asp-validation-for="FarsiTitle">
-                            </span>
-                        </div>
-                        <div class="form-group col-md-6">
-                            <label>عنوان سرویس(english)</label>
-                            <input type="text" asp-for="EngTitle" class="form-control" placeholder="انگلیسی">
-                            <span class="text-danger" asp-validation-for="EngTitle">
-                            </span>
-                        </div>
+                            <div class="form-group models col-md-6">
+                                <label>تعیین مدل سرویس مورد نظر </label>
+                                <select class="form-control" asp-for=ProductModelId asp-items="@ViewData["ProductModels"] as SelectList">
+                                    <option value="0">انتخاب کنید</option>
+                                </select>
+                                <span class="text-danger" asp-validation-for="ProductModelId">
+                                </span>
+                            </div>
+                            <div class="form-group col-md-6">
+                                <label>تعیین نحوه استفاده سرویس مورد نظر </label>
+                                <select class="form-control" asp-for=ProductUsageTypeId asp-items="@ViewData["ProductUsageTypes"] as SelectList">
+                                    <option value="0">انتخاب کنید</option>
+                                </select>
+                                <span class="text-danger" asp-validation-for="ProductUsageTypeId">
+                                </span>
+                            </div>
+                            <div class="form-group col-md-6">
+                                <label> عنوان سرویس (فارسی)</label>
+                                <input type="text" asp-for="FarsiTitle" class="form-control" placeholder="فارسی">
+                                <span class="text-danger" asp-validation-for="FarsiTitle">
+                                </span>
+                            </div>
+                            <div class="form-group col-md-6">
+                                <label>عنوان سرویس(english)</label>
+                                <input type="text" asp-for="EngTitle" class="form-control" placeholder="انگلیسی">
+                                <span class="text-danger" asp-validation-for="EngTitle">
+                                </span>
+                            </div>
 
-                        <div class="form-group col-md-6">
-                            <label>قیمت پایه</label>
-                            <input type="text" asp-for="BaseFeePrice" class="form-control" placeholder="بر حسب تومان">
-                            <span class="text-danger" asp-validation-for="BaseFeePrice">
-                            </span>
+                            <div class="form-group col-md-6">
+                                <label>قیمت پایه</label>
+                                <input type="text" asp-for="BaseFeePrice" class="form-control" placeholder="بر حسب تومان">
+                                <span class="text-danger" asp-validation-for="BaseFeePrice">
+                                </span>
+                            </div>
+                            <div class="form-group col-md-6">
+                                <label>درصد سامانه</label>
+                                <input type="text" asp-for="SystemSharePercent" class="form-control" placeholder="بر حسب درصد">
+                                <span class="text-danger" asp-validation-for="SystemSharePercent">
+                                </span>
+                            </div>
+                            <button type="submit" class="btn btn-primary">افزودن سرویس</button>
+                            <a href="/Administrator/Systemservice/index" class="btn btn-warning">بازگشت</a>
                         </div>
-                        <div class="form-group col-md-6">
-                            <label>درصد سامانه</label>
-                            <input type="text" asp-for="SystemSharePercent" class="form-control" placeholder="بر حسب درصد">
-                            <span class="text-danger" asp-validation-for="SystemSharePercent">
-                            </span>
-                        </div>
-                        <button type="submit" class="btn btn-primary">افزودن سرویس</button>
-                        <a href="/Administrator/Systemservice/index" class="btn btn-warning">بازگشت</a>
                     </form>
                 </div>
             </div>
@@ -106,14 +109,12 @@
 </div>
 
 <script>
-    function filterModel() {
+   function filterModel() {
                    $.ajax({
                       url:"/administrator/SystemService/FilterModels",
                       data:{brandId:$("#ProductBrandId").val()},
-
                   }).done(function(result){
                      $(".models").html(result);
-
                   })
         }
 </script>

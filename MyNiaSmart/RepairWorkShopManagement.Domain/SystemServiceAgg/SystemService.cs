@@ -1,4 +1,5 @@
 ﻿using _0_Framework.Domain;
+using RepairWorkShopManagement.Domain.RepairManServiceAgg;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -20,6 +21,8 @@ namespace RepairWorkShopManagement.Domain.SystemServiceAgg
         public long ProductTypeId { get; private set; }
         public long ProductUsageTypeId { get; private set; }
 
+        //relations
+        public List<RepairManService> RepairManServices { get;private set; }
 
         public SystemService(string farsiTitle, string engTitle, long baseFeePrice, int systemSharePercent,
             long productBrandId, long productModelId, long productTypeId, long productUsageTypeId)
@@ -34,6 +37,9 @@ namespace RepairWorkShopManagement.Domain.SystemServiceAgg
             ProductModelId = productModelId;
             ProductTypeId = productTypeId;
             ProductUsageTypeId = productUsageTypeId;
+
+            //relation
+            RepairManServices= new List<RepairManService>();
         }
 
         public void Edit(string farsiTitle, string engTitle, long baseFeePrice, int systemSharePercent,

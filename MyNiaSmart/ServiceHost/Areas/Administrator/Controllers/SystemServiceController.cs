@@ -8,6 +8,7 @@ namespace ServiceHost.Areas.Administrator.Controllers
     [Area("Administrator")]
     public class SystemServiceController : Controller
     {
+        public static string message { get; set; }
         private readonly ISystemServiceApplication _systemServiceApplication;
         private readonly IProductModelApplication _productModelApplication;
 
@@ -20,6 +21,9 @@ namespace ServiceHost.Areas.Administrator.Controllers
 
         public IActionResult Index()
         {
+            if(SystemServiceController.message != null)
+                ViewData["Message"] = message;
+
             var systemServices = _systemServiceApplication.GetList();
             return View(systemServices);
         }
@@ -33,6 +37,7 @@ namespace ServiceHost.Areas.Administrator.Controllers
         public IActionResult Create(CreateSystemService command)
         {
             var result = _systemServiceApplication.Create(command);
+            SystemServiceController.message=result.Message;
             return Redirect("/Administrator/SystemService/Index");
         }
 
@@ -46,6 +51,7 @@ namespace ServiceHost.Areas.Administrator.Controllers
         public IActionResult Edit(EditSystemService command)
         {
             var result = _systemServiceApplication.Edit(command);
+            SystemServiceController.message = result.Message;
             return Redirect("/Administrator/SystemService/Index");
         }
 

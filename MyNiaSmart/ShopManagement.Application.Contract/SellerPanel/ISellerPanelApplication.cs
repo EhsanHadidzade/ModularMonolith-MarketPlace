@@ -5,7 +5,6 @@ namespace ShopManagement.Application.Contract.SellerPanel
 {
     public interface ISellerPanelApplication
     {
-
         //AdminSide
         List<SellerPanelViewModel> GetList();
         EditSellerPanel GetDetails(long id);
@@ -19,7 +18,7 @@ namespace ShopManagement.Application.Contract.SellerPanel
         //ToDisable Button In UserPanel For Creation SellerPanel
         bool HasUserRequestedForSellerPanel(long userId);
 
-        //to SHow Or Hide SellerPanel for creating their product and see Chartreports
+        //to Show Or Hide SellerPanel for creating their product and see Chartreports
         bool HasUserSellerPanelConfirmedByAdmin(long userId);
 
         //To Get sellerPanel id to use when new product is adding by seller i their panel
@@ -29,7 +28,7 @@ namespace ShopManagement.Application.Contract.SellerPanel
         //To Get All seller panels who are special and are selling specific product of application
         List<SellerPanelForMainShopViewModel> GetSpecialSellersWhoSellingThisProduct(string slug, int filterType);
 
-        //To Get All seller panels who are special and are selling specific product of application
+        //To Get All seller panels who are Normal and are selling specific product of application
         List<SellerPanelForMainShopViewModel> GetNormalSellersWhoSellingThisProduct(string slug, int filterType);
 
 

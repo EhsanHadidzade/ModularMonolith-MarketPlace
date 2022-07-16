@@ -19,7 +19,7 @@ namespace ShopManagement.Domain.SellerPanelAgg
         public int WarrantyTypeId { get; private set; }
         public int WarrantyAmount { get; private set; }
 
-        //1=sellToNormalPeople 2=SellToServiceMan 3=BothCanSee
+        //1=sellToNormalPeople 2=SellToRepairMan 3=BothCanSee
         public int BuyersCategory { get; private set; }
         public bool CanMarketerSee { get; private set; }
         #endregion
@@ -32,9 +32,9 @@ namespace ShopManagement.Domain.SellerPanelAgg
         public string StoreName { get; private set; }
 
         //legalUser
-        public string CompanyName { get; private set; }
-        public string CompanyRegistrationCode { get; private set; }
-        public string CompanyEconomicCode { get; private set; }
+        public string CompanyName { get; private set; }  //نام شرکت
+        public string CompanyRegistrationCode { get; private set; } //کد ثبت
+        public string CompanyEconomicCode { get; private set; } //شناسه اقتصادی
 
         //relations
         public long UserId { get; private set; }

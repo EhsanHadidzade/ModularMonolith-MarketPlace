@@ -16,6 +16,7 @@ using AccountManagement.Application.Contract.UserCooperationRequest;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
+using RepairWorkShopManagement.Application.Contracts.RepainManPanel;
 using ShopManagement.Application.Contract.Order;
 using ShopManagement.Application.Contract.OrderItem;
 using ShopManagement.Application.Contract.SellerPanel;
@@ -41,6 +42,7 @@ namespace ServiceHost.Controllers
         private readonly IOrderItemApplication _orderItemApplication;
         private readonly ISellerPanelApplication _sellerPanelApplication;
         private readonly IUserAddressApplication _userAddressApplication;
+        private readonly IRepairManPanelApplication _repairManPanelApplication;
         private readonly IBusinessWalletApplication _businessWalletApplication;
         private readonly IPersonalWalletApplication _personalWalletApplication;
         private readonly IRejectionReasonApplication _rejectionReasonApplication;
@@ -57,7 +59,7 @@ namespace ServiceHost.Controllers
             IPersonalWalletOperationApplication personalWalletOperationApplication, IZarinPalFactory zarinPalFactory,
             IUserCooperationRequestApplication userCooperationRequestApplication, ISellerPanelApplication sellerPanelApplication,
             IPersonalityTypeApplication personalityTypeApplication, IUserAddressApplication userAddressApplication,
-            IOrderApplication orderApplication, IOrderItemApplication orderItemApplication)
+            IOrderApplication orderApplication, IOrderItemApplication orderItemApplication, IRepairManPanelApplication repairManPanelApplication)
         {
             _userQuery = userQuery;
             _authHelper = authHelper;
@@ -75,12 +77,13 @@ namespace ServiceHost.Controllers
             _userAddressApplication = userAddressApplication;
             _orderApplication = orderApplication;
             _orderItemApplication = orderItemApplication;
+            _repairManPanelApplication = repairManPanelApplication;
         }
 
         #region for users To Edit profile details in their profile
-        public IActionResult UserProfile()
+        public IActionResult UserProfile(string alert)
         {
-            if (!string.IsNullOrWhiteSpace(message))
+            if (!string.IsNullOrWhiteSpace(alert))
                 ViewData["message"] = message;
 
             long userId = _authHelper.CurrentAccountInfo().Id;
@@ -355,6 +358,23 @@ namespace ServiceHost.Controllers
 
             var orderItems = _orderItemApplication.GetListByOrderId(id);
             return PartialView(orderItems);
+        }
+        #endregion
+
+        #region CreateRepairManPanel
+        public IActionResult CreateRepairManPanel()
+        {
+            return PartialView();
+        }
+
+        [HttpPost]
+        public IActionResult CreateRepairManPanel(CreateRepairManPanel command)
+        {
+            var userId= _authHelper.CurrentAccountInfo().Id;
+            command.UserId = userId;
+            var result = _repairManPanelApplication.Create(command);
+            UserController.message = result.Message;
+            return RedirectToAction("UserProfile", new {alert="notif"});
         }
         #endregion
 

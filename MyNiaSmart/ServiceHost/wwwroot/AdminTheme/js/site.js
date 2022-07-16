@@ -4,7 +4,7 @@ SinglePage.LoadModal = function () {
     var url = window.location.hash.toLowerCase();
     if (!url.startsWith("#showmodal")) {
         return;
-        
+
     }
     url = url.split("showmodal=")[1];
     $.get(url,
@@ -16,16 +16,16 @@ SinglePage.LoadModal = function () {
             const newForm = forms[forms.length - 1];
             $.validator.unobtrusive.parse(newForm);
             showModal();
-            
+
         }).fail(function (error) {
             alert("خطایی رخ داده، لطفا با مدیر سیستم تماس بگیرید.");
         });
-    
+
 };
 
 function showModal() {
     $("#MainModal").modal("show");
-    
+
 }
 
 function hideModal() {
@@ -44,7 +44,7 @@ $(document).ready(function () {
                 autoClose: true,
                 initialValue: false
             });
-            
+
         });
 
     $(document).on("submit",
@@ -126,7 +126,7 @@ function get(url, refereshDiv) {
 
 
 function makeSlug(source, dist) {
-    
+
     const value = $('#' + source).val();
     $('#' + dist).val(convertToSlug(value));
 }
@@ -198,9 +198,9 @@ function handleAjaxCall(method, url, data) {
 jQuery.validator.addMethod("maxFileSize",
     function (value, element, params) {
         var size = element.files[0].size;
-        
+
         var maxSize = 5 * 1024 * 1024;
-        
+
         if (size > maxSize)
             return false;
         else {
@@ -213,7 +213,7 @@ jQuery.validator.addMethod("FileExtentionLimit",
     function (value, element, params) {
         var extention = value.split('.')[1];
 
-        
+
         if (extention == "jpg")
             return true;
         if (extention == "JPG")
@@ -232,3 +232,5 @@ jQuery.validator.addMethod("FileExtentionLimit",
         return false;
     });
 jQuery.validator.unobtrusive.adapters.addBool("FileExtentionLimit");
+
+

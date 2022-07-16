@@ -3,15 +3,18 @@
 @using AccountManagement.Application.Contract.UserCooperationRequest
 @using AccountManagement.Application.Contract.UserPersonality
 @using ShopManagement.Application.Contract.SellerPanel
+@using RepairWorkShopManagement.Application.Contracts.RepainManPanel
 @using _0_Framework.Utilities;
 @inject IUPAccountRequestApplication _uPAccountRequestApplication
 @inject IUserCooperationRequestApplication _userCooperaitonRequestApplication
 @inject IUserPersonalityApplication _userPersonalityApplication
 @inject ISellerPanelApplication _sellerPanelApplication
+@inject IRepairManPanelApplication _repairManPanelApplication
 @{
     var acceptedPersonalityIds = _userPersonalityApplication.GetAllPersonalityIdsOfOneUserByUserId(Model.Id);
     var requestedPersonalities = _userCooperaitonRequestApplication.GetRequestedPersonalitiesByUserId(Model.Id);
     var HasUserRequestedForSellerPanel = _sellerPanelApplication.HasUserRequestedForSellerPanel(Model.Id);
+    var hasUserRequestedForRepairManPanel = _repairManPanelApplication.HasUserRequestedForRepairManPanel(Model.Id);
 }
 
 
@@ -22,7 +25,7 @@
         <div class="row mb-2">
             <div class="col-12">
                 <h5 class="f-w-500">
-                    نام و نام خانوادگی :  <span>@Model.FullName</span>
+                   نام و نام خانوادگی :  <span>@Model.FullName</span>
                 </h5>
             </div>
         </div>
@@ -160,7 +163,7 @@
                                                                 }
                                                             </div>
                                                         </div>
-                                                        <a href="#ShowModal=/user/CreateSellerPanel" class="btn btn-square btn-outline-secondary @((HasUserRequestedForSellerPanel)?"disabledd":"")">ساخت پنل بازاریابی</a>
+                                                        <a href="#ShowModal=/user/CreateSellerPanel" class="btn btn-square btn-outline-secondary @((HasUserRequestedForSellerPanel)?"disabledd":"")">ساخت پنل فروش</a>
                                                     </div>
                                                 </div>
                                             </div>
@@ -203,7 +206,7 @@
                                                                 }
                                                             </div>
                                                         </div>
-                                                        <a href="#ShowModal=/user/CreateServiceManPannel" class="btn btn-square btn-outline-secondary">ساخت پنل تعمیرات</a>
+                                                        <a href="#ShowModal=/user/CreateRepairManPanel" class="btn btn-square btn-outline-secondary  @((hasUserRequestedForRepairManPanel)?"disabledd":"")">ساخت پنل تعمیرات</a>
 
                                                     </div>
                                                 </div>

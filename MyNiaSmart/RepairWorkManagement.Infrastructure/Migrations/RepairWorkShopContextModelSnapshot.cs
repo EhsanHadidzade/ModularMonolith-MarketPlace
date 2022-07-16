@@ -19,6 +19,108 @@ namespace RepairWorkManagement.Infrastructure.EFCore.Migrations
                 .HasAnnotation("ProductVersion", "5.0.17")
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
+            modelBuilder.Entity("RepairWorkShopManagement.Domain.RepairManPanelAgg.RepairManPanel", b =>
+                {
+                    b.Property<long>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("bigint")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("Address")
+                        .HasMaxLength(256)
+                        .HasColumnType("nvarchar(256)");
+
+                    b.Property<bool>("CanMarketerSee")
+                        .HasColumnType("bit");
+
+                    b.Property<string>("Capital")
+                        .HasMaxLength(56)
+                        .HasColumnType("nvarchar(56)");
+
+                    b.Property<string>("City")
+                        .HasMaxLength(56)
+                        .HasColumnType("nvarchar(56)");
+
+                    b.Property<string>("CommericalFullName")
+                        .HasMaxLength(128)
+                        .HasColumnType("nvarchar(128)");
+
+                    b.Property<DateTime>("CreationDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<bool>("IsConfirmedByAdmin")
+                        .HasColumnType("bit");
+
+                    b.Property<string>("MobileNumber")
+                        .HasMaxLength(15)
+                        .HasColumnType("nvarchar(15)");
+
+                    b.Property<string>("ShortResume")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<long>("UserId")
+                        .HasColumnType("bigint");
+
+                    b.Property<int>("WarrantyAmount")
+                        .HasColumnType("int");
+
+                    b.Property<int>("WarrantyTypeId")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("RepairManPanels");
+                });
+
+            modelBuilder.Entity("RepairWorkShopManagement.Domain.RepairManServiceAgg.RepairManService", b =>
+                {
+                    b.Property<long>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("bigint")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<bool>("CanMarketerSee")
+                        .HasColumnType("bit");
+
+                    b.Property<DateTime>("CreationDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<bool>("IsConfirmedByAdmin")
+                        .HasColumnType("bit");
+
+                    b.Property<bool>("IsEditedByClient")
+                        .HasColumnType("bit");
+
+                    b.Property<long>("MarketerShareAmount")
+                        .HasColumnType("bigint");
+
+                    b.Property<int>("MarketerSharePercent")
+                        .HasColumnType("int");
+
+                    b.Property<long>("Price")
+                        .HasColumnType("bigint");
+
+                    b.Property<long>("RepairManPanelId")
+                        .HasColumnType("bigint");
+
+                    b.Property<long>("SystemServiceId")
+                        .HasColumnType("bigint");
+
+                    b.Property<int>("WarrantyAmount")
+                        .HasColumnType("int");
+
+                    b.Property<int>("WarrantyTypeId")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("RepairManPanelId");
+
+                    b.HasIndex("SystemServiceId");
+
+                    b.ToTable("RepairManServices");
+                });
+
             modelBuilder.Entity("RepairWorkShopManagement.Domain.SystemServiceAgg.SystemService", b =>
                 {
                     b.Property<long>("Id")
@@ -58,6 +160,35 @@ namespace RepairWorkManagement.Infrastructure.EFCore.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("SystemServices");
+                });
+
+            modelBuilder.Entity("RepairWorkShopManagement.Domain.RepairManServiceAgg.RepairManService", b =>
+                {
+                    b.HasOne("RepairWorkShopManagement.Domain.RepairManPanelAgg.RepairManPanel", "RepairManPanel")
+                        .WithMany("RepairManServices")
+                        .HasForeignKey("RepairManPanelId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("RepairWorkShopManagement.Domain.SystemServiceAgg.SystemService", "SystemService")
+                        .WithMany("RepairManServices")
+                        .HasForeignKey("SystemServiceId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("RepairManPanel");
+
+                    b.Navigation("SystemService");
+                });
+
+            modelBuilder.Entity("RepairWorkShopManagement.Domain.RepairManPanelAgg.RepairManPanel", b =>
+                {
+                    b.Navigation("RepairManServices");
+                });
+
+            modelBuilder.Entity("RepairWorkShopManagement.Domain.SystemServiceAgg.SystemService", b =>
+                {
+                    b.Navigation("RepairManServices");
                 });
 #pragma warning restore 612, 618
         }

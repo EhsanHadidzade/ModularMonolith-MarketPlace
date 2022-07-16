@@ -22,7 +22,16 @@
         </ol>
     </div>
 </div>
-
+@if(ViewData["Message"]!=null)
+{
+    <div class="col-xl-12 col-xxl-12">
+        <div class="card-body">
+            <div class="alert alert-info solid alert-dismissible fade show">
+               	<strong></strong> @ViewData["message"]
+            </div>
+        </div>
+</div>
+}
 <div class="row">
     <div class="col-12">
 

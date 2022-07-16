@@ -633,19 +633,16 @@
     <script src="~/AdminTheme/js/persian-datepicker.min.js"></script>
 
     <!--AppEditor-->
-  @*  <script src="https://cdn.tiny.cloud/1/mv5jggxasqwrpouy53ns2o2ej8olnbbz9olotbomp5dsytwm/tinymce/6/tinymce.min.js" referrerpolicy="origin"></script>
-    <script>
-        tinymce.init({
-          selector: '#BodyContent',
-          plugins: 'a11ychecker advcode casechange export formatpainter image editimage linkchecker autolink lists checklist media mediaembed pageembed permanentpen powerpaste table advtable tableofcontents tinycomments tinymcespellchecker',
-          toolbar: 'a11ycheck addcomment showcomments casechange checklist code export formatpainter image editimage pageembed permanentpen table tableofcontents',
-          toolbar_mode: 'floating',
-          tinycomments_mode: 'embedded',
-          tinycomments_author: 'Author name',
-        directionality : 'rtl'
-        });
-    </script>
-  *@
+     <script src="https://cdn.tiny.cloud/1/1i4uy9alhza5a3x4akfh9jypvxpbzerq7fvohp5kfbn8pbix/tinymce/5/tinymce.min.js" referrerpolicy="origin"></script>
+   <script>
+    tinymce.init({
+      selector: '#BodyContent',
+      plugins: 'advlist autolink lists link image charmap preview anchor pagebreak',
+      toolbar_mode: 'floating',
+        directionality : 'rtl',
+    });
+  </script>
+  
 
     @RenderSection("Scripts",false)
 

@@ -1,4 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using RepairWorkShopManagement.Domain.RepairManPanelAgg;
+using RepairWorkShopManagement.Domain.RepairManServiceAgg;
 using RepairWorkShopManagement.Domain.SystemServiceAgg;
 using RepairWorkShopManagement.Infrastructure.EFCore.Mapping;
 using System;
@@ -12,6 +14,8 @@ namespace RepairWorkShopManagement.Infrastructure.EFCore
     public class RepairWorkShopContext : DbContext
     {
         public DbSet<SystemService> SystemServices { get; set; }
+        public DbSet<RepairManPanel> RepairManPanels { get; set; }
+        public DbSet<RepairManService> RepairManServices { get; set; }
         public RepairWorkShopContext(DbContextOptions<RepairWorkShopContext> options) : base(options)
         {
         }
