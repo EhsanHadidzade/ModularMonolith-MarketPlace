@@ -19,6 +19,17 @@ namespace RepairWorkShopManagement.Infrastructure.EFCore.Repository
             _context = context;
         }
 
+
+        public SystemServiceViewModel GetTitleAndIdById(long systemServiceId)
+        {
+            var systemService = _context.SystemServices.Select(x => new SystemServiceViewModel
+            {
+                Id = x.Id,
+                FarsiTitle = x.FarsiTitle,
+            }).FirstOrDefault(x => x.Id == systemServiceId);
+
+            return systemService;
+        }
         public EditSystemService GetDetails(long id)
         {
             var systemService = _context.SystemServices.Select(x => new EditSystemService

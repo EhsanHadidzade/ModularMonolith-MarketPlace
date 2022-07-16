@@ -76,8 +76,8 @@ namespace ServiceHost.Controllers
             if (!ModelState.IsValid)
                 return View(command);
 
-            var reslut = _sellerProductApplication.Create(command);
-            SellerPanelController.message = reslut.Message;
+            var result = _sellerProductApplication.Create(command);
+            SellerPanelController.message = result.Message;
             return RedirectToAction("Index");
         }
 
@@ -105,7 +105,7 @@ namespace ServiceHost.Controllers
 
         #endregion
 
-        #region To Show List of products of application that seller is going to cooperate to sell them
+        #region To Show List of products of application that seller is going to cooperate to sell them. using in create form
 
         public IActionResult SearchProduct()
         {
@@ -114,8 +114,7 @@ namespace ServiceHost.Controllers
         }
         #endregion
 
-        #region To select specific Product from SearchProductPartialView  for create form or edit form
-
+        #region AJAX =>  To select specific Product from SearchProductPartialView for create form or edit form 
         public string addproduct(long id)
         {
             //var product = _productApplication.GetTitleAndIdBySlug(id);

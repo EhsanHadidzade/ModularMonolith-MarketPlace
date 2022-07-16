@@ -88,11 +88,11 @@ namespace RepairWorkManagement.Infrastructure.EFCore.Migrations
                     b.Property<bool>("IsConfirmedByAdmin")
                         .HasColumnType("bit");
 
-                    b.Property<bool>("IsEditedByClient")
+                    b.Property<bool>("IsEditionConfirmedByAdmin")
                         .HasColumnType("bit");
 
-                    b.Property<long>("MarketerShareAmount")
-                        .HasColumnType("bigint");
+                    b.Property<int>("MarketerShareAmount")
+                        .HasColumnType("int");
 
                     b.Property<int>("MarketerSharePercent")
                         .HasColumnType("int");

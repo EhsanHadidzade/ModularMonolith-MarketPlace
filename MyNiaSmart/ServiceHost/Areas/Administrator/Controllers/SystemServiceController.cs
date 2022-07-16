@@ -8,6 +8,7 @@ namespace ServiceHost.Areas.Administrator.Controllers
     [Area("Administrator")]
     public class SystemServiceController : Controller
     {
+        [TempData]
         public static string message { get; set; }
         private readonly ISystemServiceApplication _systemServiceApplication;
         private readonly IProductModelApplication _productModelApplication;
@@ -19,10 +20,10 @@ namespace ServiceHost.Areas.Administrator.Controllers
             _productModelApplication = productModelApplication;
         }
 
-        public IActionResult Index()
+        public IActionResult Index(string alert)
         {
-            if(SystemServiceController.message != null)
-                ViewData["Message"] = message;
+            if(!string.IsNullOrWhiteSpace(alert))
+                ViewData["Message"] = SystemServiceController.message;
 
             var systemServices = _systemServiceApplication.GetList();
             return View(systemServices);
@@ -38,7 +39,7 @@ namespace ServiceHost.Areas.Administrator.Controllers
         {
             var result = _systemServiceApplication.Create(command);
             SystemServiceController.message=result.Message;
-            return Redirect("/Administrator/SystemService/Index");
+            return Redirect("/Administrator/SystemService/Index?alert=notif");
         }
 
         public IActionResult Edit(long id)

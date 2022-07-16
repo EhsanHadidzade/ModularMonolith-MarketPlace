@@ -9,5 +9,8 @@ namespace RepairWorkShopManagement.Application.Contracts.SystemService
         OperationResult Edit(EditSystemService command);
         List<SystemServiceViewModel> GetList();
         EditSystemService GetDetails(long id);
+
+        SystemServiceViewModel GetTitleAndIdById(long systemServiceId);
+
     }
 }

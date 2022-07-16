@@ -14,16 +14,16 @@ namespace RepairWorkShopManagement.Domain.RepairManServiceAgg
       
         public long Price { get; private set; }
         public int MarketerSharePercent { get; private set; }
-        public long MarketerShareAmount { get; private set; }
+        public int MarketerShareAmount { get; private set; }
 
         #region Default Values that are filled in RepairMan Panel Request
-        public bool CanMarketerSee { get; private set; } //امکان بازار یابی به این سرویس شما داده شود؟ 
+        public bool CanMarketerSee { get; private set; } //امکان بازار یابی به این سرویس شما، داده شود؟ 
         public int WarrantyTypeId { get; private set; }
         public int WarrantyAmount { get; private set; }
         #endregion
 
         public bool IsConfirmedByAdmin { get; private set; }
-        public bool IsEditedByClient { get; private set; }
+        public bool IsEditionConfirmedByAdmin { get; private set; }
 
         //relations
         public long RepairManPanelId { get; private set; }
@@ -31,7 +31,7 @@ namespace RepairWorkShopManagement.Domain.RepairManServiceAgg
         public RepairManPanel RepairManPanel { get;private set; }
         public SystemService SystemService { get;private set; }
 
-        public RepairManService(long price, int marketerSharePercent, long marketerShareAmount,
+        public RepairManService(long price, int marketerSharePercent, int marketerShareAmount,
             bool canMarketerSee, int warrantyTypeId, int warrantyAmount, long repairManPanelId,
             long systemServiceId)
         {
@@ -49,10 +49,10 @@ namespace RepairWorkShopManagement.Domain.RepairManServiceAgg
             SystemServiceId = systemServiceId;
 
             IsConfirmedByAdmin = false;
-            IsEditedByClient=false;
+            IsEditionConfirmedByAdmin=false;
         }
 
-        public void Edit(long price, int marketerSharePercent, long marketerShareAmount,
+        public void Edit(long price, int marketerSharePercent, int marketerShareAmount,
             bool canMarketerSee, int warrantyTypeId, int warrantyAmount, long repairManPanelId,
             long systemServiceId)
         {
@@ -69,12 +69,15 @@ namespace RepairWorkShopManagement.Domain.RepairManServiceAgg
             RepairManPanelId = repairManPanelId;
             SystemServiceId = systemServiceId;
 
-            IsEditedByClient = true;
+            IsConfirmedByAdmin = true;
+            IsEditionConfirmedByAdmin = false;
         }
 
         public void ConfirmByAdmin()
         {
             IsConfirmedByAdmin=true;
+            IsEditionConfirmedByAdmin = true;
+
         }
     }
 }

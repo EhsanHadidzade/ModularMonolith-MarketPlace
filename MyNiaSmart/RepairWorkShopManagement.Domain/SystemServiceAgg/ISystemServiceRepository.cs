@@ -12,5 +12,7 @@ namespace RepairWorkShopManagement.Domain.SystemServiceAgg
     {
         List<SystemServiceViewModel> GetList();
         EditSystemService GetDetails(long id);
+
+        SystemServiceViewModel GetTitleAndIdById(long systemServiceId);
     }
 }

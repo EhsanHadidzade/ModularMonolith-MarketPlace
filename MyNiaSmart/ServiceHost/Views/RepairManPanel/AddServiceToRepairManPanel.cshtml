@@ -1,0 +1,109 @@
+﻿@model RepairWorkShopManagement.Application.Contracts.RepairManService.CreateRepairManService
+@{
+    ViewData["Title"] = "افزودن سرویس جدید";
+}
+
+<div class="row page-titles mx-0">
+    <div class="col-sm-6 p-md-0">
+        <div class="welcome-text">
+            <h4>
+                سلام، خوش آمدید
+            </h4>
+            <p class="mb-0">پنل فروشندگی</p>
+        </div>
+    </div>
+    <div class="col-sm-6 p-md-0 justify-content-sm-end mt-2 mt-sm-0 d-flex">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="javascript:void(0)">پنل ها </a></li>
+            <li class="breadcrumb-item "><a href="javascript:void(0)">پنل تعمیرات </a></li>
+            <li class="breadcrumb-item active"><a href="javascript:void(0)">افزودن سرویس جدید</a></li>
+        </ol>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-xl-12 col-lg-12">
+        <div class="card">
+            <div class="card-header">
+                <h4 class="card-title">افزودن محصول جدید</h4>
+            </div>
+            <div class="card-body">
+                <div class="basic-form">
+                    <form method="post" action="/SellerPanel/AddProductToSellerPanel">
+                        <div class="form-row">
+                            <div class="form-group col-md-8">
+                                <label>عنوان محصول</label>
+                                <input type="text" class="form-control" asp-for="SystemServiceTitle" placeholder=" با زدن دکمه رو به رو، میتوانید محصول مورد نظر خود را انتخاب کنید" readonly>
+                                <span class="text-danger" asp-validation-for="SystemServiceTitle"></span>
+                            </div>
+                            <input type="hidden" asp-for="SystemServiceId" />
+                            <input type="hidden" asp-for="RepairManPanelId" />
+                            <div class="form-group col-md-4">
+                                <label>.</label>
+                                <a class=" btn btn-square btn-outline-secondary" href="#showModal=/sellerpanel/SearchProduct" style="width:100%">جستجو محصولات</a>
+                            </div>
+
+                            <div class="form-group col-md-12">
+                                <label> قیمت بر حسب تومان</label>
+                                <input type="number" class="form-control" asp-for="Price" onkeypress="return onlyNumberKey(event)" onchange="CreateMarketerSharePrice('Price','MarketerSharePercent','MarketerShareAmount')" placeholder="بر حسب تومان">
+                                <span class="text-danger" asp-validation-for="Price">
+                                </span>
+                            </div>
+                    
+                            <div class="form-group col-md-6">
+                                <label>انتخاب نوع گارانتی محصول</label>
+                                <select class="form-control" asp-for="WarrantyTypeId">
+                                    <option value="0">انتخاب کنید</option>
+                                    <option value="1"> ساعت</option>
+                                    <option value="2"> روز</option>
+                                    <option value="3"> ماه</option>
+                                    <option value="4"> سال</option>
+                                </select>
+                                <span class="text-danger" asp-validation-for="WarrantyTypeId">
+                                </span>
+                            </div>
+                            <div class="form-group col-md-6">
+                                <label>مقدار گارانتی</label>
+                                <input type="number" class="form-control" asp-for="WarrantyAmount" onkeypress="return onlyNumberKey(event)">
+                                <span class="text-danger" asp-validation-for="WarrantyAmount">
+                                </span>
+                            </div>
+                      
+                      
+                  
+                            <div class="form-group col-md-6" style="padding:20px">
+                                <div class="custom-control custom-switch custom-control-inline mb-1">
+                                    <input type="checkbox" class="custom-control-input" id="customSwitch1" asp-for="CanMarketerSee">
+                                    <label class="custom-control-label mr-1" for="customSwitch1">
+                                    </label>
+                                    <span>من مایلم بازار یاب ها محصولات من را مشاهده کنند</span>
+                                </div>
+                            </div>
+                            <div class="form-group col-md-12" id="MarketerSharePercentt" style="display:none">
+                                <label>درصدی که متعلق به بازار یاب میباشد</label>
+                                <input type="number" class="form-control" asp-for="MarketerSharePercent" value="5" onchange="CreateMarketerSharePrice('Price','MarketerSharePercent','MarketerShareAmount')" onkeypress="return onlyNumberKey(event)" placeholder="درصد">
+                                <span class="text-danger" asp-validation-for="MarketerSharePercent">
+                                </span>
+                            </div>
+                            <div class="form-group col-md-12" id="MarketerShareAmountt" style="display:none">
+                                <label>قیمتی از محصول که به بازاریاب تعلق میگیرد</label>
+                                <input type="number" class="form-control" asp-for="MarketerShareAmount" onkeypress="return onlyNumberKey(event)" placeholder="بر حسب تومان">
+                                <span class="text-danger" asp-validation-for="MarketerShareAmount">
+                                </span>
+                            </div>
+                            <div class="form-group col-md-12" dir="rtl">
+                                <label> توضیحات</label>
+                                <textarea class="form-control" id="BodyContent" rows="30" asp-for="Description">
+
+                                </textarea>
+                                <span class="text-danger" asp-validation-for="Description">
+                                </span>
+                            </div>
+                            <button type="submit" class="btn btn-primary">ارسال درخواست</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

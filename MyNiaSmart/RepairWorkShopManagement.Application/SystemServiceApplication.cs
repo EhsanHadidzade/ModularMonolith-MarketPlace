@@ -65,5 +65,10 @@ namespace RepairWorkShopManagement.Application
         {
             return _systemServiceRepository.GetList();
         }
+
+        public SystemServiceViewModel GetTitleAndIdById(long systemServiceId)
+        {
+            return _systemServiceRepository.GetTitleAndIdById(systemServiceId);
+        }
     }
 }
