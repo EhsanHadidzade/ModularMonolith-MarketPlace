@@ -14,6 +14,8 @@ namespace RepairWorkShopManagement.Domain.SystemServiceAgg
         public string EngTitle { get; private set; }
         public long BaseFeePrice { get;private set; }
         public int SystemSharePercent { get;private set; }
+        public int WarrantyTypeId { get; private set; }
+        public int WarrantyAmount { get; private set; }
 
         //FK
         public long ProductBrandId { get; private set; }
@@ -25,7 +27,7 @@ namespace RepairWorkShopManagement.Domain.SystemServiceAgg
         public List<RepairManService> RepairManServices { get;private set; }
 
         public SystemService(string farsiTitle, string engTitle, long baseFeePrice, int systemSharePercent,
-            long productBrandId, long productModelId, long productTypeId, long productUsageTypeId)
+           int warrantyTypeId ,int warrantyAmount, long productBrandId, long productModelId, long productTypeId, long productUsageTypeId)
         {
             FarsiTitle = farsiTitle;
             EngTitle = engTitle;
@@ -37,18 +39,22 @@ namespace RepairWorkShopManagement.Domain.SystemServiceAgg
             ProductModelId = productModelId;
             ProductTypeId = productTypeId;
             ProductUsageTypeId = productUsageTypeId;
+            WarrantyTypeId = warrantyTypeId;
+            WarrantyAmount = warrantyAmount;
 
             //relation
             RepairManServices= new List<RepairManService>();
         }
 
         public void Edit(string farsiTitle, string engTitle, long baseFeePrice, int systemSharePercent,
-            long productBrandId, long productModelId, long productTypeId, long productUsageTypeId)
+              int warrantyTypeId, int warrantyAmount, long productBrandId, long productModelId, long productTypeId, long productUsageTypeId)
         {
             FarsiTitle = farsiTitle;
             EngTitle = engTitle;
             BaseFeePrice = baseFeePrice;
             SystemSharePercent = systemSharePercent;
+            WarrantyTypeId = warrantyTypeId;
+            WarrantyAmount = warrantyAmount;
 
             //FK
             ProductBrandId = productBrandId;

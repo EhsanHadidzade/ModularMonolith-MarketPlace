@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using RepairWorkShopManagement.Infrastructure.EFCore;
 
-namespace RepairWorkManagement.Infrastructure.EFCore.Migrations
+namespace RepairWorkShopManagement.Infrastructure.EFCore.Migrations
 {
     [DbContext(typeof(RepairWorkShopContext))]
-    partial class RepairWorkShopContextModelSnapshot : ModelSnapshot
+    [Migration("20220717074032_addWarrantyToSystemService")]
+    partial class addWarrantyToSystemService
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

@@ -16,7 +16,7 @@ namespace ServiceHost.Areas.Administrator.Controllers
         public SystemServiceController(ISystemServiceApplication systemServiceApplication, 
             IProductModelApplication productModelApplication)
         {
-            _systemServiceApplication = systemServiceApplication;
+            _systemServiceApplication = systemServiceApplication; 
             _productModelApplication = productModelApplication;
         }
 

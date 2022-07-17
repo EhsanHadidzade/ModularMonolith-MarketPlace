@@ -26,7 +26,7 @@ namespace RepairWorkShopManagement.Application
                 return operation.Failed(ApplicationMessage.DuplicatedRecord);
 
             var systemService = new SystemService(command.FarsiTitle, command.EngTitle, command.BaseFeePrice,
-                command.SystemSharePercent, command.ProductBrandId, command.ProductModelId, command.ProductTypeId,
+                command.SystemSharePercent,command.WarrantyTypeId,command.WarrantyAmount, command.ProductBrandId, command.ProductModelId, command.ProductTypeId,
                 command.ProductUsageTypeId);
 
             _systemServiceRepository.Create(systemService);
@@ -49,7 +49,7 @@ namespace RepairWorkShopManagement.Application
                 return operation.Failed(ApplicationMessage.DuplicatedRecord);
 
             systemService.Edit(command.FarsiTitle, command.EngTitle, command.BaseFeePrice,
-                command.SystemSharePercent, command.ProductBrandId, command.ProductModelId, command.ProductTypeId,
+                command.SystemSharePercent,command.WarrantyTypeId,command.WarrantyAmount, command.ProductBrandId, command.ProductModelId, command.ProductTypeId,
                 command.ProductUsageTypeId);
 
             _systemServiceRepository.Savechange();

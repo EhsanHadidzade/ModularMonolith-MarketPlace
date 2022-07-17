@@ -38,11 +38,13 @@ namespace RepairWorkShopManagement.Infrastructure.EFCore.Repository
                 BaseFeePrice = x.BaseFeePrice,
                 EngTitle = x.EngTitle,
                 FarsiTitle = x.FarsiTitle,
+                SystemSharePercent = x.SystemSharePercent,
+                WarrantyAmount = x.WarrantyAmount,
+                WarrantyTypeId=x.WarrantyTypeId,
                 ProductBrandId = x.ProductBrandId,
                 ProductModelId = x.ProductModelId,
                 ProductTypeId = x.ProductTypeId,
-                ProductUsageTypeId = x.ProductUsageTypeId,
-                SystemSharePercent = x.SystemSharePercent
+                ProductUsageTypeId = x.ProductUsageTypeId
             }).FirstOrDefault(x => x.Id == id);
 
             return systemService;

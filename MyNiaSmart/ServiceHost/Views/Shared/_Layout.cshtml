@@ -614,20 +614,19 @@
     @*<script src="~/Maintheme/vendor/apexchart/apexchart.js"></script>*@
 
 
+    @RenderSection("Scripts",false)
 
     <!-- Vectormap -->
-    <!-- Chart piety plugin files -->
+   @* <!-- Chart piety plugin files -->
     <script src="~/Maintheme/vendor/peity/jquery.peity.min.js"></script>
 
     <!-- Chartist -->
     <script src="~/Maintheme/vendor/chartist/js/chartist.min.js"></script>
-
+*@
 
     <!-- Dashboard 1 -->
-    <script src="~/Maintheme/js/dashboard/dashboard-1.js"></script>
-    <!-- Svganimation scripts -->
-    <script src="~/Maintheme/vendor/svganimation/vivus.min.js"></script>
-    <script src="~/Maintheme/vendor/svganimation/svg.animation.js"></script>
+    @*<script src="~/Maintheme/js/dashboard/dashboard-1.js"></script>*@
+
 
     <!--Persian Date Picker-->
     <script src="~/Maintheme/js/persian-date.min.js"></script>
@@ -652,8 +651,11 @@
 
     @*<script src="~/MainTheme/js/IranCities/ir-city-select.js"></script>*@
 
-    @RenderSection("Scripts",false)
 
+
+        <!-- Svganimation scripts -->
+    <script src="~/Maintheme/vendor/svganimation/vivus.min.js"></script>
+    <script src="~/Maintheme/vendor/svganimation/svg.animation.js"></script>
    
 
 </body>
