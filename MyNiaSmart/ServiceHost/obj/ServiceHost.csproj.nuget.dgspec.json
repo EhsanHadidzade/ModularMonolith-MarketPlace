@@ -548,6 +548,9 @@
             "projectReferences": {
               "C:\\Work\\Projects\\MyNiaSmart\\MyNiaSmart\\RepairWorkShopManagement.Domain\\RepairWorkShopManagement.Domain.csproj": {
                 "projectPath": "C:\\Work\\Projects\\MyNiaSmart\\MyNiaSmart\\RepairWorkShopManagement.Domain\\RepairWorkShopManagement.Domain.csproj"
+              },
+              "C:\\Work\\Projects\\MyNiaSmart\\MyNiaSmart\\ShopManagement.Infrastructure.EFCore\\ShopManagement.Infrastructure.EFCore.csproj": {
+                "projectPath": "C:\\Work\\Projects\\MyNiaSmart\\MyNiaSmart\\ShopManagement.Infrastructure.EFCore\\ShopManagement.Infrastructure.EFCore.csproj"
               }
             }
           }

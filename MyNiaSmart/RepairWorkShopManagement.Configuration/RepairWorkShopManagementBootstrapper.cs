@@ -3,9 +3,11 @@ using Microsoft.Extensions.DependencyInjection;
 using RepairWorkShopManagement.Application;
 using RepairWorkShopManagement.Application.Contracts.RepainManPanel;
 using RepairWorkShopManagement.Application.Contracts.RepairManService;
+using RepairWorkShopManagement.Application.Contracts.ServiceTitle;
 using RepairWorkShopManagement.Application.Contracts.SystemService;
 using RepairWorkShopManagement.Domain.RepairManPanelAgg;
 using RepairWorkShopManagement.Domain.RepairManServiceAgg;
+using RepairWorkShopManagement.Domain.ServiceTitleAgg;
 using RepairWorkShopManagement.Domain.SystemServiceAgg;
 using RepairWorkShopManagement.Infrastructure.EFCore;
 using RepairWorkShopManagement.Infrastructure.EFCore.Repository;
@@ -17,6 +19,10 @@ namespace RepairWorkShopManagement.Configuration
     {
         public static void Configure(IServiceCollection services, string connectionString)
         {
+
+            services.AddTransient<IServiceTitleRepository, ServiceTitleRepository>();
+            services.AddTransient<IServiceTitleApplication, ServiceTitleApplication>();
+
 
             services.AddTransient<ISystemServiceRepository, SystemServiceRepository>();
             services.AddTransient<ISystemServiceApplication, SystemServiceApplication>();

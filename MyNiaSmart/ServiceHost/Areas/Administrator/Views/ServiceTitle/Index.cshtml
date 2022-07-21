@@ -1,0 +1,83 @@
+﻿@model List<RepairWorkShopManagement.Application.Contracts.ServiceTitle.ServiceTitleViewModel>
+
+
+<div class="row page-titles mx-0">
+    <div class="col-sm-6 p-md-0">
+        <div class="welcome-text">
+            <h4>سلام، خوش آمدید</h4>
+        </div>
+    </div>
+    <div class="col-sm-6 p-md-0 justify-content-sm-end mt-2 mt-sm-0 d-flex">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="/administrator">پنل مدیریت </a></li>
+            <li class="breadcrumb-item active"><a href=""> مدیریت جنس سرویس های سامانه </a></li>
+        </ol>
+    </div>
+</div>
+@if (ViewData["message"] != null)
+{
+    <div class="col-xl-12 col-xxl-12">
+        <div class="card-body">
+            <div class="alert alert-success solid alert-dismissible fade show">
+                <strong></strong> @ViewData["message"]
+            </div>
+        </div>
+    </div>
+}
+
+<div class="row">
+    <div class="col-lg-12">
+        <div class="card">
+            <div class="card-header">
+                <button type="button" class="btn btn-rounded btn-info" onclick="window.location.href ='#showmodal=/administrator/ServiceTitle/Create'">
+                    <span class="btn-icon-left text-info">
+                        <i class="fa fa-plus color-info"></i>
+                    </span>افزودن
+                </button>
+            </div>
+            <div class="card-body">
+                <div class="table-responsive">
+                    <table class="table table-responsive-md">
+                        <thead>
+                            <tr>
+                                <th style="width:50px;">
+                                    <div class="custom-control custom-checkbox checkbox-success check-lg mr-3">
+                                        <input type="checkbox" class="custom-control-input" id="checkAll" required="">
+                                        <label class="custom-control-label" for="checkAll"></label>
+                                    </div>
+                                </th>
+                                <th><strong>عنوان سرویس(farsi)</strong></th>
+                                <th><strong>عنوان سرویس(english)</strong></th>
+                                <th><strong>عملیات</strong></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @if (Model != null)
+                            {
+                                @foreach (var item in Model)
+                                {
+                                    <tr>
+                                        <td>
+                                            <div class="custom-control custom-checkbox checkbox-success check-lg mr-3">
+                                                <input type="checkbox" class="custom-control-input" id="customCheckBox2" required="">
+                                                <label class="custom-control-label" for="customCheckBox2"></label>
+                                            </div>
+                                        </td>
+                                        <td><strong>@item.FarsiTitle</strong></td>
+                                        <td><strong>@item.EngTitle</strong></td>
+                                        <td>
+                                            <div class="d-flex">
+                                                <a href="#showmodal=/administrator/ServiceTitle/Edit/@item.Id" class="btn btn-primary shadow btn-xs sharp mr-1"><i class="fa fa-pencil"></i></a>
+                                                <a href="#" class="btn btn-danger shadow btn-xs sharp"><i class="fa fa-trash"></i></a>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                }
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

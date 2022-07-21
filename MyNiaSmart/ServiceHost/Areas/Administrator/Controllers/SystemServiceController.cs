@@ -23,7 +23,7 @@ namespace ServiceHost.Areas.Administrator.Controllers
         public IActionResult Index(string alert)
         {
             if(!string.IsNullOrWhiteSpace(alert))
-                ViewData["Message"] = SystemServiceController.message;
+                ViewData["message"] = SystemServiceController.message;
 
             var systemServices = _systemServiceApplication.GetList();
             return View(systemServices);
@@ -53,7 +53,7 @@ namespace ServiceHost.Areas.Administrator.Controllers
         {
             var result = _systemServiceApplication.Edit(command);
             SystemServiceController.message = result.Message;
-            return Redirect("/Administrator/SystemService/Index");
+            return Redirect("/Administrator/SystemService/Index?alert=notif");
         }
 
 

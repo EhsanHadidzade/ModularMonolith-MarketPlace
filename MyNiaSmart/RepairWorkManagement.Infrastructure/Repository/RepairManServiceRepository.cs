@@ -33,7 +33,6 @@ namespace RepairWorkShopManagement.Infrastructure.EFCore.Repository
                 MarketerSharePercent = x.MarketerSharePercent,
                 RepairManPanelId = x.RepairManPanelId,
                 SystemServiceId = x.SystemServiceId,
-                SystemServiceTitle = x.SystemService.FarsiTitle,
                 WarrantyAmount = x.WarrantyAmount,
                 WarrantyTypeId = x.WarrantyTypeId
             }).FirstOrDefault(x => x.Id == id);
@@ -47,7 +46,6 @@ namespace RepairWorkShopManagement.Infrastructure.EFCore.Repository
                 RepairManPanelId = x.RepairManPanelId,
                 RepairManFullName = x.RepairManPanel.CommericalFullName,
                 SystemServiceId = x.SystemServiceId,
-                SystemServiceTitle = x.SystemService.FarsiTitle,
                 IsConfirmedByAdmin = x.IsConfirmedByAdmin,
                 IsEditionConfirmedByAdmin = x.IsEditionConfirmedByAdmin,
                 CreationDate = x.CreationDate.ToFarsi()
@@ -62,7 +60,6 @@ namespace RepairWorkShopManagement.Infrastructure.EFCore.Repository
                 RepairManPanelId = x.RepairManPanelId,
                 RepairManFullName = x.RepairManPanel.CommericalFullName,
                 SystemServiceId = x.SystemServiceId,
-                SystemServiceTitle = x.SystemService.FarsiTitle,
                 IsConfirmedByAdmin = x.IsConfirmedByAdmin,
                 IsEditionConfirmedByAdmin = x.IsEditionConfirmedByAdmin,
                 CreationDate = x.CreationDate.ToFarsi()

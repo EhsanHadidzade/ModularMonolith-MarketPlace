@@ -19,6 +19,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\RepairWorkShopManagement.Domain\RepairWorkShopManagement.Domain.csproj" />
+    <ProjectReference Include="..\ShopManagement.Infrastructure.EFCore\ShopManagement.Infrastructure.EFCore.csproj" />
   </ItemGroup>
 
 </Project>

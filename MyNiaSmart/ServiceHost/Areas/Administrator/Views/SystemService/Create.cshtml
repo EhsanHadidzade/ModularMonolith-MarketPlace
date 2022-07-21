@@ -3,16 +3,32 @@
 @using ShopManagement.Application.Contract.ProductCategory.ProductModel;
 @using ShopManagement.Application.Contract.ProductCategory.ProductType;
 @using ShopManagement.Application.Contract.ProductCategory.ProductUsageType;
+@using RepairWorkShopManagement.Application.Contracts.ServiceTitle;
+
 @inject IProductTypeApplication _productTypeApplication
 @inject IProductBrandApplication _productBrandApplication
 @inject IProductModelApplication _productModelApplication
 @inject IProductUsageTypeApplication _productUsageTypeApplication
+@inject IServiceTitleApplication _serviceTitleApplication
+
 @{
     ViewData["Title"] = "افزودن سرویس جدید ";
     ViewData["ProductTypes"] = new SelectList(_productTypeApplication.GetList(), "Id", "EngTitle");
     ViewData["ProductBrands"] = new SelectList(_productBrandApplication.GetList(), "Id", "EngTitle");
     ViewData["ProductModels"] = new SelectList(_productModelApplication.GetList(), "Id", "EngTitle");
     ViewData["ProductUsageTypes"] = new SelectList(_productUsageTypeApplication.GetList(), "Id", "EngTitle");
+    ViewData["ServiceTitle"] = new SelectList(_serviceTitleApplication.GetList(), "Id", "EngTitle");
+
+}
+
+@section header{
+<!-- Clockpicker -->
+<link href="~/AdminTheme/vendor/clockpicker/css/bootstrap-clockpicker.min.css" rel="stylesheet">
+
+<!-- Pick date -->
+<link rel="stylesheet" href="~/AdminTheme/vendor/pickadate/themes/default.css">
+<link rel="stylesheet" href="~/AdminTheme/vendor/pickadate/themes/default.date.css">
+
 }
 
 
@@ -41,6 +57,14 @@
                 <div class="basic-form">
                     <form method="post" href="/administrator/SystemService/create">
                         <div class="form-row">
+                            <div class="form-group col-md-6">
+                                <label>تعیین جنس سرویس مورد نظر </label>
+                                <select class="form-control" asp-for=ServiceTitleId asp-items="@ViewData["ServiceTitle"] as SelectList">
+                                    <option value="0">انتخاب کنید</option>
+                                </select>
+                                <span class="text-danger" asp-validation-for="ServiceTitleId">
+                                </span>
+                            </div>
                             <div class="form-group col-md-6">
                                 <label>تعیین نوع سرویس مورد نظر </label>
                                 <select class="form-control" asp-for=ProductTypeId asp-items="@ViewData["ProductTypes"] as SelectList">
@@ -74,21 +98,8 @@
                                 </span>
                             </div>
                             <div class="form-group col-md-6">
-                                <label> عنوان سرویس (فارسی)</label>
-                                <input type="text" asp-for="FarsiTitle" class="form-control" placeholder="فارسی">
-                                <span class="text-danger" asp-validation-for="FarsiTitle">
-                                </span>
-                            </div>
-                            <div class="form-group col-md-6">
-                                <label>عنوان سرویس(english)</label>
-                                <input type="text" asp-for="EngTitle" class="form-control" placeholder="انگلیسی">
-                                <span class="text-danger" asp-validation-for="EngTitle">
-                                </span>
-                            </div>
-
-                            <div class="form-group col-md-6">
                                 <label>قیمت پایه</label>
-                                <input type="text" asp-for="BaseFeePrice" class="form-control" placeholder="بر حسب تومان">
+                                <input type="text" asp-for="BaseFeePrice" class="form-control" onkeypress="return onlyNumberKey(event)" placeholder="بر حسب تومان">
                                 <span class="text-danger" asp-validation-for="BaseFeePrice">
                                 </span>
                             </div>
@@ -98,7 +109,14 @@
                                 <span class="text-danger" asp-validation-for="SystemSharePercent">
                                 </span>
                             </div>
-                              <div class="form-group col-md-6">
+                            <div class="form-group col-md-6 mb-3">
+                                <label>محاسبه زمان انجام کار</label>
+                                <div class="input-group clockpicker" data-placement="bottom" data-align="top" data-autoclose="true">
+                                    <input type="text" class="form-control" asp-for="Duration">
+                                    <span class="input-group-append"><span class="input-group-text"><i class="fa fa-clock-o"></i></span></span>
+                                </div>
+                            </div>
+                            <div class="form-group col-md-6">
                                 <label>انتخاب نوع گارانتی محصول</label>
                                 <select class="form-control" asp-for="WarrantyTypeId">
                                     <option value="0">انتخاب کنید</option>
@@ -116,6 +134,16 @@
                                 <span class="text-danger" asp-validation-for="WarrantyAmount">
                                 </span>
                             </div>
+                            <div class="form-group col-md-12" dir="rtl">
+                                <label> توضیحات</label>
+                                <textarea class="form-control" id="BodyContent" rows="15" asp-for="Description">
+
+                                </textarea>
+                                <span class="text-danger" asp-validation-for="Description">
+                                </span>
+                            </div>
+
+
                             <button type="submit" class="btn btn-primary">افزودن سرویس</button>
                             <a href="/Administrator/Systemservice/index" class="btn btn-warning">بازگشت</a>
                         </div>
@@ -126,22 +154,32 @@
     </div>
 </div>
 
+
+@section Scripts{
+<!-- clockpicker -->
+<script src="/AdminTheme/vendor/clockpicker/js/bootstrap-clockpicker.min.js"></script>
+
+
+<!-- Clockpicker init -->
+<script src="/AdminTheme/js/plugins-init/clock-picker-init.js"></script>
+
+}
 <script>
-   function filterModel() {
-                   $.ajax({
-                      url:"/administrator/SystemService/FilterModels",
-                      data:{brandId:$("#ProductBrandId").val()},
-                  }).done(function(result){
-                     $(".models").html(result);
-                  })
-        }
+    function filterModel() {
+                    $.ajax({
+                       url:"/administrator/SystemService/FilterModels",
+                       data:{brandId:$("#ProductBrandId").val()},
+                   }).done(function(result){
+                      $(".models").html(result);
+                   })
+         }
 
-           function onlyNumberKey(evt) {
+            function onlyNumberKey(evt) {
 
-                    // Only ASCII character in that range allowed
-                    var ASCIICode = (evt.which) ? evt.which : evt.keyCode
-                    if (ASCIICode > 31 && (ASCIICode < 48 || ASCIICode > 57))
-                        return false;
-                    return true;
-                }
+                     // Only ASCII character in that range allowed
+                     var ASCIICode = (evt.which) ? evt.which : evt.keyCode
+                     if (ASCIICode > 31 && (ASCIICode < 48 || ASCIICode > 57))
+                         return false;
+                     return true;
+                 }
 </script>

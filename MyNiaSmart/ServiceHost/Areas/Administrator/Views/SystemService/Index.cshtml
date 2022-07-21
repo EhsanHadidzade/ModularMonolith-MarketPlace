@@ -22,15 +22,15 @@
         </ol>
     </div>
 </div>
-@if(ViewData["Message"]!=null)
+@if (ViewData["message"] != null)
 {
     <div class="col-xl-12 col-xxl-12">
         <div class="card-body">
             <div class="alert alert-info solid alert-dismissible fade show">
-               	<strong></strong> @ViewData["message"]
+                <strong></strong> @ViewData["message"]
             </div>
         </div>
-</div>
+    </div>
 }
 <div class="row">
     <div class="col-12">
@@ -52,6 +52,12 @@
                         <thead>
                             <tr>
                                 <th>عنوان سرویس</th>
+                                <th> عنوان برند</th>
+                                <th> عنوان مدل</th>
+                                <th> عنوان نوع</th>
+                                <th> عنوان نحوه استفاده</th>
+                                <th>  مفدار گارانتی</th>
+                                <th>مدت زمان انجام</th>
                                 <th> قیمت پایه</th>
                                 <th>سهم سامانه(درصد)</th>
                                 <th>عملیات</th>
@@ -61,7 +67,34 @@
                             @foreach (var service in Model)
                             {
                                 <tr>
-                                    <td>@service.EngTitle</td>
+                                    <td>@service.ServiceTitleEngTitle</td>
+                                    <td>@service.BrandEngTitle</td>
+                                    <td>@service.ModelEngTitle</td>
+                                    <td>@service.TypeEngTitle</td>
+                                    <td>@service.UsageTypeEngTitle</td>
+                                    <td>
+                                        <p>
+                                            ضمانت :
+                                            @if (service.WarrantyTypeId == WarrantyTypeId.Hour)
+                                            {
+                                                <span class="item"> تا @service.WarrantyAmount ساعت</span>
+                                            }
+                                            @if (service.WarrantyTypeId == WarrantyTypeId.Day)
+                                            {
+                                                <span class="item"> تا @service.WarrantyAmount روز</span>
+                                            }
+                                            @if (service.WarrantyTypeId == WarrantyTypeId.Mounth)
+                                            {
+                                                <span class="item"> تا @service.WarrantyAmount ماه</span>
+                                            }
+                                            @if (service.WarrantyTypeId == WarrantyTypeId.Year)
+                                            {
+                                                <span class="item"> تا @service.WarrantyAmount سال</span>
+                                            }
+
+                                        </p>
+                                    </td>
+                                    <td>@service.Duration</td>
                                     <td>@service.BaseFeePrice.ToMoney() تومان</td>
                                     <td>@service.SystemSharePercent %</td>
                                     <td>

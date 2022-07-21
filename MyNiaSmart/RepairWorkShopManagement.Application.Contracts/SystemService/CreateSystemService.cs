@@ -9,13 +9,9 @@ namespace RepairWorkShopManagement.Application.Contracts.SystemService
 {
     public class CreateSystemService
     {
-        [Required(ErrorMessage =ValidationMessage.IsRequired)]
-        public string FarsiTitle { get;  set; }
-
-        [Required(ErrorMessage = ValidationMessage.IsRequired)]
-        public string EngTitle { get;  set; }
 
         [Range(1, long.MaxValue, ErrorMessage = ValidationMessage.IsRequired)]
+        [Required(ErrorMessage = ValidationMessage.IsRequired)]
         public long BaseFeePrice { get;  set; }
 
         [Required(ErrorMessage = ValidationMessage.IsRequired)]
@@ -25,7 +21,14 @@ namespace RepairWorkShopManagement.Application.Contracts.SystemService
         public int WarrantyTypeId { get; set; }
 
         [Range(1, long.MaxValue, ErrorMessage = ValidationMessage.IsRequired)]
+        [Required(ErrorMessage = ValidationMessage.IsRequired)]
         public int WarrantyAmount { get; set; }
+
+        [Required(ErrorMessage =ValidationMessage.IsRequired)]
+        public string Description { get; set; }
+
+        [Required(ErrorMessage =ValidationMessage.IsRequired)]
+        public string Duration { get; set; }
 
         //FK
         [Range(1,long.MaxValue,ErrorMessage =ValidationMessage.IsRequired)]
@@ -39,5 +42,8 @@ namespace RepairWorkShopManagement.Application.Contracts.SystemService
 
         [Range(1, long.MaxValue, ErrorMessage = ValidationMessage.IsRequired)]
         public long ProductUsageTypeId { get;  set; }
+
+        [Range(1, long.MaxValue, ErrorMessage = ValidationMessage.IsRequired)]
+        public long ServiceTitleId { get; set; }
     }
 }

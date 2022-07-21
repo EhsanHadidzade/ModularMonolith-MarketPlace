@@ -121,6 +121,29 @@ namespace RepairWorkManagement.Infrastructure.EFCore.Migrations
                     b.ToTable("RepairManServices");
                 });
 
+            modelBuilder.Entity("RepairWorkShopManagement.Domain.ServiceTitleAgg.ServiceTitle", b =>
+                {
+                    b.Property<long>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("bigint")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<DateTime>("CreationDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("EngTitle")
+                        .HasMaxLength(256)
+                        .HasColumnType("nvarchar(256)");
+
+                    b.Property<string>("FarsiTitle")
+                        .HasMaxLength(256)
+                        .HasColumnType("nvarchar(256)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("ServiceTitles");
+                });
+
             modelBuilder.Entity("RepairWorkShopManagement.Domain.SystemServiceAgg.SystemService", b =>
                 {
                     b.Property<long>("Id")
@@ -134,13 +157,12 @@ namespace RepairWorkManagement.Infrastructure.EFCore.Migrations
                     b.Property<DateTime>("CreationDate")
                         .HasColumnType("datetime2");
 
-                    b.Property<string>("EngTitle")
-                        .HasMaxLength(256)
-                        .HasColumnType("nvarchar(256)");
+                    b.Property<string>("Description")
+                        .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("FarsiTitle")
-                        .HasMaxLength(256)
-                        .HasColumnType("nvarchar(256)");
+                    b.Property<string>("Duration")
+                        .HasMaxLength(12)
+                        .HasColumnType("nvarchar(12)");
 
                     b.Property<long>("ProductBrandId")
                         .HasColumnType("bigint");
@@ -152,6 +174,9 @@ namespace RepairWorkManagement.Infrastructure.EFCore.Migrations
                         .HasColumnType("bigint");
 
                     b.Property<long>("ProductUsageTypeId")
+                        .HasColumnType("bigint");
+
+                    b.Property<long>("ServiceTitleId")
                         .HasColumnType("bigint");
 
                     b.Property<int>("SystemSharePercent")

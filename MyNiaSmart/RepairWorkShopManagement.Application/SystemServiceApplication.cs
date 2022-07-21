@@ -19,15 +19,9 @@ namespace RepairWorkShopManagement.Application
 
         public OperationResult Create(CreateSystemService command)
         {
-            if (_systemServiceRepository.IsExist(x => x.FarsiTitle == command.FarsiTitle))
-                return operation.Failed(ApplicationMessage.DuplicatedRecord);
-
-            if (_systemServiceRepository.IsExist(x => x.EngTitle == command.EngTitle))
-                return operation.Failed(ApplicationMessage.DuplicatedRecord);
-
-            var systemService = new SystemService(command.FarsiTitle, command.EngTitle, command.BaseFeePrice,
-                command.SystemSharePercent,command.WarrantyTypeId,command.WarrantyAmount, command.ProductBrandId, command.ProductModelId, command.ProductTypeId,
-                command.ProductUsageTypeId);
+            var systemService = new SystemService(command.BaseFeePrice, command.SystemSharePercent, command.WarrantyTypeId,
+                command.WarrantyAmount, command.Description, command.Duration, command.ProductBrandId, command.ProductModelId, command.ProductTypeId,
+                command.ProductUsageTypeId, command.ServiceTitleId);
 
             _systemServiceRepository.Create(systemService);
             _systemServiceRepository.Savechange();
@@ -42,15 +36,9 @@ namespace RepairWorkShopManagement.Application
             if (systemService == null)
                 return operation.Failed(ApplicationMessage.RecordNotFound);
 
-            if (_systemServiceRepository.IsExist(x => x.FarsiTitle == command.FarsiTitle && x.Id!=command.Id))
-                return operation.Failed(ApplicationMessage.DuplicatedRecord);
-
-            if (_systemServiceRepository.IsExist(x => x.EngTitle == command.EngTitle && x.Id != command.Id))
-                return operation.Failed(ApplicationMessage.DuplicatedRecord);
-
-            systemService.Edit(command.FarsiTitle, command.EngTitle, command.BaseFeePrice,
-                command.SystemSharePercent,command.WarrantyTypeId,command.WarrantyAmount, command.ProductBrandId, command.ProductModelId, command.ProductTypeId,
-                command.ProductUsageTypeId);
+            systemService.Edit(command.BaseFeePrice, command.SystemSharePercent, command.WarrantyTypeId,
+                command.WarrantyAmount, command.Description, command.Duration, command.ProductBrandId, command.ProductModelId, command.ProductTypeId,
+                command.ProductUsageTypeId, command.ServiceTitleId);
 
             _systemServiceRepository.Savechange();
             return operation.Succedded();
@@ -66,9 +54,6 @@ namespace RepairWorkShopManagement.Application
             return _systemServiceRepository.GetList();
         }
 
-        public SystemServiceViewModel GetTitleAndIdById(long systemServiceId)
-        {
-            return _systemServiceRepository.GetTitleAndIdById(systemServiceId);
-        }
+
     }
 }

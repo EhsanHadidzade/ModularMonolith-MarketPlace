@@ -16,8 +16,8 @@ namespace RepairWorkShopManagement.Infrastructure.EFCore.Mapping
             builder.ToTable("SystemServices");
             builder.HasKey(x => x.Id);
 
-            builder.Property(x => x.FarsiTitle).HasMaxLength(256);
-            builder.Property(x => x.EngTitle).HasMaxLength(256);
+            builder.Property(x => x.Description);
+            builder.Property(x => x.Duration).HasMaxLength(12);
 
             builder.HasMany(x => x.RepairManServices).WithOne(x => x.SystemService).HasForeignKey(x => x.SystemServiceId);
         }

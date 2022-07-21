@@ -21,3 +21,15 @@ C:\Work\Projects\MyNiaSmart\MyNiaSmart\RepairWorkShopManagement.Configuration\ob
 C:\Work\Projects\MyNiaSmart\MyNiaSmart\RepairWorkShopManagement.Configuration\obj\Release\net5.0\refint\RepairWorkShopManagement.Configuration.dll
 C:\Work\Projects\MyNiaSmart\MyNiaSmart\RepairWorkShopManagement.Configuration\obj\Release\net5.0\RepairWorkShopManagement.Configuration.pdb
 C:\Work\Projects\MyNiaSmart\MyNiaSmart\RepairWorkShopManagement.Configuration\obj\Release\net5.0\ref\RepairWorkShopManagement.Configuration.dll
+C:\Work\Projects\MyNiaSmart\MyNiaSmart\RepairWorkShopManagement.Configuration\bin\Release\net5.0\AccountManagement.Application.Contract.dll
+C:\Work\Projects\MyNiaSmart\MyNiaSmart\RepairWorkShopManagement.Configuration\bin\Release\net5.0\AccountManagement.Domain.dll
+C:\Work\Projects\MyNiaSmart\MyNiaSmart\RepairWorkShopManagement.Configuration\bin\Release\net5.0\AccountManagement.Infrastructure.EFCore.dll
+C:\Work\Projects\MyNiaSmart\MyNiaSmart\RepairWorkShopManagement.Configuration\bin\Release\net5.0\ShopManagement.Application.Contract.dll
+C:\Work\Projects\MyNiaSmart\MyNiaSmart\RepairWorkShopManagement.Configuration\bin\Release\net5.0\ShopManagement.Domain.dll
+C:\Work\Projects\MyNiaSmart\MyNiaSmart\RepairWorkShopManagement.Configuration\bin\Release\net5.0\ShopManagement.Infrastructure.EFCore.dll
+C:\Work\Projects\MyNiaSmart\MyNiaSmart\RepairWorkShopManagement.Configuration\bin\Release\net5.0\AccountManagement.Application.Contract.pdb
+C:\Work\Projects\MyNiaSmart\MyNiaSmart\RepairWorkShopManagement.Configuration\bin\Release\net5.0\AccountManagement.Domain.pdb
+C:\Work\Projects\MyNiaSmart\MyNiaSmart\RepairWorkShopManagement.Configuration\bin\Release\net5.0\AccountManagement.Infrastructure.EFCore.pdb
+C:\Work\Projects\MyNiaSmart\MyNiaSmart\RepairWorkShopManagement.Configuration\bin\Release\net5.0\ShopManagement.Application.Contract.pdb
+C:\Work\Projects\MyNiaSmart\MyNiaSmart\RepairWorkShopManagement.Configuration\bin\Release\net5.0\ShopManagement.Domain.pdb
+C:\Work\Projects\MyNiaSmart\MyNiaSmart\RepairWorkShopManagement.Configuration\bin\Release\net5.0\ShopManagement.Infrastructure.EFCore.pdb

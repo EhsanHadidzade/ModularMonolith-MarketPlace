@@ -20,3 +20,15 @@ C:\Work\Projects\MyNiaSmart\MyNiaSmart\RepairWorkManagement.Infrastructure\obj\R
 C:\Work\Projects\MyNiaSmart\MyNiaSmart\RepairWorkManagement.Infrastructure\obj\Release\net5.0\RepairWorkShopManagement.Infrastructure.EFCore.pdb
 C:\Work\Projects\MyNiaSmart\MyNiaSmart\RepairWorkManagement.Infrastructure\obj\Release\net5.0\RepairWorkShopManagement.Infrastructure.EFCore.genruntimeconfig.cache
 C:\Work\Projects\MyNiaSmart\MyNiaSmart\RepairWorkManagement.Infrastructure\obj\Release\net5.0\ref\RepairWorkShopManagement.Infrastructure.EFCore.dll
+C:\Work\Projects\MyNiaSmart\MyNiaSmart\RepairWorkManagement.Infrastructure\bin\Release\net5.0\AccountManagement.Application.Contract.dll
+C:\Work\Projects\MyNiaSmart\MyNiaSmart\RepairWorkManagement.Infrastructure\bin\Release\net5.0\AccountManagement.Domain.dll
+C:\Work\Projects\MyNiaSmart\MyNiaSmart\RepairWorkManagement.Infrastructure\bin\Release\net5.0\AccountManagement.Infrastructure.EFCore.dll
+C:\Work\Projects\MyNiaSmart\MyNiaSmart\RepairWorkManagement.Infrastructure\bin\Release\net5.0\ShopManagement.Application.Contract.dll
+C:\Work\Projects\MyNiaSmart\MyNiaSmart\RepairWorkManagement.Infrastructure\bin\Release\net5.0\ShopManagement.Domain.dll
+C:\Work\Projects\MyNiaSmart\MyNiaSmart\RepairWorkManagement.Infrastructure\bin\Release\net5.0\ShopManagement.Infrastructure.EFCore.dll
+C:\Work\Projects\MyNiaSmart\MyNiaSmart\RepairWorkManagement.Infrastructure\bin\Release\net5.0\ShopManagement.Infrastructure.EFCore.pdb
+C:\Work\Projects\MyNiaSmart\MyNiaSmart\RepairWorkManagement.Infrastructure\bin\Release\net5.0\AccountManagement.Application.Contract.pdb
+C:\Work\Projects\MyNiaSmart\MyNiaSmart\RepairWorkManagement.Infrastructure\bin\Release\net5.0\AccountManagement.Domain.pdb
+C:\Work\Projects\MyNiaSmart\MyNiaSmart\RepairWorkManagement.Infrastructure\bin\Release\net5.0\AccountManagement.Infrastructure.EFCore.pdb
+C:\Work\Projects\MyNiaSmart\MyNiaSmart\RepairWorkManagement.Infrastructure\bin\Release\net5.0\ShopManagement.Application.Contract.pdb
+C:\Work\Projects\MyNiaSmart\MyNiaSmart\RepairWorkManagement.Infrastructure\bin\Release\net5.0\ShopManagement.Domain.pdb

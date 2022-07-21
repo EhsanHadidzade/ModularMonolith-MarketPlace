@@ -89,12 +89,12 @@ namespace ServiceHost.Controllers
         #endregion
 
         #region AJAX =>  To select specific System Service from SearchServicePartialView for create form or edit form 
-        public string addService(long id)
-        {
-            var service = _systemServiceApplication.GetTitleAndIdById(id);
-            var jsonObject = JsonConvert.SerializeObject(service);
-            return jsonObject;
-        }
+        //public string addService(long id)
+        //{
+        //    var service = _systemServiceApplication.GetTitleAndIdById(id);
+        //    var jsonObject = JsonConvert.SerializeObject(service);
+        //    return jsonObject;
+        //}
         #endregion
     }
 }

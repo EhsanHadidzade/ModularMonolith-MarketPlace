@@ -2570,7 +2570,8 @@
         "dependencies": {
           "Microsoft.EntityFrameworkCore": "5.0.17",
           "Microsoft.EntityFrameworkCore.SqlServer": "5.0.17",
-          "RepairWorkShopManagement.Domain": "1.0.0"
+          "RepairWorkShopManagement.Domain": "1.0.0",
+          "ShopManagement.Infrastructure.EFCore": "1.0.0"
         },
         "runtime": {
           "RepairWorkShopManagement.Infrastructure.EFCore.dll": {}

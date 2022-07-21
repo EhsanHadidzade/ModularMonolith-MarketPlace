@@ -8,59 +8,64 @@ using System.Threading.Tasks;
 
 namespace RepairWorkShopManagement.Domain.SystemServiceAgg
 {
-    public class SystemService:BaseEntity
+    public class SystemService : BaseEntity
     {
-        public string FarsiTitle { get; private set; }
-        public string EngTitle { get; private set; }
-        public long BaseFeePrice { get;private set; }
-        public int SystemSharePercent { get;private set; }
+
+        public long BaseFeePrice { get; private set; }
+        public int SystemSharePercent { get; private set; }
         public int WarrantyTypeId { get; private set; }
         public int WarrantyAmount { get; private set; }
+        public string Description { get; private set; }
+        public string Duration { get; private set; }
 
         //FK
         public long ProductBrandId { get; private set; }
         public long ProductModelId { get; private set; }
         public long ProductTypeId { get; private set; }
         public long ProductUsageTypeId { get; private set; }
+        public long ServiceTitleId { get; private set; }
 
         //relations
-        public List<RepairManService> RepairManServices { get;private set; }
+        public List<RepairManService> RepairManServices { get; private set; }
 
-        public SystemService(string farsiTitle, string engTitle, long baseFeePrice, int systemSharePercent,
-           int warrantyTypeId ,int warrantyAmount, long productBrandId, long productModelId, long productTypeId, long productUsageTypeId)
+        public SystemService(long baseFeePrice, int systemSharePercent, int warrantyTypeId,
+            int warrantyAmount,string description,string duration, long productBrandId, long productModelId, long productTypeId,
+            long productUsageTypeId, long serviceTitleId)
         {
-            FarsiTitle = farsiTitle;
-            EngTitle = engTitle;
             BaseFeePrice = baseFeePrice;
             SystemSharePercent = systemSharePercent;
+            WarrantyTypeId = warrantyTypeId;
+            WarrantyAmount = warrantyAmount;
+            Description = description;
+            Duration = duration;
 
             //FK
             ProductBrandId = productBrandId;
             ProductModelId = productModelId;
             ProductTypeId = productTypeId;
             ProductUsageTypeId = productUsageTypeId;
-            WarrantyTypeId = warrantyTypeId;
-            WarrantyAmount = warrantyAmount;
+            ServiceTitleId = serviceTitleId;
 
-            //relation
-            RepairManServices= new List<RepairManService>();
+            RepairManServices = new List<RepairManService>();
         }
 
-        public void Edit(string farsiTitle, string engTitle, long baseFeePrice, int systemSharePercent,
-              int warrantyTypeId, int warrantyAmount, long productBrandId, long productModelId, long productTypeId, long productUsageTypeId)
+        public void Edit(long baseFeePrice, int systemSharePercent, int warrantyTypeId,
+            int warrantyAmount,string description,string duration,long productBrandId, long productModelId, long productTypeId,
+            long productUsageTypeId, long serviceTitleId)
         {
-            FarsiTitle = farsiTitle;
-            EngTitle = engTitle;
             BaseFeePrice = baseFeePrice;
             SystemSharePercent = systemSharePercent;
             WarrantyTypeId = warrantyTypeId;
             WarrantyAmount = warrantyAmount;
+            Description = description;
+            Duration = duration;
 
             //FK
             ProductBrandId = productBrandId;
             ProductModelId = productModelId;
             ProductTypeId = productTypeId;
             ProductUsageTypeId = productUsageTypeId;
+            ServiceTitleId = serviceTitleId;
         }
     }
 }
