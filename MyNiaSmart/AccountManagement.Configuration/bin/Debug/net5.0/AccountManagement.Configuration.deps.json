@@ -1652,7 +1652,8 @@
       "AccountManagement.Application/1.0.0": {
         "dependencies": {
           "AccountManagement.Application.Contract": "1.0.0",
-          "AccountManagement.Domain": "1.0.0"
+          "AccountManagement.Domain": "1.0.0",
+          "ShopManagement.Domain": "1.0.0"
         },
         "runtime": {
           "AccountManagement.Application.dll": {}
@@ -1680,10 +1681,30 @@
           "0_Framework": "1.0.0",
           "AccountManagement.Domain": "1.0.0",
           "Microsoft.EntityFrameworkCore": "5.0.17",
-          "Microsoft.EntityFrameworkCore.SqlServer": "5.0.17"
+          "Microsoft.EntityFrameworkCore.SqlServer": "5.0.17",
+          "ShopManagement.Domain": "1.0.0"
         },
         "runtime": {
           "AccountManagement.Infrastructure.EFCore.dll": {}
+        }
+      },
+      "ShopManagement.Application.Contract/1.0.0": {
+        "dependencies": {
+          "0_Framework": "1.0.0",
+          "AccountManagement.Application.Contract": "1.0.0"
+        },
+        "runtime": {
+          "ShopManagement.Application.Contract.dll": {}
+        }
+      },
+      "ShopManagement.Domain/1.0.0": {
+        "dependencies": {
+          "0_Framework": "1.0.0",
+          "AccountManagement.Domain": "1.0.0",
+          "ShopManagement.Application.Contract": "1.0.0"
+        },
+        "runtime": {
+          "ShopManagement.Domain.dll": {}
         }
       }
     }
@@ -2819,6 +2840,16 @@
       "sha512": ""
     },
     "AccountManagement.Infrastructure.EFCore/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "ShopManagement.Application.Contract/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "ShopManagement.Domain/1.0.0": {
       "type": "project",
       "serviceable": false,
       "sha512": ""

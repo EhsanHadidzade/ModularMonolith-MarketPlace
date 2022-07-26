@@ -6,8 +6,9 @@
 @using AccountManagement.Application.Contract.User
 @using AccountManagement.Application.Contract.UserAddress
 @using AccountManagement.Application.Contract.PersonalityType
+@using AccountManagement.Application.Contract.UserDevice
 @using _0_Framework.Contract
-@model Tuple<UserInfoQueryModel,List<UserAddressViewModel>,EditUser,List<PersonalityTypeViewModel>>
+@model Tuple<UserInfoQueryModel,List<UserAddressViewModel>,EditUser,List<PersonalityTypeViewModel>,List<UserDeviceViewModel>>
 @inject IUserCooperationRequestApplication _userCooperationRequestApplication
 @inject IAuthHelper _authHelper
 
@@ -30,15 +31,15 @@
         </ol>
     </div>
 </div>
-@if(ViewData["message"]!=null)
+@if (ViewData["message"] != null)
 {
     <div class="col-xl-12 col-xxl-12">
         <div class="card-body">
             <div class="alert alert-info solid alert-dismissible fade show">
-               	<strong></strong> @ViewData["message"]
+                <strong></strong> @ViewData["message"]
             </div>
         </div>
-</div>
+    </div>
 }
 <!-- row -->
 
@@ -52,7 +53,7 @@
                             <li class="nav-item">
                                 <a href="#about-me" data-toggle="tab" class="nav-link active show">درباره من</a>
                             </li>
-                              <li class="nav-item">
+                            <li class="nav-item">
                                 <a href="#UserAddress" data-toggle="tab" class="nav-link ">آدرس ها</a>
                             </li>
                             <li class="nav-item">
@@ -61,12 +62,16 @@
                             <li class="nav-item">
                                 <a href="#CooperationRequest" data-toggle="tab" class="nav-link  @((HasuserRequestedForCooperation==true)?"disabledd":"") ">درخواست همکاری</a>
                             </li>
+                            <li class="nav-item">
+                                <a href="#UserDevice" data-toggle="tab" class="nav-link">دستگاه های من</a>
+                            </li>
                         </ul>
                         <div class="tab-content">
                             <partial name="_UserProfileInfo" model="@Model.Item1" />
                             <partial name="_UserProfileAddress" model="@Model.Item2" />
                             <partial name="_UserProfileEdit" model="@Model.Item3" />
                             <partial name="_UserProfileCooperationRequest" model="@Model.Item4" />
+                            <partial name="_UserDevice" model="@Model.Item5" />
                         </div>
                     </div>
                 </div>

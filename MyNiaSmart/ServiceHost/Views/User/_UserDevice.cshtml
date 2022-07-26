@@ -1,0 +1,31 @@
+﻿@model List<AccountManagement.Application.Contract.UserDevice.UserDeviceViewModel>
+
+
+<div id="UserDevice" class="tab-pane fade">
+    <div class="pt-3">
+        <div class="settings-form">
+            <h4 class="text-primary">دستگاه های من</h4>
+
+            <div class="widget-media">
+                <ul class="timeline">
+                    @foreach (var item in Model)
+                    {
+                        <li style="padding:8px">
+                            <div class="media">
+                                <img class="mr-3 img-fluid rounded" width="60" src="/UploadedFiles/@item.DevicePictureURL" alt="DexignLab">
+                                <div class="media-body">
+                                    <h5 class="mt-0">@item.DeviceTitle</h5>
+                                </div>
+                            </div>
+                        </li>
+
+                    }
+                </ul>
+                <a href="#showModal=/User/CreateUserDevice" class="btn btn-outline-info">افزودن دستگاه جدید</a>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+

@@ -19,3 +19,7 @@ C:\Work\Projects\MyNiaSmart\MyNiaSmart\0_MyNiaSmartQuery\obj\Debug\net5.0\0_MyNi
 C:\Work\Projects\MyNiaSmart\MyNiaSmart\0_MyNiaSmartQuery\obj\Debug\net5.0\refint\0_MyNiaSmartQuery.dll
 C:\Work\Projects\MyNiaSmart\MyNiaSmart\0_MyNiaSmartQuery\obj\Debug\net5.0\0_MyNiaSmartQuery.pdb
 C:\Work\Projects\MyNiaSmart\MyNiaSmart\0_MyNiaSmartQuery\obj\Debug\net5.0\ref\0_MyNiaSmartQuery.dll
+C:\Work\Projects\MyNiaSmart\MyNiaSmart\0_MyNiaSmartQuery\bin\Debug\net5.0\ShopManagement.Application.Contract.dll
+C:\Work\Projects\MyNiaSmart\MyNiaSmart\0_MyNiaSmartQuery\bin\Debug\net5.0\ShopManagement.Domain.dll
+C:\Work\Projects\MyNiaSmart\MyNiaSmart\0_MyNiaSmartQuery\bin\Debug\net5.0\ShopManagement.Application.Contract.pdb
+C:\Work\Projects\MyNiaSmart\MyNiaSmart\0_MyNiaSmartQuery\bin\Debug\net5.0\ShopManagement.Domain.pdb

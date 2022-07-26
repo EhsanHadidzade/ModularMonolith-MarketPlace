@@ -58,13 +58,14 @@ namespace ServiceHost.Controllers
         }
         #endregion
 
-        #region TO Filter sellers Tables of one product that is in product details view
+        #region AJAX=> TO Filter sellers Tables of one product that is in product details view
         public IActionResult _SpecialSellers(string slug, int filterType)
         {
             var filteredSpecialSellers = _sellerPanelApplication.GetSpecialSellersWhoSellingThisProduct(slug, filterType);
             ViewData["ProductSlug"] = slug;
             return PartialView(filteredSpecialSellers);
         }
+
         public IActionResult _NormalSellers(string slug, int filterType)
         {
             var filteredSpecialSellers = _sellerPanelApplication.GetNormalSellersWhoSellingThisProduct(slug, filterType);

@@ -15,6 +15,7 @@ using AccountManagement.Application.Contract.UpAccountRequestRejectionReason;
 using AccountManagement.Application.Contract.User;
 using AccountManagement.Application.Contract.UserAddress;
 using AccountManagement.Application.Contract.UserCooperationRequest;
+using AccountManagement.Application.Contract.UserDevice;
 using AccountManagement.Application.Contract.UserPersonality;
 //using AccountManagement.Application.Contract.UserPersonalityRequest;
 using AccountManagement.Application.Contract.UserRole;
@@ -29,6 +30,7 @@ using AccountManagement.Domain.UpAccountRequestRejectionReasonAgg;
 using AccountManagement.Domain.UPAccountRequestsAgg;
 using AccountManagement.Domain.UserAddressAgg;
 using AccountManagement.Domain.UserAgg;
+using AccountManagement.Domain.UserDeviceAgg;
 using AccountManagement.Domain.UserPersonalityAgg;
 //using AccountManagement.Domain.UserPersonalityRequestAgg;
 using AccountManagement.Domain.UserRoleAgg;
@@ -100,6 +102,10 @@ namespace AccountManagement.Configuration
 
             services.AddTransient<IPersonalWalletChartRepository, PersonalWalletChartRepository>();
             services.AddTransient<IPersonalWalletChartApplication, PersonalWalletChartApplication>();
+
+
+            services.AddTransient<IUserDeviceRepository, UserDeviceRepository>();
+            services.AddTransient<IUserDeviceApplication, UserDeviceApplication>();
 
 
             //client query

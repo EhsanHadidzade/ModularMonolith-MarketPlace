@@ -13,12 +13,14 @@ using AccountManagement.Application.Contract.UpAccountRequestRejectionReason;
 using AccountManagement.Application.Contract.User;
 using AccountManagement.Application.Contract.UserAddress;
 using AccountManagement.Application.Contract.UserCooperationRequest;
+using AccountManagement.Application.Contract.UserDevice;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
 using RepairWorkShopManagement.Application.Contracts.RepainManPanel;
 using ShopManagement.Application.Contract.Order;
 using ShopManagement.Application.Contract.OrderItem;
+using ShopManagement.Application.Contract.Product;
 using ShopManagement.Application.Contract.SellerPanel;
 using System;
 using System.Collections.Generic;
@@ -34,12 +36,15 @@ namespace ServiceHost.Controllers
         public static string withdrawResult { get; set; }
         public static string transferResult { get; set; }
 
+        
         private readonly IUserQuery _userQuery;
         private readonly IAuthHelper _authHelper;
         private readonly IUserApplication _userApplication;
         private readonly IZarinPalFactory _zarinPalFactory;
         private readonly IOrderApplication _orderApplication;
+        private readonly IProductApplication _productApplication;
         private readonly IOrderItemApplication _orderItemApplication;
+        private readonly IUserDeviceApplication _userDeviceApplication; 
         private readonly ISellerPanelApplication _sellerPanelApplication;
         private readonly IUserAddressApplication _userAddressApplication;
         private readonly IRepairManPanelApplication _repairManPanelApplication;
@@ -59,7 +64,7 @@ namespace ServiceHost.Controllers
             IPersonalWalletOperationApplication personalWalletOperationApplication, IZarinPalFactory zarinPalFactory,
             IUserCooperationRequestApplication userCooperationRequestApplication, ISellerPanelApplication sellerPanelApplication,
             IPersonalityTypeApplication personalityTypeApplication, IUserAddressApplication userAddressApplication,
-            IOrderApplication orderApplication, IOrderItemApplication orderItemApplication, IRepairManPanelApplication repairManPanelApplication)
+            IOrderApplication orderApplication, IOrderItemApplication orderItemApplication, IRepairManPanelApplication repairManPanelApplication, IUserDeviceApplication userDeviceApplication, IProductApplication productApplication)
         {
             _userQuery = userQuery;
             _authHelper = authHelper;
@@ -78,6 +83,8 @@ namespace ServiceHost.Controllers
             _orderApplication = orderApplication;
             _orderItemApplication = orderItemApplication;
             _repairManPanelApplication = repairManPanelApplication;
+            _userDeviceApplication = userDeviceApplication;
+            _productApplication = productApplication;
         }
 
         #region for users To Edit profile details in their profile
@@ -90,9 +97,10 @@ namespace ServiceHost.Controllers
             var userInfo = _userQuery.GetUserInfo(userId);
             var userAddresses = _userAddressApplication.GetListByUserId(userId);
             var EditUser = _userApplication.GetDetails(userId);
+            var userDevices = _userDeviceApplication.GetListByUserId(userId);
             //var RoleTypesWithRoles = _roleTypeApplication.GetList();
             var PersonalityTypesWithPersonalities = _personalityTypeApplication.GetList();
-            var model = new Tuple<UserInfoQueryModel, List<UserAddressViewModel>, EditUser, List<PersonalityTypeViewModel>>(userInfo, userAddresses, EditUser, PersonalityTypesWithPersonalities);
+            var model = new Tuple<UserInfoQueryModel, List<UserAddressViewModel>, EditUser, List<PersonalityTypeViewModel>,List<UserDeviceViewModel>>(userInfo, userAddresses, EditUser, PersonalityTypesWithPersonalities, userDevices);
             return View(model);
         }
 
@@ -232,6 +240,7 @@ namespace ServiceHost.Controllers
             #region PersonalWalletChart
 
             #endregion
+
             return View(model);
         }
         #endregion
@@ -340,7 +349,7 @@ namespace ServiceHost.Controllers
         }
         #endregion
 
-        #region UserOrderManageMent
+        #region UserOrderManagement
         public IActionResult Orders()
         {
             var userId = _authHelper.CurrentAccountInfo().Id;
@@ -359,6 +368,38 @@ namespace ServiceHost.Controllers
             var orderItems = _orderItemApplication.GetListByOrderId(id);
             return PartialView(orderItems);
         }
+        #endregion
+
+        #region UserDevices Management
+        public IActionResult CreateUserDevice()
+        {
+            var products = _productApplication.GetList();
+            return PartialView(products);
+        }
+
+        [HttpPost]
+        public string CreateUserDevice(long id)
+        {
+            //id==ProductId
+
+            //AJAX Mode
+            var userId=_authHelper.CurrentAccountInfo().Id;
+            
+            var command=new CreateUserDevice() { UserId = userId, ProductId = id };
+            var result=_userDeviceApplication.Create(command);
+            var jsonObject=JsonConvert.SerializeObject(result);
+            return jsonObject;
+        }
+
+        [HttpPost]
+        public string RemoveUserDevice(long userDeviceId)
+        {
+            var result=_userDeviceApplication.Remove(userDeviceId);
+            var jsonObject = JsonConvert.SerializeObject(result);
+            return jsonObject;
+        }
+
+      
         #endregion
 
         #region CreateRepairManPanel

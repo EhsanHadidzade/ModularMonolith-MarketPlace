@@ -1,0 +1,95 @@
+﻿@model List<ShopManagement.Application.Contract.Product.ProductViewModel>
+
+
+<!-- Custom Stylesheet -->
+<link href="/MainTheme/vendor/datatables/css/jquery.dataTables.min.css" rel="stylesheet">
+<link href="/MainTheme/vendor/bootstrap-select/dist/css/bootstrap-select.min.css" rel="stylesheet">
+
+
+<div class="row">
+    <div class="col-12">
+        <div class="card">
+            <div class="card-header">
+                <h4 class="card-title">لیست  محصولات سازمان</h4>
+            </div>
+            <div class="card-body">
+                <div class="table-responsive">
+                    <table id="example3" class="display" style="min-width: 845px">
+                        <thead>
+                            <tr>
+                                <th>تصویر محصول</th>
+                                <th>عنوان محصول</th>
+                                <th> پارت نامبر</th>
+                                <th>عملیات</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var item in Model)
+                            {
+                                <tr>
+                                    <td>
+                                        <img src="/UploadedFiles/@item.PictureURL" class="rounded-circle" width="35">
+                                    </td>
+                                    <td>@item.EngTitle</td>
+                                    <td>@item.PartNumber</td>
+                                    <td>
+                                        <form  asp-asp-controller="User" asp-action="CreateUserDevice" asp-route-id="@item.Id" method="post">
+                                            <button type="submit" class="btn btn-primary shadow btn-xs sharp mr-1">
+                                                <i class="fa fa-plus"></i>
+                                            </button>
+                                        </form>
+                                        @* <div class="d-flex">
+                                            <button onclick="addproduct(@item.Id)" class="btn btn-primary shadow btn-xs sharp mr-1"><i class="fa fa-plus"></i></button>
+                                            </div>*@
+                                    </td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!--Datatable JavaScript-->
+<script src="/MainTheme/vendor/datatables/js/jquery.dataTables.min.js"></script>
+<script src="/MainTheme/js/plugins-init/datatables.init.js"></script>
+
+
+@*<script>
+    function addproduct(productid){
+    $.ajax({
+    url:"/User/CreateUserDevice",
+    data:{productId:productid},
+    dataType:'json',
+    method:'post',
+    success:function(result){
+    $("#ProductTitle").val(result.FarsiTitle);
+    $("#ProductId").val(result.Id);
+    $("#MainModal").modal("hide");
+    }
+    })
+    }
+    </script>*@
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

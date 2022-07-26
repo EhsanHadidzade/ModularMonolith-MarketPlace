@@ -2,10 +2,10 @@
 @using _0_Framework.Utilities
 @model List<SellerPanelForMainShopViewModel>
 @{
-    var slug= ViewData["ProductSlug"];
+    var slug = ViewData["ProductSlug"];
 }
-@*<div class="card-body" id="SpecSeller">
-*@    <div class="table-responsive">
+@*<div class="card-body" id="SpecSeller">*@
+<div class="table-responsive">
     <table class="table table-bordered table-responsive-sm">
         <thead>
             <tr>
@@ -16,9 +16,10 @@
             </tr>
         </thead>
         <tbody>
-            <tr>
-                @foreach (var item in Model)
-                {
+            @foreach (var item in Model)
+            {
+                <tr>
+
                     <td>
                         @if (!item.IsUserLegal)
                         {
@@ -49,9 +50,10 @@
                     {
                         <td>@item.WarrantyAmount سال</td>
                     }
-                }
+                </tr>
 
-            </tr>
+            }
+
         </tbody>
     </table>
 </div>

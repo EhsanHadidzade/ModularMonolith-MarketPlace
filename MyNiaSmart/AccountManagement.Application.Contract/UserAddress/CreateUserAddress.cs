@@ -28,7 +28,7 @@ namespace AccountManagement.Application.Contract.UserAddress
         [Required(ErrorMessage = ValidationMessage.IsRequired)]
         public string MobileNumber { get;  set; }
 
-        [Required(ErrorMessage = ValidationMessage.IsRequired)]
+        [Range(1,long.MaxValue,ErrorMessage =ValidationMessage.IsRequired)]
         public long UserId { get;  set; }
     }
 }

@@ -8,6 +8,7 @@ using AccountManagement.Domain.UpAccountRequestRejectionReasonAgg;
 using AccountManagement.Domain.UPAccountRequestsAgg;
 using AccountManagement.Domain.UserAddressAgg;
 using AccountManagement.Domain.UserAgg;
+using AccountManagement.Domain.UserDeviceAgg;
 using AccountManagement.Domain.UserPersonalityAgg;
 //using AccountManagement.Domain.UserPersonalityRequestAgg;
 using AccountManagement.Domain.UserRoleAgg;
@@ -50,6 +51,9 @@ namespace AccountManagement.Infrastructure.EFCore
         public DbSet<WalletOperationType> WalletOperationTypes { get; set; }
         public DbSet<Personalwalletoperation> Personalwalletoperations { get; set; }
         public DbSet<PersonalWalletChart> PersonalWalletCharts { get; set; }
+
+        //About User Devices
+        public DbSet<UserDevice> UserDevices { get; set; }
 
         public AccountContext(DbContextOptions<AccountContext> options) : base(options)
         {

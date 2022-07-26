@@ -2426,7 +2426,8 @@
         "framework": ".NETCoreApp,Version=v5.0",
         "dependencies": {
           "AccountManagement.Application.Contract": "1.0.0",
-          "AccountManagement.Domain": "1.0.0"
+          "AccountManagement.Domain": "1.0.0",
+          "ShopManagement.Domain": "1.0.0"
         },
         "compile": {
           "bin/placeholder/AccountManagement.Application.dll": {}
@@ -2469,13 +2470,43 @@
           "0_Framework": "1.0.0",
           "AccountManagement.Domain": "1.0.0",
           "Microsoft.EntityFrameworkCore": "5.0.17",
-          "Microsoft.EntityFrameworkCore.SqlServer": "5.0.17"
+          "Microsoft.EntityFrameworkCore.SqlServer": "5.0.17",
+          "ShopManagement.Domain": "1.0.0"
         },
         "compile": {
           "bin/placeholder/AccountManagement.Infrastructure.EFCore.dll": {}
         },
         "runtime": {
           "bin/placeholder/AccountManagement.Infrastructure.EFCore.dll": {}
+        }
+      },
+      "ShopManagement.Application.Contract/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v5.0",
+        "dependencies": {
+          "0_Framework": "1.0.0",
+          "AccountManagement.Application.Contract": "1.0.0"
+        },
+        "compile": {
+          "bin/placeholder/ShopManagement.Application.Contract.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/ShopManagement.Application.Contract.dll": {}
+        }
+      },
+      "ShopManagement.Domain/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v5.0",
+        "dependencies": {
+          "0_Framework": "1.0.0",
+          "AccountManagement.Domain": "1.0.0",
+          "ShopManagement.Application.Contract": "1.0.0"
+        },
+        "compile": {
+          "bin/placeholder/ShopManagement.Domain.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/ShopManagement.Domain.dll": {}
         }
       }
     }
@@ -8089,6 +8120,16 @@
       "type": "project",
       "path": "../AccountManagement.Infrastructure.EFCore/AccountManagement.Infrastructure.EFCore.csproj",
       "msbuildProject": "../AccountManagement.Infrastructure.EFCore/AccountManagement.Infrastructure.EFCore.csproj"
+    },
+    "ShopManagement.Application.Contract/1.0.0": {
+      "type": "project",
+      "path": "../ShopManagement.Application.Contract/ShopManagement.Application.Contract.csproj",
+      "msbuildProject": "../ShopManagement.Application.Contract/ShopManagement.Application.Contract.csproj"
+    },
+    "ShopManagement.Domain/1.0.0": {
+      "type": "project",
+      "path": "../ShopManagement.Domain/ShopManagement.Domain.csproj",
+      "msbuildProject": "../ShopManagement.Domain/ShopManagement.Domain.csproj"
     }
   },
   "projectFileDependencyGroups": {

@@ -45,7 +45,7 @@ namespace ServiceHost.Controllers
         }
         #endregion
 
-        #region To find and select specific address for order
+        #region AJAX => To find and select specific address for order
         public string SelectAddress(long id)
         {
             //id==UserAddressId
@@ -98,7 +98,7 @@ namespace ServiceHost.Controllers
         }
         #endregion
 
-        #region To Update order of user while changing the count of orderItems
+        #region AJAX=> To Update order of user while changing the count of orderItems
 
         public long UpdateOrder(long orderItemId, int count)
         {

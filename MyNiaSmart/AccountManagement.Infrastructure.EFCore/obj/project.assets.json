@@ -2469,6 +2469,35 @@
         "runtime": {
           "bin/placeholder/AccountManagement.Domain.dll": {}
         }
+      },
+      "ShopManagement.Application.Contract/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v5.0",
+        "dependencies": {
+          "0_Framework": "1.0.0",
+          "AccountManagement.Application.Contract": "1.0.0"
+        },
+        "compile": {
+          "bin/placeholder/ShopManagement.Application.Contract.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/ShopManagement.Application.Contract.dll": {}
+        }
+      },
+      "ShopManagement.Domain/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v5.0",
+        "dependencies": {
+          "0_Framework": "1.0.0",
+          "AccountManagement.Domain": "1.0.0",
+          "ShopManagement.Application.Contract": "1.0.0"
+        },
+        "compile": {
+          "bin/placeholder/ShopManagement.Domain.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/ShopManagement.Domain.dll": {}
+        }
       }
     }
   },
@@ -8116,6 +8145,16 @@
       "type": "project",
       "path": "../AccountManagement.Domain/AccountManagement.Domain.csproj",
       "msbuildProject": "../AccountManagement.Domain/AccountManagement.Domain.csproj"
+    },
+    "ShopManagement.Application.Contract/1.0.0": {
+      "type": "project",
+      "path": "../ShopManagement.Application.Contract/ShopManagement.Application.Contract.csproj",
+      "msbuildProject": "../ShopManagement.Application.Contract/ShopManagement.Application.Contract.csproj"
+    },
+    "ShopManagement.Domain/1.0.0": {
+      "type": "project",
+      "path": "../ShopManagement.Domain/ShopManagement.Domain.csproj",
+      "msbuildProject": "../ShopManagement.Domain/ShopManagement.Domain.csproj"
     }
   },
   "projectFileDependencyGroups": {
@@ -8125,7 +8164,8 @@
       "Microsoft.EntityFrameworkCore >= 5.0.17",
       "Microsoft.EntityFrameworkCore.Design >= 5.0.17",
       "Microsoft.EntityFrameworkCore.SqlServer >= 5.0.17",
-      "Microsoft.EntityFrameworkCore.Tools >= 5.0.17"
+      "Microsoft.EntityFrameworkCore.Tools >= 5.0.17",
+      "ShopManagement.Domain >= 1.0.0"
     ]
   },
   "packageFolders": {
@@ -8165,6 +8205,9 @@
             },
             "C:\\Work\\Projects\\MyNiaSmart\\MyNiaSmart\\AccountManagement.Domain\\AccountManagement.Domain.csproj": {
               "projectPath": "C:\\Work\\Projects\\MyNiaSmart\\MyNiaSmart\\AccountManagement.Domain\\AccountManagement.Domain.csproj"
+            },
+            "C:\\Work\\Projects\\MyNiaSmart\\MyNiaSmart\\ShopManagement.Domain\\ShopManagement.Domain.csproj": {
+              "projectPath": "C:\\Work\\Projects\\MyNiaSmart\\MyNiaSmart\\ShopManagement.Domain\\ShopManagement.Domain.csproj"
             }
           }
         }

@@ -2439,7 +2439,8 @@
           "0_Framework": "1.0.0",
           "AccountManagement.Domain": "1.0.0",
           "Microsoft.EntityFrameworkCore": "5.0.17",
-          "Microsoft.EntityFrameworkCore.SqlServer": "5.0.17"
+          "Microsoft.EntityFrameworkCore.SqlServer": "5.0.17",
+          "ShopManagement.Domain": "1.0.0"
         },
         "compile": {
           "bin/placeholder/AccountManagement.Infrastructure.EFCore.dll": {}

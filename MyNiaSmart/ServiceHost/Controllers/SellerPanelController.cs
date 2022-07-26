@@ -154,7 +154,7 @@ namespace ServiceHost.Controllers
         }
         #endregion  
 
-        #region To Choose the selected Media For specific Product
+        #region AJAX => To Choose the selected Media For specific Product
         // این متد تنها جنبه ی نمایش عکس روی صفحه اصلی فرم افزودن محصول دارد. و در هنگام سابمیت فرم محصول ، تصاویر برای محصول مورد نظر ذخیره خواهد شد
         [HttpPost]
         public string ChooseMedia(List<long> selectedMedia)
@@ -172,7 +172,7 @@ namespace ServiceHost.Controllers
         }
         #endregion
 
-        #region To Delete Selected media from Gallery of seller
+        #region AJAX => To Delete Selected media from Gallery of seller
         [HttpPost]
         public string DeleteMedia(List<long> selectedMedia)
         {
