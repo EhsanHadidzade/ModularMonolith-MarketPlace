@@ -441,8 +441,18 @@ namespace AccountManagement.Infrastructure.EFCore.Migrations
                         .HasColumnType("bigint")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
+                    b.Property<string>("Address")
+                        .HasMaxLength(256)
+                        .HasColumnType("nvarchar(256)");
+
                     b.Property<DateTime>("CreationDate")
                         .HasColumnType("datetime2");
+
+                    b.Property<decimal>("Latitude")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<decimal>("Longtitude")
+                        .HasColumnType("decimal(18,2)");
 
                     b.Property<long>("ProductId")
                         .HasColumnType("bigint");

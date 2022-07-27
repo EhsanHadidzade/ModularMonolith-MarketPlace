@@ -36,7 +36,7 @@ namespace ServiceHost.Controllers
         public static string withdrawResult { get; set; }
         public static string transferResult { get; set; }
 
-        
+
         private readonly IUserQuery _userQuery;
         private readonly IAuthHelper _authHelper;
         private readonly IUserApplication _userApplication;
@@ -44,7 +44,7 @@ namespace ServiceHost.Controllers
         private readonly IOrderApplication _orderApplication;
         private readonly IProductApplication _productApplication;
         private readonly IOrderItemApplication _orderItemApplication;
-        private readonly IUserDeviceApplication _userDeviceApplication; 
+        private readonly IUserDeviceApplication _userDeviceApplication;
         private readonly ISellerPanelApplication _sellerPanelApplication;
         private readonly IUserAddressApplication _userAddressApplication;
         private readonly IRepairManPanelApplication _repairManPanelApplication;
@@ -100,7 +100,7 @@ namespace ServiceHost.Controllers
             var userDevices = _userDeviceApplication.GetListByUserId(userId);
             //var RoleTypesWithRoles = _roleTypeApplication.GetList();
             var PersonalityTypesWithPersonalities = _personalityTypeApplication.GetList();
-            var model = new Tuple<UserInfoQueryModel, List<UserAddressViewModel>, EditUser, List<PersonalityTypeViewModel>,List<UserDeviceViewModel>>(userInfo, userAddresses, EditUser, PersonalityTypesWithPersonalities, userDevices);
+            var model = new Tuple<UserInfoQueryModel, List<UserAddressViewModel>, EditUser, List<PersonalityTypeViewModel>, List<UserDeviceViewModel>>(userInfo, userAddresses, EditUser, PersonalityTypesWithPersonalities, userDevices);
             return View(model);
         }
 
@@ -374,32 +374,41 @@ namespace ServiceHost.Controllers
         public IActionResult CreateUserDevice()
         {
             var products = _productApplication.GetList();
-            return PartialView(products);
+            return View(products);
         }
 
+        #region AJAX => To Select Specific Product
+        public string SelectDevice(long deviceId)
+        {
+            var result = _productApplication.GetTitleAndIdById(deviceId);
+            var jsonObject = JsonConvert.SerializeObject(result);
+            return jsonObject;
+        }
+        #endregion
+
         [HttpPost]
-        public string CreateUserDevice(long id)
+        public IActionResult CreateUserDevice(CreateUserDevice command)
         {
             //id==ProductId
 
             //AJAX Mode
-            var userId=_authHelper.CurrentAccountInfo().Id;
-            
-            var command=new CreateUserDevice() { UserId = userId, ProductId = id };
-            var result=_userDeviceApplication.Create(command);
-            var jsonObject=JsonConvert.SerializeObject(result);
-            return jsonObject;
+            var userId = _authHelper.CurrentAccountInfo().Id;
+
+            //var command = new CreateUserDevice() { UserId = userId, ProductId = id };
+            var result = _userDeviceApplication.Create(command);
+            return RedirectToAction("UserProfile");
+        
         }
 
         [HttpPost]
         public string RemoveUserDevice(long userDeviceId)
         {
-            var result=_userDeviceApplication.Remove(userDeviceId);
+            var result = _userDeviceApplication.Remove(userDeviceId);
             var jsonObject = JsonConvert.SerializeObject(result);
             return jsonObject;
         }
 
-      
+
         #endregion
 
         #region CreateRepairManPanel
@@ -411,11 +420,11 @@ namespace ServiceHost.Controllers
         [HttpPost]
         public IActionResult CreateRepairManPanel(CreateRepairManPanel command)
         {
-            var userId= _authHelper.CurrentAccountInfo().Id;
+            var userId = _authHelper.CurrentAccountInfo().Id;
             command.UserId = userId;
             var result = _repairManPanelApplication.Create(command);
             UserController.message = result.Message;
-            return RedirectToAction("UserProfile", new {alert="notif"});
+            return RedirectToAction("UserProfile", new { alert = "notif" });
         }
         #endregion
 

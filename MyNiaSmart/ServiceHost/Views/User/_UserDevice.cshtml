@@ -1,31 +1,55 @@
 ﻿@model List<AccountManagement.Application.Contract.UserDevice.UserDeviceViewModel>
 
 
+
+
 <div id="UserDevice" class="tab-pane fade">
     <div class="pt-3">
         <div class="settings-form">
             <h4 class="text-primary">دستگاه های من</h4>
 
-            <div class="widget-media">
-                <ul class="timeline">
-                    @foreach (var item in Model)
-                    {
-                        <li style="padding:8px">
-                            <div class="media">
-                                <img class="mr-3 img-fluid rounded" width="60" src="/UploadedFiles/@item.DevicePictureURL" alt="DexignLab">
-                                <div class="media-body">
-                                    <h5 class="mt-0">@item.DeviceTitle</h5>
-                                </div>
-                            </div>
-                        </li>
+            <div class="card border-0 pb-0">
+                
+                <div class="card-body">
+                    <div id="DZ_W_Todo3" class="widget-media dz-scroll ps ps--active-y" style="height:370px;">
+                        <ul class="timeline">
+                            @foreach (var userDevice in Model)
+                            {
+                                <li>
+                                    <div class="timeline-panel">
+                                        <div class="media mr-2">
+                                            <img alt="image" width="50" src="/UploadedFiles/@userDevice.DevicePictureURL">
+                                        </div>
+                                        <div class="media-body">
+                                            <h5 class="mb-1">@userDevice.DeviceTitle <small class="text-muted">@userDevice.CreationDate</small></h5>
+                                            <a href="#" class="btn btn-outline-danger btn-xxs">حذف</a>
+                                            <a href="#" class="btn btn-outline-danger btn-xxs">حذف</a>
+                                        </div>
+                                        <div class="dropdown">
+                                            <button type="button" class="btn btn-primary light sharp" data-toggle="dropdown" aria-expanded="false">
+                                                <svg width="18px" height="18px" viewBox="0 0 24 24" version="1.1"><g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd"><rect x="0" y="0" width="24" height="24"></rect><circle fill="#000000" cx="5" cy="12" r="2"></circle><circle fill="#000000" cx="12" cy="12" r="2"></circle><circle fill="#000000" cx="19" cy="12" r="2"></circle></g></svg>
+                                            </button>
+                                            <div class="dropdown-menu" x-placement="bottom-start" style="position: absolute; will-change: transform; top: 0px; left: 0px; transform: translate3d(0px, 33px, 0px);">
+                                                <a class="dropdown-item" href="#">ویرایش</a>
+                                                <a class="dropdown-item" href="#">حذف</a>
+                                                </div>
+                                        </div>
+                                    </div>
+                                </li>
+                            }
 
-                    }
-                </ul>
-                <a href="#showModal=/User/CreateUserDevice" class="btn btn-outline-info">افزودن دستگاه جدید</a>
+
+                        </ul>
+                        <div class="ps__rail-x" style="left: 0px; bottom: 0px;"><div class="ps__thumb-x" tabindex="0" style="left: 0px; width: 0px;"></div></div><div class="ps__rail-y" style="top: 0px; height: 370px; left: 531px;"><div class="ps__thumb-y" tabindex="0" style="top: 0px; height: 235px;"></div></div>
+                    </div>
+                            <a href="/User/CreateUserDevice" class="btn btn-outline-info">افزودن دستگاه جدید</a>
+
+                </div>
             </div>
 
         </div>
     </div>
 </div>
+
 
 

@@ -36,12 +36,13 @@ namespace ShopManagement.Infrastructure.EFCore.Repository
             var mainShopProductsIds = mainShopProducts.Select(x => x.Id).ToList();
 
             //to Get all sellerProducts 
-            var SellerProducts = _context.SellerProducts.Select(x => new {
+            var SellerProducts = _context.SellerProducts.Select(x => new
+            {
                 x.ProductId,
                 x.Price,
-                x.WarrantyTypeId, 
-                x.WarrantyAmount, 
-                x.isConfirmedByAdmin 
+                x.WarrantyTypeId,
+                x.WarrantyAmount,
+                x.isConfirmedByAdmin
             }
             ).Where(x => x.isConfirmedByAdmin).ToList();
             var productIdsWhichAreSelling = SellerProducts.Select(x => x.ProductId).ToList();
@@ -100,6 +101,7 @@ namespace ShopManagement.Infrastructure.EFCore.Repository
                 Id = x.Id,
                 PictureURL = x.Picture,
                 EngTitle = x.EngTitle,
+                FarsiTitle=x.FarsiTitle,
                 PartNumber = x.PartNumber,
                 CreationDate = x.CreationDate.ToFarsi(),
                 Slug = x.Slug,
@@ -113,7 +115,7 @@ namespace ShopManagement.Infrastructure.EFCore.Repository
                 Id = x.Id,
                 FarsiTitle = x.FarsiTitle,
                 EngTitle = x.EngTitle,
-                PictureURL=x.Picture
+                PictureURL = x.Picture
             }).FirstOrDefault(x => x.Id == id);
             return product;
         }

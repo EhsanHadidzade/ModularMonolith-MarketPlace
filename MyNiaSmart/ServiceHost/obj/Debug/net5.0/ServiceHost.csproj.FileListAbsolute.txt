@@ -598,5 +598,5 @@ C:\Work\Projects\MyNiaSmart\MyNiaSmart\ServiceHost\obj\Debug\net5.0\Razor\Views\
 C:\Work\Projects\MyNiaSmart\MyNiaSmart\ServiceHost\obj\Debug\net5.0\Razor\Areas\Administrator\Views\ServiceTitle\Create.cshtml.g.cs
 C:\Work\Projects\MyNiaSmart\MyNiaSmart\ServiceHost\obj\Debug\net5.0\Razor\Areas\Administrator\Views\ServiceTitle\Edit.cshtml.g.cs
 C:\Work\Projects\MyNiaSmart\MyNiaSmart\ServiceHost\obj\Debug\net5.0\Razor\Areas\Administrator\Views\ServiceTitle\Index.cshtml.g.cs
-C:\Work\Projects\MyNiaSmart\MyNiaSmart\ServiceHost\obj\Debug\net5.0\Razor\Views\User\_UserDevice.cshtml.g.cs
 C:\Work\Projects\MyNiaSmart\MyNiaSmart\ServiceHost\obj\Debug\net5.0\Razor\Views\User\CreateUserDevice.cshtml.g.cs
+C:\Work\Projects\MyNiaSmart\MyNiaSmart\ServiceHost\obj\Debug\net5.0\Razor\Views\User\_UserDevice.cshtml.g.cs

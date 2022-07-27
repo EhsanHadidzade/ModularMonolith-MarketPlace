@@ -1,4 +1,5 @@
 ﻿using _0_Framework.Infrastructure;
+using _0_Framework.Utilities;
 using AccountManagement.Application.Contract.UserDevice;
 using AccountManagement.Domain.UserDeviceAgg;
 using ShopManagement.Domain.ProductAgg;
@@ -26,7 +27,8 @@ namespace AccountManagement.Infrastructure.EFCore.Repository
             {
                 Id = x.Id,
                 UserId = x.UserId,
-                ProductId = x.ProductId
+                ProductId = x.ProductId,
+                CreationDate=x.CreationDate.ToFarsi()
             }).Where(x=>x.UserId==userId).OrderByDescending(x => x.Id).ToList();
 
             return userDevices;

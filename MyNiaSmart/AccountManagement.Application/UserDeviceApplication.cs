@@ -1,5 +1,6 @@
 ﻿using _0_Framework.Utilities;
 using AccountManagement.Application.Contract.UserDevice;
+using AccountManagement.Domain.UserAgg;
 using AccountManagement.Domain.UserDeviceAgg;
 using ShopManagement.Domain.ProductAgg;
 using System;
@@ -14,13 +15,15 @@ namespace AccountManagement.Application
     {
         private readonly IUserDeviceRepository _userDeviceRepository;
         private readonly IProductRepository _productRepository;
+        private readonly IUserRepository _userRepository;
         private OperationResult operation;
 
-        public UserDeviceApplication(IUserDeviceRepository userDeviceRepository, IProductRepository productRepository)
+        public UserDeviceApplication(IUserDeviceRepository userDeviceRepository, IProductRepository productRepository, IUserRepository userRepository)
         {
             _userDeviceRepository = userDeviceRepository;
             _productRepository = productRepository;
             operation = new OperationResult();
+            _userRepository = userRepository;
         }
 
         public OperationResult Create(CreateUserDevice command)
@@ -28,7 +31,7 @@ namespace AccountManagement.Application
             if (_userDeviceRepository.IsExist(x => x.UserId == command.UserId && x.ProductId == command.ProductId))
                 return operation.Failed("این دستگاه قبلا به لیست دستگاه های شما اضافه شده است");
 
-            var userDevice = new UserDevice(command.UserId, command.ProductId);
+            var userDevice = new UserDevice(command.UserId, command.ProductId,command.Longtitude,command.Latitude,command.Address);
             _userDeviceRepository.Create(userDevice);
             _userDeviceRepository.Savechange();
             return operation.Succedded();
@@ -40,13 +43,13 @@ namespace AccountManagement.Application
             if (userDevice == null)
                 return operation.Failed(ApplicationMessage.RecordNotFound);
 
-            if (command.UserId == 0)
+            if (command.UserId == 0 || !_userRepository.IsExist(x=>x.Id==command.Id))
                 return operation.Failed("کاربری یافت نشد");
 
             if (_userDeviceRepository.IsExist(x => x.UserId == command.UserId && x.ProductId == command.ProductId && x.Id != command.Id))
                 return operation.Failed("این دستگاه قبلا به لیست دستگاه های شما اضافه شده است");
 
-            userDevice.Edit(command.ProductId);
+            userDevice.Edit(command.ProductId, command.Longtitude, command.Latitude, command.Address);
             _userDeviceRepository.Savechange();
             return operation.Succedded();
         }

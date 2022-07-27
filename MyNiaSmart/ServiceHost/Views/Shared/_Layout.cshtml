@@ -17,8 +17,11 @@
     <link href="https://fonts.googleapis.com/css?family=Raleway|Rock+Salt|Source+Code+Pro:300,400,600" rel="stylesheet">
     @*<link href="../../cdn.lineicons.com/2.0/LineIcons.css" rel="stylesheet">*@
     <link href="~/Maintheme/css/persian-datepicker.min.css" rel="stylesheet" />
-<script src="https://cdn.tiny.cloud/1/1i4uy9alhza5a3x4akfh9jypvxpbzerq7fvohp5kfbn8pbix/tinymce/5/tinymce.min.js" referrerpolicy="origin"></script>
+    <script src="https://cdn.tiny.cloud/1/1i4uy9alhza5a3x4akfh9jypvxpbzerq7fvohp5kfbn8pbix/tinymce/5/tinymce.min.js" referrerpolicy="origin"></script>
 
+
+    <!--Map Section-->
+    @RenderSection("MapSection",false)
 </head>
 <body>
 
@@ -613,7 +616,7 @@
     <!-- Apex Chart -->
     <script src="~/Maintheme/vendor/apexchart/apexchart.js"></script>
 
-
+    <script src="/MainTheme/js/MapAgg/Default.js"></script>
     @RenderSection("Scripts",false)
 
     <!-- Vectormap -->
@@ -634,14 +637,14 @@
 
     <!--AppEditor-->
     <script src="https://cdn.tiny.cloud/1/1i4uy9alhza5a3x4akfh9jypvxpbzerq7fvohp5kfbn8pbix/tinymce/5/tinymce.min.js" referrerpolicy="origin"></script>
-   <script>
-    tinymce.init({
-      selector: '#BodyContent',
-      plugins: 'advlist autolink lists link image charmap preview anchor pagebreak',
-      toolbar_mode: 'floating',
-        directionality : 'rtl',
-    });
-  </script>
+    <script>
+        tinymce.init({
+          selector: '#BodyContent',
+          plugins: 'advlist autolink lists link image charmap preview anchor pagebreak',
+          toolbar_mode: 'floating',
+            directionality : 'rtl',
+        });
+    </script>
 
     <!--validatations-->
     <script src="~/lib/jquery-validation/dist/jquery.validate.min.js"></script>
@@ -653,10 +656,10 @@
 
 
 
-        <!-- Svganimation scripts -->
+    <!-- Svganimation scripts -->
     <script src="~/Maintheme/vendor/svganimation/vivus.min.js"></script>
     <script src="~/Maintheme/vendor/svganimation/svg.animation.js"></script>
-   
+
 
 </body>
 

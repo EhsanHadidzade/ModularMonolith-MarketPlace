@@ -7,5 +7,7 @@
         public long ProductId { get; set; }
         public string DeviceTitle { get; set; }
         public string DevicePictureURL { get; set; }
+        public string Address { get; set; }
+        public string CreationDate { get; set; }
     }
 }
