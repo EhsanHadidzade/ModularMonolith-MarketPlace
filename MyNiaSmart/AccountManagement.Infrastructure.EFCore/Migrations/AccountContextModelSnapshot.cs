@@ -448,11 +448,13 @@ namespace AccountManagement.Infrastructure.EFCore.Migrations
                     b.Property<DateTime>("CreationDate")
                         .HasColumnType("datetime2");
 
-                    b.Property<decimal>("Latitude")
-                        .HasColumnType("decimal(18,2)");
+                    b.Property<string>("Latitude")
+                        .HasMaxLength(26)
+                        .HasColumnType("nvarchar(26)");
 
-                    b.Property<decimal>("Longtitude")
-                        .HasColumnType("decimal(18,2)");
+                    b.Property<string>("Longtitude")
+                        .HasMaxLength(26)
+                        .HasColumnType("nvarchar(26)");
 
                     b.Property<long>("ProductId")
                         .HasColumnType("bigint");

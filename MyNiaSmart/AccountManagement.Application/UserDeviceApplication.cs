@@ -31,7 +31,7 @@ namespace AccountManagement.Application
             if (_userDeviceRepository.IsExist(x => x.UserId == command.UserId && x.ProductId == command.ProductId))
                 return operation.Failed("این دستگاه قبلا به لیست دستگاه های شما اضافه شده است");
 
-            var userDevice = new UserDevice(command.UserId, command.ProductId,command.Longtitude,command.Latitude,command.Address);
+            var userDevice = new UserDevice(command.UserId, command.ProductId,command.center_lng,command.center_lat,command.addressValue);
             _userDeviceRepository.Create(userDevice);
             _userDeviceRepository.Savechange();
             return operation.Succedded();
@@ -49,9 +49,14 @@ namespace AccountManagement.Application
             if (_userDeviceRepository.IsExist(x => x.UserId == command.UserId && x.ProductId == command.ProductId && x.Id != command.Id))
                 return operation.Failed("این دستگاه قبلا به لیست دستگاه های شما اضافه شده است");
 
-            userDevice.Edit(command.ProductId, command.Longtitude, command.Latitude, command.Address);
+            userDevice.Edit(command.ProductId, command.center_lng, command.center_lat, command.addressValue);
             _userDeviceRepository.Savechange();
             return operation.Succedded();
+        }
+
+        public EditUserDevice GetDetails(long id)
+        {
+            return _userDeviceRepository.GetDetails(id);
         }
 
         public List<UserDeviceViewModel> GetListByUserId(long userId)

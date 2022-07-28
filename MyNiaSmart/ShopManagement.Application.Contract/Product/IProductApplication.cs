@@ -21,6 +21,9 @@ namespace ShopManagement.Application.Contract.Product
 
         //To Get Product Details After Selecting im Main Shop
         EditProduct GetDetailsBySlug(string slug);
+
+        //using when user wants to add their device to theirs in their Profile
+        List<ProductViewModel> GetListWithCategories();
         #endregion
 
 

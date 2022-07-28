@@ -16,6 +16,9 @@ namespace AccountManagement.Infrastructure.EFCore.Mapping
             builder.ToTable("UserDevices");
             builder.HasKey(x => x.Id);
 
+            builder.Property(x => x.Longtitude).HasMaxLength(26);
+            builder.Property(x => x.Latitude).HasMaxLength(26);
+
             builder.Property(x => x.Address).HasMaxLength(256);
         }
     }

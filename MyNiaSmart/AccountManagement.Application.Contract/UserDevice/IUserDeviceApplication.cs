@@ -11,6 +11,7 @@ namespace AccountManagement.Application.Contract.UserDevice
     {
         OperationResult Create(CreateUserDevice command);
         OperationResult Edit(EditUserDevice command);
+        EditUserDevice GetDetails(long id);
         OperationResult Remove(long id);
         List<UserDeviceViewModel> GetListByUserId(long userId);
     }

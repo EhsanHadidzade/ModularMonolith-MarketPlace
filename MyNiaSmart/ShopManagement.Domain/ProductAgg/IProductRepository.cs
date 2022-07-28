@@ -26,6 +26,9 @@ namespace ShopManagement.Domain.ProductAgg
         
         long GetIdBySlug(string slug);
 
+        //usong when user wants to add their device to theirs in their Profile
+        List<ProductViewModel> GetListWithCategories();
+
 
     }
 }

@@ -600,3 +600,4 @@ C:\Work\Projects\MyNiaSmart\MyNiaSmart\ServiceHost\obj\Debug\net5.0\Razor\Areas\
 C:\Work\Projects\MyNiaSmart\MyNiaSmart\ServiceHost\obj\Debug\net5.0\Razor\Areas\Administrator\Views\ServiceTitle\Index.cshtml.g.cs
 C:\Work\Projects\MyNiaSmart\MyNiaSmart\ServiceHost\obj\Debug\net5.0\Razor\Views\User\CreateUserDevice.cshtml.g.cs
 C:\Work\Projects\MyNiaSmart\MyNiaSmart\ServiceHost\obj\Debug\net5.0\Razor\Views\User\_UserDevice.cshtml.g.cs
+C:\Work\Projects\MyNiaSmart\MyNiaSmart\ServiceHost\obj\Debug\net5.0\Razor\Views\User\EditUserDevice.cshtml.g.cs

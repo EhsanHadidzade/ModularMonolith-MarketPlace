@@ -21,6 +21,21 @@ namespace AccountManagement.Infrastructure.EFCore.Repository
             _context = context;
         }
 
+        public EditUserDevice GetDetails(long id)
+        {
+            var userDevice = _context.UserDevices.Select(x => new EditUserDevice
+            {
+                Id = x.Id,
+                UserId = x.UserId,
+                ProductId = x.ProductId,
+                center_lat = x.Latitude,
+                center_lng = x.Longtitude,
+                addressValue = x.Address
+            }).FirstOrDefault(x => x.Id == id);
+
+            return userDevice;
+        }
+
         public List<UserDeviceViewModel> GetListByUserId(long userId)
         {
             var userDevices = _context.UserDevices.Select(x => new UserDeviceViewModel
@@ -28,6 +43,7 @@ namespace AccountManagement.Infrastructure.EFCore.Repository
                 Id = x.Id,
                 UserId = x.UserId,
                 ProductId = x.ProductId,
+                Address = x.Address,
                 CreationDate=x.CreationDate.ToFarsi()
             }).Where(x=>x.UserId==userId).OrderByDescending(x => x.Id).ToList();
 

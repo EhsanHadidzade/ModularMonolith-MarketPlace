@@ -90,6 +90,11 @@ namespace ShopManagement.Application
             return _productRepository.GetListForMainShop();
         }
 
+        public List<ProductViewModel> GetListWithCategories()
+        {
+            return _productRepository.GetListWithCategories();
+        }
+
         public ProductViewModel GetTitleAndIdById(long id)
         {
             return _productRepository.GetInfoById(id);

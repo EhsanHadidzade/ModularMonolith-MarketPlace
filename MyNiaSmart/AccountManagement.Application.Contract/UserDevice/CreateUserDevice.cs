@@ -17,13 +17,11 @@ namespace AccountManagement.Application.Contract.UserDevice
         [Range(1, long.MaxValue, ErrorMessage = ValidationMessage.IsRequired)]
         public long ProductId { get; set; }
 
-        [Range(1, long.MaxValue, ErrorMessage = ValidationMessage.IsRequired)]
-        public decimal Longtitude { get; set; }
+        public string center_lng { get; set; }
 
-        [Range(1, long.MaxValue, ErrorMessage = ValidationMessage.IsRequired)]
-        public decimal Latitude { get; set; }
+        public string center_lat { get; set; }
 
         [Required(ErrorMessage =ValidationMessage.IsRequired)]
-        public string Address { get; set; }
+        public string addressValue { get; set; }
     }
 }

@@ -373,8 +373,10 @@ namespace ServiceHost.Controllers
         #region UserDevices Management
         public IActionResult CreateUserDevice()
         {
-            var products = _productApplication.GetList();
-            return View(products);
+            var products = _productApplication.GetListWithCategories();
+            var command = new CreateUserDevice();
+            var model = new Tuple<List<ProductViewModel>, CreateUserDevice>(products, command);
+            return View(model);
         }
 
         #region AJAX => To Select Specific Product
@@ -387,18 +389,33 @@ namespace ServiceHost.Controllers
         #endregion
 
         [HttpPost]
-        public IActionResult CreateUserDevice(CreateUserDevice command)
+        public IActionResult CreateUserDevice(CreateUserDevice command )
         {
-            //id==ProductId
-
-            //AJAX Mode
             var userId = _authHelper.CurrentAccountInfo().Id;
+            command.UserId = userId;
 
-            //var command = new CreateUserDevice() { UserId = userId, ProductId = id };
             var result = _userDeviceApplication.Create(command);
-            return RedirectToAction("UserProfile");
+            UserController.message=result.Message;
+            return Redirect("/User/UserProfile?alert=notif");
         
         }
+
+        public IActionResult EditUserDevice(long id)
+        {
+            //id==userDeviceId
+            var userDevice = _userDeviceApplication.GetDetails(id);
+            return View(userDevice);
+        }
+
+        [HttpPost]
+        public IActionResult EditUserDevice(EditUserDevice command)
+        {
+            var result=_userDeviceApplication.Edit(command);
+            UserController.message = result.Message;
+            return Redirect("/User/UserProfile?alert=notif");
+        } 
+
+
 
         [HttpPost]
         public string RemoveUserDevice(long userDeviceId)
@@ -407,7 +424,6 @@ namespace ServiceHost.Controllers
             var jsonObject = JsonConvert.SerializeObject(result);
             return jsonObject;
         }
-
 
         #endregion
 

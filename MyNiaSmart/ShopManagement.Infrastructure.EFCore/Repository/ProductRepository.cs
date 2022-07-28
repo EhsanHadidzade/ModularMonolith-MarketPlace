@@ -13,17 +13,17 @@ namespace ShopManagement.Infrastructure.EFCore.Repository
 {
     public class ProductRepository : BaseRepository<long, Product>, IProductRepository
     {
-        private readonly ShopContext _context;
+        private readonly ShopContext _shopContext;
 
         public ProductRepository(ShopContext context) : base(context)
         {
-            _context = context;
+            _shopContext = context;
         }
 
         public List<MainShopProductViewModel> GetListForMainShop()
         {
             //To Get All default product of admin
-            var mainShopProducts = _context.Products.Select(x => new MainShopProductViewModel
+            var mainShopProducts = _shopContext.Products.Select(x => new MainShopProductViewModel
             {
                 Id = x.Id,
                 FarsiTitle = x.FarsiTitle,
@@ -36,7 +36,7 @@ namespace ShopManagement.Infrastructure.EFCore.Repository
             var mainShopProductsIds = mainShopProducts.Select(x => x.Id).ToList();
 
             //to Get all sellerProducts 
-            var SellerProducts = _context.SellerProducts.Select(x => new
+            var SellerProducts = _shopContext.SellerProducts.Select(x => new
             {
                 x.ProductId,
                 x.Price,
@@ -74,7 +74,7 @@ namespace ShopManagement.Infrastructure.EFCore.Repository
 
         public EditProduct GetDetails(long id)
         {
-            return _context.Products.Select(x => new EditProduct
+            return _shopContext.Products.Select(x => new EditProduct
             {
                 Id = x.Id,
                 ProductBrandId = x.ProductBrandId,
@@ -96,21 +96,55 @@ namespace ShopManagement.Infrastructure.EFCore.Repository
 
         public List<ProductViewModel> GetList()
         {
-            return _context.Products.Select(x => new ProductViewModel
+            return _shopContext.Products.Select(x => new ProductViewModel
             {
                 Id = x.Id,
                 PictureURL = x.Picture,
                 EngTitle = x.EngTitle,
-                FarsiTitle=x.FarsiTitle,
+                FarsiTitle = x.FarsiTitle,
+                PartNumber = x.PartNumber,
+                CreationDate = x.CreationDate.ToFarsi(),
+                Slug = x.Slug
+
+            }).ToList();
+        }
+
+        public List<ProductViewModel> GetListWithCategories()
+        {
+            var products = _shopContext.Products.Select(x => new ProductViewModel
+            {
+                Id = x.Id,
+                PictureURL = x.Picture,
+                EngTitle = x.EngTitle,
+                FarsiTitle = x.FarsiTitle,
                 PartNumber = x.PartNumber,
                 CreationDate = x.CreationDate.ToFarsi(),
                 Slug = x.Slug,
+
+                //Fk
+                ProductBrandId = x.ProductBrandId,
+                ProductModelId = x.ProductModelId,
+                ProductTypeId = x.ProductTypeId,
+                ProductUsageTypeId = x.ProductUsageTypeId,
+
             }).ToList();
+
+            foreach (var product in products)
+            {
+                product.BrandEngTitle = _shopContext.ProductBrands.FirstOrDefault(x => x.Id == product.ProductBrandId).EngTitle;
+                product.ModelEngTitle = _shopContext.ProductModels.FirstOrDefault(x => x.Id == product.ProductModelId).EngTitle;
+                product.TypeEngTitle = _shopContext.ProductTypes.FirstOrDefault(x => x.Id == product.ProductTypeId).EngTitle;
+                product.UsageTypeEngTitle = _shopContext.ProductUsageTypes.FirstOrDefault(x => x.Id == product.ProductUsageTypeId).EngTitle;
+            }
+
+            return products;
+
+
         }
 
         public ProductViewModel GetInfoById(long id)
         {
-            var product = _context.Products.Select(x => new ProductViewModel
+            var product = _shopContext.Products.Select(x => new ProductViewModel
             {
                 Id = x.Id,
                 FarsiTitle = x.FarsiTitle,
@@ -122,7 +156,7 @@ namespace ShopManagement.Infrastructure.EFCore.Repository
 
         public EditProduct GetDetailsBySlug(string slug)
         {
-            return _context.Products.Include(x => x.ProductBrand)
+            return _shopContext.Products.Include(x => x.ProductBrand)
                 .Include(x => x.ProductModel)
                 .Include(x => x.ProductStatus)
                 .Include(x => x.ProductType)
@@ -149,7 +183,7 @@ namespace ShopManagement.Infrastructure.EFCore.Repository
 
         public long GetIdBySlug(string slug)
         {
-            var product = _context.Products.Select(x => new { x.Id, x.Slug }).FirstOrDefault(x => x.Slug == slug);
+            var product = _shopContext.Products.Select(x => new { x.Id, x.Slug }).FirstOrDefault(x => x.Slug == slug);
             return product.Id;
         }
     }

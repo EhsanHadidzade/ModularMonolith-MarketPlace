@@ -13,12 +13,12 @@ namespace AccountManagement.Domain.UserDeviceAgg
         public long ProductId { get; private set; }
 
         //Map
-        public decimal Longtitude { get; private set; }
-        public decimal Latitude { get; private set; }
+        public string Longtitude { get; private set; }
+        public string Latitude { get; private set; }
         public string Address { get; private set; }
 
-        public UserDevice(long userId, long productId, decimal longtitude,
-            decimal latitude, string address)
+        public UserDevice(long userId, long productId, string longtitude,
+            string latitude, string address)
         {
             UserId = userId;
             ProductId = productId;
@@ -29,8 +29,8 @@ namespace AccountManagement.Domain.UserDeviceAgg
             Address = address;
         }
 
-        public void Edit(long productId, decimal longtitude,
-            decimal latitude, string address)
+        public void Edit(long productId, string longtitude,
+            string latitude, string address)
         {
             ProductId = productId;
 

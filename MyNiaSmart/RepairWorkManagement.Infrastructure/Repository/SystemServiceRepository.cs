@@ -60,8 +60,8 @@ namespace RepairWorkShopManagement.Infrastructure.EFCore.Repository
                 ProductBrandId = x.ProductBrandId,
                 ProductModelId = x.ProductModelId,
                 ProductTypeId = x.ProductTypeId,
-                ServiceTitleId = x.ServiceTitleId,
-                ProductUsageTypeId = x.ProductUsageTypeId
+                ProductUsageTypeId = x.ProductUsageTypeId,
+                ServiceTitleId = x.ServiceTitleId
             }).OrderByDescending(x => x.Id).ToList();
 
             foreach (var systemService in systemServices)

@@ -11,5 +11,6 @@ namespace AccountManagement.Domain.UserDeviceAgg
     public interface IUserDeviceRepository:IRepository<long,UserDevice>
     {
         List<UserDeviceViewModel> GetListByUserId(long userId);
+        EditUserDevice GetDetails(long id);
     }
 }
