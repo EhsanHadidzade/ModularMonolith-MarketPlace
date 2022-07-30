@@ -20,50 +20,53 @@ namespace RepairWorkShopManagement.Infrastructure.EFCore.Repository
             _context = context;
         }
 
-
         public EditRepairManService GetDetails(long id)
         {
             return _context.RepairManServices.Include(
                 x => x.SystemService).Select(x => new EditRepairManService
-            {
-                Id = x.Id,
-                Price = x.Price,
-                CanMarketerSee = x.CanMarketerSee,
-                MarketerShareAmount = x.MarketerShareAmount,
-                MarketerSharePercent = x.MarketerSharePercent,
-                RepairManPanelId = x.RepairManPanelId,
-                SystemServiceId = x.SystemServiceId,
-                WarrantyAmount = x.WarrantyAmount,
-                WarrantyTypeId = x.WarrantyTypeId
-            }).FirstOrDefault(x => x.Id == id);
+                {
+                    Id = x.Id,
+                    Price = x.Price,
+                    CanMarketerSee = x.CanMarketerSee,
+                    MarketerShareAmount = x.MarketerShareAmount,
+                    MarketerSharePercent = x.MarketerSharePercent,
+                    RepairManPanelId = x.RepairManPanelId,
+                    SystemServiceId = x.SystemServiceId,
+                    WarrantyAmount = x.WarrantyAmount,
+                    WarrantyTypeId = x.WarrantyTypeId
+                }).FirstOrDefault(x => x.Id == id);
         }
 
         public List<RepairManServiceViewModel> GetList()
         {
-            return _context.RepairManServices.Include(x => x.SystemService).Include(x => x.RepairManPanel).Select(x => new RepairManServiceViewModel
-            {
-                Id = x.Id,
-                RepairManPanelId = x.RepairManPanelId,
-                RepairManFullName = x.RepairManPanel.CommericalFullName,
-                SystemServiceId = x.SystemServiceId,
-                IsConfirmedByAdmin = x.IsConfirmedByAdmin,
-                IsEditionConfirmedByAdmin = x.IsEditionConfirmedByAdmin,
-                CreationDate = x.CreationDate.ToFarsi()
-            }).OrderByDescending(x => x.Id).ToList();
+            return _context.RepairManServices.Include(x => x.SystemService)
+                .Include(x => x.RepairManPanel)
+                .Select(x => new RepairManServiceViewModel
+                {
+                    Id = x.Id,
+                    RepairManPanelId = x.RepairManPanelId,
+                    RepairManFullName = x.RepairManPanel.CommericalFullName,
+                    SystemServiceId = x.SystemServiceId,
+                    IsConfirmedByAdmin = x.IsConfirmedByAdmin,
+                    IsEditionConfirmedByAdmin = x.IsEditionConfirmedByAdmin,
+                    CreationDate = x.CreationDate.ToFarsi()
+                }).OrderByDescending(x => x.Id).ToList();
         }
 
         public List<RepairManServiceViewModel> GetListByRepairManPanelId(long repairManPanelId)
         {
-            return _context.RepairManServices.Include(x => x.SystemService).Include(x => x.RepairManPanel).Select(x => new RepairManServiceViewModel
-            {
-                Id = x.Id,
-                RepairManPanelId = x.RepairManPanelId,
-                RepairManFullName = x.RepairManPanel.CommericalFullName,
-                SystemServiceId = x.SystemServiceId,
-                IsConfirmedByAdmin = x.IsConfirmedByAdmin,
-                IsEditionConfirmedByAdmin = x.IsEditionConfirmedByAdmin,
-                CreationDate = x.CreationDate.ToFarsi()
-            }).Where(x=>x.RepairManPanelId==repairManPanelId).OrderByDescending(x => x.Id).ToList();
+            return _context.RepairManServices.Include(x => x.SystemService)
+                .Include(x => x.RepairManPanel)
+                .Where(x => x.RepairManPanelId == repairManPanelId)
+                .Select(x => new RepairManServiceViewModel
+                {
+                    Id = x.Id,
+                    RepairManPanelId = x.RepairManPanelId,
+                    SystemServiceId = x.SystemServiceId,
+                    IsConfirmedByAdmin = x.IsConfirmedByAdmin,
+                    IsEditionConfirmedByAdmin = x.IsEditionConfirmedByAdmin,
+                    CreationDate = x.CreationDate.ToFarsi()
+                }).OrderByDescending(x => x.Id).ToList();
         }
     }
 }

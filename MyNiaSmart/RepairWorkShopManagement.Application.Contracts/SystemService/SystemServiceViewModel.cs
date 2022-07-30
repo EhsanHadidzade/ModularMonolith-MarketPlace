@@ -22,7 +22,7 @@
         public string ModelEngTitle { get; set; }
         public string TypeEngTitle { get; set; }
         public string UsageTypeEngTitle { get; set; }
-        public string ServiceTitleEngTitle { get; set; }
+        public string SystemServiceEngTitle { get; set; }
 
     }
 }

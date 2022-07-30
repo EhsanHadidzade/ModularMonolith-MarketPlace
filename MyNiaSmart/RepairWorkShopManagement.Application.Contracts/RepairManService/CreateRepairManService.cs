@@ -37,7 +37,7 @@ namespace RepairWorkShopManagement.Application.Contracts.RepairManService
         public long RepairManPanelId { get;  set; }
 
         [Range(1, long.MaxValue, ErrorMessage = ValidationMessage.IsRequired)]
-        public long SystemServiceId { get; set; }
+        public List<long> SelectedSystemServiceIds { get; set; }
 
         [Required(ErrorMessage = ValidationMessage.IsRequired)]
         public string SystemServiceTitle { get; set; }

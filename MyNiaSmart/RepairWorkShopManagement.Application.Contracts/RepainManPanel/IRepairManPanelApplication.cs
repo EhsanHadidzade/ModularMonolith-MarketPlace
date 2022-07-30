@@ -16,5 +16,9 @@ namespace RepairWorkShopManagement.Application.Contracts.RepainManPanel
 
         //ToDisable Button In UserPanel For Creation RepairMan Panel
         bool HasUserRequestedForRepairManPanel(long userId);
+
+        //to Show Or Hide RepairManPanelPanelButton in clientSideMenu for Adding  System Services and see Chartreports
+        bool HasUserRepairManPanelConfirmedByAdmin(long userId);   
+
     }
 }

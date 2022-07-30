@@ -1,9 +1,8 @@
 ﻿@model List<ShopManagement.Application.Contract.Product.ProductViewModel>
 
-
 <!-- Custom Stylesheet -->
-<link href="/AdminTheme/vendor/datatables/css/jquery.dataTables.min.css" rel="stylesheet">
-<link href="/AdminTheme/vendor/bootstrap-select/dist/css/bootstrap-select.min.css" rel="stylesheet">
+<link href="/MainTheme/vendor/datatables/css/jquery.dataTables.min.css" rel="stylesheet">
+<link href="/MainTheme/vendor/bootstrap-select/dist/css/bootstrap-select.min.css" rel="stylesheet">
 
 
 <div class="row">
@@ -47,14 +46,14 @@
     </div>
 </div>
 
+<!--Datatable JavaScript-->
+<script src="/MainTheme/vendor/datatables/js/jquery.dataTables.min.js"></script>
+<script src="/MainTheme/js/plugins-init/datatables.init.js"></script>
 
-@section Scripts{
-    <!--Datatable JavaScript-->
-<script src="/AdminTheme/vendor/datatables/js/jquery.dataTables.min.js"></script>
-<script src="/AdminTheme/js/plugins-init/datatables.init.js"></script>
-}
+
 <script>
     function addproduct(productid){
+        debugger
         $.ajax({
             url:"/sellerpanel/addproduct",
             data:{id:productid},

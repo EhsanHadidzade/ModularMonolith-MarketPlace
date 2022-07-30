@@ -56,7 +56,7 @@
                                 <th> عنوان مدل</th>
                                 <th> عنوان نوع</th>
                                 <th> عنوان نحوه استفاده</th>
-                                <th>  مفدار گارانتی</th>
+                                <th>  مقدار گارانتی</th>
                                 <th>مدت زمان انجام</th>
                                 <th> قیمت پایه</th>
                                 <th>سهم سامانه(درصد)</th>
@@ -67,14 +67,14 @@
                             @foreach (var service in Model)
                             {
                                 <tr>
-                                    <td>@service.ServiceTitleEngTitle</td>
+                                    <td>@service.SystemServiceEngTitle</td>
                                     <td>@service.BrandEngTitle</td>
                                     <td>@service.ModelEngTitle</td>
                                     <td>@service.TypeEngTitle</td>
                                     <td>@service.UsageTypeEngTitle</td>
                                     <td>
                                         <p>
-                                            ضمانت :
+                
                                             @if (service.WarrantyTypeId == WarrantyTypeId.Hour)
                                             {
                                                 <span class="item"> تا @service.WarrantyAmount ساعت</span>

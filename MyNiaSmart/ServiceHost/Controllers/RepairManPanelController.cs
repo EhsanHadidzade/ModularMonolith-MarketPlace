@@ -5,6 +5,7 @@ using RepairWorkShopManagement.Application.Contracts.RepainManPanel;
 using RepairWorkShopManagement.Application.Contracts.RepairManService;
 using RepairWorkShopManagement.Application.Contracts.SystemService;
 using RepairWorkShopManagement.Domain.RepairManServiceAgg;
+using System.Collections.Generic;
 
 namespace ServiceHost.Controllers
 {
@@ -13,7 +14,6 @@ namespace ServiceHost.Controllers
         [TempData]
         public static string message { get; set; }
         private readonly long userId;
-        private readonly long repairManPanelId;
         private readonly IRepairManPanelApplication _repairManPanelApplication;
         private readonly IAuthHelper _authHelper;
         private readonly IRepairManServiceApplication _repairManServiceApplication;
@@ -22,12 +22,11 @@ namespace ServiceHost.Controllers
         public RepairManPanelController(IRepairManPanelApplication repairManPanelApplication, IAuthHelper authHelper,
             IRepairManServiceApplication repairManServiceApplication, ISystemServiceApplication systemServiceApplication)
         {
-            _repairManPanelApplication = repairManPanelApplication;
             _authHelper = authHelper;
+            _systemServiceApplication = systemServiceApplication;
+            _repairManPanelApplication = repairManPanelApplication;
             _repairManServiceApplication = repairManServiceApplication;
             userId = _authHelper.CurrentAccountInfo().Id;
-            repairManPanelId = _repairManPanelApplication.GetRepairManPanelIdByUserId(userId);
-            _systemServiceApplication = systemServiceApplication;
         }
 
 
@@ -36,26 +35,35 @@ namespace ServiceHost.Controllers
             if (!string.IsNullOrWhiteSpace(alert))
                 ViewData["message"] = message;
 
+            var repairManPanelId = _repairManPanelApplication.GetRepairManPanelIdByUserId(userId);
+            if (repairManPanelId == 0)
+            {
+                return BadRequest("Not Allowed");
+            }
+
             var repairManServices = _repairManServiceApplication.GetListByRepairManPanelId(repairManPanelId);
             return View(repairManServices);
         }
 
-        #region Requesting repair man to cooperate for specific service of application
+        #region Requesting repair man to cooperate for list of SystemServices 
 
         public IActionResult AddServiceToRepairManPanel()
         {
-            var command = _repairManServiceApplication.PrepareModelForCreationByRepairManPanelId(repairManPanelId);
-            return View(command);
+            var systemServices = _systemServiceApplication.GetList();
+            return View(systemServices);
+        }
+
+        public IActionResult _ListOfSystemService()
+        {
+            return PartialView();
         }
 
         [HttpPost]
-        public IActionResult AddServiceToRepairManPanel(CreateRepairManService command)
+        public IActionResult AddServiceToRepairManPanel(List<long> ServiceId)
         {
-            if (!ModelState.IsValid)
-                return View(command);
 
-            var result = _repairManServiceApplication.Create(command);
-            RepairManPanelController.message = result.Message;
+            //var result = _repairManServiceApplication.Create(command);
+            //RepairManPanelController.message = result.Message;
             return RedirectToAction("Index");
         }
 

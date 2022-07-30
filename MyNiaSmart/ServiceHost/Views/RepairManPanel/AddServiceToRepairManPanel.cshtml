@@ -1,14 +1,32 @@
-﻿@model RepairWorkShopManagement.Application.Contracts.RepairManService.CreateRepairManService
+﻿@model List<RepairWorkShopManagement.Application.Contracts.SystemService.SystemServiceViewModel>
+@using ShopManagement.Application.Contract.ProductCategory.ProductBrand;
+@using ShopManagement.Application.Contract.ProductCategory.ProductModel;
+@using ShopManagement.Application.Contract.ProductCategory.ProductType;
+@using ShopManagement.Application.Contract.ProductCategory.ProductUsageType;
+
+@inject IProductTypeApplication _productTypeApplication
+@inject IProductBrandApplication _productBrandApplication
+@inject IProductModelApplication _productModelApplication
+@inject IProductUsageTypeApplication _productUsageTypeApplication
+
 @{
     ViewData["Title"] = "افزودن سرویس جدید";
+    ViewData["ProductTypes"] = new SelectList(_productTypeApplication.GetList(), "Id", "EngTitle");
+    ViewData["ProductBrands"] = new SelectList(_productBrandApplication.GetList(), "Id", "EngTitle");
+    ViewData["ProductModels"] = new SelectList(_productModelApplication.GetList(), "Id", "EngTitle");
+    ViewData["ProductUsageTypes"] = new SelectList(_productUsageTypeApplication.GetList(), "Id", "EngTitle");
 }
+
+
 
 
 @section header{
-    <!-- Form step -->
-<link href="/MainTheme/vendor/jquery-steps/css/jquery.steps.css" rel="stylesheet">
+<!-- Custom Stylesheet -->
+<link href="/MainTheme/vendor/bootstrap-select/dist/css/bootstrap-select.min.css" rel="stylesheet">
+<!-- Custom Stylesheet -->
+<link href="/MainTheme/vendor/datatables/css/jquery.dataTables.min.css" rel="stylesheet">
+<link href="/MainTheme/vendor/bootstrap-select/dist/css/bootstrap-select.min.css" rel="stylesheet">
 }
-
 
 <div class="row page-titles mx-0">
     <div class="col-sm-6 p-md-0">
@@ -16,245 +34,70 @@
             <h4>
                 سلام، خوش آمدید
             </h4>
-            <p class="mb-0">پنل فروشندگی</p>
+            <p class="mb-0">پنل تعمیرات</p>
         </div>
     </div>
     <div class="col-sm-6 p-md-0 justify-content-sm-end mt-2 mt-sm-0 d-flex">
         <ol class="breadcrumb">
             <li class="breadcrumb-item"><a href="javascript:void(0)">پنل ها </a></li>
             <li class="breadcrumb-item "><a href="javascript:void(0)">پنل تعمیرات </a></li>
-            <li class="breadcrumb-item active"><a href="javascript:void(0)">افزودن سرویس جدید</a></li>
+            <li class="breadcrumb-item active"><a href="javascript:void(0)">افزودن سرویس</a></li>
         </ol>
     </div>
 </div>
 
-
 <div class="row">
-    <div class="col-xl-12 col-xxl-12">
+    <div class="col-xl-12 col-lg-12">
         <div class="card">
             <div class="card-header">
-                <h4 class="card-title">مرحله فرم</h4>
+                <h4 class="card-title">جست جو بر اساس</h4>
             </div>
             <div class="card-body">
-                <form action="#" id="step-form-horizontal" class="step-form-horizontal">
-                    <div>
-                        <h4>اطلاعات شخصی</h4>
-                        <section>
-                            <div class="row">
-                                <div class="col-lg-6 mb-2">
-                                    <div class="form-group">
-                                        <label class="text-label">نام اصلی*</label>
-                                        <input type="text" name="firstName" class="form-control" placeholder="جک" required>
-                                    </div>
-                                </div>
-                                <div class="col-lg-6 mb-2">
-                                    <div class="form-group">
-                                        <label class="text-label">نام خانوادگی*</label>
-                                        <input type="text" name="lastName" class="form-control" placeholder="اسپارو" required>
-                                    </div>
-                                </div>
-                                <div class="col-lg-12 mb-2">
-                                    <div class="form-group">
-                                        <label class="text-label">آدرس ایمیل*</label>
-                                        <input type="email" class="form-control" id="inputGroupPrepend2" aria-describedby="inputGroupPrepend2" placeholder="example@example.com.com" required>
-                                    </div>
-                                </div>
-                                <div class="col-lg-12 mb-2">
-                                    <div class="form-group">
-                                        <label class="text-label">شماره تلفن*</label>
-                                        <input type="text" name="phoneNumber" class="form-control" placeholder="(+1)408-657-9007" required>
-                                    </div>
-                                </div>
-                                <div class="col-lg-12 mb-2">
-                                    <div class="form-group">
-                                        <label class="text-label">شما اهل کجا هستید*</label>
-                                        <input type="text" name="place" class="form-control" required>
-                                    </div>
-                                </div>
-                            </div>
-                        </section>
-                        <h4>اطلاعات شرکت</h4>
-                        <section>
-                            <div class="row">
-                                <div class="col-lg-12 mb-2">
-                                    <div class="form-group">
-                                        <label class="text-label">نام شرکت*</label>
-                                        <input type="text" name="firstName" class="form-control" placeholder="کمپانی ب ت چه" required>
-                                    </div>
-                                </div>
-                                <div class="col-lg-12 mb-2">
-                                    <div class="form-group">
-                                        <label class="text-label">آدرس ایمیل شرکت*</label>
-                                        <input type="email" class="form-control" id="emial1" placeholder="example@example.com.com" required>
-                                    </div>
-                                </div>
-                                <div class="col-lg-12 mb-2">
-                                    <div class="form-group">
-                                        <label class="text-label">شماره تلفن شرکت*</label>
-                                        <input type="text" name="phoneNumber" class="form-control" placeholder="(+1)408-657-9007" required>
-                                    </div>
-                                </div>
-                                <div class="col-lg-12 mb-2">
-                                    <div class="form-group">
-                                        <label class="text-label">موقعیت شما در شرکت*</label>
-                                        <input type="text" name="place" class="form-control" required>
-                                    </div>
-                                </div>
-                            </div>
-                        </section>
-                        <h4>ساعات کاری</h4>
-                        <section>
-                            <div class="row">
-                                <div class="col-4 col-sm-3 mb-2">
-                                    <h4>شنبه *</h4>
-                                </div>
-                                <div class="col-4 col-sm-3 mb-2">
-                                    <div class="form-group">
-                                        <input class="form-control" value="9.00" type="number" name="input1" id="input1">
-                                    </div>
-                                </div>
-                                <div class="col-4 col-sm-3 mb-2">
-                                    <div class="form-group">
-                                        <input class="form-control" value="6.00" type="number" name="input2" id="input2">
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-4 col-sm-3 mb-2">
-                                    <h4>یک شنبه *</h4>
-                                </div>
-                                <div class="col-4 col-sm-3 mb-2">
-                                    <div class="form-group">
-                                        <input class="form-control" value="9.00" type="number" name="input3" id="input3">
-                                    </div>
-                                </div>
-                                <div class="col-4 col-sm-3 mb-2">
-                                    <div class="form-group">
-                                        <input class="form-control" value="6.00" type="number" name="input4" id="input4">
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-4 col-sm-3 mb-2">
-                                    <h4>دوشنبه *</h4>
-                                </div>
-                                <div class="col-4 col-sm-3 mb-2">
-                                    <div class="form-group">
-                                        <input class="form-control" value="9.00" type="number" name="input5" id="input5">
-                                    </div>
-                                </div>
-                                <div class="col-4 col-sm-3 mb-2">
-                                    <div class="form-group">
-                                        <input class="form-control" value="6.00" type="number" name="input6" id="input6">
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-4 col-sm-3 mb-2">
-                                    <h4>سه شنبه *</h4>
-                                </div>
-                                <div class="col-4 col-sm-3 mb-2">
-                                    <div class="form-group">
-                                        <input class="form-control" value="9.00" type="number" name="input7" id="input7">
-                                    </div>
-                                </div>
-                                <div class="col-4 col-sm-3 mb-2">
-                                    <div class="form-group">
-                                        <input class="form-control" value="6.00" type="number" name="input8" id="input8">
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-4 col-sm-3 mb-2">
-                                    <h4>چهارشنبه *</h4>
-                                </div>
-                                <div class="col-4 col-sm-3 mb-2">
-                                    <div class="form-group">
-                                        <input class="form-control" value="9.00" type="number" name="input9" id="input9">
-                                    </div>
-                                </div>
-                                <div class="col-4 col-sm-3 mb-2">
-                                    <div class="form-group">
-                                        <input class="form-control" value="6.00" type="number" name="input10" id="input10">
-                                    </div>
-                                </div>
-                            </div>
-                        </section>
-                        <h4>ایمیل راه اندازی</h4>
-                        <section>
-                            <div class="row emial-setup">
-                                <div class="col-sm-3 col-6">
-                                    <div class="form-group">
-                                        <label for="mailclient11" class="mailclinet mailclinet-gmail">
-                                            <input type="radio" name="emailclient" id="mailclient11">
-                                            <span class="mail-icon">
-                                                <i class="mdi mdi-google-plus" aria-hidden="true"></i>
-                                            </span>
-                                            <span class="mail-text">من از Gmail استفاده می کنم</span>
-                                        </label>
-                                    </div>
-                                </div>
-                                <div class="col-sm-3 col-6">
-                                    <div class="form-group">
-                                        <label for="mailclient12" class="mailclinet mailclinet-office">
-                                            <input type="radio" name="emailclient" id="mailclient12">
-                                            <span class="mail-icon">
-                                                <i class="mdi mdi-office" aria-hidden="true"></i>
-                                            </span>
-                                            <span class="mail-text">من از دفتر استفاده می کنم</span>
-                                        </label>
-                                    </div>
-                                </div>
-                                <div class="col-sm-3 col-6">
-                                    <div class="form-group">
-                                        <label for="mailclient13" class="mailclinet mailclinet-drive">
-                                            <input type="radio" name="emailclient" id="mailclient13">
-                                            <span class="mail-icon">
-                                                <i class="mdi mdi-google-drive" aria-hidden="true"></i>
-                                            </span>
-                                            <span class="mail-text">من راننده هستم</span>
-                                        </label>
-                                    </div>
-                                </div>
-                                <div class="col-sm-3 col-6">
-                                    <div class="form-group">
-                                        <label for="mailclient14" class="mailclinet mailclinet-another">
-                                            <input type="radio" name="emailclient" id="mailclient14">
-                                            <span class="mail-icon">
-                                                <i class="fa fa-question-circle-o"
-                                                   aria-hidden="true"></i>
-                                            </span>
-                                            <span class="mail-text">خدمات نویسندگی</span>
-                                        </label>
-                                    </div>
-                                </div>
-                            </div>
+                <div class="basic-form">
+                    <div class="form-row">
 
-                            <div class="row">
-                                <div class="col-12">
-                                    <div class="skip-email text-center">
-                                        <p>یا اگر می خواهید این مرحله را کاملاً رد کنید و بعداً آن را تنظیم کنید</p>
-                                        <a href="javascript:void()">رد کردن مرحله</a>
-                                    </div>
-                                </div>
-                            </div>
-                        </section>
+                        <div class="form-group col-md-3">
+                            <label>برند </label>
+                            <select class="form-control" onchange="filterModel()" asp-items="@ViewData["ProductBrands"] as SelectList">
+                                <option value="0">انتخاب کنید</option>
+                            </select>
+                        </div>
+                        <div class="form-group models col-md-3">
+                            <label>مدل </label>
+                            <select class="form-control" asp-items="@ViewData["ProductModels"] as SelectList">
+                                <option value="0">انتخاب کنید</option>
+                            </select>
+                        </div>
+                        <div class="form-group col-md-3">
+                            <label>نوع </label>
+                            <select class="form-control" asp-items="@ViewData["ProductTypes"] as SelectList">
+                                <option value="0">انتخاب کنید</option>
+                            </select>
+                        </div>
+                        <div class="form-group col-md-3">
+                            <label>نحوه استفاده </label>
+                            <select class="form-control" asp-items="@ViewData["ProductUsageTypes"] as SelectList">
+                                <option value="0">انتخاب کنید</option>
+                            </select>
+                        </div>
                     </div>
-                </form>
+                </div>
             </div>
         </div>
     </div>
 </div>
 
+<partial name="_ListOfSystemService" model="@Model" />
 
 
 
 @section Scripts{
-<!--Scripts-->
-<script src="/MainTheme/vendor/jquery-steps/build/jquery.steps.min.js"></script>
-<script src="/MainTheme/vendor/jquery-validation/jquery.validate.min.js"></script>
-<!-- Form validate init -->
-<script src="/MainTheme/js/plugins-init/jquery.validate-init.js"></script>
-<!-- Form step init -->
-<script src="/MainTheme/js/plugins-init/jquery-steps-init.js"></script>
-}
+
+<!--Datatable JavaScript-->
+<script src="/MainTheme/vendor/datatables/js/jquery.dataTables.min.js"></script>
+<script src="/MainTheme/js/plugins-init/datatables.init.js"></script>
+    }
+
+
+
+

@@ -43,7 +43,7 @@ namespace AccountManagement.Application
             if (userDevice == null)
                 return operation.Failed(ApplicationMessage.RecordNotFound);
 
-            if (command.UserId == 0 || !_userRepository.IsExist(x=>x.Id==command.Id))
+            if (command.UserId == 0 || !_userRepository.IsExist(x=>x.Id==command.UserId))
                 return operation.Failed("کاربری یافت نشد");
 
             if (_userDeviceRepository.IsExist(x => x.UserId == command.UserId && x.ProductId == command.ProductId && x.Id != command.Id))
@@ -82,7 +82,7 @@ namespace AccountManagement.Application
             _userDeviceRepository.RemoveById(id);
             _userDeviceRepository.Savechange();
 
-            return operation.Succedded();
+            return operation.Succedded("حذف دستگاه با موفقیت انجام شد");
 
         }
     }

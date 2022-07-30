@@ -22,7 +22,6 @@ namespace RepairWorkShopManagement.Infrastructure.EFCore.Repository
             _shopContext = shopContext;
         }
 
-
         public EditSystemService GetDetails(long id)
         {
             var systemService = _repairWorkShopContext.SystemServices.Select(x => new EditSystemService
@@ -59,9 +58,9 @@ namespace RepairWorkShopManagement.Infrastructure.EFCore.Repository
                 //Fk
                 ProductBrandId = x.ProductBrandId,
                 ProductModelId = x.ProductModelId,
-                ProductTypeId = x.ProductTypeId,
                 ProductUsageTypeId = x.ProductUsageTypeId,
-                ServiceTitleId = x.ServiceTitleId
+                ProductTypeId = x.ProductTypeId,
+                ServiceTitleId = x.ServiceTitleId,
             }).OrderByDescending(x => x.Id).ToList();
 
             foreach (var systemService in systemServices)
@@ -70,7 +69,7 @@ namespace RepairWorkShopManagement.Infrastructure.EFCore.Repository
                 systemService.ModelEngTitle = _shopContext.ProductModels.FirstOrDefault(x => x.Id == systemService.ProductModelId).EngTitle;
                 systemService.TypeEngTitle = _shopContext.ProductTypes.FirstOrDefault(x => x.Id == systemService.ProductTypeId).EngTitle;
                 systemService.UsageTypeEngTitle = _shopContext.ProductUsageTypes.FirstOrDefault(x => x.Id == systemService.ProductUsageTypeId).EngTitle;
-                systemService.ServiceTitleEngTitle = _repairWorkShopContext.ServiceTitles.FirstOrDefault(x => x.Id == systemService.ServiceTitleId).EngTitle;
+                systemService.SystemServiceEngTitle = _repairWorkShopContext.ServiceTitles.FirstOrDefault(x => x.Id == systemService.ServiceTitleId).EngTitle;
             }
 
             return systemServices;

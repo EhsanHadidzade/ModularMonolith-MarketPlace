@@ -14,6 +14,8 @@ namespace AccountManagement.Application.Contract.UserDevice
         [Range(1,long.MaxValue,ErrorMessage =ValidationMessage.IsRequired)]
         public long UserId { get; set; }
 
+        public string deviceTitle { get; set; }
+
         [Range(1, long.MaxValue, ErrorMessage = ValidationMessage.IsRequired)]
         public long ProductId { get; set; }
 

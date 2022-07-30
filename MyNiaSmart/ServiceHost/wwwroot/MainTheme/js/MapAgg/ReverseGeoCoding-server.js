@@ -12,6 +12,7 @@ var myMap = new L.Map('map', {
     zoom: 14
 });
 //adding the marker to map
+debugger
 var marker = L.marker([35.699739, 51.338097]).addTo(myMap);
 centerLat.value = "35.699739";
 centerLng.value = "51.338097";
@@ -23,6 +24,7 @@ myMap.on('click', addMarkerOnMap);
 function addMarkerOnMap(e) {
     marker.setLatLng(e.latlng);
     centerLat.value = e.latlng.lat;
+debugger
     centerLng.value = e.latlng.lng;
     reverse();
 }
@@ -36,6 +38,7 @@ centerLng.addEventListener("keyup", function (event) {
 
 //sending request to Reverse API
 function reverse() {
+    debugger
     marker.setLatLng([centerLat.value, centerLng.value]);
     var log = document.getElementById("log");
     //making url 

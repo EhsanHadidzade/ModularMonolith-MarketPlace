@@ -56,8 +56,16 @@ namespace RepairWorkShopManagement.Infrastructure.EFCore.Repository
         public long GetRepairManPanelIdByUserId(long userId)
         {
             var repairManPanel= _context.RepairManPanels.Select(x => new {x.UserId,x.Id}).FirstOrDefault(x => x.UserId == userId);
-
+            if(repairManPanel != null)
             return repairManPanel.Id;
+
+            return 0;
+        }
+
+        public bool HasUserRepairManPanelConfirmedByAdmin(long userId)
+        {
+            var repairManPanelRequest = _context.RepairManPanels.FirstOrDefault(x => x.UserId == userId && x.IsConfirmedByAdmin);
+            return repairManPanelRequest != null;
         }
 
         public bool HasUserRequestedForRepairManPanel(long userId)

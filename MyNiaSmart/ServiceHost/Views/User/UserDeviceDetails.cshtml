@@ -1,4 +1,6 @@
-﻿@model List<ShopManagement.Application.Contract.Product.ProductViewModel>
+﻿@using AccountManagement.Application.Contract.UserDevice
+@using ShopManagement.Application.Contract.Product;
+@model EditUserDevice
 
 
 @section MapSection{
@@ -71,7 +73,7 @@
                             </tr>
                         </thead>
                         <tbody>
-                            @foreach (var item in Model)
+                            @foreach (var item in ViewData["Products"] as List<ProductViewModel>)
                             {
                                 <tr>
                                     <td>
@@ -95,26 +97,27 @@
                     </table>
                 </div>
                 <hr />
-                <form method="post" action="/User/CreateUserDevice">
+                <form method="post" action="/User/EditUserDevice">
                     <div class="form-row " id="panel">
                         <div class="form-group col-md-12">
                             <label>عنوان دستگاه انتخابی</label>
-                            <input type="text" id="deviceTitle" class="form-control" required placeholder="عنوان دستگاه مورد نظر">
+                            <input type="text" id="deviceTitle" class="form-control" asp-for="deviceTitle" required placeholder="عنوان دستگاه مورد نظر">
                         </div>
 
 
-                        <input type="text" id="center_lng" name="center_lng">
+                        <input type="hidden" asp-for="center_lng">
 
-                        <input type="text" id="center_lat" name="center_lat" >
+                        <input type="hidden" asp-for="center_lat">
 
                         <div class="form-group col-md-12">
                             <label>آدرس</label>
-                            <input type="text" id="addressValue" name="addressValue" required class="form-control" placeholder="آدرس">
+                            <input type="text" asp-for="addressValue" required class="form-control" placeholder="آدرس">
                         </div>
-                    </div>
-                    <input type="hidden" id="ProductId" name="ProductId" />
-                    <input type="hidden" value=""
-                    <button type="submit" class="btn btn-success">اعمال تغییرات</button>
+                    </div>  
+                    <input type="hidden" id="ProductId" asp-for="ProductId" value="@Model.ProductId" />
+                    <input type="hidden" id="Id"  asp-for="Id" value="@Model.Id" />
+                    <input type="hidden" id="Id"  asp-for="UserId" value="@Model.UserId" />
+                    <button type="submit" class="btn btn-success">ویرایش دستگاه</button>
                 </form>
 
             </div>

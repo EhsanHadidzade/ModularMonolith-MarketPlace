@@ -3,16 +3,19 @@
 @using ShopManagement.Application.Contract.SellerPanel
 @using ShopManagement.Application.Contract.OrderItem
 @using AccountManagement.Application.Contract.User
+@using RepairWorkShopManagement.Application.Contracts.RepainManPanel
 @inject IUPAccountRequestApplication _upAccountRequestApplication
 @inject ISellerPanelApplication _sellerPanelApplication
 @inject IOrderItemApplication _orderItemApplication
 @inject IAuthHelper _authHelper
 @inject IUserApplication _userApplication
+@inject IRepairManPanelApplication _repairManPanelApplication
 @{
     var userId = _authHelper.CurrentAccountInfo().Id;
     bool hasUserRequestedForUp = _upAccountRequestApplication.HasUserRequestedForUpAccount(userId);
     bool isUserAdmin = _userApplication.IsUserAdmin(userId);
     bool IsSellerPanelConfirmedByAdmin = _sellerPanelApplication.HasUserSellerPanelConfirmedByAdmin(userId);
+    bool IsRepairManPanelConfirmedByAdmin = _repairManPanelApplication.HasUserRepairManPanelConfirmedByAdmin(userId);
     var UserOrderItems = _orderItemApplication.GetCurrdentOrderItemsByUserId(userId);
 }
 
@@ -91,7 +94,7 @@
                         </a>
                     </li>
                     <li>
-                        <a class="has-arrow" href="javascript:void()" aria-expanded="false">پنل سرویس دهنده</a>
+                        <a class="has-arrow" href="javascript:void()" aria-expanded="false" style="display:@((IsRepairManPanelConfirmedByAdmin)?"":"none")">پنل سرویس دهنده</a>
                         <ul aria-expanded="false">
                             <li><a href="/RepairManPanel/Index"> پنل اعلام همکاری(افزودن سرویس)</a></li>
                             <li><a href="email-inbox.html"> آمار خرابی ها</a></li>

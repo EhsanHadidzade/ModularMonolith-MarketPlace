@@ -1,5 +1,7 @@
 ﻿@using AccountManagement.Application.Contract.UserDevice
-@model Tuple<List<ShopManagement.Application.Contract.Product.ProductViewModel>,CreateUserDevice>
+@using ShopManagement.Application.Contract.Product;
+@model CreateUserDevice
+
 
 
 @section MapSection{
@@ -28,7 +30,7 @@
 </style>
 <!--MAP-->
     }
-<!-- Custom Stylesheet -->
+        <!-- Custom Stylesheet -->
 <link href="/MainTheme/vendor/datatables/css/jquery.dataTables.min.css" rel="stylesheet">
 <link href="/MainTheme/vendor/bootstrap-select/dist/css/bootstrap-select.min.css" rel="stylesheet">
 
@@ -72,7 +74,7 @@
                             </tr>
                         </thead>
                         <tbody>
-                            @foreach (var item in Model.Item1)
+                            @foreach (var item in ViewData["Products"] as List<ProductViewModel>)
                             {
                                 <tr>
                                     <td>
@@ -104,16 +106,16 @@
                         </div>
 
 
-                        <input type="text" asp-for="Item2.center_lng" >
+                        <input type="hidden" asp-for="center_lng" >
 
-                        <input type="text" asp-for="Item2.center_lat" >
+                        <input type="hidden" asp-for="center_lat">
 
                         <div class="form-group col-md-12">
                             <label>آدرس</label>
-                            <input type="text" asp-for="Item2.addressValue" required class="form-control" placeholder="آدرس">
+                            <input type="text" asp-for="addressValue" required class="form-control" placeholder="آدرس">
                         </div>
-                    </div>
-                    <input type="hidden" id="ProductId" name="ProductId" asp-for="Item2.ProductId" />
+                    </div>  
+                    <input type="hidden" id="ProductId" name="ProductId" asp-for="ProductId" />
                     <button type="submit" class="btn btn-success">افزودن دستگاه جدید</button>
                 </form>
 
@@ -144,6 +146,8 @@
             <button onclick="getLocation()">Current Location</button>
         </div>
         <!--No Usage-->
+
+
         <!--MyMap-->
         <div id="map"
              style="width: 100%; height: 300px; background: #eee; border: 2px solid #aaa;position: center;z-index: 1;">
@@ -160,8 +164,8 @@
 </div>
 
 
-
 @section Scripts{
+    
 <!--Datatable JavaScript-->
 <script src="/MainTheme/vendor/datatables/js/jquery.dataTables.min.js"></script>
 <script src="/MainTheme/js/plugins-init/datatables.init.js"></script>

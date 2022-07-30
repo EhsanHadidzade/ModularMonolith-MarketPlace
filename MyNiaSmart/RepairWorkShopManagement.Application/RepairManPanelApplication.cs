@@ -75,5 +75,10 @@ namespace RepairWorkShopManagement.Application
         {
             return _repairManPanelRepository.HasUserRequestedForRepairManPanel(userId);
         }
+
+        public bool HasUserRepairManPanelConfirmedByAdmin(long userId)
+        {
+            return _repairManPanelRepository.HasUserRepairManPanelConfirmedByAdmin(userId);
+        }
     }
 }

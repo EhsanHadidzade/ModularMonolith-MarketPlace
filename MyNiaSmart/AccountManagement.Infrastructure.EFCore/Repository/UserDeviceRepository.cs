@@ -14,11 +14,13 @@ namespace AccountManagement.Infrastructure.EFCore.Repository
     public class UserDeviceRepository : BaseRepository<long, UserDevice>, IUserDeviceRepository
     {
         private readonly AccountContext _context;
-        
+        private readonly IProductRepository _productRepository;
 
-        public UserDeviceRepository(AccountContext context) : base(context)
+
+        public UserDeviceRepository(AccountContext context, IProductRepository productRepository) : base(context)
         {
             _context = context;
+            _productRepository = productRepository;
         }
 
         public EditUserDevice GetDetails(long id)
@@ -32,6 +34,8 @@ namespace AccountManagement.Infrastructure.EFCore.Repository
                 center_lng = x.Longtitude,
                 addressValue = x.Address
             }).FirstOrDefault(x => x.Id == id);
+
+            userDevice.deviceTitle = _productRepository.GetInfoById(userDevice.ProductId).FarsiTitle;
 
             return userDevice;
         }

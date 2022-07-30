@@ -2,6 +2,7 @@
 using RepairWorkShopManagement.Application.Contracts.RepairManService;
 using RepairWorkShopManagement.Domain.RepairManPanelAgg;
 using RepairWorkShopManagement.Domain.RepairManServiceAgg;
+using RepairWorkShopManagement.Domain.SystemServiceAgg;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -14,41 +15,61 @@ namespace RepairWorkShopManagement.Application
     {
         private readonly IRepairManPanelRepository _repairManPanelRepository;
         private readonly IRepairManServiceRepository _repairManServiceRepository;
+        private readonly ISystemServiceRepository _systemServiceRepository;
         private OperationResult operation;
 
-        public RepairManServiceApplication(IRepairManServiceRepository repairManServiceRepository, IRepairManPanelRepository repairManPanelRepository)
+        public RepairManServiceApplication(IRepairManServiceRepository repairManServiceRepository, IRepairManPanelRepository repairManPanelRepository,
+            ISystemServiceRepository systemServiceRepository)
         {
             _repairManServiceRepository = repairManServiceRepository;
             _repairManPanelRepository = repairManPanelRepository;
+            _systemServiceRepository = systemServiceRepository;
             operation = new OperationResult();
         }
 
         public OperationResult Create(CreateRepairManService command)
         {
-            if (_repairManServiceRepository.IsExist(x => x.RepairManPanelId == command.RepairManPanelId && x.SystemServiceId == command.SystemServiceId))
-                return operation.Failed($" شما قبلا توی سرویس : ({command.SystemServiceTitle}) همکاری داشته اید و قادر به همکاری مجدد نیستید");
+            var repairManPanel = _repairManPanelRepository.GetById(command.RepairManPanelId);
 
-            var repairManService = new RepairManService(command.Price, command.MarketerSharePercent, command.MarketerShareAmount,
+            foreach (var systemServiceId in command.SelectedSystemServiceIds)
+            {
+                if (_repairManServiceRepository.IsExist(x => x.RepairManPanelId == command.RepairManPanelId && x.SystemServiceId == systemServiceId))
+                    return operation.Failed($" شما قبلا توی سرویس : ({command.SystemServiceTitle}) همکاری داشته اید و قادر به همکاری مجدد نیستید");
+            }
+
+            foreach (var systemServiceId in command.SelectedSystemServiceIds)
+            {
+                var systemService = _systemServiceRepository.GetById(systemServiceId);
+
+                //Values From System Service
+                command.Price = systemService.BaseFeePrice;
+                //Values From RepairMan Panel
+                command.CanMarketerSee = repairManPanel.CanMarketerSee;
+                command.WarrantyTypeId = repairManPanel.WarrantyTypeId;
+                command.WarrantyAmount = repairManPanel.WarrantyAmount;
+
+                var repairManService = new RepairManService(command.Price, command.MarketerSharePercent, command.MarketerShareAmount,
                 command.CanMarketerSee, command.WarrantyTypeId, command.WarrantyAmount, command.RepairManPanelId,
-                command.SystemServiceId);
+                systemServiceId);
 
-            _repairManServiceRepository.Create(repairManService);
-            _repairManServiceRepository.Savechange();
+                _repairManServiceRepository.Create(repairManService);
+                _repairManServiceRepository.Savechange();
+            }
+
             return operation.Succedded($"درخواست شما برای ارائه ی این سرویس({command.SystemServiceTitle}) با موفقیت به آدمین گزارش داده شد و در صورت تایید به شما اطلاع رسانی خواهد شد");
         }
 
         public OperationResult Edit(EditRepairManService command)
         {
             var repairManService = _repairManServiceRepository.GetById(command.Id);
+
             if (repairManService == null)
                 return operation.Failed(ApplicationMessage.RecordNotFound);
-
-            if (_repairManServiceRepository.IsExist(x => x.RepairManPanelId == command.RepairManPanelId && x.SystemServiceId == command.SystemServiceId && x.Id != command.Id))
-                return operation.Failed($" شما قبلا توی سرویس : ({command.SystemServiceTitle}) همکاری داشته اید و قادر به همکاری مجدد نیستید");
 
             repairManService.Edit(command.Price, command.MarketerSharePercent, command.MarketerShareAmount,
                 command.CanMarketerSee, command.WarrantyTypeId, command.WarrantyAmount, command.RepairManPanelId,
                 command.SystemServiceId);
+
             _repairManServiceRepository.Savechange();
             return operation.Succedded();
         }

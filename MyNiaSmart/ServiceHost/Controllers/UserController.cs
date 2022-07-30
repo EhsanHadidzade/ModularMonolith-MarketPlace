@@ -373,10 +373,8 @@ namespace ServiceHost.Controllers
         #region UserDevices Management
         public IActionResult CreateUserDevice()
         {
-            var products = _productApplication.GetListWithCategories();
-            var command = new CreateUserDevice();
-            var model = new Tuple<List<ProductViewModel>, CreateUserDevice>(products, command);
-            return View(model);
+            ViewData["Products"]= _productApplication.GetListWithCategories();
+            return View();
         }
 
         #region AJAX => To Select Specific Product
@@ -400,9 +398,11 @@ namespace ServiceHost.Controllers
         
         }
 
-        public IActionResult EditUserDevice(long id)
+        [HttpPost]
+        public IActionResult UserDeviceDetails(long id)
         {
             //id==userDeviceId
+            ViewData["Products"] = _productApplication.GetListWithCategories();
             var userDevice = _userDeviceApplication.GetDetails(id);
             return View(userDevice);
         }
@@ -418,11 +418,13 @@ namespace ServiceHost.Controllers
 
 
         [HttpPost]
-        public string RemoveUserDevice(long userDeviceId)
+        public IActionResult RemoveUserDevice(long id)
         {
-            var result = _userDeviceApplication.Remove(userDeviceId);
-            var jsonObject = JsonConvert.SerializeObject(result);
-            return jsonObject;
+            //id==userDeviceId
+
+            var result = _userDeviceApplication.Remove(id);
+            UserController.message = result.Message;
+            return Redirect("/User/UserProfile?alert=notif");
         }
 
         #endregion
