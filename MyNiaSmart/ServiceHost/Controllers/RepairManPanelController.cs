@@ -45,6 +45,16 @@ namespace ServiceHost.Controllers
             return View(repairManServices);
         }
 
+        #region To Filter All SystemServices While RepairMan Is Adding New Services
+        public IActionResult _FilteredSystemServices(long brandId, long modelId, long typeId, long usageTypeId)
+        {
+            var command = new FilterSystemServiceViewModel() { BrandId = brandId, ModelId = modelId, TypeId = typeId,usageTypeId=usageTypeId };
+            var filteredServices = _systemServiceApplication.GetFilteredListByCategoryIds(command);
+            return PartialView(filteredServices);
+        }
+
+        #endregion
+
         #region Requesting repair man to cooperate for list of SystemServices 
 
         public IActionResult AddServiceToRepairManPanel()
@@ -53,21 +63,20 @@ namespace ServiceHost.Controllers
             return View(systemServices);
         }
 
-        public IActionResult _ListOfSystemService()
-        {
-            return PartialView();
-        }
-
         [HttpPost]
-        public IActionResult AddServiceToRepairManPanel(List<long> ServiceId)
+        public IActionResult AddServiceToRepairManPanel(List<long> ServiceIds)
         {
+            var repairManPanelId = _repairManPanelApplication.GetRepairManPanelIdByUserId(userId);
 
-            //var result = _repairManServiceApplication.Create(command);
-            //RepairManPanelController.message = result.Message;
-            return RedirectToAction("Index");
+            var command =new CreateRepairManService() { SelectedSystemServiceIds = ServiceIds,RepairManPanelId=repairManPanelId };
+            var result = _repairManServiceApplication.Create(command);
+            RepairManPanelController.message = result.Message;
+            return RedirectToAction("/RepairManPanel/Index?alert=notif");
         }
 
         #endregion
+
+    
 
         #region To Edit Specific Service that repairMan Has Added To Their panel
         public IActionResult EditService(long id)
@@ -88,21 +97,7 @@ namespace ServiceHost.Controllers
         }
         #endregion
 
-        #region To Show List Of Application Service Defined By Administrator, using while repair man want to select one to request to add tp their panel
-        public IActionResult SearchService()
-        {
-            var services = _systemServiceApplication.GetList();
-            return PartialView(services);
-        }
-        #endregion
 
-        #region AJAX =>  To select specific System Service from SearchServicePartialView for create form or edit form 
-        //public string addService(long id)
-        //{
-        //    var service = _systemServiceApplication.GetTitleAndIdById(id);
-        //    var jsonObject = JsonConvert.SerializeObject(service);
-        //    return jsonObject;
-        //}
-        #endregion
+
     }
 }

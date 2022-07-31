@@ -31,6 +31,9 @@ namespace RepairWorkShopManagement.Application
         {
             var repairManPanel = _repairManPanelRepository.GetById(command.RepairManPanelId);
 
+            if (command.SelectedSystemServiceIds.Count() == 0)
+                return operation.Failed("سرویسی انتحاب نشد");
+
             foreach (var systemServiceId in command.SelectedSystemServiceIds)
             {
                 if (_repairManServiceRepository.IsExist(x => x.RepairManPanelId == command.RepairManPanelId && x.SystemServiceId == systemServiceId))
@@ -56,7 +59,7 @@ namespace RepairWorkShopManagement.Application
                 _repairManServiceRepository.Savechange();
             }
 
-            return operation.Succedded($"درخواست شما برای ارائه ی این سرویس({command.SystemServiceTitle}) با موفقیت به آدمین گزارش داده شد و در صورت تایید به شما اطلاع رسانی خواهد شد");
+            return operation.Succedded($"درخواست شما برای ارائه ی این سرویس({command.SystemServiceTitle}) با موفقیت به ادمین گزارش داده شد و در صورت تایید به شما اطلاع رسانی خواهد شد");
         }
 
         public OperationResult Edit(EditRepairManService command)
@@ -86,7 +89,22 @@ namespace RepairWorkShopManagement.Application
 
         public List<RepairManServiceViewModel> GetListByRepairManPanelId(long repairManPanelId)
         {
-            return _repairManServiceRepository.GetListByRepairManPanelId(repairManPanelId);
+            var repairManServices = _repairManServiceRepository.GetListByRepairManPanelId(repairManPanelId);
+            var list = new List<RepairManServiceViewModel>();
+
+            foreach (var repairManService in repairManServices)
+            {
+                var systemService = _systemServiceRepository.GetById(repairManService.Id);
+
+              var  MyRepairManService=new RepairManServiceViewModel()
+                {
+                  Id = repairManService.Id, 
+                  
+                }
+
+
+
+            }
         }
 
         public CreateRepairManService PrepareModelForCreationByRepairManPanelId(long repairManPanelId)
@@ -108,7 +126,7 @@ namespace RepairWorkShopManagement.Application
             if (repairManService == null)
                 return operation.Failed(ApplicationMessage.RecordNotFound);
 
-            repairManService.ConfirmByAdmin();
+            repairManService.ConfirmEditionByAdmin();
             _repairManServiceRepository.Savechange();
             return operation.Succedded();
         }

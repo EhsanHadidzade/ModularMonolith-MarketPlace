@@ -1,0 +1,39 @@
+﻿@model List<RepairWorkShopManagement.Application.Contracts.SystemService.SystemServiceViewModel>
+
+
+
+
+<div class="table-responsive">
+    <table class="table table-responsive-md">
+        <thead>
+            <tr>
+                <th style="width:50px;">
+                    انتخاب
+                </th>
+                <th>عنوان سرویس</th>
+                <th> برند </th>
+                <th> مدل </th>
+                <th> نوع </th>
+                <th> نحوه استفاده</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+
+                    <td>
+                        <input type="checkbox" class="form-check" value="@item.Id" name="ServiceIds">
+                    </td>
+                    <td>@item.SystemServiceEngTitle</td>
+                    <td>@item.BrandEngTitle</td>
+                    <td>@item.ModelEngTitle</td>
+                    <td>@item.TypeEngTitle</td>
+                    <td>@item.UsageTypeEngTitle</td>
+                </tr>
+            }
+
+        </tbody>
+    </table>
+</div>
+

@@ -48,8 +48,7 @@ namespace RepairWorkShopManagement.Domain.RepairManServiceAgg
             RepairManPanelId = repairManPanelId;
             SystemServiceId = systemServiceId;
 
-            IsConfirmedByAdmin = false;
-            IsEditionConfirmedByAdmin=false;
+            IsEditionConfirmedByAdmin=true;
         }
 
         public void Edit(long price, int marketerSharePercent, int marketerShareAmount,
@@ -69,15 +68,12 @@ namespace RepairWorkShopManagement.Domain.RepairManServiceAgg
             RepairManPanelId = repairManPanelId;
             SystemServiceId = systemServiceId;
 
-            IsConfirmedByAdmin = true;
             IsEditionConfirmedByAdmin = false;
         }
 
-        public void ConfirmByAdmin()
+        public void ConfirmEditionByAdmin()
         {
-            IsConfirmedByAdmin=true;
             IsEditionConfirmedByAdmin = true;
-
         }
     }
 }

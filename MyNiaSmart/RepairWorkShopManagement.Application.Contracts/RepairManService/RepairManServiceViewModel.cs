@@ -6,6 +6,7 @@
         public string RepairManFullName { get; set; }
         public long RepairManPanelId { get; set; }
         public long SystemServiceId { get; set; }
+
         //Categories
         public string Brand { get; set; }
         public string Model { get; set; }

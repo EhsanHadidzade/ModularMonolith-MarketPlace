@@ -37,6 +37,7 @@ namespace RepairWorkShopManagement.Infrastructure.EFCore.Repository
                 }).FirstOrDefault(x => x.Id == id);
         }
 
+
         public List<RepairManServiceViewModel> GetList()
         {
             return _context.RepairManServices.Include(x => x.SystemService)
@@ -53,20 +54,20 @@ namespace RepairWorkShopManagement.Infrastructure.EFCore.Repository
                 }).OrderByDescending(x => x.Id).ToList();
         }
 
-        public List<RepairManServiceViewModel> GetListByRepairManPanelId(long repairManPanelId)
+        public List<RepairManService> GetListByRepairManPanelId(long repairManPanelId)
         {
             return _context.RepairManServices.Include(x => x.SystemService)
                 .Include(x => x.RepairManPanel)
                 .Where(x => x.RepairManPanelId == repairManPanelId)
-                .Select(x => new RepairManServiceViewModel
-                {
-                    Id = x.Id,
-                    RepairManPanelId = x.RepairManPanelId,
-                    SystemServiceId = x.SystemServiceId,
-                    IsConfirmedByAdmin = x.IsConfirmedByAdmin,
-                    IsEditionConfirmedByAdmin = x.IsEditionConfirmedByAdmin,
-                    CreationDate = x.CreationDate.ToFarsi()
-                }).OrderByDescending(x => x.Id).ToList();
+                .OrderByDescending(x => x.Id).ToList();
+        }
+
+        public List<long> GetRepairManServiceIds(long repairManPanelId)
+        {
+            return _context.RepairManServices
+                .Where(x => x.RepairManPanelId == repairManPanelId)
+                .Select(x => x.SystemServiceId)
+                .ToList();
         }
     }
 }

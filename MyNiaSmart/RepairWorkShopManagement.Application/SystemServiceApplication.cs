@@ -49,6 +49,11 @@ namespace RepairWorkShopManagement.Application
             return _systemServiceRepository.GetDetails(id);
         }
 
+        public List<SystemServiceViewModel> GetFilteredListByCategoryIds(FilterSystemServiceViewModel command)
+        {
+            return _systemServiceRepository.GetFilteredListByCategoryIds(command);
+        }
+
         public List<SystemServiceViewModel> GetList()
         {
             return _systemServiceRepository.GetList();

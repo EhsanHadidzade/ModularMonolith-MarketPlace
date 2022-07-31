@@ -17,6 +17,9 @@ namespace RepairWorkShopManagement.Domain.RepairManServiceAgg
         List<RepairManServiceViewModel> GetList();
 
         //To Get All OF Repair Man Services That are Selected By them to show in their panel
-        List<RepairManServiceViewModel> GetListByRepairManPanelId(long repairManPanelId);
+        List<RepairManService> GetListByRepairManPanelId(long repairManPanelId);
+
+        List<long> GetRepairManServiceIds(long repairManPanelId);
+
     }
 }

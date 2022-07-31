@@ -10,7 +10,7 @@ namespace RepairWorkShopManagement.Application.Contracts.SystemService
         List<SystemServiceViewModel> GetList();
         EditSystemService GetDetails(long id);
 
-        //SystemServiceViewModel GetTitleAndIdById(long systemServiceId);
-
+        //To Filter List In RepairMan Panel While they are selecting them in their panel
+        List<SystemServiceViewModel> GetFilteredListByCategoryIds(FilterSystemServiceViewModel command);
     }
 }
