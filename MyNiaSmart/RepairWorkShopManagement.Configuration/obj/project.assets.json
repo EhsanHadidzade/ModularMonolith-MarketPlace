@@ -2454,7 +2454,8 @@
         "framework": ".NETCoreApp,Version=v5.0",
         "dependencies": {
           "RepairWorkShopManagement.Application.Contracts": "1.0.0",
-          "RepairWorkShopManagement.Domain": "1.0.0"
+          "RepairWorkShopManagement.Domain": "1.0.0",
+          "ShopManagement.Domain": "1.0.0"
         },
         "compile": {
           "bin/placeholder/RepairWorkShopManagement.Application.dll": {}

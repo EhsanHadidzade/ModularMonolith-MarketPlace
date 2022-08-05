@@ -151,13 +151,13 @@
 @section Scripts{
 <script>
         function CreateMarketerSharePrice(source, percent, marketershare) {
-        
+
         const value = $('#' + source).val();
         const mypercent = $('#'+ percent).val();
         $('#' + marketershare).val((mypercent / 100) * value);
     }
 
-            
+
               $(document).ready(function() {
                   $("#customSwitch1").click(function() {
                       if($(this).prop("checked") == true) {
@@ -175,6 +175,7 @@
                     });
                 }
                 );
+
 
                  function onlyNumberKey(evt) {
 

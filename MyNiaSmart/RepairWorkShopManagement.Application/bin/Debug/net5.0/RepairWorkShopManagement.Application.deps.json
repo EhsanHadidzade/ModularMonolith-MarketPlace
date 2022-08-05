@@ -9,7 +9,8 @@
       "RepairWorkShopManagement.Application/1.0.0": {
         "dependencies": {
           "RepairWorkShopManagement.Application.Contracts": "1.0.0",
-          "RepairWorkShopManagement.Domain": "1.0.0"
+          "RepairWorkShopManagement.Domain": "1.0.0",
+          "ShopManagement.Domain": "1.0.0"
         },
         "runtime": {
           "RepairWorkShopManagement.Application.dll": {}
@@ -1121,6 +1122,23 @@
           "0_Framework.dll": {}
         }
       },
+      "AccountManagement.Application.Contract/1.0.0": {
+        "dependencies": {
+          "0_Framework": "1.0.0"
+        },
+        "runtime": {
+          "AccountManagement.Application.Contract.dll": {}
+        }
+      },
+      "AccountManagement.Domain/1.0.0": {
+        "dependencies": {
+          "0_Framework": "1.0.0",
+          "AccountManagement.Application.Contract": "1.0.0"
+        },
+        "runtime": {
+          "AccountManagement.Domain.dll": {}
+        }
+      },
       "RepairWorkShopManagement.Application.Contracts/1.0.0": {
         "dependencies": {
           "0_Framework": "1.0.0"
@@ -1136,6 +1154,25 @@
         },
         "runtime": {
           "RepairWorkShopManagement.Domain.dll": {}
+        }
+      },
+      "ShopManagement.Application.Contract/1.0.0": {
+        "dependencies": {
+          "0_Framework": "1.0.0",
+          "AccountManagement.Application.Contract": "1.0.0"
+        },
+        "runtime": {
+          "ShopManagement.Application.Contract.dll": {}
+        }
+      },
+      "ShopManagement.Domain/1.0.0": {
+        "dependencies": {
+          "0_Framework": "1.0.0",
+          "AccountManagement.Domain": "1.0.0",
+          "ShopManagement.Application.Contract": "1.0.0"
+        },
+        "runtime": {
+          "ShopManagement.Domain.dll": {}
         }
       }
     }
@@ -1998,12 +2035,32 @@
       "serviceable": false,
       "sha512": ""
     },
+    "AccountManagement.Application.Contract/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "AccountManagement.Domain/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
     "RepairWorkShopManagement.Application.Contracts/1.0.0": {
       "type": "project",
       "serviceable": false,
       "sha512": ""
     },
     "RepairWorkShopManagement.Domain/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "ShopManagement.Application.Contract/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "ShopManagement.Domain/1.0.0": {
       "type": "project",
       "serviceable": false,
       "sha512": ""

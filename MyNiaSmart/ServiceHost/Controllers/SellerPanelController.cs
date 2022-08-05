@@ -48,7 +48,10 @@ namespace ServiceHost.Controllers
             //TO Find Seller PanelId
             var userId = _authHelper.CurrentAccountInfo().Id;
             var sellerPanelId = _sellerPanelApplication.GetSellerPanelIdByUserId(userId);
-
+            if (sellerPanelId == 0)
+            {
+                return BadRequest("Not Allowed");
+            }
 
             var sellerProducts = _sellerProductApplication.GetListBySellerPanelId(sellerPanelId);
             ViewData["message"] = SellerPanelController.message;

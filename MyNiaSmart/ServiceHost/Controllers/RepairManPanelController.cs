@@ -45,15 +45,6 @@ namespace ServiceHost.Controllers
             return View(repairManServices);
         }
 
-        #region To Filter All SystemServices While RepairMan Is Adding New Services
-        public IActionResult _FilteredSystemServices(long brandId, long modelId, long typeId, long usageTypeId)
-        {
-            var command = new FilterSystemServiceViewModel() { BrandId = brandId, ModelId = modelId, TypeId = typeId,usageTypeId=usageTypeId };
-            var filteredServices = _systemServiceApplication.GetFilteredListByCategoryIds(command);
-            return PartialView(filteredServices);
-        }
-
-        #endregion
 
         #region Requesting repair man to cooperate for list of SystemServices 
 
@@ -63,12 +54,21 @@ namespace ServiceHost.Controllers
             return View(systemServices);
         }
 
+        // To Filter All SystemServices While RepairMan Is Adding New Services
+        public IActionResult _FilteredSystemServices(long brandId, long modelId, long typeId, long usageTypeId)
+        {
+            var command = new FilterSystemServiceViewModel() { BrandId = brandId, ModelId = modelId, TypeId = typeId, usageTypeId = usageTypeId };
+            var filteredServices = _systemServiceApplication.GetFilteredListByCategoryIds(command);
+            return PartialView(filteredServices);
+        }
+
+
         [HttpPost]
         public IActionResult AddServiceToRepairManPanel(List<long> ServiceIds)
         {
             var repairManPanelId = _repairManPanelApplication.GetRepairManPanelIdByUserId(userId);
 
-            var command =new CreateRepairManService() { SelectedSystemServiceIds = ServiceIds,RepairManPanelId=repairManPanelId };
+            var command = new CreateRepairManService() { SelectedSystemServiceIds = ServiceIds, RepairManPanelId = repairManPanelId };
             var result = _repairManServiceApplication.Create(command);
             RepairManPanelController.message = result.Message;
             return RedirectToAction("/RepairManPanel/Index?alert=notif");
@@ -76,24 +76,23 @@ namespace ServiceHost.Controllers
 
         #endregion
 
-    
-
         #region To Edit Specific Service that repairMan Has Added To Their panel
-        public IActionResult EditService(long id)
+        public IActionResult EditRepairManService(long id)
         {
             var repairManService = _repairManServiceApplication.GetDetails(id);
             return View(repairManService);
         }
 
+
         [HttpPost]
-        public IActionResult EditService(EditRepairManService command)
+        public IActionResult EditRepairManService(EditRepairManService command)
         {
             if (!ModelState.IsValid)
                 return View(command);
 
             var result = _repairManServiceApplication.Edit(command);
-            SellerPanelController.message = result.Message;
-            return RedirectToAction("Index");
+            RepairManPanelController.message = result.Message;
+            return Redirect("/RepairManPanel/Index?alert=notif");
         }
         #endregion
 

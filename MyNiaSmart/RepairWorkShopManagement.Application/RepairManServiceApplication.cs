@@ -2,7 +2,12 @@
 using RepairWorkShopManagement.Application.Contracts.RepairManService;
 using RepairWorkShopManagement.Domain.RepairManPanelAgg;
 using RepairWorkShopManagement.Domain.RepairManServiceAgg;
+using RepairWorkShopManagement.Domain.ServiceTitleAgg;
 using RepairWorkShopManagement.Domain.SystemServiceAgg;
+using ShopManagement.Domain.ProductCategoryAgg.ProductBrandAgg;
+using ShopManagement.Domain.ProductCategoryAgg.ProductModelAgg;
+using ShopManagement.Domain.ProductCategoryAgg.ProductTypeAgg;
+using ShopManagement.Domain.ProductCategoryAgg.ProductUsageTypeAgg;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,18 +18,33 @@ namespace RepairWorkShopManagement.Application
 {
     public class RepairManServiceApplication : IRepairManServiceApplication
     {
-        private readonly IRepairManPanelRepository _repairManPanelRepository;
         private readonly IRepairManServiceRepository _repairManServiceRepository;
+        private readonly IRepairManPanelRepository _repairManPanelRepository;
         private readonly ISystemServiceRepository _systemServiceRepository;
+        private readonly IProductBrandRepository _productBrandRepository;
+
+        private readonly IProductUsageTypeRepository _productUsageTypeRepository;
+        private readonly IProductTypeRepository _productTypeRepository;
+        private readonly IServiceTitleRepository _serviceTitleRepository;
+        private readonly IProductModelRepository _productModelRepository;
         private OperationResult operation;
 
-        public RepairManServiceApplication(IRepairManServiceRepository repairManServiceRepository, IRepairManPanelRepository repairManPanelRepository,
-            ISystemServiceRepository systemServiceRepository)
+        public RepairManServiceApplication(IRepairManServiceRepository repairManServiceRepository,
+            IRepairManPanelRepository repairManPanelRepository, ISystemServiceRepository systemServiceRepository,
+            IProductBrandRepository productBrandRepository, IProductModelRepository productModelRepository,
+            IProductTypeRepository productTypeRepository, IProductUsageTypeRepository productUsageTypeRepository,
+            IServiceTitleRepository serviceTitleRepository)
         {
             _repairManServiceRepository = repairManServiceRepository;
             _repairManPanelRepository = repairManPanelRepository;
             _systemServiceRepository = systemServiceRepository;
             operation = new OperationResult();
+
+            _productBrandRepository = productBrandRepository;
+            _productModelRepository = productModelRepository;
+            _productTypeRepository = productTypeRepository;
+            _productUsageTypeRepository = productUsageTypeRepository;
+            _serviceTitleRepository = serviceTitleRepository;
         }
 
         public OperationResult Create(CreateRepairManService command)
@@ -79,7 +99,34 @@ namespace RepairWorkShopManagement.Application
 
         public EditRepairManService GetDetails(long id)
         {
-            return _repairManServiceRepository.GetDetails(id);
+            var repairManService=_repairManServiceRepository.GetById(id);
+            var relatedSystemService = _systemServiceRepository.GetById(repairManService.SystemServiceId);
+            
+            var details= new EditRepairManService()
+            {
+                Id = id,
+
+                Price=repairManService.Price,
+                MarketerShareAmount=repairManService.MarketerShareAmount,
+                MarketerSharePercent=repairManService.MarketerSharePercent,
+
+                //DefalutValue
+                CanMarketerSee=repairManService.CanMarketerSee,
+                WarrantyTypeId=repairManService.WarrantyTypeId, 
+                WarrantyAmount=repairManService.WarrantyAmount, 
+
+                RepairManPanelId=repairManService.RepairManPanelId,
+                SystemServiceId=repairManService.SystemServiceId,
+                
+                //Categories
+                Brand = _productBrandRepository.GetById(relatedSystemService.ProductBrandId).EngTitle,
+                Model = _productModelRepository.GetById(relatedSystemService.ProductModelId).EngTitle,
+                Type = _productTypeRepository.GetById(relatedSystemService.ProductTypeId).EngTitle,
+                UsageType = _productUsageTypeRepository.GetById(relatedSystemService.ProductUsageTypeId).EngTitle,
+                SystemServiceTitle = _serviceTitleRepository.GetById(relatedSystemService.ServiceTitleId).EngTitle,
+            };
+
+            return details;
         }
 
         public List<RepairManServiceViewModel> GetList()
@@ -94,17 +141,27 @@ namespace RepairWorkShopManagement.Application
 
             foreach (var repairManService in repairManServices)
             {
-                var systemService = _systemServiceRepository.GetById(repairManService.Id);
+                var systemService = _systemServiceRepository.GetById(repairManService.SystemServiceId);
 
-              var  MyRepairManService=new RepairManServiceViewModel()
+                var MyRepairManService = new RepairManServiceViewModel()
                 {
-                  Id = repairManService.Id, 
-                  
-                }
+                    Id = repairManService.Id,
+                    RepairManPanelId = repairManService.RepairManPanelId,
+                    Price=repairManService.Price,
 
+                    Brand = _productBrandRepository.GetById(systemService.ProductBrandId).EngTitle,
+                    Model = _productModelRepository.GetById(systemService.ProductModelId).EngTitle,
+                    Type = _productTypeRepository.GetById(systemService.ProductTypeId).EngTitle,
+                    UsageType = _productUsageTypeRepository.GetById(systemService.ProductUsageTypeId).EngTitle,
+                    SystemServiceTitle = _serviceTitleRepository.GetById(systemService.ServiceTitleId).EngTitle,
+                    CreationDate=repairManService.CreationDate.ToFarsi()
 
+                };
 
+                list.Add(MyRepairManService);
             }
+
+            return list;
         }
 
         public CreateRepairManService PrepareModelForCreationByRepairManPanelId(long repairManPanelId)

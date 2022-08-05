@@ -1,0 +1,140 @@
+﻿@model RepairWorkShopManagement.Application.Contracts.RepairManService.EditRepairManService
+@{
+    ViewData["Title"] = "ویرایش سرویس شما";
+}
+
+<div class="row page-titles mx-0">
+    <div class="col-sm-6 p-md-0">
+        <div class="welcome-text">
+            <h4>
+                سلام، خوش آمدید
+            </h4>
+            <p class="mb-0">پنل تعمیرات</p>
+        </div>
+    </div>
+    <div class="col-sm-6 p-md-0 justify-content-sm-end mt-2 mt-sm-0 d-flex">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="javascript:void(0)">پنل ها </a></li>
+            <li class="breadcrumb-item "><a href="javascript:void(0)">پنل تعمیرات </a></li>
+            <li class="breadcrumb-item active"><a href="javascript:void(0)">ویرایش سرویس</a></li>
+        </ol>
+    </div>
+</div>
+
+
+
+<div class="row">
+    <div class="col-xl-12 col-lg-12">
+        <div class="card">
+            <div class="card-header">
+                <h4 class="card-title">ویرایش این سرویس</h4>
+            </div>
+            <div class="card-body">
+                <div class="basic-form">
+                    <form method="post" action="/RepairManPanel/EditRepairManService">
+                        <div class="form-row">
+                            <div class="form-group col-md-12">
+                                <label> عنوان سرویس  </label>
+                                <input type="text" value="@Model.SystemServiceTitle" disabled class="form-control">
+                            </div>
+                            <div class="form-group col-md-6">
+                                <label> برند سرویس </label>
+                                <input type="text" value="@Model.Brand" disabled class="form-control">
+                            </div>
+                            <div class="form-group col-md-6">
+                                <label> مدل سرویس </label>
+                                <input type="text" value="@Model.Model" disabled class="form-control">
+                            </div>
+                            <div class="form-group col-md-6">
+                                <label> نوع سرویس </label>
+                                <input type="text" value="@Model.Type" disabled class="form-control">
+                            </div>
+                            <div class="form-group col-md-6">
+                                <label> نحوه استفاده  </label>
+                                <input type="text" value="@Model.UsageType" disabled class="form-control">
+                            </div>
+                            <div class="form-group col-md-12">
+                                <label> قیمت پایه بر حسب تومان(قابل تغییر)  </label>
+                                <input type="number" class="form-control" asp-for="Price" onkeypress="return onlyNumberKey(event)" placeholder="بر حسب تومان">
+                                <div class="progress">
+                                    <div class="progress-bar bg-danger" style="width: 60%; height:12px;" role="progressbar">
+                                        <span class="sr-only">60% تکمیل شده</span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="form-group col-md-6">
+                                <label>انتخاب نوع گارانتی سرویس ارائه شده</label>
+                                <select class="form-control" asp-for="WarrantyTypeId">
+                                    <option value="0">انتخاب کنید</option>
+                                    <option value="1"> ساعت</option>
+                                    <option value="2"> روز</option>
+                                    <option value="3"> ماه</option>
+                                    <option value="4"> سال</option>
+                                </select>
+                                <span class="text-danger" asp-validation-for="WarrantyTypeId">
+                                </span>
+                            </div>
+                            <div class="form-group col-md-6">
+                                <label>مقدار گارانتی</label>
+                                <input type="number" class="form-control" asp-for="WarrantyAmount" onkeypress="return onlyNumberKey(event)">
+                                <span class="text-danger" asp-validation-for="WarrantyAmount">
+                                </span>
+                            </div>
+                            <div class="form-group col-md-12">
+                                <div class="custom-control custom-switch custom-control-inline mb-1">
+                                    <input type="checkbox" class="custom-control-input" id="customSwitch1" asp-for="CanMarketerSee">
+                                    <label class="custom-control-label mr-1" for="customSwitch1">
+                                    </label>
+                                    <span>من مایلم خدمات من بازار یابی شوند</span>
+                                </div>
+                            </div>
+                            <div class="form-group col-md-12" id="MarketerSharePercentt" style="display:none">
+                                <label>درصدی که متعلق به بازار یاب میباشد</label>
+                                <input type="number" class="form-control" asp-for="MarketerSharePercent" onchange="CreateMarketerSharePrice('Price','MarketerSharePercent','MarketerShareAmount')" onkeypress="return onlyNumberKey(event)" placeholder="درصد">
+                                <span class="text-danger" asp-validation-for="MarketerSharePercent">
+                                </span>
+                            </div>
+                            <div class="form-group col-md-12" id="MarketerShareAmountt" style="display:none">
+                                <label>قیمتی از محصول که به بازاریاب تعلق میگیرد</label>
+                                <input type="number" class="form-control" asp-for="MarketerShareAmount" onkeypress="return onlyNumberKey(event)" placeholder="بر حسب تومان">
+                                <span class="text-danger" asp-validation-for="MarketerShareAmount">
+                                </span>
+                            </div>
+                            <input type="hidden"  asp-for="Id" value="@Model.Id">
+                            <input type="hidden"  asp-for="RepairManPanelId" value="@Model.RepairManPanelId">
+                            <input type="hidden"  asp-for="SystemServiceId" value="@Model.SystemServiceId">
+
+                        </div>
+                        <button type="submit" class="btn btn-primary">اعمال تعییرات</button>
+                        <a href="/RepairManPanel/index" class="btn btn-warning">بازگشت</a>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+@section Scripts{
+<script>
+    $(document).ready(function() {
+              $("#customSwitch1").click(function() {
+                  if($(this).prop("checked") == true) {
+                    $("#MarketerSharePercentt").css("display","block");
+                    $("#MarketerShareAmountt").css("display","block");
+                  }
+                  else if($(this).prop("checked") == false) {
+                   $("#MarketerSharePercentt").css("display","none");
+                    $("#MarketerSharePercent").val(0);
+                   $("#MarketerShareAmountt").css("display","none");
+                   $("#MarketerShareAmount").val(0);
+
+
+                  }
+                });
+            }
+            );
+
+</script>
+}

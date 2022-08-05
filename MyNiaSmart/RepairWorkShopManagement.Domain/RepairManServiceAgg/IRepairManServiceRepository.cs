@@ -10,9 +10,7 @@ namespace RepairWorkShopManagement.Domain.RepairManServiceAgg
 {
     public interface IRepairManServiceRepository:IRepository<long,RepairManService>
     {
-        //ClientSide
-        EditRepairManService GetDetails(long id);
-
+        
         //To Get All In Admin Panel To Manage Them
         List<RepairManServiceViewModel> GetList();
 
