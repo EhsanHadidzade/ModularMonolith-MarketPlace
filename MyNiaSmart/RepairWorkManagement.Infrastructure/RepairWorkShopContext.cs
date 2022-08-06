@@ -3,6 +3,7 @@ using RepairWorkShopManagement.Domain.RepairManPanelAgg;
 using RepairWorkShopManagement.Domain.RepairManServiceAgg;
 using RepairWorkShopManagement.Domain.ServiceTitleAgg;
 using RepairWorkShopManagement.Domain.SystemServiceAgg;
+using RepairWorkShopManagement.Domain.UserImapairmentReportAgg;
 using RepairWorkShopManagement.Infrastructure.EFCore.Mapping;
 using System;
 using System.Collections.Generic;
@@ -18,6 +19,7 @@ namespace RepairWorkShopManagement.Infrastructure.EFCore
         public DbSet<SystemService> SystemServices { get; set; }
         public DbSet<RepairManPanel> RepairManPanels { get; set; }
         public DbSet<RepairManService> RepairManServices { get; set; }
+        public DbSet<UserImapairmentReport> UserImapairmentReports { get; set; }
         public RepairWorkShopContext(DbContextOptions<RepairWorkShopContext> options) : base(options)
         {
         }

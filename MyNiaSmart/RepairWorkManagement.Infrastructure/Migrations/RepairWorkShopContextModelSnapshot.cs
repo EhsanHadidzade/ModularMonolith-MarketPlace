@@ -193,6 +193,42 @@ namespace RepairWorkManagement.Infrastructure.EFCore.Migrations
                     b.ToTable("SystemServices");
                 });
 
+            modelBuilder.Entity("RepairWorkShopManagement.Domain.UserImapairmentReportAgg.UserImapairmentReport", b =>
+                {
+                    b.Property<long>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("bigint")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<DateTime>("CreationDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("Description")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<bool>("IsDone")
+                        .HasColumnType("bit");
+
+                    b.Property<bool>("IsHandlingByRepairMan")
+                        .HasColumnType("bit");
+
+                    b.Property<long>("RepairManPanelId")
+                        .HasColumnType("bigint");
+
+                    b.Property<long>("SystemServiceId")
+                        .HasColumnType("bigint");
+
+                    b.Property<long>("UserDeviceId")
+                        .HasColumnType("bigint");
+
+                    b.Property<long>("UserId")
+                        .HasColumnType("bigint");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("UserImapairmentReports");
+                });
+
             modelBuilder.Entity("RepairWorkShopManagement.Domain.RepairManServiceAgg.RepairManService", b =>
                 {
                     b.HasOne("RepairWorkShopManagement.Domain.RepairManPanelAgg.RepairManPanel", "RepairManPanel")
