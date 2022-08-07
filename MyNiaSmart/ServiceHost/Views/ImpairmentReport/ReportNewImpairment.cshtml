@@ -1,0 +1,57 @@
+﻿@model RepairWorkShopManagement.Application.Contracts.UserImapairmentReport.CreateUserImpairmentReport
+@{
+    ViewData["Title"] = "ثبت خرابی جدید";
+}
+
+<div class="row page-titles mx-0">
+    <div class="col-sm-6 p-md-0">
+        <div class="welcome-text">
+            <h4>سلام، خوش آمدید</h4>
+            <p class="mb-0">ثبت خرابی جدید</p>
+        </div>
+    </div>
+    <div class="col-sm-6 p-md-0 justify-content-sm-end mt-2 mt-sm-0 d-flex">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="javascript:void(0)"> اعلام خرابی </a></li>
+            <li class="breadcrumb-item"><a href="/MainShop/index">ثبت خرابی جدید </a></li>
+        </ol>
+    </div>
+</div>
+
+
+<div class="row">
+    <div class="col-xl-12 col-lg-12">
+        <div class="card">
+            <div class="card-header">
+                <h4 class="card-title">افزودن محصول جدید</h4>
+            </div>
+            <div class="card-body">
+                <div class="basic-form">
+                    <form method="post" action="/SellerPanel/AddProductToSellerPanel">
+                        <div class="form-row">
+                            <div class="form-group col-md-8">
+                                <label>عنوان محصول</label>
+                                <input type="text" class="form-control" asp-for="UserDeviceTitle" placeholder="با زدن دکمه رو به رو، میتوانید محصول مورد نظر خود را انتخاب کنید" readonly>
+                                <span class="text-danger" asp-validation-for="UserDeviceTitle"></span>
+                            </div>
+                            <input type="hidden" asp-for="UserDeviceId" />
+                            <div class="form-group col-md-4">
+                                <label>.</label>
+                                <a class=" btn btn-square btn-outline-secondary" href="#showModal=/ImpairmentReport/ShowUserDevice" style="width:100%">انتخاب دستگاه</a>
+                            </div>
+                            <div class="form-group col-md-12" dir="rtl">
+                                <label> توضیحات</label>
+                                <textarea class="form-control" id="BodyContent" rows="30" asp-for="Description">
+
+                                </textarea>
+                                <span class="text-danger" asp-validation-for="Description">
+                                </span>
+                            </div>
+                            <button type="submit" class="btn btn-primary">ثبت گزارش</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
