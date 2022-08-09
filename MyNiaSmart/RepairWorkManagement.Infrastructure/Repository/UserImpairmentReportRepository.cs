@@ -26,5 +26,10 @@ namespace RepairWorkShopManagement.Infrastructure.EFCore.Repository
         {
             return _context.UserImapairmentReports.Where(x => x.UserId == userId).ToList();
         }
+
+        public List<UserImapairmentReport> GetCurrentUserImpairmentReports(long userId)
+        {
+            return _context.UserImapairmentReports.Where(_x => _x.UserId == userId && _x.RepairManPanelId==0).ToList();
+        }
     }
 }

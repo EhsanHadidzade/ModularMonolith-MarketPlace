@@ -14,5 +14,6 @@ namespace AccountManagement.Application.Contract.UserDevice
         EditUserDevice GetDetails(long id);
         OperationResult Remove(long id);
         List<UserDeviceViewModel> GetListByUserId(long userId);
+        UserDeviceViewModel GetInfoById(long id);
     }
 }

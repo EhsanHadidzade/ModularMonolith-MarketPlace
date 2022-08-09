@@ -1,0 +1,38 @@
+﻿@model List<RepairWorkShopManagement.Application.Contracts.SystemService.SystemServiceViewModel>
+
+
+
+
+<div class="table-responsive">
+    <table class="table table-responsive-md">
+        <thead>
+            <tr>
+
+                <th>عنوان سرویس</th>
+                <th> برند </th>
+                <th> مدل </th>
+                <th> نوع </th>
+                <th> نحوه استفاده</th>
+                <th> عملیات </th>
+
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>@item.SystemServiceEngTitle</td>
+                    <td>@item.BrandEngTitle</td>
+                    <td>@item.ModelEngTitle</td>
+                    <td>@item.TypeEngTitle</td>
+                    <td>@item.UsageTypeEngTitle</td>
+                    <td>
+                        <button onclick="SelectService(@item.Id)" class="btn btn-outline-success">انتخاب</button>
+                    </td>
+                </tr>
+            }
+
+        </tbody>
+    </table>
+</div>
+

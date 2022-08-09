@@ -1,0 +1,166 @@
+﻿@model List<RepairWorkShopManagement.Application.Contracts.SystemService.SystemServiceViewModel>
+@using ShopManagement.Application.Contract.ProductCategory.ProductBrand;
+@using ShopManagement.Application.Contract.ProductCategory.ProductModel;
+@using ShopManagement.Application.Contract.ProductCategory.ProductType;
+@using ShopManagement.Application.Contract.ProductCategory.ProductUsageType;
+
+@inject IProductTypeApplication _productTypeApplication
+@inject IProductBrandApplication _productBrandApplication
+@inject IProductModelApplication _productModelApplication
+@inject IProductUsageTypeApplication _productUsageTypeApplication
+
+@{
+    ViewData["ProductTypes"] = new SelectList(_productTypeApplication.GetList(), "Id", "EngTitle");
+    ViewData["ProductBrands"] = new SelectList(_productBrandApplication.GetList(), "Id", "EngTitle");
+    ViewData["ProductModels"] = new SelectList(_productModelApplication.GetList(), "Id", "EngTitle");
+    ViewData["ProductUsageTypes"] = new SelectList(_productUsageTypeApplication.GetList(), "Id", "EngTitle");
+}
+
+<style>
+    html.busy {
+        cursor: wait !important;
+    }
+</style>
+
+
+@section header{
+<!-- Custom Stylesheet -->
+<link href="/MainTheme/vendor/bootstrap-select/dist/css/bootstrap-select.min.css" rel="stylesheet">
+
+}
+
+
+
+<div class="row">
+    <div class="col-xl-12 col-lg-12">
+        <div class="card">
+            <div class="card-header">
+                <h4 class="card-title">جست جو بر اساس</h4>
+            </div>
+            <div class="card-body">
+                <div class="basic-form">
+                    <div class="form-row">
+
+                        <div class="form-group col-md-3">
+                            <label>برند </label>
+                            <select class="form-control" id="Brand" asp-items="@ViewData["ProductBrands"] as SelectList" onchange="FilterSystemServices()">
+                                <option value="0">انتخاب کنید</option>
+                            </select>
+                        </div>
+                        <div class="form-group models col-md-3">
+                            <label>مدل </label>
+                            <select class="form-control" id="Model" asp-items="@ViewData["ProductModels"] as SelectList" onchange="FilterSystemServices()">
+                                <option value="0">انتخاب کنید</option>
+                            </select>
+                        </div>
+                        <div class="form-group col-md-3">
+                            <label>نوع </label>
+                            <select class="form-control" id="Type" asp-items="@ViewData["ProductTypes"] as SelectList" onchange="FilterSystemServices()">
+                                <option value="0">انتخاب کنید</option>
+                            </select>
+                        </div>
+                        <div class="form-group col-md-3">
+                            <label>نحوه استفاده </label>
+                            <select class="form-control" id="UsageType" asp-items="@ViewData["ProductUsageTypes"] as SelectList" onchange="FilterSystemServices()">
+                                <option value="0">انتخاب کنید</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="card">
+                <div class="card-header">
+                    <h4 class="card-title">لیست سرویس های سازمان </h4>
+                </div>
+                <div class="card-body" id="SystemServices">
+                    <div class="table-responsive">
+                        <table class="table table-responsive-md">
+                            <thead>
+                                <tr>
+                                  
+                                    <th>عنوان سرویس</th>
+                                    <th> برند </th>
+                                    <th> مدل </th>
+                                    <th> نوع </th>
+                                    <th> نحوه استفاده</th>
+                                    <th> عملیات </th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (var item in Model)
+                                {
+                                    <tr>
+
+                                      
+                                        <td>@item.SystemServiceEngTitle</td>
+                                        <td>@item.BrandEngTitle</td>
+                                        <td>@item.ModelEngTitle</td>
+                                        <td>@item.TypeEngTitle</td>
+                                        <td>@item.UsageTypeEngTitle</td>
+                                        <td>
+                                            <button onclick="SelectSystemService(@item.Id)" class="btn btn-outline-success">انتخاب</button>
+                                        </td>
+                                    </tr>
+
+                                }
+
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+
+
+
+
+
+<script>
+        function FilterSystemServices(){
+        $.ajax({
+            url:"/ImpairmentReport/_FilteredSystemServices",
+            data:{brandId:$("#Brand").val(),modelId:$("#Model").val(),typeId:$("#Type").val(),usageTypeId:$("#UsageType").val()},
+               beforeSend:function(){
+                $("html").addClass("busy");
+            },
+            success:function(result){
+                   $("#SystemServices").fadeOut(250,function(){
+                    $(this).html(result)
+                });
+                $("#SystemServices").fadeIn(500);
+                 $("html").removeClass("busy");
+            }
+        })
+    }
+
+     function SelectSystemService(userDeviceId){
+        debugger
+        $.ajax({
+            url:"/ImpairmentReport/SelectSystemService",
+            data:{id:userDeviceId},
+            dataType:'json',
+            success:function(result){
+                debugger
+                $("#SystemServiceTitle").val(result.SystemServiceFarsiTitle);
+                $("#SystemServiceId").val(result.Id);
+                $("#MainModal").modal("hide");
+            }
+        })
+    }
+</script>
+
+
+    
+
+
+

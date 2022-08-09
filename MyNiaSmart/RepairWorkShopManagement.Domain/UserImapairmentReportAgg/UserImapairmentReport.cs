@@ -14,7 +14,6 @@ namespace RepairWorkShopManagement.Domain.UserImapairmentReportAgg
         public long SystemServiceId { get;private set; }
         public string Description { get; private set; }
 
-
         public bool IsHandlingByRepairMan { get; private set; }
         public long RepairManPanelId { get; private set; }
 

@@ -602,3 +602,7 @@ C:\Work\Projects\MyNiaSmart\MyNiaSmart\ServiceHost\obj\Debug\net5.0\Razor\Views\
 C:\Work\Projects\MyNiaSmart\MyNiaSmart\ServiceHost\obj\Debug\net5.0\Razor\Views\RepairManPanel\_FilteredSystemServices.cshtml.g.cs
 C:\Work\Projects\MyNiaSmart\MyNiaSmart\ServiceHost\obj\Debug\net5.0\Razor\Views\RepairManPanel\EditRepairManService.cshtml.g.cs
 C:\Work\Projects\MyNiaSmart\MyNiaSmart\ServiceHost\obj\Debug\net5.0\Razor\Views\ImpairmentReport\ReportNewImpairment.cshtml.g.cs
+C:\Work\Projects\MyNiaSmart\MyNiaSmart\ServiceHost\obj\Debug\net5.0\Razor\Views\ImpairmentReport\ShowUserDevice.cshtml.g.cs
+C:\Work\Projects\MyNiaSmart\MyNiaSmart\ServiceHost\obj\Debug\net5.0\Razor\Views\ImpairmentReport\ShowSystemService.cshtml.g.cs
+C:\Work\Projects\MyNiaSmart\MyNiaSmart\ServiceHost\obj\Debug\net5.0\Razor\Views\ImpairmentReport\_FilteredSystemServices.cshtml.g.cs
+C:\Work\Projects\MyNiaSmart\MyNiaSmart\ServiceHost\obj\Debug\net5.0\Razor\Views\ImpairmentReport\CurrentImpairmentReport.cshtml.g.cs

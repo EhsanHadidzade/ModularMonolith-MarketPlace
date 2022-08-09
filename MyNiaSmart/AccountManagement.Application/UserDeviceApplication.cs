@@ -31,7 +31,7 @@ namespace AccountManagement.Application
             if (_userDeviceRepository.IsExist(x => x.UserId == command.UserId && x.ProductId == command.ProductId))
                 return operation.Failed("این دستگاه قبلا به لیست دستگاه های شما اضافه شده است");
 
-            var userDevice = new UserDevice(command.UserId, command.ProductId,command.center_lng,command.center_lat,command.addressValue);
+            var userDevice = new UserDevice(command.UserId, command.ProductId, command.center_lng, command.center_lat, command.addressValue);
             _userDeviceRepository.Create(userDevice);
             _userDeviceRepository.Savechange();
             return operation.Succedded();
@@ -43,7 +43,7 @@ namespace AccountManagement.Application
             if (userDevice == null)
                 return operation.Failed(ApplicationMessage.RecordNotFound);
 
-            if (command.UserId == 0 || !_userRepository.IsExist(x=>x.Id==command.UserId))
+            if (command.UserId == 0 || !_userRepository.IsExist(x => x.Id == command.UserId))
                 return operation.Failed("کاربری یافت نشد");
 
             if (_userDeviceRepository.IsExist(x => x.UserId == command.UserId && x.ProductId == command.ProductId && x.Id != command.Id))
@@ -58,6 +58,22 @@ namespace AccountManagement.Application
         {
             return _userDeviceRepository.GetDetails(id);
         }
+
+        public UserDeviceViewModel GetInfoById(long id)
+        {
+            var userDevice = _userDeviceRepository.GetById(id);
+
+            var model = new UserDeviceViewModel
+            {
+                DeviceTitle = _productRepository.GetById(userDevice.ProductId).FarsiTitle,
+                Id = id,
+                Address = userDevice.Address,
+            };
+
+            return model;
+        }
+
+
 
         public List<UserDeviceViewModel> GetListByUserId(long userId)
         {

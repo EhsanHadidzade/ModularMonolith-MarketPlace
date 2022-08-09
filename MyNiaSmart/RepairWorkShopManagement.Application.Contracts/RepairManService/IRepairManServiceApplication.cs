@@ -17,6 +17,7 @@ namespace RepairWorkShopManagement.Application.Contracts.RepairManService
         //To Get All In Admin Panel To Manage Them
         List<RepairManServiceViewModel> GetList();
 
+
         //To Get All OF Repair Man Services That are Selected By them to show in their panel
         List<RepairManServiceViewModel> GetListByRepairManPanelId(long repairManPanelId);
 

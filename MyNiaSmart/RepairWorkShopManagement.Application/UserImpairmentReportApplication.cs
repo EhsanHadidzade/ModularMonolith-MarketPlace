@@ -1,4 +1,5 @@
 ﻿using _0_Framework.Utilities;
+using AccountManagement.Domain.UserAgg;
 using AccountManagement.Domain.UserDeviceAgg;
 using RepairWorkShopManagement.Application.Contracts.UserImapairmentReport;
 using RepairWorkShopManagement.Domain.RepairManPanelAgg;
@@ -6,6 +7,10 @@ using RepairWorkShopManagement.Domain.ServiceTitleAgg;
 using RepairWorkShopManagement.Domain.SystemServiceAgg;
 using RepairWorkShopManagement.Domain.UserImapairmentReportAgg;
 using ShopManagement.Domain.ProductAgg;
+using ShopManagement.Domain.ProductCategoryAgg.ProductBrandAgg;
+using ShopManagement.Domain.ProductCategoryAgg.ProductModelAgg;
+using ShopManagement.Domain.ProductCategoryAgg.ProductTypeAgg;
+using ShopManagement.Domain.ProductCategoryAgg.ProductUsageTypeAgg;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -23,9 +28,19 @@ namespace RepairWorkShopManagement.Application
         private readonly IRepairManPanelRepository _repairManPanelRepository;
         private readonly IProductRepository _productRepository;
         private readonly IUserDeviceRepository _userDeviceRepository;
+        private readonly IUserRepository _userRepository;
+
+        private readonly IProductBrandRepository _productBrandRepository;
+        private readonly IProductModelRepository _productModelRepository;
+        private readonly IProductTypeRepository _productTypeRepository;
+        private readonly IProductUsageTypeRepository _productUsageTypeRepository;
 
         public UserImpairmentReportApplication(IUserImapairmentReportRepository userImapairmentReportRepository,
-            IServiceTitleRepository serviceTitleRepository, ISystemServiceRepository systemServiceRepository, IProductRepository productRepository, IUserDeviceRepository userDeviceRepository, IRepairManPanelRepository repairManPanelRepository)
+            IServiceTitleRepository serviceTitleRepository, ISystemServiceRepository systemServiceRepository, 
+            IProductRepository productRepository, IUserDeviceRepository userDeviceRepository,
+            IRepairManPanelRepository repairManPanelRepository, IUserRepository userRepository,
+            IProductBrandRepository productBrandRepository, IProductModelRepository productModelRepository,
+            IProductTypeRepository productTypeRepository, IProductUsageTypeRepository productUsageTypeRepository)
         {
             _userImapairmentReportRepository = userImapairmentReportRepository;
             _serviceTitleRepository = serviceTitleRepository;
@@ -33,7 +48,14 @@ namespace RepairWorkShopManagement.Application
             _productRepository = productRepository;
             _userDeviceRepository = userDeviceRepository;
             _repairManPanelRepository = repairManPanelRepository;
+            _userRepository = userRepository;
             operation = new OperationResult();
+
+
+            _productBrandRepository = productBrandRepository;
+            _productModelRepository = productModelRepository;
+            _productTypeRepository = productTypeRepository;
+            _productUsageTypeRepository = productUsageTypeRepository;
         }
 
         public OperationResult Create(CreateUserImpairmentReport command)
@@ -88,14 +110,14 @@ namespace RepairWorkShopManagement.Application
             return userImairmentReport;
         }
 
-        public List<UserImpairmentReportViewModel> GetAllByUserId(long userId)
-        {
-            var list = _userImapairmentReportRepository.GetAllByUserId(userId);
+        //public List<UserImpairmentReportViewModel> GetAllByUserId(long userId)
+        //{
+        //    var list = _userImapairmentReportRepository.GetAllByUserId(userId);
 
-            var userImairmentReport = ProjectUserImpairmentReport(list);
+        //    var userImairmentReport = ProjectUserImpairmentReport(list);
 
-            return userImairmentReport;
-        }
+        //    return userImairmentReport;
+        //}
 
         public OperationResult AcceptToHandleByRepairManPanelId(long repairManPanelId)
         {
@@ -132,9 +154,31 @@ namespace RepairWorkShopManagement.Application
 
                 item.SystemServiceTitle = serviceTitle.FarsiTitle;
                 item.UserDeviceTitle = userDeviceTitle.FarsiTitle;
+                item.UserFullName=_userRepository.GetFullNameByUserId(item.UserId);
             }
+
             return userImairmentReport;
         }
 
+        public List<UserImpairmentReportViewModel> GetCurrentUserImpairmentReports(long userId)
+        {
+            var list = _userImapairmentReportRepository.GetCurrentUserImpairmentReports(userId);
+
+            var userImairmentReport = ProjectUserImpairmentReport(list);
+
+            foreach (var item in userImairmentReport)
+            {
+                var systemService = _systemServiceRepository.GetById(item.SystemServiceId);
+
+                item.BrandFarsiTitle = _productBrandRepository.GetById(systemService.ProductBrandId).FarsiTitle;
+                item.ModelFarsiTitle=_productModelRepository.GetById(systemService.ProductModelId).FarsiTitle;
+                item.TypeFarsiTitle=_productTypeRepository.GetById(systemService.ProductTypeId).FarsiTitle;
+                item.UsageTypeFarsiTitle = _productUsageTypeRepository.GetById(systemService.ProductUsageTypeId).FarsiTitle;
+                item.SystemServiceFarsiTitle=_serviceTitleRepository.GetById(systemService.ServiceTitleId).FarsiTitle;
+            }
+
+            return userImairmentReport;
+
+        }
     }
 }

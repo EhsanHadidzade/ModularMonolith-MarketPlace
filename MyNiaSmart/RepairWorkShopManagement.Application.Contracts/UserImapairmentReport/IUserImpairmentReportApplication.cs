@@ -15,9 +15,14 @@ namespace RepairWorkShopManagement.Application.Contracts.UserImapairmentReport
         List<UserImpairmentReportViewModel> GetAll();
 
         //Using For User To See their ImpairmentReports With Status
-        List<UserImpairmentReportViewModel> GetAllByUserId(long userId);
+        //List<UserImpairmentReportViewModel> GetAllByUserId(long userId);
 
         //using For RepairMan to See the ImpairmentReports That he accepted
         List<UserImpairmentReportViewModel> GetAllByRepairManPanelId(int repairManPanelId);
+
+        //TO Show  list of user current impairmentReports that are processing
+        List<UserImpairmentReportViewModel> GetCurrentUserImpairmentReports(long userId);
+
+
     }
 }

@@ -49,7 +49,7 @@ namespace RepairWorkShopManagement.Infrastructure.EFCore.Repository
                     SystemServiceId = x.SystemServiceId,
                     IsConfirmedByAdmin = x.IsConfirmedByAdmin,
                     IsEditionConfirmedByAdmin = x.IsEditionConfirmedByAdmin,
-                    CreationDate = x.CreationDate.ToFarsi()
+                    CreationDate = x.CreationDate.ToFarsi(),
                 }).OrderByDescending(x => x.Id).ToList();
         }
 

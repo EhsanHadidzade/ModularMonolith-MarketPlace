@@ -1,5 +1,6 @@
 ﻿using _0_Framework.Utilities;
 using RepairWorkShopManagement.Application.Contracts.SystemService;
+using RepairWorkShopManagement.Domain.ServiceTitleAgg;
 using RepairWorkShopManagement.Domain.SystemServiceAgg;
 using System;
 using System.Collections.Generic;
@@ -10,11 +11,13 @@ namespace RepairWorkShopManagement.Application
     {
         private readonly ISystemServiceRepository _systemServiceRepository;
         private OperationResult operation;
+        private readonly IServiceTitleRepository _serviceTitleRepository;
 
-        public SystemServiceApplication(ISystemServiceRepository systemServiceRepository)
+        public SystemServiceApplication(ISystemServiceRepository systemServiceRepository, IServiceTitleRepository serviceTitleRepository)
         {
             _systemServiceRepository = systemServiceRepository;
             operation = new OperationResult();
+            _serviceTitleRepository = serviceTitleRepository;
         }
 
         public OperationResult Create(CreateSystemService command)
@@ -52,6 +55,20 @@ namespace RepairWorkShopManagement.Application
         public List<SystemServiceViewModel> GetFilteredListByCategoryIds(FilterSystemServiceViewModel command)
         {
             return _systemServiceRepository.GetFilteredListByCategoryIds(command);
+        }
+
+        public SystemServiceViewModel GetInfoById(long id)
+        {
+            var systemService = _systemServiceRepository.GetById(id);
+
+            var model = new SystemServiceViewModel()
+            {
+                SystemServiceFarsiTitle = _serviceTitleRepository.GetById(systemService.ServiceTitleId).FarsiTitle,
+                
+                Id = id,
+            };
+
+            return model;
         }
 
         public List<SystemServiceViewModel> GetList()

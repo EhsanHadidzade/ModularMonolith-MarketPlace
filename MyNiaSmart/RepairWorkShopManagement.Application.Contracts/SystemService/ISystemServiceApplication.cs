@@ -12,5 +12,8 @@ namespace RepairWorkShopManagement.Application.Contracts.SystemService
 
         //To Filter List In RepairMan Panel While they are selecting them in their panel
         List<SystemServiceViewModel> GetFilteredListByCategoryIds(FilterSystemServiceViewModel command);
+
+        //TO Find Info In Ajax Method
+        SystemServiceViewModel GetInfoById(long id);
     }
 }

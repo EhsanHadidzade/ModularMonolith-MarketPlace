@@ -23,15 +23,15 @@
     <div class="col-xl-12 col-lg-12">
         <div class="card">
             <div class="card-header">
-                <h4 class="card-title">افزودن محصول جدید</h4>
+                <h4 class="card-title">اعلام خرابی</h4>
             </div>
             <div class="card-body">
                 <div class="basic-form">
-                    <form method="post" action="/SellerPanel/AddProductToSellerPanel">
+                    <form method="post" action="/ImpairmentReport/ReportNewImpairment">
                         <div class="form-row">
                             <div class="form-group col-md-8">
-                                <label>عنوان محصول</label>
-                                <input type="text" class="form-control" asp-for="UserDeviceTitle" placeholder="با زدن دکمه رو به رو، میتوانید محصول مورد نظر خود را انتخاب کنید" readonly>
+                                <label>عنوان دستگاه</label>
+                                <input type="text" class="form-control" asp-for="UserDeviceTitle" placeholder="با زدن دکمه رو به رو، میتوانید دسگاه مورد نظر خود را انتخاب کنید" readonly>
                                 <span class="text-danger" asp-validation-for="UserDeviceTitle"></span>
                             </div>
                             <input type="hidden" asp-for="UserDeviceId" />
@@ -39,14 +39,28 @@
                                 <label>.</label>
                                 <a class=" btn btn-square btn-outline-secondary" href="#showModal=/ImpairmentReport/ShowUserDevice" style="width:100%">انتخاب دستگاه</a>
                             </div>
+
+                            <div class="form-group col-md-8">
+                                <label>انتخاب سرویس مورد نظر شما</label>
+                                <input type="text" class="form-control" asp-for="SystemServiceTitle" placeholder="با زدن دکمه رو به رو، میتوانید سرویس مورد نظر خود را انتخاب کنید" readonly>
+                                <span class="text-danger" asp-validation-for="UserDeviceTitle"></span>
+                            </div>
+
+                            <input type="hidden" asp-for="SystemServiceId" />
+                            <div class="form-group col-md-4">
+                                <label>.</label>
+                                <a class=" btn btn-square btn-outline-secondary" href="#showModal=/ImpairmentReport/ShowSystemService" style="width:100%">انتخاب سرویس</a>
+                            </div>
+
                             <div class="form-group col-md-12" dir="rtl">
                                 <label> توضیحات</label>
-                                <textarea class="form-control" id="BodyContent" rows="30" asp-for="Description">
+                                <textarea class="form-control" id="BodyContent" rows="8" asp-for="Description">
 
                                 </textarea>
                                 <span class="text-danger" asp-validation-for="Description">
                                 </span>
                             </div>
+
                             <button type="submit" class="btn btn-primary">ثبت گزارش</button>
                         </div>
                     </form>

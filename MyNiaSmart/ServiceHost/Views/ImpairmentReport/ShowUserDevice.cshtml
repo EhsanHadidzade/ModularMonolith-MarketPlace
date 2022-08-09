@@ -1,53 +1,54 @@
 ﻿@model List<AccountManagement.Application.Contract.UserDevice.UserDeviceViewModel>
 
 
-  <div class="card border-0 pb-0">
-
-                <div class="card-body">
-                    <div id="DZ_W_Todo3" class="widget-media dz-scroll ps ps--active-y" style="height:370px;">
-                        <ul class="timeline">
-                            @foreach (var userDevice in Model)
-                            {
-                                <li>
-                                    <div class="timeline-panel">
-                                        <div class="media mr-2">
-                                            <img alt="image" width="50" src="/UploadedFiles/@userDevice.DevicePictureURL">
-                                        </div>
-                                        <div class="media-body">
-                                            <h5 class="mb-1">@userDevice.DeviceTitle <small class="text-muted">@userDevice.CreationDate</small></h5>
-                                            <form asp-controller="User" asp-action="UserDeviceDetails" method="post">
-                                                <input type="hidden" value="@userDevice.Id" name="Id">
-                                                <button type="submit" class="btn btn-outline-warning btn-xxs">
-                                                    ویرایش
-                                                </button>
-                                            </form>
-                                            <br />
-                                            <form asp-controller="User" asp-action="RemoveUserDevice" method="post">
-                                                <input type="hidden" value="@userDevice.Id" name="Id">
-                                                <button type="submit" class="btn btn-outline-danger btn-xxs">
-                                                    حذف
-                                                </button>
-                                            </form>
-                                            <br />
-                                            <p class="mb-1"> آدرس : @userDevice.Address</p>
-
-                                        </div>
-                                   @*     <div class="dropdown">
-                                            <button type="button" class="btn btn-primary light sharp" data-toggle="dropdown" aria-expanded="false">
-                                                <svg width="18px" height="18px" viewBox="0 0 24 24" version="1.1"><g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd"><rect x="0" y="0" width="24" height="24"></rect><circle fill="#000000" cx="5" cy="12" r="2"></circle><circle fill="#000000" cx="12" cy="12" r="2"></circle><circle fill="#000000" cx="19" cy="12" r="2"></circle></g></svg>
-                                            </button>
-                                            <div class="dropdown-menu" x-placement="bottom-start" style="position: absolute; will-change: transform; top: 0px; left: 0px; transform: translate3d(0px, 33px, 0px);">
-                                                <a class="dropdown-item" href="#">حذف</a>
-                                            </div>
-                                        </div>*@
+<div class="row">
+    <div class="col-xl-12 col-lg-12">
+        <div class="card border-0 pb-0">
+            <div class="card-header border-0 pb-0">
+                <h4 class="card-title">لیست دستگاه های شما</h4>
+            </div>
+            <div class="card-body">
+                <div id="DZ_W_Todo3" class="widget-media dz-scroll ps ps--active-y" style="height:370px;">
+                    <ul class="timeline">
+                        @foreach (var item in Model)
+                        {
+                            <li>
+                                <div class="timeline-panel">
+                                    <div class="media mr-2">
+                                        <img alt="image" width="50" src="/UploadedFiles/@item.DevicePictureURL">
                                     </div>
-                                </li>
-                            }
+                                    <div class="media-body">
+                                        <h5 class="mb-1">@item.DeviceTitle <small class="text-muted">@item.CreationDate</small></h5>
+                                        <p>آدرس :</p>
+                                        <p class="mb-1">@item.Address</p>
+                                        <button onclick="SelectDevice(@item.Id)" class="btn btn-primary btn-xxs shadow">انتخاب </button>
+                                    </div>
+                                </div>
+                            </li>
+                        }
 
-                        </ul>
-                        <div class="ps__rail-x" style="left: 0px; bottom: 0px;"><div class="ps__thumb-x" tabindex="0" style="left: 0px; width: 0px;"></div></div><div class="ps__rail-y" style="top: 0px; height: 370px; left: 531px;"><div class="ps__thumb-y" tabindex="0" style="top: 0px; height: 235px;"></div></div>
-                    </div>
-                    <a href="/User/CreateUserDevice" class="btn btn-outline-info">افزودن دستگاه جدید</a>
 
+                    </ul>
+                    <div class="ps__rail-x" style="left: 0px; bottom: 0px;"><div class="ps__thumb-x" tabindex="0" style="left: 0px; width: 0px;"></div></div><div class="ps__rail-y" style="top: 0px; height: 370px; left: 531px;"><div class="ps__thumb-y" tabindex="0" style="top: 0px; height: 235px;"></div></div>
                 </div>
             </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    function SelectDevice(userDeviceId){
+        debugger
+        $.ajax({
+            url:"/ImpairmentReport/SelectDevice",
+            data:{id:userDeviceId},
+            dataType:'json',
+            success:function(result){
+                debugger
+                $("#UserDeviceTitle").val(result.DeviceTitle);
+                $("#UserDeviceId").val(result.Id);
+                $("#MainModal").modal("hide");
+            }
+        })
+    }
+</script>

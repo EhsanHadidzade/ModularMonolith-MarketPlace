@@ -13,5 +13,6 @@ namespace RepairWorkShopManagement.Application.Contracts.UserImapairmentReport
         public string Description { get;  set; }
 
         public string UserDeviceTitle { get; set; }
+        public string SystemServiceTitle { get; set; }
     }
 }
