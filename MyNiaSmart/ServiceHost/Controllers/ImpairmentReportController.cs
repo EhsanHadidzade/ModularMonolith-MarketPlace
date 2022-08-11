@@ -79,8 +79,8 @@ namespace ServiceHost.Controllers
         [HttpPost]
         public IActionResult ReportNewImpairment(CreateUserImpairmentReport command)
         {
-            command.UserId = _authHelper.CurrentAccountInfo().Id;
-            var result = _userImpairmentReportApplication.Create(command);
+            //command.UserId = _authHelper.CurrentAccountInfo().Id;
+            //var result = _userImpairmentReportApplication.Create(command);
             return Redirect("/home/Index");
 
         }
@@ -91,9 +91,9 @@ namespace ServiceHost.Controllers
         public IActionResult CurrentImpairmentReport()
         {
             var userId = _authHelper.CurrentAccountInfo().Id;
-            var userImpairment = _userImpairmentReportApplication.GetCurrentUserImpairmentReports(userId);
+            //var userImpairment = _userImpairmentReportApplication.GetCurrentUserImpairmentReports(userId);
 
-            return View(userImpairment);
+            return View();
         }
 
         #endregion

@@ -58,127 +58,151 @@ namespace RepairWorkShopManagement.Application
             _productUsageTypeRepository = productUsageTypeRepository;
         }
 
-        public OperationResult Create(CreateUserImpairmentReport command)
-        {
-            if (_userImapairmentReportRepository.IsExist(x => x.UserId == command.UserId && x.UserDeviceId == command.UserDeviceId && x.SystemServiceId == command.SystemServiceId))
-                return operation.Failed(ApplicationMessage.DuplicatedRecord);
 
-            var userImpairmentReport = new UserImapairmentReport(command.UserId, command.UserDeviceId,
-                command.SystemServiceId, command.Description);
 
-            _userImapairmentReportRepository.Create(userImpairmentReport);
-            _userImapairmentReportRepository.Savechange();
 
-            return operation.Succedded();
-        }
 
-        public OperationResult Edit(EditUserImpairmentReport command)
-        {
-            if (_userImapairmentReportRepository.IsExist(x => x.UserId == command.UserId && x.UserDeviceId == command.UserDeviceId && x.SystemServiceId == command.SystemServiceId && x.Id != command.Id))
-                return operation.Failed(ApplicationMessage.DuplicatedRecord);
 
-            if (command.UserId == 0)
-                return operation.Failed("کاربری یافت نشد");
 
-            var userImpairmentReport = _userImapairmentReportRepository.GetById(command.Id);
-            if (userImpairmentReport == null)
-                return operation.Failed(ApplicationMessage.RecordNotFound);
 
-            userImpairmentReport.Edit(command.UserDeviceId, command.SystemServiceId, command.Description);
-            _userImapairmentReportRepository.Savechange();
 
-            return operation.Succedded();
 
-        }
 
-        public List<UserImpairmentReportViewModel> GetAll()
-        {
-            var list = _userImapairmentReportRepository.GetAll();
 
-            var userImairmentReport = ProjectUserImpairmentReport(list);
 
-            return userImairmentReport;
 
-        }
 
-        public List<UserImpairmentReportViewModel> GetAllByRepairManPanelId(int repairManPanelId)
-        {
-            var list = _userImapairmentReportRepository.GetAllByRepairManPanelId(repairManPanelId);
 
-            var userImairmentReport = ProjectUserImpairmentReport(list);
 
-            return userImairmentReport;
-        }
 
-        //public List<UserImpairmentReportViewModel> GetAllByUserId(long userId)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        //public OperationResult Create(CreateUserImpairmentReport command)
         //{
-        //    var list = _userImapairmentReportRepository.GetAllByUserId(userId);
+        //    if (_userImapairmentReportRepository.IsExist(x => x.UserId == command.UserId && x.UserDeviceId == command.UserDeviceId && x.SystemServiceId == command.SystemServiceId))
+        //        return operation.Failed(ApplicationMessage.DuplicatedRecord);
+
+        //    var userImpairmentReport = new UserImapairmentReport(command.UserId, command.UserDeviceId,
+        //        command.SystemServiceId, command.Description);
+
+        //    _userImapairmentReportRepository.Create(userImpairmentReport);
+        //    _userImapairmentReportRepository.Savechange();
+
+        //    return operation.Succedded();
+        //}
+
+        //public OperationResult Edit(EditUserImpairmentReport command)
+        //{
+        //    if (_userImapairmentReportRepository.IsExist(x => x.UserId == command.UserId && x.UserDeviceId == command.UserDeviceId && x.SystemServiceId == command.SystemServiceId && x.Id != command.Id))
+        //        return operation.Failed(ApplicationMessage.DuplicatedRecord);
+
+        //    if (command.UserId == 0)
+        //        return operation.Failed("کاربری یافت نشد");
+
+        //    var userImpairmentReport = _userImapairmentReportRepository.GetById(command.Id);
+        //    if (userImpairmentReport == null)
+        //        return operation.Failed(ApplicationMessage.RecordNotFound);
+
+        //    userImpairmentReport.Edit(command.UserDeviceId, command.SystemServiceId, command.Description);
+        //    _userImapairmentReportRepository.Savechange();
+
+        //    return operation.Succedded();
+
+        //}
+
+        //public List<UserImpairmentReportViewModel> GetAll()
+        //{
+        //    var list = _userImapairmentReportRepository.GetAll();
+
+        //    var userImairmentReport = ProjectUserImpairmentReport(list);
+
+        //    return userImairmentReport;
+
+        //}
+
+        //public List<UserImpairmentReportViewModel> GetAllByRepairManPanelId(int repairManPanelId)
+        //{
+        //    var list = _userImapairmentReportRepository.GetAllByRepairManPanelId(repairManPanelId);
 
         //    var userImairmentReport = ProjectUserImpairmentReport(list);
 
         //    return userImairmentReport;
         //}
 
-        public OperationResult AcceptToHandleByRepairManPanelId(long repairManPanelId)
-        {
-            if (!_repairManPanelRepository.IsExist(x => x.Id == repairManPanelId))
-                return operation.Failed(" کاربر گرامی، شما قادر به انجام این عملیات نیستید");
+ 
 
-            var userImpairmentReport = _userImapairmentReportRepository.GetById(repairManPanelId);
+        //public OperationResult AcceptToHandleByRepairManPanelId(long repairManPanelId)
+        //{
+        //    if (!_repairManPanelRepository.IsExist(x => x.Id == repairManPanelId))
+        //        return operation.Failed(" کاربر گرامی، شما قادر به انجام این عملیات نیستید");
 
-            userImpairmentReport.AcceptedByRepairMan(repairManPanelId);
-            _userImapairmentReportRepository.Savechange();
+        //    var userImpairmentReport = _userImapairmentReportRepository.GetById(repairManPanelId);
 
-            return operation.Succedded();
+        //    userImpairmentReport.AcceptedByRepairMan(repairManPanelId);
+        //    _userImapairmentReportRepository.Savechange();
 
-        }
+        //    return operation.Succedded();
+
+        //}
 
 
-        private List<UserImpairmentReportViewModel> ProjectUserImpairmentReport(List<UserImapairmentReport> list)
-        {
-            var userImairmentReport = list.Select(x => new UserImpairmentReportViewModel
-            {
-                Id = x.Id,
-                UserDeviceId = x.UserDeviceId,
-                SystemServiceId = x.SystemServiceId,
-                UserId = x.UserId,
-            }).ToList();
+        //private List<UserImpairmentReportViewModel> ProjectUserImpairmentReport(List<UserImapairmentReport> list)
+        //{
+        //    var userImairmentReport = list.Select(x => new UserImpairmentReportViewModel
+        //    {
+        //        Id = x.Id,
+        //        UserDeviceId = x.UserDeviceId,
+        //        SystemServiceId = x.SystemServiceId,
+        //        UserId = x.UserId,
+        //    }).ToList();
 
-            foreach (var item in userImairmentReport)
-            {
-                var systemService = _systemServiceRepository.GetById(item.SystemServiceId);
-                var serviceTitle = _serviceTitleRepository.GetById(systemService.ServiceTitleId);
+        //    foreach (var item in userImairmentReport)
+        //    {
+        //        var systemService = _systemServiceRepository.GetById(item.SystemServiceId);
+        //        var serviceTitle = _serviceTitleRepository.GetById(systemService.ServiceTitleId);
 
-                var userDevice = _userDeviceRepository.GetById(item.UserDeviceId);
-                var userDeviceTitle = _productRepository.GetById(userDevice.ProductId);
+        //        var userDevice = _userDeviceRepository.GetById(item.UserDeviceId);
+        //        var userDeviceTitle = _productRepository.GetById(userDevice.ProductId);
 
-                item.SystemServiceTitle = serviceTitle.FarsiTitle;
-                item.UserDeviceTitle = userDeviceTitle.FarsiTitle;
-                item.UserFullName=_userRepository.GetFullNameByUserId(item.UserId);
-            }
+        //        item.SystemServiceTitle = serviceTitle.FarsiTitle;
+        //        item.UserDeviceTitle = userDeviceTitle.FarsiTitle;
+        //        item.UserFullName=_userRepository.GetFullNameByUserId(item.UserId);
+        //    }
 
-            return userImairmentReport;
-        }
+        //    return userImairmentReport;
+        //}
 
-        public List<UserImpairmentReportViewModel> GetCurrentUserImpairmentReports(long userId)
-        {
-            var list = _userImapairmentReportRepository.GetCurrentUserImpairmentReports(userId);
+        //public List<UserImpairmentReportViewModel> GetCurrentUserImpairmentReports(long userId)
+        //{
+        //    var list = _userImapairmentReportRepository.GetCurrentUserImpairmentReports(userId);
 
-            var userImairmentReport = ProjectUserImpairmentReport(list);
+        //    var userImairmentReport = ProjectUserImpairmentReport(list);
 
-            foreach (var item in userImairmentReport)
-            {
-                var systemService = _systemServiceRepository.GetById(item.SystemServiceId);
+        //    foreach (var item in userImairmentReport)
+        //    {
+        //        var systemService = _systemServiceRepository.GetById(item.SystemServiceId);
 
-                item.BrandFarsiTitle = _productBrandRepository.GetById(systemService.ProductBrandId).FarsiTitle;
-                item.ModelFarsiTitle=_productModelRepository.GetById(systemService.ProductModelId).FarsiTitle;
-                item.TypeFarsiTitle=_productTypeRepository.GetById(systemService.ProductTypeId).FarsiTitle;
-                item.UsageTypeFarsiTitle = _productUsageTypeRepository.GetById(systemService.ProductUsageTypeId).FarsiTitle;
-                item.SystemServiceFarsiTitle=_serviceTitleRepository.GetById(systemService.ServiceTitleId).FarsiTitle;
-            }
+        //        item.BrandFarsiTitle = _productBrandRepository.GetById(systemService.ProductBrandId).FarsiTitle;
+        //        item.ModelFarsiTitle=_productModelRepository.GetById(systemService.ProductModelId).FarsiTitle;
+        //        item.TypeFarsiTitle=_productTypeRepository.GetById(systemService.ProductTypeId).FarsiTitle;
+        //        item.UsageTypeFarsiTitle = _productUsageTypeRepository.GetById(systemService.ProductUsageTypeId).FarsiTitle;
+        //        item.SystemServiceFarsiTitle=_serviceTitleRepository.GetById(systemService.ServiceTitleId).FarsiTitle;
+        //    }
 
-            return userImairmentReport;
+        //    return userImairmentReport;
 
-        }
+        //}
     }
 }

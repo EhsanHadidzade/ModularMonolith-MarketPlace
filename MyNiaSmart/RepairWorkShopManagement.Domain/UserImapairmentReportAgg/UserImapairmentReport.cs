@@ -1,4 +1,6 @@
 ﻿using _0_Framework.Domain;
+using RepairWorkShopManagement.Domain.ImpairmentReportProductAgg;
+using RepairWorkShopManagement.Domain.ImpairmentReportServiceAgg;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,7 +13,7 @@ namespace RepairWorkShopManagement.Domain.UserImapairmentReportAgg
     {
         public long UserId { get; private set; }
         public long UserDeviceId { get; private set; }
-        public long SystemServiceId { get;private set; }
+        //public long SystemServiceId { get;private set; }
         public string Description { get; private set; }
 
         public bool IsHandlingByRepairMan { get; private set; }
@@ -19,23 +21,28 @@ namespace RepairWorkShopManagement.Domain.UserImapairmentReportAgg
 
         public bool IsDone { get; set; }
 
-        public UserImapairmentReport(long userId, long userDeviceId, long systemServiceId, string description)
+        //relation
+        public List<ImpairmentReportService> ImpairmentReportServices { get;private set; }
+        public List<ImpairmentReportProduct> ImpairmentReportProducts { get;private set; }
+
+        public UserImapairmentReport(long userId, long userDeviceId, string description)
         {
             UserId = userId;
             UserDeviceId = userDeviceId;
-            SystemServiceId = systemServiceId;
             Description = description;
 
             IsHandlingByRepairMan = false;
             IsDone=false;
+
+            ImpairmentReportServices = new List<ImpairmentReportService>();
+            ImpairmentReportProducts= new List<ImpairmentReportProduct>();
+
         }
 
-        public void Edit(long userDeviceId, long systemServiceId, string description)
+        public void Edit(long userDeviceId, string description)
         {
             UserDeviceId = userDeviceId;
-            SystemServiceId = systemServiceId;
             Description = description;
-        
         }
 
         public void AcceptedByRepairMan(long repairManPanelId)

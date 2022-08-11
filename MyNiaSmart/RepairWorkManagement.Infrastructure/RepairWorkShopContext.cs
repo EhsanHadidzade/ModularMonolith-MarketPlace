@@ -1,4 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using RepairWorkShopManagement.Domain.ImpairmentReportProductAgg;
+using RepairWorkShopManagement.Domain.ImpairmentReportServiceAgg;
 using RepairWorkShopManagement.Domain.RepairManPanelAgg;
 using RepairWorkShopManagement.Domain.RepairManServiceAgg;
 using RepairWorkShopManagement.Domain.ServiceTitleAgg;
@@ -19,7 +21,11 @@ namespace RepairWorkShopManagement.Infrastructure.EFCore
         public DbSet<SystemService> SystemServices { get; set; }
         public DbSet<RepairManPanel> RepairManPanels { get; set; }
         public DbSet<RepairManService> RepairManServices { get; set; }
+
+
         public DbSet<UserImapairmentReport> UserImapairmentReports { get; set; }
+        public DbSet<ImpairmentReportService> ImpairmentReportServices { get; set; }
+        public DbSet<ImpairmentReportProduct> ImpairmentReportProducts { get; set; }
         public RepairWorkShopContext(DbContextOptions<RepairWorkShopContext> options) : base(options)
         {
         }

@@ -10,8 +10,7 @@ namespace RepairWorkShopManagement.Domain.UserImapairmentReportAgg
 {
     public interface IUserImapairmentReportRepository : IRepository<long, UserImapairmentReport>
     {
-        //Using For User To See their ImpairmentReports With Status
-        //List<UserImapairmentReport> GetAllByUserId(long userId);
+     
 
         //using For RepairMan to See the ImpairmentReports That he accepted
         List<UserImapairmentReport> GetAllByRepairManPanelId(int repairManPanelId);
