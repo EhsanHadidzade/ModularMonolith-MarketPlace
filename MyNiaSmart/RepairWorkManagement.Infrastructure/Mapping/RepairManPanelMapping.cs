@@ -16,11 +16,13 @@ namespace RepairWorkShopManagement.Infrastructure.EFCore.Mapping
             builder.ToTable("RepairManPanels");
             builder.HasKey(x => x.Id);
 
+            builder.Property(x => x.IdentityNO).HasMaxLength(12);
+
             builder.Property(x => x.CommericalFullName).HasMaxLength(128);
             builder.Property(x => x.MobileNumber).HasMaxLength(15);
+            builder.Property(x => x.Address).HasMaxLength(256);
             builder.Property(x => x.Capital).HasMaxLength(56);
             builder.Property(x => x.City).HasMaxLength(56);
-            builder.Property(x => x.Address).HasMaxLength(256);
 
             builder.HasMany(x => x.RepairManServices).WithOne(x => x.RepairManPanel).HasForeignKey(x => x.RepairManPanelId);
 

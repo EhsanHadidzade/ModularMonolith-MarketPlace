@@ -16,6 +16,8 @@ namespace RepairWorkShopManagement.Infrastructure.EFCore.Mapping
             builder.ToTable("UserImapairmentReports");
             builder.HasKey(t => t.Id);
 
+            builder.Property(x => x.TrackingNo).HasMaxLength(12);
+
             builder.HasMany(x => x.ImpairmentReportServices).WithOne(x => x.UserImapairmentReport).HasForeignKey(x => x.UserImpairmentReportId);
             builder.HasMany(x => x.ImpairmentReportProducts).WithOne(x => x.UserImapairmentReport).HasForeignKey(x => x.UserImpairmentReportId);
         }

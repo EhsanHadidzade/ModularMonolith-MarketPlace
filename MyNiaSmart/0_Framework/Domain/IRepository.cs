@@ -10,6 +10,8 @@ namespace _0_Framework.Domain
     public interface IRepository<Tkey,T>where T:class
     {
         T GetById(Tkey id);
+        T FirstOrDefaultByQuery(Expression<Func<T, bool>> filter);
+        List<T> GetAllByQuery(Expression<Func<T, bool>> filter);
         List<T> GetAll();
         void Create(T entity);
         void RemoveById(Tkey id);

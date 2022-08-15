@@ -80,6 +80,25 @@ namespace ShopManagement.Application
             return _productRepository.GetDetailsBySlug(slug);
         }
 
+        public List<ProductViewModel> GetFilteredByCategories(long brandId, long modelId, long typeId, long usageTypeId)
+        {
+            var products = _productRepository.GetAllByQuery(x => x.ProductBrandId == brandId
+                                                            && x.ProductModelId == modelId 
+                                                            && x.ProductTypeId == typeId 
+                                                            && x.ProductUsageTypeId == usageTypeId);
+            return products.Select(x => new ProductViewModel
+            {
+                Id = x.Id,
+                PictureURL = x.Picture,
+                EngTitle = x.EngTitle,
+                FarsiTitle = x.FarsiTitle,
+                PartNumber = x.PartNumber,
+                CreationDate = x.CreationDate.ToFarsi(),
+                Slug = x.Slug
+            }).ToList();
+
+        }
+
         public List<ProductViewModel> GetList()
         {
             return _productRepository.GetList();

@@ -24,6 +24,8 @@ namespace ShopManagement.Application.Contract.Product
 
         //using when user wants to add their device to theirs in their Profile
         List<ProductViewModel> GetListWithCategories();
+
+        List<ProductViewModel> GetFilteredByCategories(long brandId, long modelId, long typeId, long usageTypeId);
         #endregion
 
 

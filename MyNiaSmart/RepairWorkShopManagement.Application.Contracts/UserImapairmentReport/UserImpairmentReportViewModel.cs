@@ -6,19 +6,22 @@
 
         public long UserId { get; set; }
         public long UserDeviceId { get; set; }
-        public long SystemServiceId { get; set; }
 
         public string UserFullName { get; set; }
         public string UserDeviceTitle { get; set; }
-        public string SystemServiceTitle { get; set; }
+        public bool IsDone { get; set; }
+        public bool IsHandlingByRepairMan { get; set; }
+
+        public string CreationDate { get; set; }
+        public long RepairManPanelId { get; set; }
 
 
         //FK(SystemService) FarsiTitles
-        public string BrandFarsiTitle { get; set; }
-        public string ModelFarsiTitle { get; set; }
-        public string TypeFarsiTitle { get; set; }
-        public string UsageTypeFarsiTitle { get; set; }
-        public string SystemServiceFarsiTitle { get; set; }
+        //public string BrandFarsiTitle { get; set; }
+        //public string ModelFarsiTitle { get; set; }
+        //public string TypeFarsiTitle { get; set; }
+        //public string UsageTypeFarsiTitle { get; set; }
+        //public string SystemServiceFarsiTitle { get; set; }
 
 
     }

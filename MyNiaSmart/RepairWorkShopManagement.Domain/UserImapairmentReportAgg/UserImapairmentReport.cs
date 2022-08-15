@@ -13,23 +13,24 @@ namespace RepairWorkShopManagement.Domain.UserImapairmentReportAgg
     {
         public long UserId { get; private set; }
         public long UserDeviceId { get; private set; }
-        //public long SystemServiceId { get;private set; }
         public string Description { get; private set; }
 
         public bool IsHandlingByRepairMan { get; private set; }
         public long RepairManPanelId { get; private set; }
+        public string TrackingNo { get;private set; }
 
-        public bool IsDone { get; set; }
+        public bool IsDone { get;private set; }
 
         //relation
         public List<ImpairmentReportService> ImpairmentReportServices { get;private set; }
         public List<ImpairmentReportProduct> ImpairmentReportProducts { get;private set; }
 
-        public UserImapairmentReport(long userId, long userDeviceId, string description)
+        public UserImapairmentReport(long userId, long userDeviceId, string description,string trackingNo)
         {
             UserId = userId;
             UserDeviceId = userDeviceId;
             Description = description;
+            TrackingNo = trackingNo;
 
             IsHandlingByRepairMan = false;
             IsDone=false;
@@ -45,7 +46,7 @@ namespace RepairWorkShopManagement.Domain.UserImapairmentReportAgg
             Description = description;
         }
 
-        public void AcceptedByRepairMan(long repairManPanelId)
+        public void ChooseRepairManToHandle(long repairManPanelId)
         {
             IsHandlingByRepairMan=true;
             RepairManPanelId = repairManPanelId;

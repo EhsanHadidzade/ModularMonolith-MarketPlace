@@ -20,6 +20,7 @@
     </div>
 </div>
 
+
 <div class="row">
     <div class="col-lg-12">
         <div class="card">
@@ -31,12 +32,10 @@
                     <table class="table table-responsive-md">
                         <thead>
                             <tr>
-                                <th>عنوان سرویس</th>
-                                <th> برند </th>
-                                <th> مدل </th>
-                                <th> نوع </th>
-                                <th> نحوه استفاده</th>
+                               <th>نام دستگاه</th>
+                                <th>تاریخ ایجاد</th>
                                 <th>وضعیت</th>
+                                <th>عملیات</th>
                           
                             </tr>
                         </thead>
@@ -44,15 +43,25 @@
                             @foreach (var item in Model)
                             {
                                 <tr>
-                                    <td>@item.SystemServiceTitle</td>
-                                    <td>@item.BrandFarsiTitle</td>
-                                    <td>@item.ModelFarsiTitle</td>
-                                    <td>@item.TypeFarsiTitle</td>
-                                    <td>@item.UsageTypeFarsiTitle</td>
-                                
-                                    <td>
-                                       
+                                   <td>@item.UserDeviceTitle</td>
+                                   <td>@item.CreationDate</td>
+                                   <td>
+                                       @if(!item.IsHandlingByRepairMan)
+                                        {
+                                            <span class="badge light badge-warning">هنوز تعمیرکار انتخاب نکرده اید </span>
+                                        }
+                                        else
+                                        {
+                                            <span class="badge light badge-success">در حال بررسی توسط تعمیرکار </span>
+                                        }
                                     </td>
+                                    <td>
+                                        <a class="btn btn-outline-info" href="/ImpairmentReport/EditUserImpairmentReport/@item.Id" @((item.IsHandlingByRepairMan==true)?"disabledd":"") >ویرایش </a>
+                                        <a class="btn btn-outline-primary" href="#showModal=/ImpairmentReport/AddProduct/@item.Id"> افزودن قطعه</a>
+                                        <a class="btn btn-outline-success" href="#showModal=/ImpairmentReport/ChooseRepairman/@item.Id"> انتخاب تعمیرکار</a>
+                                    </td>
+                                
+                                  
                                 </tr>
 
                             }

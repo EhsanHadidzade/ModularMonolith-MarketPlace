@@ -1,0 +1,63 @@
+﻿@model List<RepairWorkShopManagement.Application.Contracts.RepainManPanel.RepairManPanelViewModel>
+@{
+}
+
+<!-- Custom Stylesheet -->
+<link href="/MainTheme/vendor/datatables/css/jquery.dataTables.min.css" rel="stylesheet">
+@*<link href="/MainTheme/vendor/bootstrap-select/dist/css/bootstrap-select.min.css" rel="stylesheet">*@
+
+
+<div class="row">
+    <div class="col-12">
+
+        <div class="card">
+
+            <div class="card-header">
+                <h4 class="card-title">لیست درخواست ها </h4>
+            </div>
+
+            <div class="card-body">
+                <div class="table-responsive">
+                    <table id="example3" class="display" style="min-width: 845px">
+                        <thead>
+                            <tr>
+                                <th>کد شناسایی</th>
+                                <th>نام تجاری شخص</th>
+                                <th>استان</th>
+                                <th>شهر</th>
+                                <th>عملیات</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var item in Model)
+                            {
+                                <tr>
+                                    <td>#@item.identityNo</td>
+                                    <td>@item.CommericalFullName</td>
+                                    <td>@item.Capital</td>
+                                    <td>@item.City</td>
+                                    <td>
+                                        <div class="d-flex">
+                                            <form method="post" action="/ImpairmentReport/ChooseRepairman">
+                                                <input type="hidden" value="@item.Id" name="repairmanPanelId">
+                                                <input type="hidden" value="@ViewData["UserImpairmentReportId"]" name="userImpairmentReportId">
+                                                <button class="btn btn-success" type="submit"> انتخاب</button>
+                                                </form>
+                                        </div>
+                                    </td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<!--Datatable JavaScript-->
+<script src="/MainTheme/vendor/datatables/js/jquery.dataTables.min.js"></script>
+<script src="/MainTheme/js/plugins-init/datatables.init.js"></script>
+
+

@@ -94,6 +94,10 @@ namespace RepairWorkManagement.Infrastructure.EFCore.Migrations
                     b.Property<DateTime>("CreationDate")
                         .HasColumnType("datetime2");
 
+                    b.Property<string>("IdentityNO")
+                        .HasMaxLength(12)
+                        .HasColumnType("nvarchar(12)");
+
                     b.Property<bool>("IsConfirmedByAdmin")
                         .HasColumnType("bit");
 
@@ -260,6 +264,10 @@ namespace RepairWorkManagement.Infrastructure.EFCore.Migrations
 
                     b.Property<long>("RepairManPanelId")
                         .HasColumnType("bigint");
+
+                    b.Property<string>("TrackingNo")
+                        .HasMaxLength(12)
+                        .HasColumnType("nvarchar(12)");
 
                     b.Property<long>("UserDeviceId")
                         .HasColumnType("bigint");

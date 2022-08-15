@@ -68,6 +68,7 @@ namespace AccountManagement.Application
                 DeviceTitle = _productRepository.GetById(userDevice.ProductId).FarsiTitle,
                 Id = id,
                 Address = userDevice.Address,
+                ProductId = userDevice.ProductId,
             };
 
             return model;

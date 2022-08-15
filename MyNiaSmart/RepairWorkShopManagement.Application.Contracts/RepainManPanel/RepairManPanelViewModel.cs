@@ -6,7 +6,8 @@
         public string CommericalFullName { get; set; } //نام تجاری
         public string Capital { get; set; }
         public string City { get; set; }
+        public string identityNo { get; set; }
         public bool IsConfirmedByAdmin { get; set; }
-
+        public string Address { get; set; }
     }
 }

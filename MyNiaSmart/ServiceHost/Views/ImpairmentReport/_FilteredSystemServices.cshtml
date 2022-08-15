@@ -7,7 +7,9 @@
     <table class="table table-responsive-md">
         <thead>
             <tr>
-
+                <th style="width:50px;">
+                    انتخاب
+                </th>
                 <th>عنوان سرویس</th>
                 <th> برند </th>
                 <th> مدل </th>
@@ -21,14 +23,15 @@
             @foreach (var item in Model)
             {
                 <tr>
+                    <td>
+                        <input type="checkbox" class="form-check" value="@item.Id" name="serviceIds">
+                    </td>
                     <td>@item.SystemServiceEngTitle</td>
                     <td>@item.BrandEngTitle</td>
                     <td>@item.ModelEngTitle</td>
                     <td>@item.TypeEngTitle</td>
                     <td>@item.UsageTypeEngTitle</td>
-                    <td>
-                        <button onclick="SelectService(@item.Id)" class="btn btn-outline-success">انتخاب</button>
-                    </td>
+
                 </tr>
             }
 

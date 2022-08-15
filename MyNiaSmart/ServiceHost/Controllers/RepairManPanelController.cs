@@ -4,6 +4,7 @@ using Newtonsoft.Json;
 using RepairWorkShopManagement.Application.Contracts.RepainManPanel;
 using RepairWorkShopManagement.Application.Contracts.RepairManService;
 using RepairWorkShopManagement.Application.Contracts.SystemService;
+using RepairWorkShopManagement.Application.Contracts.UserImapairmentReport;
 using RepairWorkShopManagement.Domain.RepairManServiceAgg;
 using System.Collections.Generic;
 
@@ -15,18 +16,21 @@ namespace ServiceHost.Controllers
         public static string message { get; set; }
         private readonly long userId;
         private readonly IRepairManPanelApplication _repairManPanelApplication;
+        private readonly IUserImpairmentReportApplication _userImpairmentReportApplication;
         private readonly IAuthHelper _authHelper;
         private readonly IRepairManServiceApplication _repairManServiceApplication;
         private readonly ISystemServiceApplication _systemServiceApplication;
 
         public RepairManPanelController(IRepairManPanelApplication repairManPanelApplication, IAuthHelper authHelper,
-            IRepairManServiceApplication repairManServiceApplication, ISystemServiceApplication systemServiceApplication)
+            IRepairManServiceApplication repairManServiceApplication, ISystemServiceApplication systemServiceApplication, 
+            IUserImpairmentReportApplication userImpairmentReportApplication)
         {
             _authHelper = authHelper;
             _systemServiceApplication = systemServiceApplication;
             _repairManPanelApplication = repairManPanelApplication;
             _repairManServiceApplication = repairManServiceApplication;
             userId = _authHelper.CurrentAccountInfo().Id;
+            _userImpairmentReportApplication = userImpairmentReportApplication;
         }
 
 
@@ -62,7 +66,6 @@ namespace ServiceHost.Controllers
             return PartialView(filteredServices);
         }
 
-
         [HttpPost]
         public IActionResult AddServiceToRepairManPanel(List<long> ServiceIds)
         {
@@ -75,6 +78,7 @@ namespace ServiceHost.Controllers
         }
 
         #endregion
+
 
         #region To Edit Specific Service that repairMan Has Added To Their panel
         public IActionResult EditRepairManService(long id)
@@ -93,6 +97,14 @@ namespace ServiceHost.Controllers
             var result = _repairManServiceApplication.Edit(command);
             RepairManPanelController.message = result.Message;
             return Redirect("/RepairManPanel/Index?alert=notif");
+        }
+        #endregion
+
+        #region  Accepting Specific ImpairmentReport To Handle
+        public IActionResult ShowAllImpairmentReports()
+        {
+            //var reports=_userImpairmentReportApplication
+            return View();
         }
         #endregion
 

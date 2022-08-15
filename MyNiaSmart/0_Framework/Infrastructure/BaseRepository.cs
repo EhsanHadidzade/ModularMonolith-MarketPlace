@@ -45,5 +45,30 @@ namespace _0_Framework.Infrastructure
         {
             _context.SaveChanges();
         }
+
+        public T FirstOrDefaultByQuery(Expression<Func<T, bool>> filter)
+        {
+            var query = _context.Set<T>().AsQueryable();
+            if (filter != null)
+            {
+                query = query.Where(filter).AsQueryable();
+            }
+
+            var data =  query.FirstOrDefault();
+
+            return data;
+        }
+
+        public List<T> GetAllByQuery(Expression<Func<T, bool>> filter)
+        {
+            var query = _context.Set<T>().AsQueryable();
+            if (filter != null)
+            {
+                query = query.Where(filter).AsQueryable();
+            }
+
+            var data = query.ToList();
+            return data;
+        }
     }
 }

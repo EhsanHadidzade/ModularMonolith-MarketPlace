@@ -6,6 +6,8 @@ using RepairWorkShopManagement.Application.Contracts.RepairManService;
 using RepairWorkShopManagement.Application.Contracts.ServiceTitle;
 using RepairWorkShopManagement.Application.Contracts.SystemService;
 using RepairWorkShopManagement.Application.Contracts.UserImapairmentReport;
+using RepairWorkShopManagement.Domain.ImpairmentReportProductAgg;
+using RepairWorkShopManagement.Domain.ImpairmentReportServiceAgg;
 using RepairWorkShopManagement.Domain.RepairManPanelAgg;
 using RepairWorkShopManagement.Domain.RepairManServiceAgg;
 using RepairWorkShopManagement.Domain.ServiceTitleAgg;
@@ -36,6 +38,13 @@ namespace RepairWorkShopManagement.Configuration
 
             services.AddTransient<IUserImapairmentReportRepository, UserImpairmentReportRepository>();
             services.AddTransient<IUserImpairmentReportApplication, UserImpairmentReportApplication>();
+
+            services.AddTransient<IImpairmentReportServiceRepository, ImpairmentReportServiceRepository>();
+
+
+            services.AddTransient<IImpairmentReportProductRepository, ImpairmentReportProductRepository>();
+
+
 
 
             services.AddDbContext<RepairWorkShopContext>(item => item.UseSqlServer(connectionString));

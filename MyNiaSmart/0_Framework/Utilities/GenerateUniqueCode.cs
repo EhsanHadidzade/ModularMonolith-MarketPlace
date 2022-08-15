@@ -13,5 +13,7 @@ namespace _0_Framework.Utilities
             var  _random = new Random();
             return _random.Next(0, 99999).ToString("D5");
         }
+
+     
     }
 }

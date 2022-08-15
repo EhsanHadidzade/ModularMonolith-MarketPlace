@@ -6,22 +6,28 @@ namespace RepairWorkShopManagement.Application.Contracts.UserImapairmentReport
     public interface IUserImpairmentReportApplication
     {
 
+        OperationResult Create(CreateUserImpairmentReport command);
+        OperationResult Edit(EditUserImpairmentReport command);
+        OperationResult AddProduct(AddProductToImpairmentReport command);
+        OperationResult ChooseRepairMan(long repairmanPanelId, long userImpairmentReportId);
 
+        EditUserImpairmentReport GetDetails(long id);
 
-        //OperationResult Create(CreateUserImpairmentReport command);
-        //OperationResult Edit(EditUserImpairmentReport command);
+        List<long> GetSelectedProductIds(long userImpairmentReportId);
+
 
         //OperationResult AcceptToHandleByRepairManPanelId(long repairManPanelId);
 
 
-        ////Using For RepairMan To see all userImpairments
-        //List<UserImpairmentReportViewModel> GetAll();
 
         ////using For RepairMan to See the ImpairmentReports That he accepted
         //List<UserImpairmentReportViewModel> GetAllByRepairManPanelId(int repairManPanelId);
 
-        ////TO Show  list of user current impairmentReports that are processing
-        //List<UserImpairmentReportViewModel> GetCurrentUserImpairmentReports(long userId);
+        //TO Show  list of user current impairmentReports that are processing
+        List<UserImpairmentReportViewModel> GetCurrentUserImpairmentReports(long userId);
+
+        //TO Show List Of All ImpairmentReports In RepairmanPanel by RepairmanPanelId 
+        List<UserImpairmentReportViewModel> GetUnhandledList(long repairmanPanelId);
 
 
     }

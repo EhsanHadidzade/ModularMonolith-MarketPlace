@@ -16,6 +16,7 @@ namespace RepairWorkShopManagement.Domain.RepairManPanelAgg
         public string Address { get; private set; }
         public string MobileNumber { get; private set; }
         public string ShortResume { get; private set; } //رزمه مختصر 
+        public string IdentityNO { get;private set; }
         public bool IsConfirmedByAdmin { get; private set; }
 
 
@@ -30,7 +31,7 @@ namespace RepairWorkShopManagement.Domain.RepairManPanelAgg
         public List<RepairManService> RepairManServices{ get;private set; }
 
         public RepairManPanel(string commericalFullName, string capital, string city, 
-            string address, string mobileNumber, string shortResume, bool canMarketerSee,
+            string address, string mobileNumber, string shortResume,string identityNO, bool canMarketerSee,
             int warrantyTypeId, int warrantyAmount, long userId)
         {
             CommericalFullName = commericalFullName;
@@ -39,6 +40,7 @@ namespace RepairWorkShopManagement.Domain.RepairManPanelAgg
             Address = address;
             MobileNumber = mobileNumber;
             ShortResume = shortResume;
+            IdentityNO = identityNO;
 
             //Default
             CanMarketerSee = canMarketerSee;
