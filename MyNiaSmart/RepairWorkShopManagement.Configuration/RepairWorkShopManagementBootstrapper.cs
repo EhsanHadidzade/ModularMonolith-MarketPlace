@@ -1,6 +1,8 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using RepairWorkShopManagement.Application;
+using RepairWorkShopManagement.Application.Contracts.ImpairmentReportProduct;
+using RepairWorkShopManagement.Application.Contracts.ImpairmentReportService;
 using RepairWorkShopManagement.Application.Contracts.RepainManPanel;
 using RepairWorkShopManagement.Application.Contracts.RepairManService;
 using RepairWorkShopManagement.Application.Contracts.ServiceTitle;
@@ -40,9 +42,11 @@ namespace RepairWorkShopManagement.Configuration
             services.AddTransient<IUserImpairmentReportApplication, UserImpairmentReportApplication>();
 
             services.AddTransient<IImpairmentReportServiceRepository, ImpairmentReportServiceRepository>();
+            services.AddTransient<IImpairmentReportServiceApplication, ImpairmentReportServiceApplication>();
 
 
             services.AddTransient<IImpairmentReportProductRepository, ImpairmentReportProductRepository>();
+            services.AddTransient<IImpairmentReportProductApplication, ImpairmentReportProductApplication>();
 
 
 

@@ -14,6 +14,7 @@
 
         public string CreationDate { get; set; }
         public long RepairManPanelId { get; set; }
+        public string TrackingNo { get; set; }
 
 
         //FK(SystemService) FarsiTitles

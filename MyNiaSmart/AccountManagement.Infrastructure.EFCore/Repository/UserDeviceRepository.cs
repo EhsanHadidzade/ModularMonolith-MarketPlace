@@ -32,7 +32,7 @@ namespace AccountManagement.Infrastructure.EFCore.Repository
                 ProductId = x.ProductId,
                 center_lat = x.Latitude,
                 center_lng = x.Longtitude,
-                addressValue = x.Address
+                address = x.Address
             }).FirstOrDefault(x => x.Id == id);
 
             userDevice.deviceTitle = _productRepository.GetInfoById(userDevice.ProductId).FarsiTitle;

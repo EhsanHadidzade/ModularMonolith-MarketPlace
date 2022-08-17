@@ -32,21 +32,21 @@
                     <table class="table table-responsive-md">
                         <thead>
                             <tr>
-                               <th>نام دستگاه</th>
+                                <th>نام دستگاه</th>
                                 <th>تاریخ ایجاد</th>
                                 <th>وضعیت</th>
                                 <th>عملیات</th>
-                          
+
                             </tr>
                         </thead>
                         <tbody>
                             @foreach (var item in Model)
                             {
                                 <tr>
-                                   <td>@item.UserDeviceTitle</td>
-                                   <td>@item.CreationDate</td>
-                                   <td>
-                                       @if(!item.IsHandlingByRepairMan)
+                                    <td>@item.UserDeviceTitle</td>
+                                    <td>@item.CreationDate</td>
+                                    <td>
+                                        @if (!item.IsHandlingByRepairMan)
                                         {
                                             <span class="badge light badge-warning">هنوز تعمیرکار انتخاب نکرده اید </span>
                                         }
@@ -56,16 +56,12 @@
                                         }
                                     </td>
                                     <td>
-                                        <a class="btn btn-outline-info" href="/ImpairmentReport/EditUserImpairmentReport/@item.Id" @((item.IsHandlingByRepairMan==true)?"disabledd":"") >ویرایش </a>
-                                        <a class="btn btn-outline-primary" href="#showModal=/ImpairmentReport/AddProduct/@item.Id"> افزودن قطعه</a>
+                                        <a class="btn btn-outline-info @((item.IsHandlingByRepairMan==true)? "disabled":"")" href="/ImpairmentReport/EditUserImpairmentReport/@item.Id" >ویرایش </a>
+                                        <a class="btn btn-outline-primary @((item.IsHandlingByRepairMan==true)? "disabled":"")" href="#showModal=/ImpairmentReport/AddProduct/@item.Id"> افزودن قطعه</a>
                                         <a class="btn btn-outline-success" href="#showModal=/ImpairmentReport/ChooseRepairman/@item.Id"> انتخاب تعمیرکار</a>
                                     </td>
-                                
-                                  
                                 </tr>
-
                             }
-
                         </tbody>
                     </table>
                 </div>

@@ -107,20 +107,24 @@ namespace RepairWorkShopManagement.Application
             foreach (var repairmanPanelId in repairmanPanelIds)
             {
                 var repairManServiceIds=_repairManServiceRepository.GetAllByQuery(x=>x.RepairManPanelId==repairmanPanelId).Select(x=>x.SystemServiceId).ToList();
-                
+
+                bool canRepairmanDo = true;
                 foreach (var ImpairmentReportSelectedServiceId in ImpairmentReportSelectedServiceIds)
                 {
-                    if (repairManServiceIds.Any(x => x == ImpairmentReportSelectedServiceId))
+                    if (!repairManServiceIds.Contains(ImpairmentReportSelectedServiceId))
                     {
-                        var repairmanPanel=_repairManPanelRepository.GetById(repairmanPanelId);
-                        list.Add(repairmanPanel);
+                       canRepairmanDo = false;
                     }
-
+                }
+                if (canRepairmanDo)
+                {
+                    var repairmanPanel=_repairManPanelRepository.GetById(repairmanPanelId);
+                    list.Add(repairmanPanel);
                 }
             }
 
-            //TODo : Filter RepairMan Which Are not the ImpairmetReport Address Area
-            return list.Distinct().Select(x => new RepairManPanelViewModel()
+            //TODo : Filter RepairMan Which Are not In the ImpairmetReport Address Area
+            return list.Select(x => new RepairManPanelViewModel()
             {
                 Id=x.Id,
                 CommericalFullName=x.CommericalFullName,
@@ -133,5 +137,7 @@ namespace RepairWorkShopManagement.Application
 
 
         }
+
+      
     }
 }

@@ -111,12 +111,12 @@
 
                         <div class="form-group col-md-12">
                             <label>آدرس</label>
-                            <input type="text" asp-for="addressValue" required class="form-control" placeholder="آدرس">
+                            <input type="text" asp-for="address" required class="form-control" placeholder="آدرس">
                         </div>
-                    </div>  
+                    </div>
                     <input type="hidden" id="ProductId" asp-for="ProductId" value="@Model.ProductId" />
-                    <input type="hidden" id="Id"  asp-for="Id" value="@Model.Id" />
-                    <input type="hidden" id="Id"  asp-for="UserId" value="@Model.UserId" />
+                    <input type="hidden" id="Id" asp-for="Id" value="@Model.Id" />
+                    <input type="hidden" id="Id" asp-for="UserId" value="@Model.UserId" />
                     <button type="submit" class="btn btn-success">ویرایش دستگاه</button>
                 </form>
 
@@ -173,9 +173,19 @@
 
 <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
 <script type="text/javascript" src="/MainTheme/js/MapAgg/ReverseGeoCoding-server.js"></script>
+<script type="text/javascript" src="/MainTheme/js/MapAgg/GeoCoding-server.js"></script>
+
+<script>
+    $(document).ready(function(){
+           debugger
+           geocoding();
+       })
+</script>
     }
 
 <script>
+
+
     function SelectThis(id){
         $.ajax({
             url:"/User/SelectDevice/",

@@ -2,10 +2,13 @@
 using AccountManagement.Application.Contract.UserDevice;
 using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
+using RepairWorkShopManagement.Application.Contracts.ImpairmentReportProduct;
+using RepairWorkShopManagement.Application.Contracts.ImpairmentReportService;
 using RepairWorkShopManagement.Application.Contracts.RepainManPanel;
 using RepairWorkShopManagement.Application.Contracts.SystemService;
 using RepairWorkShopManagement.Application.Contracts.UserImapairmentReport;
 using ShopManagement.Application.Contract.Product;
+using System;
 using System.Collections.Generic;
 
 namespace ServiceHost.Controllers
@@ -19,9 +22,14 @@ namespace ServiceHost.Controllers
         private readonly IProductApplication _productApplication;
         private readonly IRepairManPanelApplication _repairManPanelApplication;
 
+        private readonly IImpairmentReportProductApplication _impairmentReportProductApplication;
+        private readonly IImpairmentReportServiceApplication _impairmentReportServiceApplication;
+
         public ImpairmentReportController(IUserImpairmentReportApplication userImpairmentReportApplication,
             IUserDeviceApplication userDeviceApplication, IAuthHelper authHelper, ISystemServiceApplication systemServiceApplication,
-            IProductApplication productApplication, IRepairManPanelApplication repairManPanelApplication)
+            IProductApplication productApplication, IRepairManPanelApplication repairManPanelApplication, 
+            IImpairmentReportProductApplication impairmentReportProductApplication,
+            IImpairmentReportServiceApplication impairmentReportServiceApplication)
         {
             _userImpairmentReportApplication = userImpairmentReportApplication;
             _userDeviceApplication = userDeviceApplication;
@@ -29,6 +37,8 @@ namespace ServiceHost.Controllers
             _systemServiceApplication = systemServiceApplication;
             _productApplication = productApplication;
             _repairManPanelApplication = repairManPanelApplication;
+            _impairmentReportProductApplication = impairmentReportProductApplication;
+            _impairmentReportServiceApplication = impairmentReportServiceApplication;
         }
 
         public IActionResult Index()
@@ -143,6 +153,30 @@ namespace ServiceHost.Controllers
             var result=_userImpairmentReportApplication.ChooseRepairMan(repairmanPanelId, userImpairmentReportId);
             return Redirect("/ImpairmentReport/CurrentImpairmentReport");
 
+        }
+        #endregion
+
+        #region To Show Details Of One ImpairmentReport
+        public IActionResult ShowDetails(long id)
+        {
+            //id=UserImpairmentReport
+            var reportDetails = _userImpairmentReportApplication.GetDetails(id);
+            var reportServices = _impairmentReportServiceApplication.GetListByImpairmentReportId(id);
+            var reportProducts = _impairmentReportProductApplication.GetListByImpairmentReportId(id);
+
+            var model = new Tuple<EditUserImpairmentReport, List<ImpairmentReportServiceViewModel>, List<ImpairmentReportProductViewModel>>
+                (reportDetails, reportServices, reportProducts);
+
+            return View(model);
+        }
+        #endregion
+
+        #region Done Impairmet Reports Of RepairMan
+        public IActionResult CompletedImpairmentReports()
+        {
+            var userId = _authHelper.CurrentAccountInfo().Id;
+            var list = _userImpairmentReportApplication.GetDoneImpairmentReports(userId);
+            return View(list);
         }
         #endregion
 

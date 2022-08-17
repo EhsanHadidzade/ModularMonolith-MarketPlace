@@ -24,7 +24,7 @@ namespace RepairWorkShopManagement.Application
 {
     public class UserImpairmentReportApplication : IUserImpairmentReportApplication
     {
-        private readonly OperationResult operation;
+        private  OperationResult operation;
         private readonly IUserImapairmentReportRepository _userImapairmentReportRepository;
         private readonly IImpairmentReportServiceRepository _impairmentReportServiceRepository;
         private readonly IAuthHelper _authHelper;
@@ -205,12 +205,45 @@ namespace RepairWorkShopManagement.Application
                 Description = impartmentReport.Description,
                 UserDeviceId = impartmentReport.UserDeviceId,
                 SelectedSystemServiceIds = selectedImpartmentReportServiceIds,
-                UserDeviceTitle = userDeviceTitle.FarsiTitle
-
+                UserDeviceTitle = userDeviceTitle.FarsiTitle,
+                UserDeviceLong=userDevice.Longtitude,
+                UserDeviceLatt=userDevice.Latitude,
+                UserDeviceAddress=userDevice.Address
             };
 
             return impairmentDetails;
 
+        }
+
+        public List<UserImpairmentReportViewModel> GetRepairManRelatedReports()
+        {
+            var userId = _authHelper.CurrentAccountInfo().Id;
+            if (userId == 0)
+                return null;
+
+            var repairmanPanel = _repairManPanelRepository.FirstOrDefaultByQuery(x => x.UserId == userId);
+            if (repairmanPanel == null)
+                return null;
+
+            
+            var list= _userImapairmentReportRepository.GetAllByQuery(x => x.RepairManPanelId == repairmanPanel.Id && x.IsHandlingByRepairMan && !x.IsDone)
+                .Select(x => new UserImpairmentReportViewModel()
+                {
+                    Id = x.Id,
+                    TrackingNo = x.TrackingNo,
+                    CreationDate = x.CreationDate.ToFarsi(),
+                    UserDeviceId = x.UserDeviceId,
+                }).OrderByDescending(x=>x.Id).ToList();
+
+            foreach (var item in list)
+            {
+                var userDevice = _userDeviceRepository.GetById(item.UserDeviceId);
+                var userDeviceTitle = _productRepository.GetById(userDevice.ProductId);
+
+                item.UserDeviceTitle = userDeviceTitle.FarsiTitle;
+            }
+
+            return list;
         }
 
         public List<long> GetSelectedProductIds(long userImpairmentReportId)
@@ -219,10 +252,58 @@ namespace RepairWorkShopManagement.Application
                 .Select(x => x.ProductId).ToList();
         }
 
-        public List<UserImpairmentReportViewModel> GetUnhandledList(long repairmanPanelId)
+        public List<UserImpairmentReportViewModel> GetDoneImpairmentReports(long userId)
         {
-            throw new NotImplementedException();
+            var doneImpairmentReports=_userImapairmentReportRepository.GetAllByQuery(x => x.UserId == userId && x.IsDone)
+                .Select(x => new UserImpairmentReportViewModel
+                {
+                    Id = x.Id,
+                    UserId = x.UserId,
+                    IsDone = x.IsDone,
+                    UserDeviceId = x.UserDeviceId,
+                    IsHandlingByRepairMan = x.IsHandlingByRepairMan,
+                    RepairManPanelId = x.RepairManPanelId,
+                    CreationDate = x.CreationDate.ToFarsi()
+                }).ToList();
+
+            foreach (var item in doneImpairmentReports)
+            {
+                var userDevice = _userDeviceRepository.GetById(item.UserDeviceId);
+                var userDeviceTitle = _productRepository.GetById(userDevice.ProductId);
+
+                item.UserDeviceTitle = userDeviceTitle.FarsiTitle;
+            }
+
+            return doneImpairmentReports;
         }
+
+        public List<UserImpairmentReportViewModel> GetRepairmanDoneImpairment(long userId)
+        {
+            var repairmanPanelId=_repairManPanelRepository.GetRepairManPanelIdByUserId(userId);
+            var repairmanDoneImpairment=_userImapairmentReportRepository.GetAllByQuery(x=>x.RepairManPanelId== repairmanPanelId && x.IsDone)
+                .Select(x => new UserImpairmentReportViewModel
+                {
+                    Id = x.Id,
+                    UserId = x.UserId,
+                    IsDone = x.IsDone,
+                    UserDeviceId = x.UserDeviceId,
+                    IsHandlingByRepairMan = x.IsHandlingByRepairMan,
+                    RepairManPanelId = x.RepairManPanelId,
+                    CreationDate = x.CreationDate.ToFarsi()
+                }).ToList();
+
+            foreach (var item in repairmanDoneImpairment)
+            {
+                var userDevice = _userDeviceRepository.GetById(item.UserDeviceId);
+                var userDeviceTitle = _productRepository.GetById(userDevice.ProductId);
+
+                item.UserDeviceTitle = userDeviceTitle.FarsiTitle;
+            }
+
+            return repairmanDoneImpairment;
+        }
+
+
 
 
 

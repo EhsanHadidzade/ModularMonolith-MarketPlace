@@ -24,6 +24,6 @@ namespace AccountManagement.Application.Contract.UserDevice
         public string center_lat { get; set; }
 
         [Required(ErrorMessage =ValidationMessage.IsRequired)]
-        public string addressValue { get; set; }
+        public string address { get; set; }
     }
 }

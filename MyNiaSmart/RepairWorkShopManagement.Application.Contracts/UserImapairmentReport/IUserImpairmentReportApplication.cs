@@ -26,9 +26,14 @@ namespace RepairWorkShopManagement.Application.Contracts.UserImapairmentReport
         //TO Show  list of user current impairmentReports that are processing
         List<UserImpairmentReportViewModel> GetCurrentUserImpairmentReports(long userId);
 
-        //TO Show List Of All ImpairmentReports In RepairmanPanel by RepairmanPanelId 
-        List<UserImpairmentReportViewModel> GetUnhandledList(long repairmanPanelId);
 
+        //using in repairmanPanel To See if some one choosed him to handle their ImpairmentReport
+        List<UserImpairmentReportViewModel> GetRepairManRelatedReports();
 
+        //to show list of user Done ImpairmentReport 
+        List<UserImpairmentReportViewModel> GetDoneImpairmentReports(long userId);
+
+        //To Get List That Specific Repairman has Done 
+        List<UserImpairmentReportViewModel> GetRepairmanDoneImpairment(long userId);
     }
 }

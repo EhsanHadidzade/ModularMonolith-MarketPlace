@@ -56,7 +56,7 @@ function reverse() {
             myMap.flyTo([centerLat.value, centerLng.value], 16);
             marker.bindPopup(data.data.formatted_address).openPopup();
             document.getElementById("address").textContent = data.data.formatted_address;
-            document.getElementById("addressValue").value = data.data.formatted_address;
+            document.getElementById("address").value = data.data.formatted_address;
             StringAddress.value = data.data.formatted_address;
             debugger
         }).catch(err => {

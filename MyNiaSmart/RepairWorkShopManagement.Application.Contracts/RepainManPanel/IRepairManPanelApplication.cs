@@ -20,8 +20,10 @@ namespace RepairWorkShopManagement.Application.Contracts.RepainManPanel
         //to Show Or Hide RepairManPanelPanelButton in clientSideMenu for Adding  System Services and see Chartreports
         bool HasUserRepairManPanelConfirmedByAdmin(long userId);
 
-        //TO Get Filtered List Of reapairmans Based On Specific ImpairmentReport
+        //TO Get Filtered List Of reapairmans Based On Specific ImpairmentReport While Using want to choose some one
         List<RepairManPanelViewModel> GetListBasedOnImpairmentReport(long userImpairmentReportId);
+
+      
 
     }
 }

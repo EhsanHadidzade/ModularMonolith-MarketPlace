@@ -1,11 +1,14 @@
 ﻿using _0_Framework.Contract;
 using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
+using RepairWorkShopManagement.Application.Contracts.ImpairmentReportProduct;
+using RepairWorkShopManagement.Application.Contracts.ImpairmentReportService;
 using RepairWorkShopManagement.Application.Contracts.RepainManPanel;
 using RepairWorkShopManagement.Application.Contracts.RepairManService;
 using RepairWorkShopManagement.Application.Contracts.SystemService;
 using RepairWorkShopManagement.Application.Contracts.UserImapairmentReport;
 using RepairWorkShopManagement.Domain.RepairManServiceAgg;
+using System;
 using System.Collections.Generic;
 
 namespace ServiceHost.Controllers
@@ -20,17 +23,22 @@ namespace ServiceHost.Controllers
         private readonly IAuthHelper _authHelper;
         private readonly IRepairManServiceApplication _repairManServiceApplication;
         private readonly ISystemServiceApplication _systemServiceApplication;
+        private readonly IImpairmentReportProductApplication _impairmentReportProductApplication;
+        private readonly IImpairmentReportServiceApplication _impairmentReportServiceApplication;
 
         public RepairManPanelController(IRepairManPanelApplication repairManPanelApplication, IAuthHelper authHelper,
-            IRepairManServiceApplication repairManServiceApplication, ISystemServiceApplication systemServiceApplication, 
-            IUserImpairmentReportApplication userImpairmentReportApplication)
+            IRepairManServiceApplication repairManServiceApplication, ISystemServiceApplication systemServiceApplication,
+            IUserImpairmentReportApplication userImpairmentReportApplication, IImpairmentReportProductApplication impairmentReportProductApplication, 
+            IImpairmentReportServiceApplication impairmentReportServiceApplication)
         {
             _authHelper = authHelper;
             _systemServiceApplication = systemServiceApplication;
             _repairManPanelApplication = repairManPanelApplication;
             _repairManServiceApplication = repairManServiceApplication;
-            userId = _authHelper.CurrentAccountInfo().Id;
+             userId = _authHelper.CurrentAccountInfo().Id;
             _userImpairmentReportApplication = userImpairmentReportApplication;
+            _impairmentReportProductApplication = impairmentReportProductApplication;
+            _impairmentReportServiceApplication = impairmentReportServiceApplication;
         }
 
 
@@ -100,11 +108,35 @@ namespace ServiceHost.Controllers
         }
         #endregion
 
-        #region  Accepting Specific ImpairmentReport To Handle
-        public IActionResult ShowAllImpairmentReports()
+        #region  Checking The Impairment Reports that are choosed To Handle By RepairMan panel
+        public IActionResult ShowRelatedImpairmentReports()
         {
-            //var reports=_userImpairmentReportApplication
-            return View();
+            var reports = _userImpairmentReportApplication.GetRepairManRelatedReports();
+            return View(reports);
+        }
+        #endregion
+
+        #region Show ImpairmentReport Details
+        public IActionResult ShowReportDetails(long id)
+        {
+            //id=UserImpairmentReport
+            var reportDetails = _userImpairmentReportApplication.GetDetails(id);
+            var reportServices=_impairmentReportServiceApplication.GetListByImpairmentReportId(id);
+            var reportProducts = _impairmentReportProductApplication.GetListByImpairmentReportId(id);
+
+            var model = new Tuple<EditUserImpairmentReport, List<ImpairmentReportServiceViewModel>, List<ImpairmentReportProductViewModel>>
+                (reportDetails, reportServices, reportProducts);
+
+            return View(model);
+        }
+        #endregion
+
+        #region Done Impairmet Reports Of RepairMan
+        public IActionResult DoneImpairmentReports()
+        {
+            var userId=_authHelper.CurrentAccountInfo().Id;
+            var list = _userImpairmentReportApplication.GetRepairmanDoneImpairment(userId);
+            return View(list);
         }
         #endregion
 
